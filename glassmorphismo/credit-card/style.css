@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;600&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.container{
+    background: linear-gradient(rgba(156, 0, 143, 0.933),rgb(20, 1, 22));
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    width: 500px;
+    height: 300px;
+    border-top: 1px solid silver;
+    border-left: 1px solid silver;
+    border-radius: 10px;
+    background-color: rgba(200, 200, 200, 0.1);
+    backdrop-filter: blur(7px);
+
+    box-shadow: 4px 4px 4px rgba(68, 68, 68, 0.6);    
+    cursor: pointer;
+}
+
+.visa{
+    width: 80px;
+    height: 80px;
+    /*border: 1px solid red;*/
+    background: url(visa.png) no-repeat;
+    filter: brightness(0.8);
+    background-size: cover;
+    position: relative;
+    top: 10px;
+    left: 380px;
+}
+
+.chip{
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    background: url(chip.png) center;
+    filter: invert() brightness(0.7);
+    background-size: cover;
+    position: relative;
+    top: 20px;
+    left: 25px;
+}
+
+.card-number::before{
+    content: "1234 5678 9010 2345";
+    width: 100px;
+    height: 100px;
+
+    position: relative;
+    top: 40px;
+    left: 50px;
+
+    font-family: "Orbitron" , sans-serif;
+    font-size: 21px;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 1px 1px 8px;
+}
+
+.meta{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.name::before{
+    background-color: black;
+    content: "LEONARDO MELENDEZ";
+    width: 60%;
+    height: 100px;
+
+    position: relative;
+    top: 60px;
+    left: 20px;
+    font-family: "Orbitron" , sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.exp-date::before{
+    background-color: blue;
+    content: "30/11";
+    width: 40%;
+    height: 100px;
+
+    position: relative;
+    top: 60px;
+    left: 20px;
+
+    font-family: "Orbitron" , sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+
+
+
+
+

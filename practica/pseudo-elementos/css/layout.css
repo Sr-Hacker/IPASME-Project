@@ -1,0 +1,102 @@
+.card-credit{
+    width: 80%;
+    max-width: 300px;
+}
+
+.layout{
+    width: 100%;
+    text-align: center;
+    color: var(--text-color);
+
+    background: var(--primary-theme);
+    backdrop-filter: blur(5px);   
+    border-radius: 0 0px 30px 30px;
+    position: relative;
+    z-index: 12;
+}
+
+
+
+.layout-title{
+    font-size: 35px;
+    font-weight: bold;
+    max-width: 500px;
+    margin: 5px auto;
+}
+
+.layout-descriptyon{
+    font-size: 20px;
+    font-weight: 500;
+    max-width: 500px;
+    line-height: 1.3;
+    margin: 20px auto;
+}
+
+@media (min-width: 800px){
+
+    .card-credit{
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .layout{
+        display: flex;
+        text-align: left;
+        justify-content: space-between;
+        color: var(--text-color);
+        height: 76vh;
+        width: 94%;
+        margin: 23px auto;
+        position: relative;
+        z-index: 12;
+
+        background: var(--primary-theme);
+        backdrop-filter: blur(2px);
+        border-radius: 10px;
+        border-top: 1px solid silver;
+        border-left: 1px solid silver;
+        box-shadow: 4px 4px 4px rgba(68, 68, 68, 0.6);    
+    }
+    
+    .layout-info {
+        margin: 50px auto;
+
+    }
+
+    .layout-title{
+        font-size: 35px;
+        font-weight: bold;
+        max-width: 500px;
+        margin: 30px;
+    }
+    
+    .layout-descriptyon{
+        font-size: 20px;
+        font-weight: 500;
+        max-width: 600px;
+        line-height: 1.3;
+        margin: 30px;
+    }
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
