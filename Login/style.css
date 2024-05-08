@@ -2,19 +2,24 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+
 body{
     font-family: 'Poppins' ,sans-serif;
     min-height: 100vh;
-    background: linear-gradient(to right, #333999, #ff00cc);
+    background: linear-gradient(to right, #5f05d6 50%, #eee9ed);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.material-symbols-outlined{
+    font-size: 6em;
+}
+
 .login-card{
     width: 450px;
     background-color: rgba(255, 255, 255, .5);
-    padding: 4rem;
+    padding: 2rem 4rem;
     border-radius: 10px;
     position: relative;
 }
@@ -28,13 +33,6 @@ body{
     z-index: -1;
 }
 
-.login-card-logo {
-    margin-bottom: 2rem;
-}
-
-.login-card-logo img{
-    width: 60px;
-}
 
 .login-card-logo,
 .login-card-header,
@@ -51,9 +49,6 @@ body{
     text-decoration: underline;
 }
 
-.login-card-header {
-    margin-bottom: 2rem;
-}
 
 .login-card-header h1 {
     font-size: 2rem;
@@ -83,20 +78,6 @@ body{
     left: 1.4rem;
     font-size: 1.3rem;
     opacity: .4;
-}
-
-.login-card-form .checkbox {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.login-card-form .form-item-other {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: calc(1rem * .8);
-    margin-bottom: .5rem;
 }
 
 .login-card-footer {
@@ -141,46 +122,6 @@ body{
 .login-card-form button:hover{
     background: rgba(0, 0, 0, .05);
     cursor: pointer;
-}
-
-.login-card-social {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-    margin-top: 3rem;
-}
-
-.login-card-social > div {
-    opacity: .8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: calc(1rem * .8);
-}
-
-.login-card-social-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.login-card-social-btn a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, .6);
-    border-radius: 100px;
-    transition: all .5s;
-
-}
-
-.login-card-social-btn a:hover {
-    background: white;
-    transform: scale(1.1);
 }
 
 /*********************************************************
