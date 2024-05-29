@@ -1,0 +1,76 @@
+@import url(main.css);
+
+
+.material-symbols-outlined{
+    font-size: 6em;
+}
+
+.container-form{
+    width: auto;
+    height: 81vh;
+    margin-top: 2vh;
+    background-color: rgba(255, 255, 255, 0.092);
+    padding: 2rem 4rem;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: var(--box-shadow);
+}
+
+.container-card-header{
+    text-align: center;
+}
+
+.form-item-header{
+    font-size: 1rem;
+    color: var(--color-white);
+    font-weight: 400;
+}
+
+.container-form {
+    display: grid;
+    grid-template-columns: 24.375rem 24.375rem;
+    gap: 2.5rem;
+    margin: 10px 0 8px 0;
+
+}
+
+.container-form .form-item {
+    position: relative;
+}
+
+.container-form .form-item .form-item-icon {
+    position: absolute;
+    top: 2.1rem;
+    left: 1.4rem;
+    font-size: 1.3rem;
+    opacity: .4;
+}
+
+.container-card-form input[type="text-area"],
+.container-card-form input[type="number"],
+.container-card-form input[type="text"],
+.container-card-form input[type="date"] {
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, .3);
+    padding: 1rem 1.5rem;
+    padding-left: calc(1rem * 3.5);
+    border-radius: 100px;
+    width: 100%;
+    transition: background .5s;
+
+}
+
+.container-card-form input:focus {
+    background: white;
+}
+
+
+
+
+
+
+
+
+
+
