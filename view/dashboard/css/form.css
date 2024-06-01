@@ -8,7 +8,6 @@
 .container-form{
     width: auto;
     height: 81vh;
-    margin-top: 2vh;
     background-color: rgba(255, 255, 255, 0.092);
     padding: 2rem 4rem;
     border-radius: 10px;
@@ -28,7 +27,8 @@
 
 .container-form {
     display: grid;
-    grid-template-columns: 24.375rem 24.375rem;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
     gap: 2.5rem;
     margin: 10px 0 8px 0;
 
