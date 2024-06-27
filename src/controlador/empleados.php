@@ -1,13 +1,13 @@
 <?php
 
-  if (!is_file("model/".$page.".php")){
-    echo "Falta definir la clase ".$page;
+  if (!is_file("modelo/".$pagina.".php")){
+    echo "Falta definir la clase ".$pagina;
     exit;
   }
 
-  require_once("model/".$page.".php");
+  require_once("modelo/".$pagina.".php");
 
-  if(is_file("view/".$page.".php")){
+  if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
 		$empleado = new Empleado();
@@ -15,14 +15,14 @@
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){
-			 echo  json_encode($empleado->consultar());
+			 echo json_encode($empleado->consultar());
 		  }
 		  else if($accion=='obtienefecha'){
 			 echo json_encode($empleado->obtienefecha());
 		  }
 		  elseif($accion=='eliminar'){
 			 $empleado->set_cedula($_POST['cedula']);
-			 echo  json_encode($empleado->eliminar());
+			 echo json_encode($empleado->eliminar());
 		  }
 		  else{
 			  $empleado->set_nombre_apellido($_POST['nombre_apellido']);
@@ -54,8 +54,7 @@
 		  exit;
 	  }
 
-
-	  require_once("view/".$page.".php");
+	  require_once("vista/".$pagina.".php");
   }
   else{
 	  echo "pagina en construccion";

@@ -1,12 +1,12 @@
 <?php
-  $page = "home";
+  $pagina = "hogar";
 
-  if (!empty($_GET['page'])){
-   $page = $_GET['page'];
+  if (!empty($_GET['pagina'])){
+   $pagina = $_GET['pagina'];
   }
 
-  if(is_file("controller/".$page.".php")){
-    require_once("controller/".$page.".php");
+  if(is_file("controlador/".$pagina.".php")){
+    require_once("controlador/".$pagina.".php");
   }
 
   else{

@@ -1,0 +1,11 @@
+.hogar_div{
+  width: 65%;
+  height: 85vh;
+  background-color: rgba(93, 95, 93, 0.416);
+  margin: 3% auto 0;
+}
+
+.hogar_div--search{
+ display: flex;
+ flex-direction: row-reverse;
+}

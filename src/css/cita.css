@@ -1,0 +1,26 @@
+.container_citas{
+  width: 65%;
+  height: 85vh;
+  background-color: rgba(93, 95, 93, 0.416);
+  margin: 3% auto 0;
+}
+
+.container_citas--menu{
+  display: flex;
+  justify-content: space-around;
+}
+
+.container_citas--list{
+  width: 95%;
+  background-color: rgba(93, 95, 93, 0.416);
+  margin: 3% auto 0;
+}
+
+.container_citas--list .item{
+  display: flex;
+  justify-content: space-around;
+  width: 95%;
+  background-color: rgba(130, 99, 99, 0.594);
+  margin: 3% auto 0;
+  padding: 2px;
+}

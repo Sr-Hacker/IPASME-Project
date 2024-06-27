@@ -1,12 +1,12 @@
 <?php
-  if (!is_file("model/".$page.".php")){
-    echo "Falta definir la clase ".$page;
+  if (!is_file("modelo/".$pagina.".php")){
+    echo "Falta definir la clase ".$pagina;
     exit;
   }
 
-  require_once("model/".$page.".php");
+  require_once("modelo/".$pagina.".php");
 
-  if(is_file("view/".$page.".php")){
+  if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
 		$empleado = new Empleado();
@@ -54,7 +54,7 @@
 	  }
 
 
-	  require_once("view/".$page.".php");
+	  require_once("vista/".$pagina.".php");
   }
   else{
 	  echo "pagina en construccion";

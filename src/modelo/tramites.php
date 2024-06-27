@@ -1,7 +1,7 @@
 <?php
-require_once('model/db.php');
+require_once('modelo/db.php');
 
-class Empleado extends DB{
+class Tramite extends DB{
   private $nombre_apellido;
   private $cedula;
   private $rif;
@@ -137,7 +137,7 @@ class Empleado extends DB{
 			$co = $this->conecta();
 			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			try {
-					$co->query("INSERT INTO empleados(
+					$co->query("INSERT INTO tramites(
             apellidosynombres,
 						cedula,
 						rif,
@@ -178,10 +178,10 @@ class Empleado extends DB{
               '$this->estatus'
 						)");
 						$r['resultado'] = 'incluir';
-			            $r['mensaje'] =  'Registro Inluido';
+			      $r['mensaje'] =  'Registro Inluido';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
+			  $r['mensaje'] = $e->getMessage();
 			}
 		}
 		else{
@@ -199,7 +199,7 @@ class Empleado extends DB{
 		$r = array();
 		if($this->existe($this->cedula)){
 			try {
-					$co->query("UPDATE empleados SET
+					$co->query("UPDATE tramites SET
               apellidosynombres = '$this->nombre_apellido',
               cedula = '$this->cedula',
               rif = '$this->rif',
@@ -242,7 +242,7 @@ class Empleado extends DB{
 		$r = array();
 		if($this->existe($this->cedula)){
 			try {
-					$co->query("DELETE FROM empleados
+					$co->query("DELETE FROM tramites
 						WHERE
 						cedula = '$this->cedula'
 						");
@@ -268,7 +268,7 @@ class Empleado extends DB{
 		$r = array();
 		try{
 
-			$resultados = $co->query("SELECT * from empleados");
+			$resultados = $co->query("SELECT * from tramites");
 
 			if($resultados){
 
@@ -314,7 +314,7 @@ class Empleado extends DB{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
-			$resultado = $co->query("SELECT * FROM empleados WHERE cedula='$cedula'");
+			$resultado = $co->query("SELECT * FROM tramites WHERE cedula='$cedula'");
 
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
 			if($fila){

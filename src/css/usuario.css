@@ -1,0 +1,19 @@
+.title{
+  text-align: center;
+}
+
+.container_usuario{
+  width: 20%;
+  height: 85vh;
+  margin: 3% auto 0;
+}
+
+.container_usuario--input{
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+}
+
+.container_usuario--input input{
+  margin: 5px;
+}
