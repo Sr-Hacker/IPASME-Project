@@ -1,5 +1,4 @@
 <?php
-
   if (!is_file("modelo/".$pagina.".php")){
     echo "Falta definir la clase ".$pagina;
     exit;
@@ -53,7 +52,6 @@
 		  }
 		  exit;
 	  }
-
 
 	  require_once("vista/".$pagina.".php");
   }

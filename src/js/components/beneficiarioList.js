@@ -1,5 +1,5 @@
 let listaBeneficiarios = document.getElementById("get_result");
-function empleados(data){
+function beneficiarios(data){
   listaBeneficiarios.style.removeProperty("display");
   let result = '';
   data.map((item) => {
