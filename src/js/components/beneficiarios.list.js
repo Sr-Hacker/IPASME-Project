@@ -1,9 +1,8 @@
-let listaEmpleados = document.getElementById("get_result");
+let listaBeneficiarios = document.getElementById("get_result");
 function empleados(data){
-  listaEmpleados.style.removeProperty("display");
+  listaBeneficiarios.style.removeProperty("display");
   let result = '';
   data.map((item) => {
-    console.log(item)
     const card = `
       <div class="item">
         <p>${item.nombre} ${item.apellido}</p>
@@ -18,5 +17,5 @@ function empleados(data){
     `;
     result = result.concat("",card);
   })
-  listaEmpleados.innerHTML = result;
+  listaBeneficiarios.innerHTML = result;
 }

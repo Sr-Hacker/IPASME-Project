@@ -1,6 +1,7 @@
 <html>
   <?php require_once("common/header.php"); ?>
   <link rel="stylesheet" href="css/empleado.css">
+  <link rel="stylesheet" href="css/modal.css">
 
 <body>
   <div>
@@ -11,64 +12,41 @@
           <input placeholder="cedula" type="number">
           <button button>buscar</button>
         </div>
-        <a href="?pagina=">Crear Nuevo Empleado</a>
+        <button id="include">Crear Nuevo Empleado</button>
       </div>
       <div class="container_empleados--list">
-        <div class="item">
-          <p>nombre apellido</p>
-          <div>
-            <button>editar</button>
-            <button>eliminar</button>
-          </div>
-        </div>
-        <div class="item">
-          <p>nombre apellido</p>
-          <div>
-            <button>editar</button>
-            <button>eliminar</button>
-          </div>
-        </div>
-        <div class="item">
-          <p>nombre apellido</p>
-          <div>
-            <button>editar</button>
-            <button>eliminar</button>
-          </div>
-          <div id="get_result"></div>
-        </div>
+        <div id="get_result"></div>
       </div>
     </div>
   </div>
 
-  <div id="modal">
+  <div id="modal" class="modal">
     <div class="container_empleados">
         <h5>Crear Nuevo Empleado</h5>
         <div class="container_empleados--form">
-            <input type="text" placeholder="Nombre" name="nombre">
-            <input type="text" placeholder="Apellido" name="apellido">
-            <input type="text" placeholder="telefono" name="telefono">
-            <input type="text" placeholder="contracena" name="contracena">
-            <input type="text" placeholder="cedula" name="cedula">
-          <select>
+            <input type="text" placeholder="Nombre" id="nombre" name="nombre">
+            <input type="text" placeholder="Apellido" id="apellido" name="apellido">
+            <input type="text" placeholder="telefono" id="telefono" name="telefono">
+            <input type="text" placeholder="contrasena" id="contrasena" name="contrasena">
+            <input type="text" placeholder="cedula" id="cedula" name="cedula">
+          <select id="rol" name="rol">
             <option value="administrador">administrador</option>
             <option value="empleado">empleado</option>
           </select>
           <div>
-            <button>crear</button>
-            <button>cancelar</button>
+            <button id="action_modal">
+            </button>
+            <button id="closeModal">cancelar</button>
           </div>
-          <p>Los formularios con cuentan con css ni validaciones</p>
         </div>
     </div>
   </div>
 
-  <div id="action_modal">
-  </div>
-
-  <script type="text/javascript" src="js/actions/empleados.js" defer></script>
-  <script type="text/javascript" src="js/validations/empleados.js" defer></script>
   <script type="text/javascript" src="js/components/employeeList.js" defer></script>
-  <script type="text/javascript" src="js/handler.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
+  <script type="text/javascript" src="js/validations/empleados.js" defer></script>
+  <script type="text/javascript" src="js/actions/empleados.js" defer></script>
+  <script type="text/javascript" src="js/handler.js" defer></script>
+  <script type="text/javascript" src="js/modals.js" defer></script>
 </body>
 </html>

@@ -63,7 +63,7 @@ CREATE TABLE empleados (
   id INT AUTO_INCREMENT PRIMARY KEY,
   apellido CHAR(255),
   nombre CHAR(255),
-  telefono INT,
+  telefono CHAR(255),
   contrasena CHAR(255),
   cedula CHAR(255),
   rol CHAR(255)

@@ -44,5 +44,12 @@
         <h3>Crear Nuevo Empleado</h3>
     </div>
   </div>
+
+  <script type="text/javascript" src="js/components/beneficiarioList.js" defer></script>
+  <script type="text/javascript" src="js/ajax.js" defer></script>
+  <script type="text/javascript" src="js/validations/beneficiarios.js" defer></script>
+  <script type="text/javascript" src="js/actions/beneficiarios.js" defer></script>
+  <script type="text/javascript" src="js/handler.js" defer></script>
+  <script type="text/javascript" src="js/modals.js" defer></script>
 </body>
 </html>

@@ -2,7 +2,60 @@
 require_once('modelo/db.php');
 
 class Empleado extends DB{
+  private $nombre;
   private $apellido;
+  private $cedula;
+  private $telefono;
+  private $contrasena;
+  private $rol;
+
+	function set_name($valor){
+		$this->nombre = $valor;
+	}
+
+	function set_apellido($valor){
+		$this->apellido = $valor;
+	}
+
+	function set_cedula($valor){
+		$this->cedula = $valor;
+	}
+
+  function set_telefono($valor){
+		$this->telefono = $valor;
+	}
+
+  function set_contrasena($valor){
+		$this->contrasena = $valor;
+	}
+
+  function set_rol($valor){
+		$this->rol = $valor;
+	}
+
+  function get_name(){
+		$this->nombre = $valor;
+	}
+
+	function get_apellido(){
+		return $this->apellido;
+	}
+
+	function get_cedula(){
+		return $this->cedula;
+	}
+
+  function get_telefono(){
+		return $this->telefono;
+	}
+
+  function get_contrasena(){
+		return $this->contrasena;
+	}
+
+  function get_rol(){
+		return $this->rol;
+	}
 
 	function incluir(){
 		$r = array();
@@ -11,50 +64,26 @@ class Empleado extends DB{
 			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			try {
 					$co->query("INSERT INTO empleados(
-            apellidosynombres,
-						cedula,
-						rif,
-						fechadenacimiento,
-						vivienda,
-						automovil,
-						modelo,
-            ano,
+            apellido,
+            nombre,
             telefono,
-            celular,
-            estadocivil,
-            tipodesangre,
-            talladecamisa,
-            talladezapato,
-            talladepantalon,
-            correo,
-            cargo,
-            estatus
+            contrasena,
+            cedula,
+            rol
 						)
 						VALUES(
-              '$this->nombre_apellido',
-              '$this->cedula',
-              '$this->rif',
-              '$this->fecha_nac',
-              '$this->vivienda',
-              '$this->automovil',
-              '$this->modelo',
-              '$this->ano',
+              '$this->apellido',
+              '$this->nombre',
               '$this->telefono',
-              '$this->celular',
-              '$this->estado_civil',
-              '$this->tipo_sangre',
-              '$this->talla_camisa',
-              '$this->talla_zapato',
-              '$this->talla_pantalon',
-              '$this->correo',
-              '$this->cargo',
-              '$this->estatus'
+              '$this->contrasena',
+              '$this->cedula',
+              '$this->rol'
 						)");
 						$r['resultado'] = 'incluir';
-			            $r['mensaje'] =  'Registro Inluido';
+			      $r['mensaje'] =  'Registro Inluido';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
+			  $r['mensaje'] =  $e->getMessage();
 			}
 		}
 		else{
@@ -72,34 +101,21 @@ class Empleado extends DB{
 		$r = array();
 		if($this->existe($this->cedula)){
 			try {
-					$co->query("UPDATE empleados SET
-              apellidosynombres = '$this->nombre_apellido',
-              cedula = '$this->cedula',
-              rif = '$this->rif',
-              fechadenacimiento = '$this->fecha_nac',
-              vivienda = '$this->vivienda',
-              automovil = '$this->automovil',
-              modelo = '$this->modelo',
-              ano = '$this->ano',
-              telefono = '$this->telefono',
-              celular = '$this->celular',
-              estadocivil = '$this->estado_civil',
-              tipodesangre = '$this->tipo_sangre',
-              talladecamisa = '$this->talla_camisa',
-              talladezapato = '$this->talla_zapato',
-              talladepantalon = '$this->talla_pantalon',
-              correo = '$this->correo',
-              cargo = '$this->cargo',
-              estatus = '$this->estatus'
-              WHERE
-              cedula = '$this->cedula'
-						");
-						$r['resultado'] = 'modificar';
-			      $r['mensaje'] =  'Registro Modificado';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
-			}
+        $co->query("UPDATE empleados SET
+          apellido = '$this->apellido',
+          nombre = '$this->nombre',
+          telefono = '$this->telefono',
+          contrasena = '$this->contrasena',
+          rol = '$this->rol'
+          WHERE
+          cedula = '$this->cedula'
+        ");
+        $r['resultado'] = 'modificar';
+        $r['mensaje'] =  'Registro Modificado';
+      } catch(Exception $e) {
+        $r['resultado'] = 'error';
+        $r['mensaje'] =  $e->getMessage();
+      }
 		}
 		else{
 			$r['resultado'] = 'modificar';
@@ -120,7 +136,7 @@ class Empleado extends DB{
 						cedula = '$this->cedula'
 						");
 						$r['resultado'] = 'eliminar';
-			            $r['mensaje'] =  'Registro Eliminado';
+			      $r['mensaje'] =  'Registro Eliminado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
 			    $r['mensaje'] =  $e->getMessage();
@@ -144,7 +160,11 @@ class Empleado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
+					$trabajador['nombre'] = $resultado['nombre'];
 					$trabajador['apellido'] = $resultado['apellido'];
+					$trabajador['telefono'] = $resultado['telefono'];
+					$trabajador['cedula'] = $resultado['cedula'];
+					$trabajador['rol'] = $resultado['rol'];
           array_push($respuesta, $trabajador);
 				}
 				$r['resultado'] =  $respuesta;
