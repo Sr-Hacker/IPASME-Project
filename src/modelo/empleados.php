@@ -2,12 +2,17 @@
 require_once('modelo/db.php');
 
 class Empleado extends DB{
+  private $id;
   private $nombre;
   private $apellido;
   private $cedula;
   private $telefono;
   private $contrasena;
   private $rol;
+
+	function set_id($valor){
+		$this->id = $valor;
+	}
 
 	function set_name($valor){
 		$this->nombre = $valor;
@@ -33,29 +38,6 @@ class Empleado extends DB{
 		$this->rol = $valor;
 	}
 
-  function get_name(){
-		$this->nombre = $valor;
-	}
-
-	function get_apellido(){
-		return $this->apellido;
-	}
-
-	function get_cedula(){
-		return $this->cedula;
-	}
-
-  function get_telefono(){
-		return $this->telefono;
-	}
-
-  function get_contrasena(){
-		return $this->contrasena;
-	}
-
-  function get_rol(){
-		return $this->rol;
-	}
 
 	function incluir(){
 		$r = array();
@@ -106,9 +88,10 @@ class Empleado extends DB{
           nombre = '$this->nombre',
           telefono = '$this->telefono',
           contrasena = '$this->contrasena',
+          cedula = '$this->cedula',
           rol = '$this->rol'
           WHERE
-          cedula = '$this->cedula'
+          id = '$this->id'
         ");
         $r['resultado'] = 'modificar';
         $r['mensaje'] =  'Registro Modificado';
@@ -160,10 +143,12 @@ class Empleado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
+					$trabajador['id'] = $resultado['id'];
 					$trabajador['nombre'] = $resultado['nombre'];
 					$trabajador['apellido'] = $resultado['apellido'];
 					$trabajador['telefono'] = $resultado['telefono'];
 					$trabajador['cedula'] = $resultado['cedula'];
+					$trabajador['contrasena'] = $resultado['contrasena'];
 					$trabajador['rol'] = $resultado['rol'];
           array_push($respuesta, $trabajador);
 				}

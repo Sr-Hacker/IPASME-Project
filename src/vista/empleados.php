@@ -22,31 +22,32 @@
 
   <div id="modal" class="modal">
     <div class="container_empleados">
-        <h5>Crear Nuevo Empleado</h5>
-        <div class="container_empleados--form">
-            <input type="text" placeholder="Nombre" id="nombre" name="nombre">
-            <input type="text" placeholder="Apellido" id="apellido" name="apellido">
-            <input type="text" placeholder="telefono" id="telefono" name="telefono">
-            <input type="text" placeholder="contrasena" id="contrasena" name="contrasena">
-            <input type="text" placeholder="cedula" id="cedula" name="cedula">
-          <select id="rol" name="rol">
-            <option value="administrador">administrador</option>
-            <option value="empleado">empleado</option>
-          </select>
-          <div>
-            <button id="action_modal">
-            </button>
-            <button id="closeModal">cancelar</button>
-          </div>
+      <h5>Crear Nuevo Empleado</h5>
+      <div class="container_empleados--form">
+        <input type="text" style="display: none;" id="id" name="id">
+        <input type="text" placeholder="Nombre" id="nombre" name="nombre">
+        <input type="text" placeholder="Apellido" id="apellido" name="apellido">
+        <input type="text" placeholder="Telefono" id="telefono" name="telefono">
+        <input type="password" placeholder="Contrasena" id="contrasena" name="contrasena">
+        <input type="text" placeholder="Cedula" id="cedula" name="cedula">
+        <select id="rol" name="rol">
+          <option value="administrador">administrador</option>
+          <option value="empleado">empleado</option>
+        </select>
+        <div>
+          <button id="action_modal">
+          </button>
+          <button id="closeModal">cancelar</button>
         </div>
+      </div>
     </div>
   </div>
 
-  <script type="text/javascript" src="js/components/employeeList.js" defer></script>
+  <script type="text/javascript" src="js/modals.js" defer></script>
+  <script type="text/javascript" src="js/components/empleado.list.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
   <script type="text/javascript" src="js/validations/empleados.js" defer></script>
   <script type="text/javascript" src="js/actions/empleados.js" defer></script>
   <script type="text/javascript" src="js/handler.js" defer></script>
-  <script type="text/javascript" src="js/modals.js" defer></script>
 </body>
 </html>

@@ -174,5 +174,5 @@ CREATE TABLE requisito_tramite (
 );
 
 INSERT INTO empleados (apellido, nombre, telefono, contrasena, cedula, rol)
-VALUES ('González', 'Juan', '1234567890', 'contrasena123', 'V12345678', 'empleado'),
-('Rodríguez', 'Ana', '0987654321', 'contrasena456', 'V87654321', 'administrador');
+VALUES ('Gonzalez', 'jose', '1234567890', '12345', '27436179', 'administrador'),
+('Rodríguez', 'Ana', '0987654321', '12345', '7354250', 'empleado');

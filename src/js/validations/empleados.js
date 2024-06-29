@@ -11,21 +11,20 @@ $(document).ready(function(){
 		$("#scedula"),"El formato debe ser 9999999 ");
 	});
 
-
-	$("#apellidos").on("keypress",function(e){
+	$("#apellido").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 
-	$("#apellidos").on("keyup",function(){
+	$("#apellido").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$(this),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres");
 	});
 
-	$("#nombres").on("keypress",function(e){
+	$("#nombre").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 
-	$("#nombres").on("keyup",function(){
+	$("#nombre").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$(this),$("#snombres"),"Solo letras  entre 3 y 30 caracteres");
 	});
@@ -40,16 +39,15 @@ function validarenvio(){
 		return false;
 	}
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#apellidos"),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
+		$("#apellido"),$("#sapellido"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombres"),$("#snombres"),"Solo letras  entre 3 y 30 caracteres")==0){
+		$("#nombre"),$("#snombre"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
-
 	return true;
 }
 
@@ -57,12 +55,11 @@ function validarenvio(){
 //Funcion que muestra el modal con un mensaje
 function muestraMensaje(mensaje){
 	$("#contenidodemodal").html(mensaje);
-			$("#mostrarmodal").modal("show");
-			setTimeout(function() {
-					$("#mostrarmodal").modal("hide");
-			},5000);
+    $("#mostrarmodal").modal("show");
+    setTimeout(function() {
+      $("#mostrarmodal").modal("hide");
+    },5000);
 }
-
 
 //Función para validar por Keypress
 function validarkeypress(er,e){
@@ -73,6 +70,7 @@ function validarkeypress(er,e){
 		e.preventDefault();
   }
 }
+
 //Función para validar por keyup
 function validarkeyup(er,etiqueta,etiquetamensaje,
 mensaje){
@@ -96,7 +94,10 @@ function limpia(){
 	}
 
 	$("#cedula").val("");
-	$("#apellidos").val("");
-	$("#nombres").val("");
+	$("#apellido").val("");
+	$("#nombre").val("");
+  $("#telefono").val("");
+	$("#rol").val("");
+	$("#contrasena").val("");
 	$("#gradodeinstruccion").prop("selectedIndex",0);
 }

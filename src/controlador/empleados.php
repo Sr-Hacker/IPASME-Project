@@ -25,6 +25,7 @@
 			 echo json_encode($empleado->eliminar());
 		  }
 		  else{
+			  $empleado->set_id($_POST['id']);
 			  $empleado->set_name($_POST['nombre']);
         $empleado->set_apellido($_POST['apellido']);
         $empleado->set_cedula($_POST['cedula']);

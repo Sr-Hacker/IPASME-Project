@@ -7,13 +7,16 @@
     <div class="container_usuario">
       <div>
         <div class="container_usuario--input">
-          <input placeholder="cedula" type="text">
-          <input placeholder="contracena" type="text">
-          <button>ingresar</button>
+          <input placeholder="cedula" type="text" id="cedula">
+          <input placeholder="contracena" type="password" id="contrasena">
+          <button id="ingresar">ingresar</button>
         </div>
         <p class="title">Esta pagina aun se encuentra en construccion</p>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript" src="js/ajax.js" defer></script>
+  <script type="text/javascript" src="js/actions/usuarios.js" defer></script>
 </body>
 </html>

@@ -13,6 +13,7 @@ function ajax(data, callback) {
       try {
         console.log(response)
         callback(JSON.parse(response))
+        limpia()
       } catch (e) {
         console.log(e);
       }

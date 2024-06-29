@@ -14,6 +14,7 @@ function _include(){
 
 	let data = new FormData();
 	data.append('accion','incluir');
+  data.append('id', 0);
   data.append('nombre', nombre);
   data.append('apellido', apellido);
   data.append('cedula', cedula);
@@ -22,11 +23,12 @@ function _include(){
   data.append('rol', rol);
 
 	ajax(data, empleados);
-  let modal1 =  document.getElementById("modal")
+  let modal1 =  document.getElementById("modal");
   modal1.style.display = "none";
 }
 
 function _edit(){
+  const id = document.getElementById("id").value;
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
   const cedula = document.getElementById("cedula").value;
@@ -36,6 +38,7 @@ function _edit(){
 
 	let data = new FormData();
   data.append('accion','modificar');
+  data.append('id', id);
   data.append('nombre', nombre);
   data.append('apellido', apellido);
   data.append('cedula', cedula);
