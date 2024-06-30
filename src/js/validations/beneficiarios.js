@@ -11,7 +11,6 @@ $(document).ready(function(){
 		$("#scedula"),"El formato debe ser 9999999 ");
 	});
 
-
 	$("#apellidos").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
@@ -28,11 +27,6 @@ $(document).ready(function(){
 	$("#nombres").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$(this),$("#snombres"),"Solo letras  entre 3 y 30 caracteres");
-	});
-
-	$("#fechadenacimiento").on("keyup",function(){
-		validarkeyup(/^(?:(?:1[6-9]|[2-9]\d)?\d{2})(?:(?:(\/|-|\.)(?:0?[13578]|1[02])\1(?:31))|(?:(\/|-|\.)(?:0?[13-9]|1[0-2])\2(?:29|30)))$|^(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(\/|-|\.)0?2\3(?:29)$|^(?:(?:1[6-9]|[2-9]\d)?\d{2})(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:0?[1-9]|1\d|2[0-8])$/,
-		$(this),$("#sfechadenacimiento"),"Ingrese una fecha valida");
 	});
 });
 
@@ -54,40 +48,18 @@ function validarenvio(){
 		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
-	else if(validarkeyup(/^(?:(?:1[6-9]|[2-9]\d)?\d{2})(?:(?:(\/|-|\.)(?:0?[13578]|1[02])\1(?:31))|(?:(\/|-|\.)(?:0?[13-9]|1[0-2])\2(?:29|30)))$|^(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(\/|-|\.)0?2\3(?:29)$|^(?:(?:1[6-9]|[2-9]\d)?\d{2})(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:0?[1-9]|1\d|2[0-8])$/,
-		$("#fechadenacimiento"),$("#sfechadenacimiento"),"Ingrese una fecha valida")==0){
-		muestraMensaje("Fecha de Nacimiento <br/>Ingrese una fecha valida");
-		return false;
-	}
-	else if(!$("#masculino").is(":checked") && !$("#femenino").is(":checked")) {
-		muestraMensaje("Sexo <br/>Debe seleccionar el sexo");
-		return false;
-	}
-	else {
-		var f1 = new Date(1950,0o1,0o1);
-		var f2 = new Date($("#fechadenacimiento").val());
-
-		if(f2 < f1){
-			muestraMensaje("Fecha de Nacimiento <br/>La fecha debe ser mayor o igual a 01/01/1950");
-			return false;
-		}
-
-	}
 
 	return true;
 }
 
-
 //Funcion que muestra el modal con un mensaje
 function muestraMensaje(mensaje){
-
 	$("#contenidodemodal").html(mensaje);
 			$("#mostrarmodal").modal("show");
 			setTimeout(function() {
 					$("#mostrarmodal").modal("hide");
 			},5000);
 }
-
 
 //Función para validar por Keypress
 function validarkeypress(er,e){
@@ -98,6 +70,7 @@ function validarkeypress(er,e){
 		e.preventDefault();
   }
 }
+
 //Función para validar por keyup
 function validarkeyup(er,etiqueta,etiquetamensaje,
 mensaje){

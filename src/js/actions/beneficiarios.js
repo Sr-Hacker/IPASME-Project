@@ -1,7 +1,7 @@
 function _get(){
 	let data = new FormData();
 	data.append('accion','consultar');
-	ajax(data, employees);
+	ajax(data, beneficiarios);
 }
 
 function _include(){
@@ -44,7 +44,7 @@ function _include(){
   data.append('correo', correoValue);
   data.append('cargo', cargoValue);
   data.append('estatus', estatusValue);
-	ajax(data, employees);
+	ajax(data, beneficiarios);
   let modal1 =  document.getElementById("modal1")
   modal1.style.display = "none";
 }
@@ -89,7 +89,7 @@ function _edit(){
   data.append('correo', correoValue);
   data.append('cargo', cargoValue);
   data.append('estatus', estatusValue);
-	ajax(data, employees);
+	ajax(data, beneficiarios);
   let modal1 =  document.getElementById("modal1")
   modal1.style.display = "none";
 }
@@ -100,7 +100,7 @@ function _delete(){
 	let data = new FormData();
 	data.append('accion','eliminar');
   data.append('cedula', cedulaValue);
-	ajax(data, employees);
+	ajax(data, beneficiarios);
   let modal1 =  document.getElementById("modal1")
   modal1.style.display = "none";
 }

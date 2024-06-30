@@ -1,5 +1,5 @@
 <?php
-require_once('model/db.php');
+require_once('modelo/db.php');
 
 class Institucion extends DB{
   private $id;

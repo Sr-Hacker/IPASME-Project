@@ -5,13 +5,14 @@
 
 <div class="menu" id="display">
   <ul class="menu-list">
-    <!-- <li><a href="?page=home">Inicio</a></li>
-    <li><a href="?page=history">Historial</a></li>
-    <li><a href="?page=employee">Empleados</a></li>
-    <li><a href="?page=customer">Clientes</a></li>
-    <li><a href="?page=provider">Proveedores</a></li>
-    <li><a href="?page=store">Almacen</a></li>
-    <li><a href="?page=report">Reporte</a></li> -->
+    <li><a href="?pagina=hogar">Pagina principal</a></li>
+    <li><a href="?pagina=beneficiarios">Gestionar Beneficiarios</a></li>
+    <li><a href="?pagina=empleados">Gestionar Empleados</a></li>
+    <li><a href="?pagina=medicos">Gestionar Medicos</a></li>
+    <li><a href="?pagina=citas">Gestionar Citas</a></li>
+    <li><a href="?pagina=requisitos">Gestionar Requisitos</a></li>
+    <li><a href="?pagina=tramites">Gestionar Tramites</a></li>
+    <li><a href="?pagina=reportes">Generar Reportes</a></li>
   </ul>
 </div>
 

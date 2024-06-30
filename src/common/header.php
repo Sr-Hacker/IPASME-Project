@@ -15,10 +15,12 @@
 <header>
   <nav class="header">
     <span id="menu_active">
-      menu
+      Menu
     </span>
     <div><p>IPASME</p></div>
-    <div><p>Logo</p></div>
+    <span id="menu_active">
+      <a href="?pagina=usuario">Salir</a>
+    </span>
   </nav>
 </header>
 <?php require_once("menu.php"); ?>

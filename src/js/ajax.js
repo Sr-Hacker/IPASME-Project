@@ -11,8 +11,9 @@ function ajax(data, callback) {
     timeout: 10000,
     success: function (response) {
       try {
-        console.log(JSON.parse(response))
+        console.log(response)
         callback(JSON.parse(response))
+        limpia()
       } catch (e) {
         console.log(e);
       }

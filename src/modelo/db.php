@@ -1,6 +1,6 @@
 <?php
   class DB{
-    private $dsn = "mysql:host=db;port=3306;dbname=examen";
+    private $dsn = "mysql:host=db;port=3306;dbname=data_uptaeb";
     private $username = "root";
     private $password = "123123";
 
