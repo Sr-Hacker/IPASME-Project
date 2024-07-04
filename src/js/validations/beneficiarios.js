@@ -86,15 +86,10 @@ mensaje){
 }
 
 function limpia(){
-	if($("#masculino").is(":checked")){
-		$("#masculino").prop("checked",false);
-	}
-	else{
-	  $("#femenino").prop("checked",false);
-	}
-
 	$("#cedula").val("");
-	$("#apellidos").val("");
-	$("#nombres").val("");
-	$("#gradodeinstruccion").prop("selectedIndex",0);
+	$("#apellido").val("");
+	$("#nombre").val("");
+	$("#cargo").val("");
+	$("#telefono").val("");
+	$("#edad").val("");
 }

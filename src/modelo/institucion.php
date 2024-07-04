@@ -1,71 +1,65 @@
 <?php
-require_once('modelo/db.php');
+require_once('config/db.php');
+require_once('modelo/direccion.php');
 
 class Institucion extends DB{
   private $id;
   private $nombre;
-  private $direccion;
   private $rif;
+  private $id_direccion;
+
+  public function __construct($nombre, $rif) {
+    $this->nombre = $nombre;
+    $this->rif = $rif;
+  }
 
 	function set_id($valor){
 		$this->id = $valor;
 	}
 	function set_nombre($valor){
-		$this->rif = $valor;
+		$this->nombre = $valor;
 	}
   function set_rif($valor){
 		$this->rif = $valor;
 	}
-	function set_direccion($valor){
-		$this->direccion = $valor;
+	function set_id_direccion($valor){
+		$this->id_direccion = $valor;
 	}
 
+  public function incluir() {
+    $direccion = new Direccion('direccion', 'barrio', 'seguro', '3021');
+    $this->set_id_direccion($direccion->incluir());
 
-  function get_id($valor){
-		return $this->id = $valor;
-	}
-	function get_nombre($valor){
-		return $this->rif = $valor;
-	}
-  function get_rif($valor){
-		return $this->rif = $valor;
-	}
-	function get_direccion($valor){
-		return $this->direccion = $valor;
-	}
-
-
-	function incluir(){
-		$r = array();
-		if(!$this->existe($this->rif)){
-			$co = $this->conecta();
-			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			try {
-					$co->query("INSERT INTO instituciones(
-            rif,
+    $r = array();
+      try {
+        $bd = $this->conecta();
+        $query = $bd->prepare("
+          INSERT INTO instituciones (
             nombre,
-            direccion,
-					)
-						VALUES(
-              '$this->rif',
-              '$this->nombre',
-              '$this->direccion',
-						)");
-						$r['resultado'] = 'incluir';
-			            $r['mensaje'] =  'Registro Inluido';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
-			}
-		}
-		else{
-			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe la rif';
-		}
+            rif,
+            id_direccion
+          ) VALUES (
+            :nombre,
+            :rif,
+            :id_direccion
+          )
+        ");
 
-    $result = $this->consultar();
-		return $result;
-	}
+        $query->execute([
+          ':nombre' => $this->nombre,
+          ':rif' => $this->rif,
+          ':id_direccion' => $this->id_direccion
+        ]);
+
+        $r['resultado'] = 'incluir';
+        $r['mensaje'] = 'Registro Incluido';
+        $r['id'] = $bd->lastInsertId();
+      } catch (PDOException $e) {
+        $r['resultado'] = 'error';
+        $r['mensaje'] = $e->getMessage();
+      }
+    return $r;
+  }
 
 	function modificar(){
 		$co = $this->conecta();
@@ -73,7 +67,7 @@ class Institucion extends DB{
 		$r = array();
 		if($this->existe($this->rif)){
 			try {
-					$co->query("UPDATE empleados SET
+					$co->query("UPDATE instituciones SET
               nombre = '$this->nombre',
               rif = '$this->rif',
               rif = '$this->rif',
@@ -101,7 +95,7 @@ class Institucion extends DB{
 		$r = array();
 		if($this->existe($this->rif)){
 			try {
-					$co->query("DELETE FROM empleados
+					$co->query("DELETE FROM instituciones
 						WHERE
 						rif = '$this->rif'
 						");
@@ -162,7 +156,7 @@ class Institucion extends DB{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
-			$resultado = $co->query("SELECT * FROM empleados WHERE rif='$rif'");
+			$resultado = $co->query("SELECT * FROM instituciones WHERE rif='$rif'");
 
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
 			if($fila){

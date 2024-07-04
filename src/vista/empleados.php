@@ -9,8 +9,8 @@
     <div class="container_empleados">
       <div class="container_empleados--menu">
         <div class="container_empleados--search">
-          <input placeholder="cedula" type="number">
-          <button button>buscar</button>
+          <input placeholder="cedula" type="number" id="cedulaBuscador">
+          <button id="buscar" button>buscar</button>
         </div>
         <button id="include">Crear Nuevo Empleado</button>
       </div>
@@ -35,8 +35,7 @@
           <option value="empleado">empleado</option>
         </select>
         <div>
-          <button id="action_modal">
-          </button>
+          <button id="action_modal"></button>
           <button id="closeModal">cancelar</button>
         </div>
       </div>
