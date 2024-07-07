@@ -1,16 +1,16 @@
 <html>
   <?php require_once("common/header.php"); ?>
-  <link rel="stylesheet" href="css/empleado.css">
   <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/empleado.css">
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
+    <h2>Registro De Empleados</h2>
     <div class="container_empleados">
       <div class="container_empleados--menu">
         <div class="container_empleados--search">
           <input placeholder="cedula" type="number">
-          <button button>buscar</button>
+          <button class="button">buscar</button>
         </div>
         <button id="include">Crear Nuevo Empleado</button>
       </div>
@@ -43,11 +43,12 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="js/modals.js" defer></script>
+  <?php require_once("common/seccion-user.php"); ?>
   <script type="text/javascript" src="js/components/empleado.list.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
   <script type="text/javascript" src="js/validations/empleados.js" defer></script>
-  <script type="text/javascript" src="js/actions/empleados.js" defer></script>
   <script type="text/javascript" src="js/handler.js" defer></script>
+  <script type="text/javascript" src="js/actions/empleados.js" defer></script>
+  <script type="text/javascript" src="js/modals.js" defer></script>
 </body>
 </html>

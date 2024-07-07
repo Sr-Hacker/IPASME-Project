@@ -1,11 +1,11 @@
 <html>
-  <?php require_once("common/header.php"); ?>
-  <link rel="stylesheet" href="css/beneficiario.css">
+  <?php require_once("common/menu.php"); ?>
   <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/beneficiario.css">
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
+    <h2>Gestion De Beneficiario</h2>
     <div class="container_beneficiario">
       <div class="container_beneficiario--menu">
         <div class="container_beneficiario--search">
@@ -45,6 +45,7 @@
     </div>
   </div>
 
+  <?php require_once("common/seccion-user.php"); ?>
   <script type="text/javascript" src="js/components/beneficiarioList.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
   <script type="text/javascript" src="js/validations/beneficiarios.js" defer></script>

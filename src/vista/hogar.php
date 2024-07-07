@@ -12,5 +12,7 @@
       </div>
     </div>
   </div>
+  <?php require_once("common/seccion-user.php"); ?>
+
 </body>
 </html>
