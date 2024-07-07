@@ -8,6 +8,7 @@
     <li><a href="?pagina=hogar">Pagina principal</a></li>
     <li><a href="?pagina=beneficiarios">Gestionar Beneficiarios</a></li>
     <li><a href="?pagina=empleados">Gestionar Empleados</a></li>
+    <li><a href="?pagina=especialidad">Gestionar Especialidades</a></li>
     <li><a href="?pagina=medicos">Gestionar Medicos</a></li>
     <li><a href="?pagina=citas">Gestionar Citas</a></li>
     <li><a href="?pagina=requisitos">Gestionar Requisitos</a></li>

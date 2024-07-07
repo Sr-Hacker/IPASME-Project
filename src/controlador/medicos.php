@@ -10,8 +10,7 @@
   if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
-		$medicos = new Medico();
-
+		  $medicos = new Medico();
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){

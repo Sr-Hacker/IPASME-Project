@@ -27,7 +27,7 @@ class Institucion extends DB{
 	}
 
   public function incluir() {
-    $direccion = new Direccion('direccion', 'barrio', 'seguro', '3021');
+    $direccion = new Direccion('direccion', 'union', 'seguro', '3021');
     $this->set_id_direccion($direccion->incluir());
 
     $r = array();
@@ -50,15 +50,12 @@ class Institucion extends DB{
           ':rif' => $this->rif,
           ':id_direccion' => $this->id_direccion
         ]);
-
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] = 'Registro Incluido';
         $r['id'] = $bd->lastInsertId();
       } catch (PDOException $e) {
         $r['resultado'] = 'error';
         $r['mensaje'] = $e->getMessage();
       }
-    return $r;
+    return $r["id"];
   }
 
 	function modificar(){

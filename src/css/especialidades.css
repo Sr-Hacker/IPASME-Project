@@ -1,16 +1,16 @@
-.container_empleados{
+.container_especialidad{
   width: 65%;
   height: 85vh;
   background-color: rgba(93, 95, 93, 0.416);
   margin: 3% auto 0;
 }
 
-.container_empleados--menu {
+.container_especialidad--menu {
   display: flex;
   justify-content: space-around;
 }
 
-.container_empleados--menu a{
+.container_especialidad--menu a{
   display: flex;
   justify-content: space-around;
   padding: 2px;
@@ -18,13 +18,13 @@
   background-color: rgba(143, 212, 52, 0.594);
 }
 
-.container_empleados--list{
+.container_especialidad--list{
   width: 95%;
   margin: 0 auto;
   background-color: rgba(93, 95, 93, 0.416);
 }
 
-.container_empleados--list .item{
+.container_especialidad--list .item{
   text-align: center;
   display: flex;
   justify-content: space-around;

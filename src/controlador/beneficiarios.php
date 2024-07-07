@@ -25,7 +25,6 @@
 			  echo  json_encode($beneficiarios->eliminar());
 		  }
 		  else{
-			  $beneficiarios->set_id($_POST['id']);
         $beneficiarios->set_edad($_POST['edad']);
         $beneficiarios->set_cargo($_POST['cargo']);
         $beneficiarios->set_cedula($_POST['cedula']);
@@ -36,6 +35,7 @@
 			  if($accion=='incluir'){
           echo  json_encode($beneficiarios->incluir());
 			  }elseif($accion=='modificar'){
+          $beneficiarios->set_id($_POST['id']);
           $beneficiarios->set_id_historia($_POST['id_historia']);
           $beneficiarios->set_id_direccion($_POST['id_direccion']);
           $beneficiarios->set_id_institucion($_POST['id_institucion']);

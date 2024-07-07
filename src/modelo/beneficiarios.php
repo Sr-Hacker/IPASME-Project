@@ -50,19 +50,17 @@ class Beneficiario extends DB{
 	function incluir(){
 		$r = array();
 		if(!$this->existe($this->cedula)){
-		  // $historia = new Historia('12345678', 'H001', 'O+', 'M', 1.75, 70, '1990-01-01');
+		  $historia = new Historia(1.75, 70, '143', 'O+', 'M');
 		  $direccion = new Direccion('direccion', 'union', 'seguro', '3021');
-      // $institucion = new institucion('Inces', 'J-274361790');
-
-      // $this->set_id_historia($historia->incluir());
+      $institucion = new institucion('Inces', 'J-274361790');
+      $this->set_id_historia($historia->incluir());
       $this->set_id_direccion($direccion->incluir());
-      // $this->set_id_institucion($institucion->incluir());
-      return $this->id_direccion;
+      $this->set_id_institucion($institucion->incluir());
 
 			try {
         $bd = $this->conecta();
         $query = $bd->prepare("
-          INSERT INTO empleados (
+          INSERT INTO beneficiarios (
             nombre,
             apellido,
             telefono,
@@ -89,6 +87,7 @@ class Beneficiario extends DB{
           ':nombre' => $this->nombre,
           ':apellido' => $this->apellido,
           ':telefono' => $this->telefono,
+          ':edad' => $this->edad,
           ':cargo' => $this->cargo,
           ':cedula' => $this->cedula,
           ':id_historia' => $this->id_historia,

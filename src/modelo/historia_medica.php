@@ -10,13 +10,12 @@ class Historia extends DB{
   private $cod_historia;
   private $fecha_nacimiento;
 
-  public function __construct($peso, $sexo, $estatura, $tipo_sangre, $cod_historia, $fecha_nacimiento) {
+  public function __construct($peso, $sexo, $estatura, $tipo_sangre, $cod_historia) {
     $this->peso = $peso;
     $this->sexo = $sexo;
     $this->estatura = $estatura;
     $this->tipo_sangre = $tipo_sangre;
     $this->cod_historia = $cod_historia;
-    $this->fecha_nacimiento = $fecha_nacimiento;
   }
 
   function set_id($valor){
@@ -51,15 +50,13 @@ class Historia extends DB{
             tipo_sangre,
             sexo,
             estatura,
-            peso,
-            fecha_nacimiento
+            peso
           ) VALUES (
             :cod_historia,
             :tipo_sangre,
             :sexo,
             :estatura,
-            :peso,
-            :fecha_nacimiento
+            :peso
           )
         ");
 
@@ -69,17 +66,14 @@ class Historia extends DB{
           ':sexo' => $this->sexo,
           ':estatura' => $this->estatura,
           ':peso' => $this->peso,
-          ':fecha_nacimiento' => $this->fecha_nacimiento
         ]);
 
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] = 'Registro Incluido';
         $r['id'] = $bd->lastInsertId();
       } catch (PDOException $e) {
         $r['resultado'] = 'error';
         $r['mensaje'] = $e->getMessage();
       }
-    return $r;
+    return $r["id"];
   }
 
 

@@ -27,6 +27,14 @@ CREATE TABLE medicos (
   cedula CHAR(255)
 );
 
+CREATE TABLE especialidad_medico (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_medico INT,
+  id_especialidad INT,
+  FOREIGN KEY (id_medico) REFERENCES medicos(id),
+  FOREIGN KEY (id_especialidad) REFERENCES especialidades(id)
+);
+
 CREATE TABLE historias (
   id INT AUTO_INCREMENT PRIMARY KEY,
   cod_historia CHAR(255),
@@ -34,7 +42,7 @@ CREATE TABLE historias (
   sexo CHAR(255),
   estatura DECIMAL,
   peso DECIMAL,
-  fecha_nacimiento DATE
+  fecha_nacimiento CHAR(255)
 );
 
 CREATE TABLE beneficiarios (

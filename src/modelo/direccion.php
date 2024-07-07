@@ -55,15 +55,12 @@ class Direccion extends DB{
           ':descripcion' => $this->descripcion,
           ':postal' => $this->postal,
         ]);
-
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] = 'Registro Incluido';
         $r['id'] = $bd->lastInsertId();
       } catch (PDOException $e) {
         $r['resultado'] = 'error';
         $r['mensaje'] = $e->getMessage();
       }
-    return $r;
+    return $r["id"];
   }
 
 
