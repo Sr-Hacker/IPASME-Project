@@ -20,6 +20,26 @@
   background-color: var(--colo-white);
 }
 
+.container_empleados--search{
+  width: 20rem;
+  display: flex;
+}
+
+.container_empleados--search :nth-child(1)
+{
+  border-radius: var(--border-radius);
+  background-color: var(--color-light);
+  width: 80%;
+
+}
+
+.container_empleados--search :nth-child(2)
+{
+  border-radius: 50%;
+  background-color: var(--color-light);
+  width: 20%;
+}
+
 .container_empleados--list{
   width: 95%;
   margin: 0 auto;
