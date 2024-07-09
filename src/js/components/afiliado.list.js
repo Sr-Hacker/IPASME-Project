@@ -1,20 +1,20 @@
-let listaBeneficiarios = document.getElementById("get_result");
+let listaAfiliados = document.getElementById("get_result");
 
-let beneficiariosArray = [];
+let afiliadosArray = [];
 
 function cargarDatos(item){
-  const beneficiario = beneficiariosArray[item]
-	$("#id").val(beneficiario.id);
-	$("#cedula").val(beneficiario.cedula);
-	$("#apellido").val(beneficiario.apellido);
-	$("#nombre").val(beneficiario.nombre);
-  $("#cargo").val(beneficiario.cargo);
-  $("#telefono").val(beneficiario.telefono);
-	$("#edad").val(beneficiario.edad);
+  const afiliados = afiliadosArray[item]
+	$("#id").val(afiliados.id);
+	$("#cedula").val(afiliados.cedula);
+	$("#apellido").val(afiliados.apellido);
+	$("#nombre").val(afiliados.nombre);
+  $("#cargo").val(afiliados.cargo);
+  $("#telefono").val(afiliados.telefono);
+	$("#edad").val(afiliados.edad);
 }
 
-function beneficiarios(data){
-  listaBeneficiarios.style.removeProperty("display");
+function afiliados(data){
+  listaAfiliados.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
     const card = `
@@ -40,9 +40,9 @@ function beneficiarios(data){
           </div>
         </div>
       `;
-      beneficiariosArray[item.id] = item;
+      afiliadosArray[item.id] = item;
       result = result.concat("",card);
     })
   }
-  listaBeneficiarios.innerHTML = result;
+  listaAfiliados.innerHTML = result;
 }

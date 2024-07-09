@@ -1,22 +1,22 @@
-.container_beneficiario{
+.container_afiliados{
   width: 65%;
   height: 85vh;
   background-color: rgba(93, 95, 93, 0.416);
   margin: 3% auto 0;
 }
 
-.container_beneficiario--menu{
+.container_afiliados--menu{
   display: flex;
   justify-content: space-around;
 }
 
-.container_beneficiario--list{
+.container_afiliados--list{
   width: 95%;
   margin: 0 auto;
   background-color: rgba(93, 95, 93, 0.416);
 }
 
-.container_beneficiario--list .item{
+.container_afiliados--list .item{
   text-align: center;
   display: flex;
   justify-content: space-around;
