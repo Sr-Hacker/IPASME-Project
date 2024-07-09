@@ -2,6 +2,24 @@ $(document).ready(function(){
 	_get();
 
 //VALIDACION DE DATOS
+	$("#cedula").on("keypress",function(e){
+		validarkeypress(/^[0-9-\b]*$/,e);
+	});
+
+	$("#cedula").on("keyup",function(){
+		validarkeyup(/^[0-9]{7,8}$/,$(this),
+		$("#scedula"),"El formato debe ser 9999999 ");
+	});
+
+	$("#apellido").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#apellido").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
 	$("#nombre").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
@@ -14,13 +32,25 @@ $(document).ready(function(){
 
 //Validación de todos los campos antes del envio
 function validarenvio(){
-	if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
+		$("#scedula"),"El formato debe ser 9999999")==0){
+	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
+						"99999999");
+		return false;
+	}
+	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$("#apellido"),$("#sapellido"),"Solo letras  entre 3 y 30 caracteres")==0){
+		muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
+		return false;
+	}
+	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$("#nombre"),$("#snombre"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
 	return true;
 }
+
 
 //Funcion que muestra el modal con un mensaje
 function muestraMensaje(mensaje){
@@ -56,6 +86,9 @@ mensaje){
 }
 
 function limpia(){
-	$("#nombre").val("");
-	$("#codigo").val("");
+  $("#nombres").val("");
+	$("#apellidos").val("");
+	$("#cedula").val("");
+	$("#externo").val("");
+  $("#telefono").val("");
 }

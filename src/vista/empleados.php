@@ -21,7 +21,7 @@
   </div>
 
   <div id="modal" class="modal">
-    <?php require_once("vista/formularios/empleado.formularios.php"); ?>
+    <?php require_once("vista/formularios/empleado.formulario.php"); ?>
   </div>
 
   <script type="text/javascript" src="js/modals.js" defer></script>

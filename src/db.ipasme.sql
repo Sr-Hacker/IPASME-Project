@@ -16,15 +16,17 @@ CREATE TABLE instituciones (
 
 CREATE TABLE especialidades (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  nombre CHAR(255)
+  nombre CHAR(255),
+  codigo CHAR(255)
 );
 
 CREATE TABLE medicos (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombres CHAR(255),
-  apellidos INT,
+  apellidos CHAR(255),
   externo BOOLEAN,
-  cedula CHAR(255)
+  cedula CHAR(255),
+  telefono CHAR(255)
 );
 
 CREATE TABLE especialidad_medico (
@@ -120,18 +122,6 @@ CREATE TABLE tramites (
   FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
 );
 
-CREATE TABLE citas (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  fecha TIME,
-  motivo CHAR(255),
-  id_beneficiario INT,
-  id_medico INT,
-  id_familiar INT,
-  FOREIGN KEY (id_familiar) REFERENCES familiares(id),
-  FOREIGN KEY (id_medico) REFERENCES medicos(id),
-  FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
-);
-
 CREATE TABLE familiares (
   id INT AUTO_INCREMENT PRIMARY KEY,
   parentesco CHAR(255),
@@ -143,6 +133,18 @@ CREATE TABLE familiares (
   id_beneficiario INT,
   id_historia INT,
   FOREIGN KEY (id_historia) REFERENCES historias(id),
+  FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
+);
+
+CREATE TABLE citas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  fecha CHAR(255),
+  motivo CHAR(255),
+  id_beneficiario INT,
+  id_medico INT,
+  id_familiar INT,
+  FOREIGN KEY (id_familiar) REFERENCES familiares(id),
+  FOREIGN KEY (id_medico) REFERENCES medicos(id),
   FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
 );
 

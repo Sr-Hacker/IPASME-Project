@@ -25,18 +25,14 @@
 			 echo json_encode($especialidad->eliminar());
 		  }
 		  else{
-			  $especialidad->set_id($_POST['id']);
-			  $especialidad->set_name($_POST['nombre']);
-        $especialidad->set_apellido($_POST['apellido']);
-        $especialidad->set_cedula($_POST['cedula']);
-        $especialidad->set_telefono($_POST['telefono']);
-        $especialidad->set_contrasena($_POST['contrasena']);
-        $especialidad->set_rol($_POST['rol']);
+        $especialidad->set_nombre($_POST['nombre']);
+        $especialidad->set_codigo($_POST['codigo']);
 
 			  if($accion=='incluir'){
-				  echo  json_encode($especialidad->incluir());
+          echo  json_encode($especialidad->incluir());
 			  }
 			  elseif($accion=='modificar'){
+          $especialidad->set_id($_POST['id']);
 				  echo  json_encode($especialidad->modificar());
 			  }
 		  }

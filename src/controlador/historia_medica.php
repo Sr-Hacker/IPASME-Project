@@ -9,8 +9,7 @@
   if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
-		$empleado = new Empleado();
-
+		  $empleado = new Empleado();
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){
@@ -52,7 +51,6 @@
 		  }
 		  exit;
 	  }
-
 
 	  require_once("vista/".$pagina.".php");
   }

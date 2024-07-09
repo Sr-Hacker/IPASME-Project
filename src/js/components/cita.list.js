@@ -1,16 +1,16 @@
-let listaEspecialidades = document.getElementById("get_result");
+let listaEmpleados = document.getElementById("get_result");
 
-let especialidadsArray = []
+let empleadosArray = []
 
 function cargarDatos(item){
-  const especialidad = especialidadsArray[item];
-	$("#id").val(especialidad.id);
-	$("#nombre").val(especialidad.nombre);
-	$("#codigo").val(especialidad.codigo);
+  const empleado = empleadosArray[item]
+	$("#id").val(empleado.id);
+	$("#fecha").val(empleado.fecha);
+	$("#motivo").val(empleado.motivo);
 }
 
-function especialidades(data){
-  listaEspecialidades.style.removeProperty("display");
+function citas(data){
+  listaEmpleados.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
     const card = `
@@ -22,19 +22,25 @@ function especialidades(data){
     result = result.concat("",card);
   }else{
     data.map((item) => {
+      let paciente = item.id_beneficiario
+      if(!paciente){
+        paciente = item.id_familiar
+      }
+
       const card = `
         <div class="item">
-          <p>Especialidad: ${item.nombre}</p>
-          <p>Codigo: ${item.codigo}</p>
-          <p>id: ${item.id}</p>
+          <p>Fecha: ${item.fecha}</p>
+          <p>Motivo: ${item.motivo}</p>
+          <p>Paciente: ${paciente}</p>
+          <p>Medico: ${item.id_medico}</p>
           <div class="options">
           <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
           <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
-      especialidadsArray[item.id] = item;
+      empleadosArray[item.id] = item;
       result = result.concat("",card);
     })
   }
-  listaEspecialidades.innerHTML = result;
+  listaEmpleados.innerHTML = result;
 }

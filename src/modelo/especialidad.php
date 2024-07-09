@@ -9,7 +9,7 @@ class Especialidad extends DB{
 	function set_id($valor){
 		$this->id = $valor;
 	}
-	function set_name($valor){
+	function set_nombre($valor){
 		$this->nombre = $valor;
 	}
 	function set_codigo($valor){
@@ -18,22 +18,22 @@ class Especialidad extends DB{
 
 	function incluir(){
 		$r = array();
-		if(!$this->existe($this->cedula)){
+		if(!$this->existe($this->codigo)){
 			try {
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO especialidades (
-            nombre
-
+            nombre,
+            codigo
           ) VALUES (
-            :nombre
-
+            :nombre,
+            :codigo
           )
         ");
 
         $query->execute([
           ':nombre' => $this->nombre,
-
+          ':codigo' => $this->codigo,
         ]);
 
         $r['resultado'] = 'incluir';
@@ -44,7 +44,7 @@ class Especialidad extends DB{
 			}
 		} else {
 			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe la cedula';
+			$r['mensaje'] =  'Esta especialidad ya existe';
 		}
     $result = $this->consultar();
 		return $result;
@@ -54,13 +54,9 @@ class Especialidad extends DB{
     $r = array();
     try {
         $co = $this->conecta();
-        $co->query("UPDATE empleados SET
-          apellido = '$this->apellido',
+        $co->query("UPDATE especialidades SET
           nombre = '$this->nombre',
-          telefono = '$this->telefono',
-          contrasena = '$this->contrasena',
-          cedula = '$this->cedula',
-          rol = '$this->rol'
+          codigo = '$this->codigo'
           WHERE
           id = '$this->id'
         ");
@@ -78,7 +74,7 @@ class Especialidad extends DB{
     $r = array();
     try {
       $co = $this->conecta();
-      $co->query("DELETE FROM empleados
+      $co->query("DELETE FROM especialidades
         WHERE
         id = '$this->id'
         ");
@@ -103,6 +99,7 @@ class Especialidad extends DB{
 				foreach($resultados as $resultado){
 					$especialidad['id'] = $resultado['id'];
 					$especialidad['nombre'] = $resultado['nombre'];
+					$especialidad['codigo'] = $resultado['codigo'];
           array_push($respuesta, $especialidad);
 				}
 				$r['resultado'] =  $respuesta;
@@ -122,8 +119,8 @@ class Especialidad extends DB{
   function buscar() {
     try {
       $co = $this->conecta();
-      $stmt = $co->prepare("SELECT * FROM empleados WHERE cedula = :cedula");
-      $stmt->bindParam(':cedula', $this->cedula, PDO::PARAM_STR);
+      $stmt = $co->prepare("SELECT * FROM especialidades WHERE codigo = :codigo");
+      $stmt->bindParam(':codigo', $this->codigo, PDO::PARAM_STR);
       $stmt->execute();
       $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
       return $fila;
@@ -132,10 +129,10 @@ class Especialidad extends DB{
     }
   }
 
-  private function existe($cedula){
+  private function existe($codigo){
     try{
       $co = $this->conecta();
-			$resultado = $co->query("SELECT * FROM beneficiarios WHERE cedula='$cedula'");
+			$resultado = $co->query("SELECT * FROM especialidades WHERE codigo='$codigo'");
 
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
 			if($fila){

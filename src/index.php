@@ -1,5 +1,5 @@
 <?php
-  $pagina = "hogar";
+  $pagina = "historia_medica";
 
   if (!empty($_GET['pagina'])){
    $pagina = $_GET['pagina'];

@@ -12,7 +12,7 @@
           <input placeholder="Buscar especialidad" type="text" id="EspecialidadBuscador">
           <button id="buscar" button>buscar</button>
         </div>
-        <button id="include">Crear Nuevo Empleado</button>
+        <button id="include">Crear Nueva Especialidad</button>
       </div>
       <div class="container_especialidad--list">
         <div id="get_result"></div>

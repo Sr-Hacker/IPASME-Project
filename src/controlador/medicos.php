@@ -20,33 +20,21 @@
 			 echo json_encode($medicos->obtienefecha());
 		  }
 		  elseif($accion=='eliminar'){
-			 $medicos->set_cedula($_POST['cedula']);
-			 echo  json_encode($medicos->eliminar());
+        $medicos->set_id($_POST['id']);
+        echo  json_encode($medicos->eliminar());
 		  }
 		  else{
-			  $medicos->set_nombre_apellido($_POST['nombre_apellido']);
-        $medicos->set_cedula($_POST['cedula']);
-        $medicos->set_rif($_POST['rif']);
-        $medicos->set_fecha_nac($_POST['fecha_nac']);
-        $medicos->set_vivienda($_POST['vivienda']);
-        $medicos->set_automovil($_POST['automovil']);
-        $medicos->set_modelo($_POST['modelo']);
-        $medicos->set_ano($_POST['ano']);
-        $medicos->set_telefono($_POST['telefono']);
-        $medicos->set_celular($_POST['celular']);
-        $medicos->set_estado_civil($_POST['estado_civil']);
-        $medicos->set_tipo_sangre($_POST['tipo_sangre']);
-        $medicos->set_talla_camisa($_POST['talla_camisa']);
-        $medicos->set_talla_zapato($_POST['talla_zapato']);
-        $medicos->set_talla_pantalon($_POST['talla_pantalon']);
-        $medicos->set_correo($_POST['correo']);
-        $medicos->set_cargo($_POST['cargo']);
-        $medicos->set_estatus($_POST['estatus']);
+			  $medicos->set_nombres($_POST['nombres']);
+			  $medicos->set_apellidos($_POST['apellidos']);
+			  $medicos->set_externo($_POST['externo']);
+			  $medicos->set_cedula($_POST['cedula']);
+			  $medicos->set_telefono($_POST['telefono']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($medicos->incluir());
 			  }
 			  elseif($accion=='modificar'){
+			    $medicos->set_id($_POST['id']);
 				  echo  json_encode($medicos->modificar());
 			  }
 		  }

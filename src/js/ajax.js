@@ -12,7 +12,7 @@ function ajax(data, callback) {
     success: function (response) {
       try {
         const result = JSON.parse(response)
-        console.log('logs: ', result)
+        console.log(result)
         callback(result)
         limpia()
       } catch (e) {

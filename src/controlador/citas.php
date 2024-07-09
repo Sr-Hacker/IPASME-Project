@@ -4,7 +4,6 @@
     echo "Falta definir la clase ".$pagina;
     exit;
   }
-
   require_once("modelo/".$pagina.".php");
 
   if(is_file("vista/".$pagina.".php")){
@@ -17,41 +16,26 @@
 		  if($accion=='consultar'){
 			 echo  json_encode($citas->consultar());
 		  }
-		  else if($accion=='obtienefecha'){
-			 echo json_encode($citas->obtienefecha());
-		  }
 		  elseif($accion=='eliminar'){
-			 $citas->set_cedula($_POST['cedula']);
+			 $citas->set_id($_POST['id']);
 			 echo  json_encode($citas->eliminar());
 		  }
 		  else{
-			  $citas->set_nombre_apellido($_POST['nombre_apellido']);
-        $citas->set_cedula($_POST['cedula']);
-        $citas->set_rif($_POST['rif']);
-        $citas->set_fecha_nac($_POST['fecha_nac']);
-        $citas->set_vivienda($_POST['vivienda']);
-        $citas->set_automovil($_POST['automovil']);
-        $citas->set_modelo($_POST['modelo']);
-        $citas->set_ano($_POST['ano']);
-        $citas->set_telefono($_POST['telefono']);
-        $citas->set_celular($_POST['celular']);
-        $citas->set_estado_civil($_POST['estado_civil']);
-        $citas->set_tipo_sangre($_POST['tipo_sangre']);
-        $citas->set_talla_camisa($_POST['talla_camisa']);
-        $citas->set_talla_zapato($_POST['talla_zapato']);
-        $citas->set_talla_pantalon($_POST['talla_pantalon']);
-        $citas->set_correo($_POST['correo']);
-        $citas->set_cargo($_POST['cargo']);
-        $citas->set_estatus($_POST['estatus']);
+			  $citas->set_fecha($_POST['fecha']);
+        $citas->set_motivo($_POST['motivo']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($citas->incluir());
 			  }
 			  elseif($accion=='modificar'){
+			    $citas->set_id($_POST['id']);
 				  echo  json_encode($citas->modificar());
 			  }
 		  }
 		  exit;
+      // $citas->set_medico($_POST['id_medico']);
+      // $citas->set_beneficiario($_POST['id_beneficiario']);
+      // $citas->set_familiar($_POST['id_familiar']);
 	  }
 
 
