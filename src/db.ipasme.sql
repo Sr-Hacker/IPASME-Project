@@ -1,3 +1,5 @@
+CREATE DATABASE data_uptaeb;
+
 CREATE TABLE direcciones (
   id INT AUTO_INCREMENT PRIMARY KEY,
   direccion CHAR(255),

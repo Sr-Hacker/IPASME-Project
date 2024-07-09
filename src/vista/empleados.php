@@ -1,7 +1,7 @@
 <html>
   <?php require_once("vista/comunes/header.php"); ?>
-  <link rel="stylesheet" href="css/empleado.css">
   <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/empleado.css">
 
 <body>
   <div>
