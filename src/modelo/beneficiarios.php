@@ -1,184 +1,102 @@
 <?php
-require_once('modelo/db.php');
+require_once('config/db.php');
+require_once('modelo/direccion.php');
+require_once('modelo/institucion.php');
+require_once('modelo/historia_medica.php');
 
 class Beneficiario extends DB{
-  private $nombre_apellido;
-  private $cedula;
-  private $rif;
-  private $fecha_nac;
-  private $vivienda;
-  private $automovil;
-  private $modelo;
-  private $ano;
+  private $id;
+  private $nombre;
+  private $apellido;
   private $telefono;
-  private $celular;
-  private $estado_civil;
-  private $tipo_sangre;
-  private $talla_camisa;
-  private $talla_zapato;
-  private $talla_pantalon;
-  private $correo;
+  private $edad;
   private $cargo;
-  private $estatus;
+  private $cedula;
+  private $id_historia;
+  private $id_direccion;
+  private $id_institucion;
 
-	function set_nombre_apellido($valor){
-		$this->nombre_apellido = $valor;
+  function set_id($valor){
+		$this->nombre = $valor;
+	}
+	function set_nombre($valor){
+		$this->nombre = $valor;
+	}
+	function set_apellido($valor){
+		$this->apellido = $valor;
+	}
+  function set_telefono($valor){
+		$this->telefono = $valor;
+	}
+	function set_edad($valor){
+		$this->edad = $valor;
+	}
+	function set_cargo($valor){
+		$this->cargo = $valor;
 	}
 	function set_cedula($valor){
 		$this->cedula = $valor;
 	}
-  function set_rif($valor){
-		$this->rif = $valor;
+  function set_id_historia($valor){
+		$this->id_historia = $valor;
 	}
-	function set_fecha_nac($valor){
-		$this->fecha_nac = $valor;
+  function set_id_direccion($valor){
+		$this->id_direccion = $valor;
 	}
-	function set_vivienda($valor){
-		$this->vivienda = $valor;
-	}
-	function set_automovil($valor){
-		$this->automovil = $valor;
-	}
-	function set_modelo($valor){
-		$this->modelo = $valor;
-	}
-  function set_ano($valor){
-		$this->ano = $valor;
-	}
-	function set_telefono($valor){
-		$this->telefono = $valor;
-	}
-  function set_celular($valor){
-		$this->celular = $valor;
-	}
-  function set_estado_civil($valor){
-		$this->estado_civil = $valor;
-	}
-  function set_tipo_sangre($valor){
-		$this->tipo_sangre = $valor;
-	}
-  function set_talla_camisa($valor){
-		$this->talla_camisa = $valor;
-	}
-  function set_talla_zapato($valor){
-		$this->talla_zapato = $valor;
-	}
-  function set_talla_pantalon($valor){
-		$this->talla_pantalon = $valor;
-	}
-  function set_correo($valor){
-		$this->correo = $valor;
-	}
-  function set_cargo($valor){
-		$this->cargo = $valor;
-	}
-  function set_estatus($valor){
-		$this->estatus = $valor;
-	}
-
-	function get_nombre_apellido($valor){
-    return $this->nombre_apellido;
-	}
-	function get_cedula($valor){
-    return $this->cedula;
-	}
-  function get_rif($valor){
-    return $this->rif;
-	}
-	function get_fecha_nac($valor){
-    return $this->fecha_nac;
-	}
-	function get_vivienda($valor){
-    return $this->vivienda;
-	}
-	function get_automovil($valor){
-    return $this->automovil;
-	}
-	function get_modelo($valor){
-    return $this->modelo;
-	}
-  function get_ano($valor){
-    return $this->ano;
-	}
-	function get_telefono($valor){
-    return $this->telefono;
-	}
-  function get_celular($valor){
-    return $this->celular;
-	}
-  function get_estado_civil($valor){
-    return $this->estado_civil;
-	}
-  function get_tipo_sangre($valor){
-    return $this->tipo_sangre;
-	}
-  function get_talla_camisa($valor){
-    return $this->talla_camisa;
-	}
-  function get_talla_zapato($valor){
-    return $this->talla_zapato;
-	}
-  function get_talla_pantalon($valor){
-    return $this->talla_pantalon;
-	}
-  function get_correo($valor){
-    return $this->correo;
-	}
-  function get_cargo($valor){
-    return $this->cargo;
-	}
-  function get_estatus($valor){
-    return $this->estatus;
+  function set_id_institucion($valor){
+		$this->id_institucion = $valor;
 	}
 
 	function incluir(){
 		$r = array();
 		if(!$this->existe($this->cedula)){
-			$co = $this->conecta();
-			$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		  $historia = new Historia(1.75, 70, '143', 'O+', 'M');
+		  $direccion = new Direccion('direccion', 'union', 'seguro', '3021');
+      $institucion = new institucion('Inces', 'J-274361790');
+      $this->set_id_historia($historia->incluir());
+      $this->set_id_direccion($direccion->incluir());
+      $this->set_id_institucion($institucion->incluir());
+
 			try {
-					$co->query("INSERT INTO beneficiarios(
-            apellidosynombres,
-						cedula,
-						rif,
-						fechadenacimiento,
-						vivienda,
-						automovil,
-						modelo,
-            ano,
+        $bd = $this->conecta();
+        $query = $bd->prepare("
+          INSERT INTO beneficiarios (
+            nombre,
+            apellido,
             telefono,
-            celular,
-            estadocivil,
-            tipodesangre,
-            talladecamisa,
-            talladezapato,
-            talladepantalon,
-            correo,
+            edad,
             cargo,
-            estatus
-						)
-						VALUES(
-              '$this->nombre_apellido',
-              '$this->cedula',
-              '$this->rif',
-              '$this->fecha_nac',
-              '$this->vivienda',
-              '$this->automovil',
-              '$this->modelo',
-              '$this->ano',
-              '$this->telefono',
-              '$this->celular',
-              '$this->estado_civil',
-              '$this->tipo_sangre',
-              '$this->talla_camisa',
-              '$this->talla_zapato',
-              '$this->talla_pantalon',
-              '$this->correo',
-              '$this->cargo',
-              '$this->estatus'
-						)");
-						$r['resultado'] = 'incluir';
-			      $r['mensaje'] =  'Registro Inluido';
+            cedula,
+            id_historia,
+            id_direccion,
+            id_institucion
+          ) VALUES (
+            :nombre,
+            :apellido,
+            :telefono,
+            :edad,
+            :cargo,
+            :cedula,
+            :id_historia,
+            :id_direccion,
+            :id_institucion
+          )
+        ");
+
+        $query->execute([
+          ':nombre' => $this->nombre,
+          ':apellido' => $this->apellido,
+          ':telefono' => $this->telefono,
+          ':edad' => $this->edad,
+          ':cargo' => $this->cargo,
+          ':cedula' => $this->cedula,
+          ':id_historia' => $this->id_historia,
+          ':id_direccion' => $this->id_direccion,
+          ':id_institucion' => $this->id_institucion
+        ]);
+
+        $r['resultado'] = 'incluir';
+        $r['mensaje'] =  'Registro Inluido';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
 			  $r['mensaje'] = $e->getMessage();
@@ -188,7 +106,6 @@ class Beneficiario extends DB{
 			$r['resultado'] = 'incluir';
 			$r['mensaje'] =  'Ya existe la cedula';
 		}
-
     $result = $this->consultar();
 		return $result;
 	}
@@ -261,7 +178,6 @@ class Beneficiario extends DB{
 		return $result;
 	}
 
-
 	function consultar(){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -274,25 +190,17 @@ class Beneficiario extends DB{
 
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['apellidosynombres'] = $resultado['apellidosynombres'];
-          $trabajador['cedula'] = $resultado['cedula'];
-          $trabajador['rif'] = $resultado['rif'];
-          $trabajador['fechadenacimiento'] = $resultado['fechadenacimiento'];
-          $trabajador['vivienda'] = $resultado['vivienda'];
-          $trabajador['automovil'] = $resultado['automovil'];
-          $trabajador['modelo'] = $resultado['modelo'];
-          $trabajador['ano'] = $resultado['ano'];
-          $trabajador['telefono'] = $resultado['telefono'];
-          $trabajador['celular'] = $resultado['celular'];
-          $trabajador['estadocivil'] = $resultado['estadocivil'];
-          $trabajador['tipodesangre'] = $resultado['tipodesangre'];
-          $trabajador['talladecamisa'] = $resultado['talladecamisa'];
-          $trabajador['talladezapato'] = $resultado['talladezapato'];
-          $trabajador['talladepantalon'] = $resultado['talladepantalon'];
-          $trabajador['correo'] = $resultado['correo'];
-          $trabajador['cargo'] = $resultado['cargo'];
-          $trabajador['estatus'] = $resultado['estatus'];
-          array_push($respuesta, $trabajador);
+					$beneficiario['id'] = $resultado['id'];
+          $beneficiario['nombre'] = $resultado['nombre'];
+          $beneficiario['apellido'] = $resultado['apellido'];
+          $beneficiario['telefono'] = $resultado['telefono'];
+          $beneficiario['edad'] = $resultado['edad'];
+          $beneficiario['cargo'] = $resultado['cargo'];
+          $beneficiario['cedula'] = $resultado['cedula'];
+          $beneficiario['id_historia'] = $resultado['id_historia'];
+          $beneficiario['id_direccion'] = $resultado['id_direccion'];
+          $beneficiario['id_institucion'] = $resultado['id_institucion'];
+          array_push($respuesta, $beneficiario);
 				}
 
 				$r['resultado'] =  $respuesta;
@@ -309,6 +217,18 @@ class Beneficiario extends DB{
 		return $r['resultado'];
 	}
 
+  function buscar() {
+    try {
+      $bd = $this->conecta();
+      $query = $bd->prepare("SELECT * FROM beneficiarios WHERE cedula = :cedula");
+      $query->bindParam(':cedula', $this->cedula, PDO::PARAM_STR);
+      $query->execute();
+      $fila = $query->fetchAll(PDO::FETCH_BOTH);
+      return $fila;
+    } catch (Exception $e) {
+      return false;
+    }
+  }
 
 	private function existe($cedula){
 		$co = $this->conecta();

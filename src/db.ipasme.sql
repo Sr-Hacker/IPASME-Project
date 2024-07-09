@@ -27,14 +27,22 @@ CREATE TABLE medicos (
   cedula CHAR(255)
 );
 
-CREATE TABLE historia_Medica (
+CREATE TABLE especialidad_medico (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  cod_historia INT,
+  id_medico INT,
+  id_especialidad INT,
+  FOREIGN KEY (id_medico) REFERENCES medicos(id),
+  FOREIGN KEY (id_especialidad) REFERENCES especialidades(id)
+);
+
+CREATE TABLE historias (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cod_historia CHAR(255),
   tipo_sangre CHAR(255),
   sexo CHAR(255),
   estatura DECIMAL,
   peso DECIMAL,
-  fecha_nacimiento DATE
+  fecha_nacimiento CHAR(255)
 );
 
 CREATE TABLE beneficiarios (
@@ -50,7 +58,7 @@ CREATE TABLE beneficiarios (
   id_institucion INT,
   FOREIGN KEY (id_direccion) REFERENCES direcciones(id),
   FOREIGN KEY (id_institucion) REFERENCES instituciones(id),
-  FOREIGN KEY (id_historia) REFERENCES historia_Medica(id)
+  FOREIGN KEY (id_historia) REFERENCES historias(id)
 );
 
 CREATE TABLE requisitos (
@@ -78,7 +86,7 @@ CREATE TABLE informes_medicos (
   id_historia INT,
   id_medico INT,
   FOREIGN KEY (id_medico) REFERENCES medicos(id),
-  FOREIGN KEY (id_historia) REFERENCES historia_Medica(id)
+  FOREIGN KEY (id_historia) REFERENCES historias(id)
 );
 
 CREATE TABLE tratamientos (
@@ -97,7 +105,7 @@ CREATE TABLE reposos (
   fecha DATE,
   tiempo_tratamiento CHAR(255),
   id_historia INT,
-  FOREIGN KEY (id_historia) REFERENCES historia_Medica(id)
+  FOREIGN KEY (id_historia) REFERENCES historias(id)
 );
 
 CREATE TABLE tramites (
@@ -134,7 +142,7 @@ CREATE TABLE familiares (
   fecha_nacimiento TIME,
   id_beneficiario INT,
   id_historia INT,
-  FOREIGN KEY (id_historia) REFERENCES historia_Medica(id),
+  FOREIGN KEY (id_historia) REFERENCES historias(id),
   FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
 );
 
@@ -152,7 +160,7 @@ CREATE TABLE documentos_personales (
   descripcion CHAR(255),
   fecha_vencimiento TIME,
   id_historia INT,
-  FOREIGN KEY (id_historia) REFERENCES historia_Medica(id)
+  FOREIGN KEY (id_historia) REFERENCES historias(id)
 );
 
 CREATE TABLE patologias (
@@ -162,7 +170,7 @@ CREATE TABLE patologias (
   nombre CHAR(255),
   fecha TIME,
   id_historia INT,
-  FOREIGN KEY (id_historia) REFERENCES historia_Medica(id)
+  FOREIGN KEY (id_historia) REFERENCES historias(id)
 );
 
 CREATE TABLE requisito_tramite (

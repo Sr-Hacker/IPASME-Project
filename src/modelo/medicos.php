@@ -1,5 +1,5 @@
 <?php
-require_once('modelo/db.php');
+require_once('config/db.php');
 
 class Medico extends DB{
   private $nombre_apellido;

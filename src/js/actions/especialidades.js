@@ -1,38 +1,29 @@
 let buscar = document.getElementById("buscar")
 buscar.addEventListener('click', function _getById(){
-  const buscador = document.getElementById("cedulaBuscador").value;
+  const buscador = document.getElementById("EspecialidadBuscador").value;
 
   let data = new FormData();
   data.append('accion','buscar');
   data.append('buscador', buscador);
-  ajax(data, beneficiarios);
+  ajax(data, especialidades);
 })
 
 function _get(){
 	let data = new FormData();
 	data.append('accion','consultar');
-	ajax(data, beneficiarios);
+	ajax(data, especialidades);
 }
 
 function _include(){
   const nombreValue = document.getElementById("nombre").value;
-  const apellidoValue = document.getElementById("apellido").value;
-  const edadValue = document.getElementById("edad").value;
-  const telefonoValue = document.getElementById("telefono").value;
-  const cargoValue = document.getElementById("cargo").value;
-  const cedulaValue = document.getElementById("cedula").value;
+  const codigoValue = document.getElementById("codigo").value;
 
 	let data = new FormData();
 	data.append('accion','incluir');
-  data.append('id', 0);
   data.append('nombre', nombreValue);
-  data.append('apellido', apellidoValue);
-  data.append('edad', edadValue);
-  data.append('telefono', telefonoValue);
-  data.append('cargo', cargoValue);
-  data.append('cedula', cedulaValue);
+  data.append('codigo', codigoValue);
 
-	ajax(data, beneficiarios);
+	ajax(data, especialidades);
   let modal =  document.getElementById("modal")
   modal.style.display = "none";
 }
@@ -77,7 +68,7 @@ function _edit(){
   data.append('correo', correoValue);
   data.append('cargo', cargoValue);
   data.append('estatus', estatusValue);
-	ajax(data, beneficiarios);
+	ajax(data, especialidades);
   let modal =  document.getElementById("modal")
   modal.style.display = "none";
 }
@@ -88,7 +79,7 @@ function _delete(){
 	let data = new FormData();
 	data.append('accion','eliminar');
   data.append('cedula', cedulaValue);
-	ajax(data, beneficiarios);
+	ajax(data, especialidades);
   let modal =  document.getElementById("modal")
   modal.style.display = "none";
 }

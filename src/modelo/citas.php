@@ -1,5 +1,6 @@
 <?php
-require_once('modelo/db.php');
+require_once('config/db.php');
+
 
 class Cita extends DB{
   private $nombre_apellido;

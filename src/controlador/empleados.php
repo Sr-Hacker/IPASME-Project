@@ -10,18 +10,19 @@
   if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
-		$empleado = new Empleado();
+		  $empleado = new Empleado();
 
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){
-			 echo json_encode($empleado->consultar());
+			  echo json_encode($empleado->consultar());
 		  }
-		  else if($accion=='obtienefecha'){
-			 echo json_encode($empleado->obtienefecha());
+		  else if($accion=='buscar'){
+			  $empleado->set_cedula($_POST['buscador']);
+        echo json_encode($empleado->buscar());
 		  }
 		  elseif($accion=='eliminar'){
-			 $empleado->set_cedula($_POST['cedula']);
+			 $empleado->set_id($_POST['id']);
 			 echo json_encode($empleado->eliminar());
 		  }
 		  else{

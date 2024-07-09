@@ -1,20 +1,20 @@
-let listaEmpleados = document.getElementById("get_result");
+let listaBeneficiarios = document.getElementById("get_result");
 
-let empleadosArray = []
+let beneficiariosArray = [];
 
 function cargarDatos(item){
-  const empleado = empleadosArray[item]
-	$("#id").val(empleado.id);
-	$("#cedula").val(empleado.cedula);
-	$("#apellido").val(empleado.apellido);
-	$("#nombre").val(empleado.nombre);
-  $("#contrasena").val(empleado.contrasena);
-  $("#telefono").val(empleado.telefono);
-	$("#rol").val(empleado.rol);
+  const beneficiario = beneficiariosArray[item]
+	$("#id").val(beneficiario.id);
+	$("#cedula").val(beneficiario.cedula);
+	$("#apellido").val(beneficiario.apellido);
+	$("#nombre").val(beneficiario.nombre);
+  $("#cargo").val(beneficiario.cargo);
+  $("#telefono").val(beneficiario.telefono);
+	$("#edad").val(beneficiario.edad);
 }
 
-function empleados(data){
-  listaEmpleados.style.removeProperty("display");
+function beneficiarios(data){
+  listaBeneficiarios.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
     const card = `
@@ -29,17 +29,20 @@ function empleados(data){
       const card = `
         <div class="item">
           <p>${item.nombre} ${item.apellido}</p>
+          <p>Edad: ${item.edad}</p>
           <p>Telefono: ${item.telefono}</p>
           <p>Cedula: ${item.cedula}</p>
-          <p>Rol: ${item.rol}</p>
+          <p>cargo: ${item.cargo}</p>
+          <p>historia: ${item.id_historia}</p>
           <div class="options">
           <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
           <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
-        </div>`;
-      empleadosArray[item.id] = item;
+        </div>
+      `;
+      beneficiariosArray[item.id] = item;
       result = result.concat("",card);
     })
   }
-  listaEmpleados.innerHTML = result;
+  listaBeneficiarios.innerHTML = result;
 }

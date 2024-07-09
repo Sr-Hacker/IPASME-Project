@@ -1,3 +1,15 @@
+
+let buscar = document.getElementById("buscar")
+
+buscar.addEventListener('click', function _getById(){
+  const buscador = document.getElementById("cedulaBuscador").value;
+
+  let data = new FormData();
+  data.append('accion','buscar');
+  data.append('buscador', buscador);
+  ajax(data, empleados);
+})
+
 function _get(){
 	let data = new FormData();
 	data.append('accion','consultar');
@@ -52,11 +64,11 @@ function _edit(){
 }
 
 function _delete(){
-  const cedulaValue = document.getElementById("cedula").value;
+  const idValue = document.getElementById("id").value;
 
 	let data = new FormData();
 	data.append('accion','eliminar');
-  data.append('cedula', cedulaValue);
+  data.append('id', idValue);
 	ajax(data, empleados);
   let modal1 =  document.getElementById("modal")
   modal1.style.display = "none";
