@@ -110,7 +110,7 @@ class Cita extends DB{
           $citas['fecha'] = $resultado['fecha'];
           $citas['id_medico'] = $resultado['id_medico'];
           $citas['id_beneficiario'] = $resultado['id_beneficiario'];
-          $citas['id_familiar'] = $resultado['id_familiar'];
+          $citas['id_afiliado'] = $resultado['id_afiliado'];
           array_push($respuesta, $citas);
 				}
 				$r['resultado'] =  $respuesta;

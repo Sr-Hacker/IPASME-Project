@@ -17,12 +17,13 @@ function _get(){
 }
 
 function _include(){
-  const fecha = document.getElementById("fecha").value;
+  const dia = document.getElementById("dia").value;
   const motivo = document.getElementById("motivo").value;
+  console.log("🚀 ~ _include ~ dia:", motivo)
 
 	let data = new FormData();
 	data.append('accion','incluir');
-  data.append('fecha', fecha);
+  data.append('fecha', dia);
   data.append('motivo', motivo);
 
 	ajax(data, citas);
@@ -31,13 +32,13 @@ function _include(){
 }
 
 function _edit(){
-  const fecha = document.getElementById("fecha").value;
+  const dia = document.getElementById("dia").value;
   const motivo = document.getElementById("motivo").value;
 
 	let data = new FormData();
   data.append('accion','modificar');
   data.append('id', id);
-  data.append('fecha', fecha);
+  data.append('fecha', dia);
   data.append('motivo', motivo);
 
 	ajax(data, citas);

@@ -168,7 +168,7 @@ class Empleado extends DB{
   private function existe($cedula){
     try{
       $co = $this->conecta();
-			$resultado = $co->query("SELECT * FROM beneficiarios WHERE cedula='$cedula'");
+			$resultado = $co->query("SELECT * FROM empleados WHERE cedula='$cedula'");
 
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
 			if($fila){

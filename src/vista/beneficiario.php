@@ -12,7 +12,7 @@
           <input placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar">buscar</button>
         </div>
-        <button id="include">Crear Nuevo Afiliado</button>
+        <button id="include">Crear Nuevo Beneficiario</button>
       </div>
       <div class="container_afiliados--list">
         <div id="get_result"></div>
@@ -21,14 +21,14 @@
   </div>
 
   <div id="modal" class="modal">
-    <?php require_once("vista/formularios/afiliado.formularo.php"); ?>
+    <?php require_once("vista/formularios/beneficiario.formulario.php"); ?>
   </div>
 
   <script type="text/javascript" src="js/modals.js" defer></script>
-  <script type="text/javascript" src="js/components/afiliado.list.js" defer></script>
+  <script type="text/javascript" src="js/components/beneficiario.list.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
-  <script type="text/javascript" src="js/validations/afiliados.js" defer></script>
-  <script type="text/javascript" src="js/actions/afiliados.js" defer></script>
+  <script type="text/javascript" src="js/validations/beneficiarios.js" defer></script>
+  <script type="text/javascript" src="js/actions/beneficiarios.js" defer></script>
   <script type="text/javascript" src="js/handler.js" defer></script>
 </body>
 </html>

@@ -5,18 +5,24 @@
 
 <div class="menu" id="display">
   <ul class="menu-list">
-    <li><a href="?pagina=hogar">Pagina principal</a></li>
-    <li><a href="?pagina=afiliados">Gestionar Beneficiarios</a></li>
+    <li><a href="?pagina=historia_medica">Pagina principal</a></li>
+    <li><a href="?pagina=afiliados">Gestionar Afiliados</a></li>
+    <li><a href="?pagina=beneficiario">Gestionar Beneficiarios</a></li>
     <li><a href="?pagina=empleados">Gestionar Empleados</a></li>
     <li><a href="?pagina=especialidad">Gestionar Especialidades</a></li>
     <li><a href="?pagina=medicos">Gestionar Medicos</a></li>
     <li><a href="?pagina=citas">Gestionar Citas</a></li>
+    <li><a href="?pagina=reposos">Gestionar Requisitos</a></li>
+    <li><a href="?pagina=solicitudes">Gestionar Solicitudes</a></li>
+    <li><a href="?pagina=tratamientos">Gestionar Tratamientos</a></li>
+    <li><a href="?pagina=patologias">Gestionar Patologias</a></li>
+    <li><a href="?pagina=documentos">Gestionar Documentos</a></li>
+    <li><a href="?pagina=informes">Gestionar Informes</a></li>
     <li><a href="?pagina=requisitos">Gestionar Requisitos</a></li>
     <li><a href="?pagina=tramites">Gestionar Tramites</a></li>
     <li><a href="?pagina=reportes">Generar Reportes</a></li>
   </ul>
 </div>
-
 
 <!-- <div class="container">
    <nav class="navbar navbar-expand-lg navbar-light bg-light">

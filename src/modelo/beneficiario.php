@@ -4,7 +4,7 @@ require_once('modelo/direccion.php');
 require_once('modelo/institucion.php');
 require_once('modelo/historia_medica.php');
 
-class Afiliado extends DB{
+class Beneficiario extends DB{
   private $id = 0;
   private $nombre;
   private $apellido;
@@ -138,23 +138,13 @@ class Afiliado extends DB{
         $this->descripcion,
         $this->postal
       );
-      $institucion = new institucion(
-        $this->nombre_institucion,
-        $this->rif_institucion,
-        $this->direccion_institucion,
-        $this->zona_institucion,
-        $this->descripcion_institucion,
-        $this->postal_institucion
-      );
-
       $this->set_id_historia($historia->incluir());
       $this->set_id_direccion($direccion->incluir());
-      $this->set_id_institucion($institucion->incluir());
 
 			try {
         $bd = $this->conecta();
         $query = $bd->prepare("
-          INSERT INTO afiliados (
+          INSERT INTO beneficiarios (
             nombre,
             apellido,
             telefono,
@@ -208,7 +198,7 @@ class Afiliado extends DB{
     $r = array();
     try {
       $co = $this->conecta();
-			$co->query("UPDATE afiliados SET
+			$co->query("UPDATE beneficiarios SET
         nombre = '$this->nombre',
         apellido = '$this->apellido',
         telefono = '$this->telefono',
@@ -233,7 +223,7 @@ class Afiliado extends DB{
 		$r = array();
 		if($this->existe($this->cedula)){
 			try {
-					$co->query("DELETE FROM afiliados
+					$co->query("DELETE FROM beneficiarios
 						WHERE
 						cedula = '$this->cedula'
 						");
@@ -257,14 +247,14 @@ class Afiliado extends DB{
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
 		try{
-			// $resultados = $co->query("SELECT * FROM afiliados");
+			// $resultados = $co->query("SELECT * FROM beneficiarios");
 
 
 			$resultados = $co->query("SELECT
         b.*,
         t1.cod_historia AS cod_historia
         FROM
-            afiliados b
+            beneficiarios b
         JOIN
             historias t1 ON b.id_historia = t1.id;
         ");
@@ -304,7 +294,7 @@ class Afiliado extends DB{
   function buscar() {
     try {
       $bd = $this->conecta();
-      $query = $bd->prepare("SELECT * FROM afiliados WHERE cedula = :cedula");
+      $query = $bd->prepare("SELECT * FROM beneficiarios WHERE cedula = :cedula");
       $query->bindParam(':cedula', $this->cedula, PDO::PARAM_STR);
       $query->execute();
       $fila = $query->fetchAll(PDO::FETCH_BOTH);
@@ -318,7 +308,7 @@ class Afiliado extends DB{
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		try{
-			$resultado = $co->query("SELECT * FROM afiliados WHERE cedula='$cedula'");
+			$resultado = $co->query("SELECT * FROM beneficiarios WHERE cedula='$cedula'");
 
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
 			if($fila){

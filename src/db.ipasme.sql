@@ -47,7 +47,7 @@ CREATE TABLE historias (
   fecha_nacimiento CHAR(255)
 );
 
-CREATE TABLE beneficiarios (
+CREATE TABLE afiliados (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre CHAR(255),
   apellido CHAR(255),
@@ -116,13 +116,13 @@ CREATE TABLE tramites (
   fecha CHAR(255),
   tipo_tramite CHAR(255),
   motivo CHAR(255),
-  id_beneficiario INT,
+  id_afiliado INT,
   id_empleado INT,
   FOREIGN KEY (id_empleado) REFERENCES empleados(id),
-  FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
+  FOREIGN KEY (id_afiliado) REFERENCES afiliados(id)
 );
 
-CREATE TABLE familiares (
+CREATE TABLE beneficiarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   parentesco CHAR(255),
   cedula CHAR(255),
@@ -130,22 +130,22 @@ CREATE TABLE familiares (
   telefono CHAR(255),
   edad INT,
   fecha_nacimiento TIME,
-  id_beneficiario INT,
+  id_afiliado INT,
   id_historia INT,
   FOREIGN KEY (id_historia) REFERENCES historias(id),
-  FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
+  FOREIGN KEY (id_afiliado) REFERENCES afiliados(id)
 );
 
 CREATE TABLE citas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   fecha CHAR(255),
   motivo CHAR(255),
-  id_beneficiario INT,
+  id_afiliado INT,
   id_medico INT,
-  id_familiar INT,
-  FOREIGN KEY (id_familiar) REFERENCES familiares(id),
+  id_beneficiario INT,
+  FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id),
   FOREIGN KEY (id_medico) REFERENCES medicos(id),
-  FOREIGN KEY (id_beneficiario) REFERENCES beneficiarios(id)
+  FOREIGN KEY (id_afiliado) REFERENCES afiliados(id)
 );
 
 CREATE TABLE medico_especialidad (

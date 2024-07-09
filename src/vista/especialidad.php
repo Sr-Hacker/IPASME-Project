@@ -1,5 +1,5 @@
 <html>
-  <?php require_once("common/header.php"); ?>
+  <?php require_once("vista/comunes/header.php"); ?>
   <link rel="stylesheet" href="css/especialidades.css">
   <link rel="stylesheet" href="css/modal.css">
 
