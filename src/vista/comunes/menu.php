@@ -12,7 +12,7 @@
     <li><a href="?pagina=especialidad">Gestionar Especialidades</a></li>
     <li><a href="?pagina=medicos">Gestionar Medicos</a></li>
     <li><a href="?pagina=citas">Gestionar Citas</a></li>
-    <li><a href="?pagina=reposos">Gestionar Requisitos</a></li>
+    <li><a href="?pagina=reposos">Gestionar Reposos</a></li>
     <li><a href="?pagina=solicitudes">Gestionar Solicitudes</a></li>
     <li><a href="?pagina=tratamientos">Gestionar Tratamientos</a></li>
     <li><a href="?pagina=patologias">Gestionar Patologias</a></li>

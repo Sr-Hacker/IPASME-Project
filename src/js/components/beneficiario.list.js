@@ -42,12 +42,11 @@ function beneficiarios(data){
     data.map((item) => {
       const card = `
         <div class="item">
-          <p>${item.nombre} ${item.apellido}</p>
-          <p>Edad: ${item.edad}</p>
+          <p>Nombre: ${item.nombres}</p>
+          <p>Parentesco: ${item.parentesco}</p>
           <p>Telefono: ${item.telefono}</p>
           <p>Cedula: ${item.cedula}</p>
-          <p>cargo: ${item.cargo}</p>
-          <p>historia: ${item.cod_historia}</p>
+          <p>historia: ${item.id_historia}</p>
           <div class="options">
           <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
           <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>

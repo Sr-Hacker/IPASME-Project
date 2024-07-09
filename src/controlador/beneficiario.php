@@ -25,11 +25,10 @@
 			  echo  json_encode($beneficiarios->eliminar());
 		  }
 		  else{
-        $beneficiarios->set_nombre($_POST['nombre']);
-        $beneficiarios->set_apellido($_POST['apellido']);
+        $beneficiarios->set_parentesco($_POST['parentesco']);
+        $beneficiarios->set_nombres($_POST['nombres']);
         $beneficiarios->set_telefono($_POST['telefono']);
         $beneficiarios->set_edad($_POST['edad']);
-        $beneficiarios->set_cargo($_POST['cargo']);
         $beneficiarios->set_cedula($_POST['cedula']);
 
         $beneficiarios->set_cod_historia($_POST['cod_historia']);

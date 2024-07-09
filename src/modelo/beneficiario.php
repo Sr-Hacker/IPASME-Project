@@ -6,11 +6,10 @@ require_once('modelo/historia_medica.php');
 
 class Beneficiario extends DB{
   private $id = 0;
-  private $nombre;
-  private $apellido;
+  private $nombres;
+  private $parentesco;
   private $telefono;
   private $edad;
-  private $cargo;
   private $cedula;
 
   private $id_historia = 0;
@@ -27,32 +26,20 @@ class Beneficiario extends DB{
   private $descripcion;
   private $postal;
 
-  private $id_institucion = 0;
-  private $nombre_institucion;
-  private $rif_institucion;
-  private $id_direccion_institucion;
-  private $direccion_institucion;
-  private $zona_institucion;
-  private $descripcion_institucion;
-  private $postal_institucion;
-
   function set_id($valor){
-		$this->nombre = $valor;
+		$this->id = $valor;
 	}
-	function set_nombre($valor){
-		$this->nombre = $valor;
+	function set_nombres($valor){
+		$this->nombres = $valor;
 	}
-	function set_apellido($valor){
-		$this->apellido = $valor;
+	function set_parentesco($valor){
+		$this->parentesco = $valor;
 	}
   function set_telefono($valor){
 		$this->telefono = $valor;
 	}
 	function set_edad($valor){
 		$this->edad = $valor;
-	}
-	function set_cargo($valor){
-		$this->cargo = $valor;
 	}
 	function set_cedula($valor){
 		$this->cedula = $valor;
@@ -96,30 +83,6 @@ class Beneficiario extends DB{
 		$this->postal = $valor;
 	}
 
-  function set_id_institucion($valor){
-		$this->id_institucion = $valor;
-	}
-  function set_nombre_institucion($valor){
-		$this->nombre_institucion = $valor;
-	}
-  function set_rif_institucion($valor){
-		$this->rif_institucion = $valor;
-	}
-  function set_id_direccion_institucion($valor){
-		$this->id_direccion_institucion = $valor;
-	}
-  function set_direccion_institucion($valor){
-		$this->direccion_institucion = $valor;
-	}
-  function set_zona_institucion($valor){
-		$this->zona_institucion = $valor;
-	}
-  function set_descripcion_institucion($valor){
-		$this->descripcion_institucion = $valor;
-	}
-  function set_postal_institucion($valor){
-		$this->postal_institucion = $valor;
-	}
 
 	function incluir(){
 		$r = array();
@@ -145,38 +108,29 @@ class Beneficiario extends DB{
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO beneficiarios (
-            nombre,
-            apellido,
+            nombres,
+            parentesco,
             telefono,
             edad,
-            cargo,
             cedula,
-            id_historia,
-            id_direccion,
-            id_institucion
+            id_historia
           ) VALUES (
-            :nombre,
-            :apellido,
+            :nombres,
+            :parentesco,
             :telefono,
             :edad,
-            :cargo,
             :cedula,
-            :id_historia,
-            :id_direccion,
-            :id_institucion
+            :id_historia
           )
         ");
 
         $query->execute([
-          ':nombre' => $this->nombre,
-          ':apellido' => $this->apellido,
+          ':nombres' => $this->nombres,
+          ':parentesco' => $this->parentesco,
           ':telefono' => $this->telefono,
           ':edad' => $this->edad,
-          ':cargo' => $this->cargo,
           ':cedula' => $this->cedula,
-          ':id_historia' => $this->id_historia,
-          ':id_direccion' => $this->id_direccion,
-          ':id_institucion' => $this->id_institucion
+          ':id_historia' => $this->id_historia
         ]);
 
         $r['resultado'] = 'incluir';
@@ -199,8 +153,8 @@ class Beneficiario extends DB{
     try {
       $co = $this->conecta();
 			$co->query("UPDATE beneficiarios SET
-        nombre = '$this->nombre',
-        apellido = '$this->apellido',
+        nombres = '$this->nombres',
+        parentesco = '$this->parentesco',
         telefono = '$this->telefono',
         edad = '$this->edad',
         cedula = '$this->cedula'
@@ -247,33 +201,19 @@ class Beneficiario extends DB{
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
 		try{
-			// $resultados = $co->query("SELECT * FROM beneficiarios");
-
-
-			$resultados = $co->query("SELECT
-        b.*,
-        t1.cod_historia AS cod_historia
-        FROM
-            beneficiarios b
-        JOIN
-            historias t1 ON b.id_historia = t1.id;
-        ");
+			$resultados = $co->query("SELECT * FROM beneficiarios");
 
 			if($resultados){
 
 				$respuesta = [];
 				foreach($resultados as $resultado){
 					$beneficiario['id'] = $resultado['id'];
-          $beneficiario['nombre'] = $resultado['nombre'];
-          $beneficiario['apellido'] = $resultado['apellido'];
+          $beneficiario['nombres'] = $resultado['nombres'];
+          $beneficiario['parentesco'] = $resultado['parentesco'];
           $beneficiario['telefono'] = $resultado['telefono'];
           $beneficiario['edad'] = $resultado['edad'];
-          $beneficiario['cargo'] = $resultado['cargo'];
           $beneficiario['cedula'] = $resultado['cedula'];
           $beneficiario['id_historia'] = $resultado['id_historia'];
-          $beneficiario['id_direccion'] = $resultado['id_direccion'];
-          $beneficiario['id_institucion'] = $resultado['id_institucion'];
-          $beneficiario['cod_historia'] = $resultado['cod_historia'];
           array_push($respuesta, $beneficiario);
 				}
 

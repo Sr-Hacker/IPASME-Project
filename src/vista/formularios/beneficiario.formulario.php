@@ -2,11 +2,10 @@
   <h4>Crear Nuevo Beneficiario</h4>
   <div class="container_beneficiarios--form">
     <input type="text" style="display: none;" id="id" name="id">
-    <input type="text" placeholder="Nombre" id="nombre" name="nombre">
-    <input type="text" placeholder="Apellido" id="apellido" name="apellido">
+    <input type="text" placeholder="Nombre" id="nombres" name="nombres">
+    <input type="text" placeholder="Parentesco" id="parentesco" name="parentesco">
     <input type="text" placeholder="telefono" id="telefono" name="telefono">
     <input type="number" placeholder="edad" id="edad" name="edad">
-    <input type="text" placeholder="cargo" id="cargo" name="cargo">
     <input type="text" placeholder="cedula" id="cedula" name="cedula">
 
     <input type="text" style="display: none;" id="id_historia" name="id_historia">

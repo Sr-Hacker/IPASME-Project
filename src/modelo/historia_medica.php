@@ -157,25 +157,25 @@ class Historia extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['apellidosynombres'] = $resultado['apellidosynombres'];
-          $trabajador['cedula'] = $resultado['cedula'];
-          $trabajador['rif'] = $resultado['rif'];
-          $trabajador['fechadenacimiento'] = $resultado['fechadenacimiento'];
-          $trabajador['vivienda'] = $resultado['vivienda'];
-          $trabajador['automovil'] = $resultado['automovil'];
-          $trabajador['modelo'] = $resultado['modelo'];
-          $trabajador['ano'] = $resultado['ano'];
-          $trabajador['telefono'] = $resultado['telefono'];
-          $trabajador['celular'] = $resultado['celular'];
-          $trabajador['estadocivil'] = $resultado['estadocivil'];
-          $trabajador['tipodesangre'] = $resultado['tipodesangre'];
-          $trabajador['talladecamisa'] = $resultado['talladecamisa'];
-          $trabajador['talladezapato'] = $resultado['talladezapato'];
-          $trabajador['talladepantalon'] = $resultado['talladepantalon'];
-          $trabajador['correo'] = $resultado['correo'];
-          $trabajador['cargo'] = $resultado['cargo'];
-          $trabajador['estatus'] = $resultado['estatus'];
-          array_push($respuesta, $trabajador);
+					$historias['apellidosynombres'] = $resultado['apellidosynombres'];
+          $historias['cedula'] = $resultado['cedula'];
+          $historias['rif'] = $resultado['rif'];
+          $historias['fechadenacimiento'] = $resultado['fechadenacimiento'];
+          $historias['vivienda'] = $resultado['vivienda'];
+          $historias['automovil'] = $resultado['automovil'];
+          $historias['modelo'] = $resultado['modelo'];
+          $historias['ano'] = $resultado['ano'];
+          $historias['telefono'] = $resultado['telefono'];
+          $historias['celular'] = $resultado['celular'];
+          $historias['estadocivil'] = $resultado['estadocivil'];
+          $historias['tipodesangre'] = $resultado['tipodesangre'];
+          $historias['talladecamisa'] = $resultado['talladecamisa'];
+          $historias['talladezapato'] = $resultado['talladezapato'];
+          $historias['talladepantalon'] = $resultado['talladepantalon'];
+          $historias['correo'] = $resultado['correo'];
+          $historias['cargo'] = $resultado['cargo'];
+          $historias['estatus'] = $resultado['estatus'];
+          array_push($respuesta, $historias);
 				}
 				$r['resultado'] =  $respuesta;
 			}

@@ -15,11 +15,10 @@ function _get(){
 }
 
 function _include(){
-  const nombre = document.getElementById("nombre").value;
-  const apellido = document.getElementById("apellido").value;
+  const nombres = document.getElementById("nombres").value;
+  const parentesco = document.getElementById("parentesco").value;
   const telefono = document.getElementById("telefono").value;
   const edad = document.getElementById("edad").value;
-  const cargo = document.getElementById("cargo").value;
   const cedula = document.getElementById("cedula").value;
 
   const cod_historia = document.getElementById("cod_historia").value;
@@ -36,11 +35,10 @@ function _include(){
 
 	let data = new FormData();
 	data.append('accion','incluir');
-  data.append('nombre', nombre);
-  data.append('apellido', apellido);
+  data.append('nombres', nombres);
+  data.append('parentesco', parentesco);
   data.append('telefono', telefono);
   data.append('edad', edad);
-  data.append('cargo', cargo);
   data.append('cedula', cedula);
 
   data.append('cod_historia', cod_historia);
