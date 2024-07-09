@@ -33,7 +33,7 @@ function afiliados(data){
           <p>Telefono: ${item.telefono}</p>
           <p>Cedula: ${item.cedula}</p>
           <p>cargo: ${item.cargo}</p>
-          <p>historia: ${item.id_historia}</p>
+          <p>historia: ${item.cod_historia}</p>
           <div class="options">
           <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
           <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>

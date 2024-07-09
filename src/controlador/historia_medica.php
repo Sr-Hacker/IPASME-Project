@@ -9,44 +9,44 @@
   if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
-		  $empleado = new Empleado();
+		  $historia = new Historia();
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){
-			 echo  json_encode($empleado->consultar());
+			 echo  json_encode($historia->consultar());
 		  }
 		  else if($accion=='obtienefecha'){
-			 echo json_encode($empleado->obtienefecha());
+			 echo json_encode($historia->obtienefecha());
 		  }
 		  elseif($accion=='eliminar'){
-			 $empleado->set_cedula($_POST['cedula']);
-			 echo  json_encode($empleado->eliminar());
+			 $historia->set_cedula($_POST['cedula']);
+			 echo  json_encode($historia->eliminar());
 		  }
 		  else{
-			  $empleado->set_nombre_apellido($_POST['nombre_apellido']);
-        $empleado->set_cedula($_POST['cedula']);
-        $empleado->set_rif($_POST['rif']);
-        $empleado->set_fecha_nac($_POST['fecha_nac']);
-        $empleado->set_vivienda($_POST['vivienda']);
-        $empleado->set_automovil($_POST['automovil']);
-        $empleado->set_modelo($_POST['modelo']);
-        $empleado->set_ano($_POST['ano']);
-        $empleado->set_telefono($_POST['telefono']);
-        $empleado->set_celular($_POST['celular']);
-        $empleado->set_estado_civil($_POST['estado_civil']);
-        $empleado->set_tipo_sangre($_POST['tipo_sangre']);
-        $empleado->set_talla_camisa($_POST['talla_camisa']);
-        $empleado->set_talla_zapato($_POST['talla_zapato']);
-        $empleado->set_talla_pantalon($_POST['talla_pantalon']);
-        $empleado->set_correo($_POST['correo']);
-        $empleado->set_cargo($_POST['cargo']);
-        $empleado->set_estatus($_POST['estatus']);
+			  $historia->set_nombre_apellido($_POST['nombre_apellido']);
+        $historia->set_cedula($_POST['cedula']);
+        $historia->set_rif($_POST['rif']);
+        $historia->set_fecha_nac($_POST['fecha_nac']);
+        $historia->set_vivienda($_POST['vivienda']);
+        $historia->set_automovil($_POST['automovil']);
+        $historia->set_modelo($_POST['modelo']);
+        $historia->set_ano($_POST['ano']);
+        $historia->set_telefono($_POST['telefono']);
+        $historia->set_celular($_POST['celular']);
+        $historia->set_estado_civil($_POST['estado_civil']);
+        $historia->set_tipo_sangre($_POST['tipo_sangre']);
+        $historia->set_talla_camisa($_POST['talla_camisa']);
+        $historia->set_talla_zapato($_POST['talla_zapato']);
+        $historia->set_talla_pantalon($_POST['talla_pantalon']);
+        $historia->set_correo($_POST['correo']);
+        $historia->set_cargo($_POST['cargo']);
+        $historia->set_estatus($_POST['estatus']);
 
 			  if($accion=='incluir'){
-				  echo  json_encode($empleado->incluir());
+				  echo  json_encode($historia->incluir());
 			  }
 			  elseif($accion=='modificar'){
-				  echo  json_encode($empleado->modificar());
+				  echo  json_encode($historia->modificar());
 			  }
 		  }
 		  exit;

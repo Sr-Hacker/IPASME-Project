@@ -55,10 +55,10 @@ function validarenvio(){
 //Funcion que muestra el modal con un mensaje
 function muestraMensaje(mensaje){
 	$("#contenidodemodal").html(mensaje);
-			$("#mostrarmodal").modal("show");
-			setTimeout(function() {
-					$("#mostrarmodal").modal("hide");
-			},5000);
+    $("#mostrarmodal").modal("show");
+    setTimeout(function() {
+      $("#mostrarmodal").modal("hide");
+    },5000);
 }
 
 //Función para validar por Keypress
@@ -86,10 +86,29 @@ mensaje){
 }
 
 function limpia(){
-	$("#cedula").val("");
-	$("#apellido").val("");
 	$("#nombre").val("");
-	$("#cargo").val("");
-	$("#telefono").val("");
+	$("#apellido").val("");
 	$("#edad").val("");
+	$("#telefono").val("");
+	$("#cargo").val("");
+	$("#cedula").val("");
+
+	$("#cod_historia").val("");
+	$("#tipo_sangre").val("");
+	$("#sexo").val("");
+	$("#estatura").val("");
+	$("#peso").val("");
+	$("#fecha_nacimiento").val("");
+
+	$("#direccion").val("");
+	$("#zona").val("");
+	$("#descripcion").val("");
+	$("#postal").val("");
+
+  $("#nombre_institucion").val("");
+	$("#rif_institucion").val("");
+	$("#direccion_institucion").val("");
+	$("#zona_institucion").val("");
+	$("#descripcion_institucion").val("");
+	$("#postal_institucion").val("");
 }

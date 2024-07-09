@@ -10,12 +10,13 @@ class Historia extends DB{
   private $cod_historia;
   private $fecha_nacimiento;
 
-  public function __construct($peso, $sexo, $estatura, $tipo_sangre, $cod_historia) {
-    $this->peso = $peso;
+  public function __construct($cod_historia, $tipo_sangre, $sexo, $estatura, $peso, $fecha_nacimiento) {
+    $this->cod_historia = $cod_historia;
+    $this->tipo_sangre = $tipo_sangre;
     $this->sexo = $sexo;
     $this->estatura = $estatura;
-    $this->tipo_sangre = $tipo_sangre;
-    $this->cod_historia = $cod_historia;
+    $this->peso = $peso;
+    $this->fecha_nacimiento = $fecha_nacimiento;
   }
 
   function set_id($valor){

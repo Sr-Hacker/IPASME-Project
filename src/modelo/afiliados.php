@@ -5,16 +5,36 @@ require_once('modelo/institucion.php');
 require_once('modelo/historia_medica.php');
 
 class Afiliado extends DB{
-  private $id;
+  private $id = 0;
   private $nombre;
   private $apellido;
   private $telefono;
   private $edad;
   private $cargo;
   private $cedula;
-  private $id_historia;
-  private $id_direccion;
-  private $id_institucion;
+
+  private $id_historia = 0;
+  private $cod_historia;
+  private $tipo_sangre;
+  private $sexo;
+  private $estatura;
+  private $peso;
+  private $fecha_nacimiento;
+
+  private $id_direccion = 0;
+  private $direccion;
+  private $zona;
+  private $descripcion;
+  private $postal;
+
+  private $id_institucion = 0;
+  private $nombre_institucion;
+  private $rif_institucion;
+  private $id_direccion_institucion;
+  private $direccion_institucion;
+  private $zona_institucion;
+  private $descripcion_institucion;
+  private $postal_institucion;
 
   function set_id($valor){
 		$this->nombre = $valor;
@@ -37,22 +57,96 @@ class Afiliado extends DB{
 	function set_cedula($valor){
 		$this->cedula = $valor;
 	}
+
   function set_id_historia($valor){
 		$this->id_historia = $valor;
 	}
+  function set_cod_historia($valor){
+		$this->cod_historia = $valor;
+	}
+  function set_tipo_sangre($valor){
+		$this->tipo_sangre = $valor;
+	}
+  function set_sexo($valor){
+		$this->sexo = $valor;
+	}
+  function set_estatura($valor){
+		$this->estatura = $valor;
+	}
+  function set_peso($valor){
+		$this->peso = $valor;
+	}
+  function set_fecha_nacimiento($valor){
+		$this->fecha_nacimiento = $valor;
+	}
+
   function set_id_direccion($valor){
 		$this->id_direccion = $valor;
 	}
+  function set_direccion($valor){
+		$this->direccion = $valor;
+	}
+  function set_zona($valor){
+		$this->zona = $valor;
+	}
+  function set_descripcion($valor){
+		$this->descripcion = $valor;
+	}
+  function set_postal($valor){
+		$this->postal = $valor;
+	}
+
   function set_id_institucion($valor){
 		$this->id_institucion = $valor;
+	}
+  function set_nombre_institucion($valor){
+		$this->nombre_institucion = $valor;
+	}
+  function set_rif_institucion($valor){
+		$this->rif_institucion = $valor;
+	}
+  function set_id_direccion_institucion($valor){
+		$this->id_direccion_institucion = $valor;
+	}
+  function set_direccion_institucion($valor){
+		$this->direccion_institucion = $valor;
+	}
+  function set_zona_institucion($valor){
+		$this->zona_institucion = $valor;
+	}
+  function set_descripcion_institucion($valor){
+		$this->descripcion_institucion = $valor;
+	}
+  function set_postal_institucion($valor){
+		$this->postal_institucion = $valor;
 	}
 
 	function incluir(){
 		$r = array();
 		if(!$this->existe($this->cedula)){
-		  $historia = new Historia(1.75, 70, '143', 'O+', 'M');
-		  $direccion = new Direccion('direccion', 'union', 'seguro', '3021');
-      $institucion = new institucion('Inces', 'J-274361790');
+		  $historia = new Historia(
+        $this->cod_historia,
+        $this->tipo_sangre,
+        $this->sexo,
+        $this->estatura,
+        $this->peso,
+        $this->fecha_nacimiento
+      );
+		  $direccion = new Direccion(
+        $this->direccion,
+        $this->zona,
+        $this->descripcion,
+        $this->postal
+      );
+      $institucion = new institucion(
+        $this->nombre_institucion,
+        $this->rif_institucion,
+        $this->direccion_institucion,
+        $this->zona_institucion,
+        $this->descripcion_institucion,
+        $this->postal_institucion
+      );
+
       $this->set_id_historia($historia->incluir());
       $this->set_id_direccion($direccion->incluir());
       $this->set_id_institucion($institucion->incluir());
@@ -163,8 +257,17 @@ class Afiliado extends DB{
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
 		try{
+			// $resultados = $co->query("SELECT * FROM beneficiarios");
 
-			$resultados = $co->query("SELECT * from beneficiarios");
+
+			$resultados = $co->query("SELECT
+        b.*,
+        t1.cod_historia AS cod_historia
+        FROM
+            beneficiarios b
+        JOIN
+            historias t1 ON b.id_historia = t1.id;
+        ");
 
 			if($resultados){
 
@@ -180,6 +283,7 @@ class Afiliado extends DB{
           $beneficiario['id_historia'] = $resultado['id_historia'];
           $beneficiario['id_direccion'] = $resultado['id_direccion'];
           $beneficiario['id_institucion'] = $resultado['id_institucion'];
+          $beneficiario['cod_historia'] = $resultado['cod_historia'];
           array_push($respuesta, $beneficiario);
 				}
 

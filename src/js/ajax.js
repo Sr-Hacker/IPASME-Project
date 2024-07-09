@@ -11,6 +11,7 @@ function ajax(data, callback) {
     timeout: 10000,
     success: function (response) {
       try {
+        console.log('response: ', response)
         const result = JSON.parse(response)
         console.log(result)
         callback(result)

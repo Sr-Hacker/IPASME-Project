@@ -6,11 +6,20 @@ class Institucion extends DB{
   private $id;
   private $nombre;
   private $rif;
-  private $id_direccion;
 
-  public function __construct($nombre, $rif) {
+  private $id_direccion = 0;
+  private $direccion;
+  private $zona;
+  private $descripcion;
+  private $postal;
+
+  public function __construct($nombre, $rif, $direccion, $zona, $descripcion, $postal) {
     $this->nombre = $nombre;
     $this->rif = $rif;
+    $this->direccion = $direccion;
+    $this->zona = $zona;
+    $this->descripcion = $descripcion;
+    $this->postal = $postal;
   }
 
 	function set_id($valor){
@@ -27,7 +36,12 @@ class Institucion extends DB{
 	}
 
   public function incluir() {
-    $direccion = new Direccion('direccion', 'union', 'seguro', '3021');
+    $direccion = new Direccion(
+      $this->direccion,
+      $this->zona,
+      $this->descripcion,
+      $this->postal
+    );
     $this->set_id_direccion($direccion->incluir());
 
     $r = array();
