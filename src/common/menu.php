@@ -17,7 +17,7 @@
         <div class="background"></div>
         <div class="background"></div>
         <div class="background"></div>
-    </div>
+  </div>
   <!--Fin Fondo-->
 
 
@@ -36,48 +36,101 @@
                 </div>
 
                 <div class="sidebar">
-                    <a href="?pagina=beneficiarios">
-                        <span class="material-icons-sharp">
-                            dashboard
-                        </span>
-                        <h3>Gestionar Beneficiario</h3>
-                    </a>
-                    <a href="?pagina=empleados">
+                  <a href="?pagina=informe">
+                      <span class="material-icons-sharp">
+                        receipt_long
+                      </span>
+                      <h3>Consultar Historia</h3>
+                  </a>
+                    <a href="?pagina=empleados" id="empleados">
                         <span class="material-icons-sharp">
                             person_outline
                         </span>
-                        <h3>Gestionar usuario</h3>
+                        <h3>Gestionar empleado</h3>
+                  </a>
+                  <a href="?pagina=medicos" id="medicos">
+                    <span class="material-icons-sharp">
+                      person_outline
+                    </span>
+                    <h3>Gestionar medicos</h3>
+                  </a>
+                  <a href="?pagina=especialidad" id="especialidad">
+                    <span class="material-icons-sharp">
+                      psychology
+                    </span>
+                    <h3>Gestionar especialidad</h3>
+                   </a>
+                   <a href="?pagina=beneficiarios" id="beneficiario">
+                      <span class="material-icons-sharp">
+                        person_outline
+                      </span>
+                       <h3>Gestionar Beneficiario</h3>
                     </a>
-                    <a href="?pagina=hogar">
-                        <span class="material-icons-sharp">
-                            receipt_long
-                        </span>
-                        <h3>Gestionar Historia</h3>
+                    <a href="?pagina=afiliados" id="afiliado">
+                      <span class="material-icons-sharp">
+                        person_outline
+                     </span>
+                      <h3>Gestionar afiliados</h3>
                     </a>
-                    <a href="?pagina=citas">
-                        <span class="material-icons-sharp">
-                            list_alt
-                        </span>
-                        <h3>Generar Citas</h3>
+                    <a href="?pagina=citas" id="citas">
+                      <span class="material-icons-sharp">
+                          list_alt
+                      </span>
+                      <h3>Gestionar Citas</h3>
                     </a>
-                    <a href="?pagina=tramites">
-                        <span class="protocolo">
-                            <!-- LOGO -->
-                        </span>
-                        <h3>Gestionar Tramites
-                        </h3>
+                    <a href="?pagina=requisitos" id="requisitos">
+                      <span class="material-icons-sharp">
+                        list_alt
+                      </span>
+                      <h3>Gestionar requisitos</h3>
                     </a>
-                    <a href="?pagina=reportes" class="active">
+                    <a href="?pagina=hogar" id="tramites">
+                    <span class="material-icons-sharp">
+                      list_alt
+                    </span>
+                      <h3>Gestionar Tramites</h3>
+                    </a>
+                    <a href="?pagina=solicitudes" id="solicitudes">
+                    <span class="material-icons-sharp">
+                      mail_outline
+                    </span>
+                    <h3>Gestionar solicitudes</h3>
+                    </a>
+                    <a href="?pagina=reportes" id="reportes">
                       <span class="material-icons-sharp">
                         insights
                       </span>
                       <h3>Generar Reporte</h3>
                     </a>
-                    <a href="">
+                    <a href="?pagina=informe">
+                      <span class="material-icons-sharp">
+                      medical_information
+                      </span>
+                      <h3>Gestionar informes</h3>
+                    </a>
+                    <a href="?pagina=documento">
+                      <span class="material-icons-sharp">
+                      post_add
+                      </span>
+                      <h3>Gestionar Documentos</h3>
+                    </a>
+                    <a href="?pagina=tratamiento">
+                      <span class="material-icons-sharp">
+                          medication_liquid
+                      </span>
+                      <h3>Gestionar Tratamiento</h3>
+                    </a>
+                    <a href="?pagina=patologia">
+                      <span class="material-icons-sharp">
+                          coronavirus
+                      </span>
+                      <h3>Gestionar patologia</h3>
+                    </a>
+                    <a href="?pagina=reposo">
                         <span class="material-icons-sharp">
-                            settings
+                            personal_injury
                         </span>
-                        <h3>Ayuda</h3>
+                        <h3>Gestionar reposo</h3>
                     </a>
                     <a href="?pagina=usuario">
                         <span class="material-icons-sharp">
@@ -91,17 +144,8 @@
   <!--Fin seccion del menu-->
 
 
+<script src="js/actions/menu.js"></script>
 
 
-<!--
-    <li><a href="?pagina=beneficiarios">Gestionar Beneficiarios</a></li>
-    <li><a href="?pagina=empleados">Gestionar Empleados</a></li>
-    <li><a href="?pagina=especialidad">Gestionar Especialidades</a></li>
-    <li><a href="?pagina=medicos">Gestionar Medicos</a></li>
-    <li><a href="?pagina=citas">Gestionar Citas</a></li>
-    <li><a href="?pagina=requisitos">Gestionar Requisitos</a></li>
-    <li><a href="?pagina=tramites">Gestionar Tramites</a></li>
-    <li><a href="?pagina=reportes">Generar Reportes</a></li>
--->
 </body>
 </html>
