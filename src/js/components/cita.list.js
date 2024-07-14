@@ -1,16 +1,23 @@
-let listaEmpleados = document.getElementById("get_result");
+let listaCitas = document.getElementById("get_result");
+let listaMedicos = document.getElementById("consultar_medicos");
 
-let empleadosArray = []
+let citasArray = [];
+let medicosArray = [];
 
 function cargarDatos(item){
-  const empleado = empleadosArray[item]
-	$("#id").val(empleado.id);
-	$("#fecha").val(empleado.fecha);
-	$("#motivo").val(empleado.motivo);
+  const citas = citasArray[item]
+	$("#id").val(citas.id);
+	$("#dia").val(citas.fecha);
+	$("#motivo").val(citas.motivo);
+}
+
+function pre_editar(id){
+  medico_get();
+  editModal(id, cargarDatos);
 }
 
 function citas(data){
-  listaEmpleados.style.removeProperty("display");
+  listaCitas.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
     const card = `
@@ -29,18 +36,42 @@ function citas(data){
 
       const card = `
         <div class="item">
-          <p>Fecha: ${item.fecha}</p>
+          <p>Fecha: ${new Date(item.fecha).getUTCDate()}-${new Date(item.fecha).getUTCMonth() + 1}-${new Date(item.fecha).getFullYear()}</p>
           <p>Motivo: ${item.motivo}</p>
           <p>Paciente: ${paciente}</p>
           <p>Medico: ${item.id_medico}</p>
           <div class="options">
-          <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button type='button' onclick="pre_editar('${item.id}')">Editar</button>
           <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
-      empleadosArray[item.id] = item;
+      citasArray[item.id] = item;
       result = result.concat("",card);
     })
   }
-  listaEmpleados.innerHTML = result;
+  listaCitas.innerHTML = result;
+}
+
+function cita_medicos(data){
+  listaMedicos.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const card = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",card);
+  }else{
+    data.map((item) => {
+      const card = `
+        <div class="item">
+          <p>Medico: ${item.nombres}  ${item.apellidos} ${item.cedula}</p>
+          <button type='button' onclick="agregar('${item.id}')">Agregar</button>
+        </div>`;
+      medicosArray[item.id] = item;
+      result = result.concat("",card);
+    })
+  }
+  listaMedicos.innerHTML = result;
 }

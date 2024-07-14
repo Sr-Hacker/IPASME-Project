@@ -1,4 +1,4 @@
-let listaEmpleados = document.getElementById("get_result");
+let listaEmpleados = document.getElementById("consultar_empleados");
 
 let empleadosArray = []
 

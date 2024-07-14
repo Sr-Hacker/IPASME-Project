@@ -73,31 +73,37 @@ class Institucion extends DB{
   }
 
 	function modificar(){
-		$co = $this->conecta();
-		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$r = array();
-		if($this->existe($this->rif)){
-			try {
-					$co->query("UPDATE instituciones SET
-              nombre = '$this->nombre',
-              rif = '$this->rif',
-              rif = '$this->rif',
-              WHERE
-              rif = '$this->rif'
-						");
-						$r['resultado'] = 'modificar';
-			      $r['mensaje'] =  'Registro Modificado';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
-			}
-		}
-		else{
-			$r['resultado'] = 'modificar';
-			$r['mensaje'] =  'rif no registrada';
-		}
-    $result = $this->consultar();
-		return $result;
+    $r = array();
+
+    // instanciar modelo con informacion en el construnctor
+    $direccion = new Direccion(
+      $this->direccion,
+      $this->zona,
+      $this->descripcion,
+      $this->postal
+    );
+    // carga el id en el modelo
+    $direccion->set_id($this->id_direccion);
+
+    // ejecutar metodo de modificar
+    $direccion->modificar();
+
+    try {
+      $bd = $this->conecta();
+			$bd->query("UPDATE instituciones SET
+        nombre = '$this->nombre',
+        rif = '$this->rif',
+        id_direccion = '$this->id_direccion',
+        WHERE
+        id = '$this->id'
+      ");
+      $r['resultado'] = 'modificar';
+      $r['mensaje'] =  'Registro Modificado';
+    } catch(Exception $e) {
+      $r['resultado'] = 'error';
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 	function eliminar(){

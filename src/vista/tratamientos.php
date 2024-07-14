@@ -5,7 +5,6 @@
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
     <div class="container_tratamientos">
       <div class="container_tratamientos--menu">
         <div class="container_tratamientos--search">

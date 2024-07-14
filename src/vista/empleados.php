@@ -5,7 +5,6 @@
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
     <div class="container_empleados">
       <div class="container_empleados--menu">
         <div class="container_empleados--search">
@@ -15,7 +14,7 @@
         <button id="include">Crear Nuevo Empleado</button>
       </div>
       <div class="container_empleados--list">
-        <div id="get_result"></div>
+        <div id="consultar_empleados"></div>
       </div>
     </div>
   </div>

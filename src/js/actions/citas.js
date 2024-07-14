@@ -16,6 +16,12 @@ function _get(){
 	ajax(data, citas);
 }
 
+function medico_get(){
+	let data = new FormData();
+	data.append('accion','consultar_medicos');
+	ajax(data, cita_medicos);
+}
+
 function _include(){
   const dia = document.getElementById("dia").value;
   const motivo = document.getElementById("motivo").value;

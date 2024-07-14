@@ -71,7 +71,7 @@ class Medico extends DB{
 		return $result;
 	}
 
-	function modificar(){
+	public function modificar(){
 		$co = $this->conecta();
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();

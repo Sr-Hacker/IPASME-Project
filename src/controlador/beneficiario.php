@@ -26,7 +26,8 @@
 		  }
 		  else{
         $beneficiarios->set_parentesco($_POST['parentesco']);
-        $beneficiarios->set_nombres($_POST['nombres']);
+        $beneficiarios->set_nombre($_POST['nombre']);
+        $beneficiarios->set_apellido($_POST['apellido']);
         $beneficiarios->set_telefono($_POST['telefono']);
         $beneficiarios->set_edad($_POST['edad']);
         $beneficiarios->set_cedula($_POST['cedula']);
@@ -49,6 +50,7 @@
           $beneficiarios->set_id($_POST['id']);
           $beneficiarios->set_id_historia($_POST['id_historia']);
           $beneficiarios->set_id_direccion($_POST['id_direccion']);
+          $beneficiarios->set_id_afiliado($_POST['id_afiliado']);
 				  echo  json_encode($beneficiarios->modificar());
 			  }
 		  }

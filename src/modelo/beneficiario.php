@@ -6,7 +6,9 @@ require_once('modelo/historia_medica.php');
 
 class Beneficiario extends DB{
   private $id = 0;
-  private $nombres;
+  private $id_afiliado = 2;
+  private $nombre;
+  private $apellido;
   private $parentesco;
   private $telefono;
   private $edad;
@@ -29,8 +31,14 @@ class Beneficiario extends DB{
   function set_id($valor){
 		$this->id = $valor;
 	}
-	function set_nombres($valor){
-		$this->nombres = $valor;
+  function set_id_afiliado($valor){
+		$this->id_afiliado = $valor;
+	}
+	function set_nombre($valor){
+		$this->nombre = $valor;
+	}
+  function set_apellido($valor){
+		$this->apellido = $valor;
 	}
 	function set_parentesco($valor){
 		$this->parentesco = $valor;
@@ -83,7 +91,6 @@ class Beneficiario extends DB{
 		$this->postal = $valor;
 	}
 
-
 	function incluir(){
 		$r = array();
 		if(!$this->existe($this->cedula)){
@@ -104,33 +111,42 @@ class Beneficiario extends DB{
       $this->set_id_historia($historia->incluir());
       $this->set_id_direccion($direccion->incluir());
 
-			try {
+ 			try {
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO beneficiarios (
-            nombres,
+            nombre,
+            apellido,
             parentesco,
             telefono,
             edad,
             cedula,
-            id_historia
+            id_historia,
+            id_afiliado,
+            id_direccion
           ) VALUES (
-            :nombres,
+            :nombre,
+            :apellido,
             :parentesco,
             :telefono,
             :edad,
             :cedula,
-            :id_historia
+            :id_historia,
+            :id_afiliado,
+            :id_direccion
           )
         ");
 
         $query->execute([
-          ':nombres' => $this->nombres,
+          ':nombre' => $this->nombre,
+          ':apellido' => $this->apellido,
           ':parentesco' => $this->parentesco,
           ':telefono' => $this->telefono,
           ':edad' => $this->edad,
           ':cedula' => $this->cedula,
-          ':id_historia' => $this->id_historia
+          ':id_historia' => $this->id_historia,
+          ':id_afiliado' => $this->id_afiliado,
+          ':id_direccion' => $this->id_direccion
         ]);
 
         $r['resultado'] = 'incluir';
@@ -148,16 +164,46 @@ class Beneficiario extends DB{
 		return $result;
 	}
 
-	function modificar(){
+  function modificar(){
     $r = array();
+
+    // instancia los modelos con informacion en el contructor
+    $historia = new Historia(
+      $this->cod_historia,
+      $this->tipo_sangre,
+      $this->sexo,
+      $this->estatura,
+      $this->peso,
+      $this->fecha_nacimiento
+    );
+
+    $direccion = new Direccion(
+      $this->direccion,
+      $this->zona,
+      $this->descripcion,
+      $this->postal
+    );
+
+    // carga los ids en los modelos
+    $historia->set_id($this->id_historia);
+    $direccion->set_id($this->id_direccion);
+
+    // ejecutar metodos de modificar
+    $historia->modificar();
+    $direccion->modificar();
+
     try {
-      $co = $this->conecta();
-			$co->query("UPDATE beneficiarios SET
-        nombres = '$this->nombres',
+      $bd = $this->conecta();
+			$bd->query("UPDATE beneficiarios SET
+        nombre = '$this->nombre',
+        apellido = '$this->apellido',
         parentesco = '$this->parentesco',
         telefono = '$this->telefono',
         edad = '$this->edad',
-        cedula = '$this->cedula'
+        cedula = '$this->cedula',
+        id_historia = '$this->id_historia',
+        id_afiliado = '$this->id_afiliado',
+        id_direccion = '$this->id_direccion'
         WHERE
         id = '$this->id'
       ");
@@ -172,58 +218,91 @@ class Beneficiario extends DB{
 	}
 
 	function eliminar(){
-		$co = $this->conecta();
-		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
-		if($this->existe($this->cedula)){
-			try {
-					$co->query("DELETE FROM beneficiarios
-						WHERE
-						cedula = '$this->cedula'
-						");
-						$r['resultado'] = 'eliminar';
-			            $r['mensaje'] =  'Registro Eliminado';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
-			}
-		}
-		else{
-			$r['resultado'] = 'eliminar';
-			$r['mensaje'] =  'No existe la cedula';
-		}
+		try {
+      $bd = $this->conecta();
+      $bd->query("DELETE FROM beneficiarios
+        WHERE
+        id = '$this->id'
+      ");
+      $r['resultado'] = 'eliminar';
+      $r['mensaje'] =  'Registro Eliminado';
+    } catch(Exception $e) {
+      $r['resultado'] = 'error';
+      $r['mensaje'] =  $e->getMessage();
+    }
     $result = $this->consultar();
 		return $result;
 	}
 
 	function consultar(){
-		$co = $this->conecta();
-		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$r = array();
+    $r = array();
 		try{
-			$resultados = $co->query("SELECT * FROM beneficiarios");
+      $bd = $this->conecta();
+			$resultados = $bd->query("SELECT
+        b.*,
+          h1.cod_historia AS cod_historia,
+          h1.tipo_sangre AS tipo_sangre,
+          h1.sexo AS sexo,
+          h1.peso AS peso,
+          h1.estatura AS estatura,
+          h1.fecha_nacimiento AS fecha_nacimiento,
 
+          d2.direccion AS direccion,
+          d2.zona AS zona,
+          d2.descripcion AS descripcion,
+          d2.postal AS postal,
+
+          a3.nombre AS nombre_afiliado,
+          a3.apellido AS apellido_afiliado,
+          a3.cedula AS cedula_afiliado
+        FROM
+          beneficiarios b
+        JOIN
+          historias h1 ON b.id_historia = h1.id
+        JOIN
+          direcciones d2 ON b.id_direccion = d2.id
+        JOIN
+          afiliados a3 ON b.id_afiliado = a3.id;
+      ");
 			if($resultados){
-
 				$respuesta = [];
 				foreach($resultados as $resultado){
 					$beneficiario['id'] = $resultado['id'];
-          $beneficiario['nombres'] = $resultado['nombres'];
+          $beneficiario['nombre'] = $resultado['nombre'];
+          $beneficiario['apellido'] = $resultado['apellido'];
           $beneficiario['parentesco'] = $resultado['parentesco'];
           $beneficiario['telefono'] = $resultado['telefono'];
           $beneficiario['edad'] = $resultado['edad'];
           $beneficiario['cedula'] = $resultado['cedula'];
           $beneficiario['id_historia'] = $resultado['id_historia'];
+          $beneficiario['id_direccion'] = $resultado['id_direccion'];
+          $beneficiario['id_afiliado'] = $resultado['id_afiliado'];
+
+          $beneficiario['cod_historia'] = $resultado['cod_historia'];
+          $beneficiario['tipo_sangre'] = $resultado['tipo_sangre'];
+          $beneficiario['sexo'] = $resultado['sexo'];
+          $beneficiario['peso'] = $resultado['peso'];
+          $beneficiario['estatura'] = $resultado['estatura'];
+          $beneficiario['fecha_nacimiento'] = $resultado['fecha_nacimiento'];
+
+          $beneficiario['direccion'] = $resultado['direccion'];
+          $beneficiario['zona'] = $resultado['zona'];
+          $beneficiario['descripcion'] = $resultado['descripcion'];
+          $beneficiario['postal'] = $resultado['postal'];
+
+          $beneficiario['nombre_afiliado'] = $resultado['nombre_afiliado'];
+          $beneficiario['apellido_afiliado'] = $resultado['apellido_afiliado'];
+          $beneficiario['cedula_afiliado'] = $resultado['cedula_afiliado'];
+
           array_push($respuesta, $beneficiario);
 				}
-
 				$r['resultado'] =  $respuesta;
 			}
 			else{
 				$r['resultado'] = 'consultar';
 				$r['mensaje'] =  '';
 			}
-
 		}catch(Exception $e){
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();

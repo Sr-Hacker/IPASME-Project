@@ -5,6 +5,8 @@ let beneficiariosArray = [];
 function cargarDatos(item){
   const beneficiarios = beneficiariosArray[item]
 	$("#id").val(beneficiarios.id);
+	$("#id_afiliado").val(beneficiarios.id_afiliado);
+	$("#parentesco").val(beneficiarios.parentesco);
   $("#nombre").val(beneficiarios.nombre);
 	$("#apellido").val(beneficiarios.apellido);
 	$("#edad").val(beneficiarios.edad);
@@ -42,7 +44,7 @@ function beneficiarios(data){
     data.map((item) => {
       const card = `
         <div class="item">
-          <p>Nombre: ${item.nombres}</p>
+          <p>Nombre: ${item.nombre}</p>
           <p>Parentesco: ${item.parentesco}</p>
           <p>Telefono: ${item.telefono}</p>
           <p>Cedula: ${item.cedula}</p>

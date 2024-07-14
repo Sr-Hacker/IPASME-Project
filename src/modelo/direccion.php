@@ -65,46 +65,24 @@ class Direccion extends DB{
 
 
 	function modificar(){
-		$co = $this->conecta();
-		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$r = array();
-		if($this->existe($this->cedula)){
-			try {
-					$co->query("UPDATE direcciones SET
-              apellidosynombres = '$this->nombre_apellido',
-              cedula = '$this->cedula',
-              rif = '$this->rif',
-              fechadenacimiento = '$this->fecha_nac',
-              vivienda = '$this->vivienda',
-              automovil = '$this->automovil',
-              modelo = '$this->modelo',
-              ano = '$this->ano',
-              telefono = '$this->telefono',
-              celular = '$this->celular',
-              estadocivil = '$this->estado_civil',
-              tipodesangre = '$this->tipo_sangre',
-              talladecamisa = '$this->talla_camisa',
-              talladezapato = '$this->talla_zapato',
-              talladepantalon = '$this->talla_pantalon',
-              correo = '$this->correo',
-              cargo = '$this->cargo',
-              estatus = '$this->estatus'
-              WHERE
-              cedula = '$this->cedula'
-						");
-						$r['resultado'] = 'modificar';
-			      $r['mensaje'] =  'Registro Modificado';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
-			}
-		}
-		else{
-			$r['resultado'] = 'modificar';
-			$r['mensaje'] =  'Cedula no registrada';
-		}
-    $result = $this->consultar();
-		return $result;
+    $r = array();
+		try{
+      $bd = $this->conecta();
+      $bd->query("UPDATE direcciones SET
+        direccion = '$this->direccion',
+        zona = '$this->zona',
+        descripcion = '$this->descripcion',
+        postal = '$this->postal'
+        WHERE
+        id = '$this->id'
+      ");
+      $r['resultado'] = 'modificar';
+      $r['mensaje'] =  'Registro Modificado';
+    } catch(Exception $e) {
+      $r['resultado'] = 'error';
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 	function eliminar(){

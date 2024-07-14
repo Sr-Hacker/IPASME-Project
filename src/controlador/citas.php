@@ -16,6 +16,9 @@
 		  if($accion=='consultar'){
 			 echo  json_encode($citas->consultar());
 		  }
+      elseif($accion=='consultar_medicos'){
+        echo  json_encode($citas->consultar_medicos());
+      }
 		  elseif($accion=='eliminar'){
 			 $citas->set_id($_POST['id']);
 			 echo  json_encode($citas->eliminar());
@@ -29,13 +32,13 @@
 			  }
 			  elseif($accion=='modificar'){
 			    $citas->set_id($_POST['id']);
+          $citas->set_id_medico($_POST['id_medico']);
+          $citas->set_id_beneficiario($_POST['id_beneficiario']);
+          $citas->set_id_afiliado($_POST['id_afiliado']);
 				  echo  json_encode($citas->modificar());
 			  }
 		  }
 		  exit;
-      // $citas->set_medico($_POST['id_medico']);
-      // $citas->set_beneficiario($_POST['id_beneficiario']);
-      // $citas->set_familiar($_POST['id_familiar']);
 	  }
 
 

@@ -1,20 +1,19 @@
 <html>
   <?php require_once("vista/comunes/header.php"); ?>
-  <link rel="stylesheet" href="css/afiliados.css">
+  <link rel="stylesheet" href="css/beneficiatio.css">
   <link rel="stylesheet" href="css/modal.css">
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
-    <div class="container_afiliados">
-      <div class="container_afiliados--menu">
-        <div class="container_afiliados--search">
+    <div class="container_beneficiatio">
+      <div class="container_beneficiatio--menu">
+        <div class="container_beneficiatio--search">
           <input placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar">buscar</button>
         </div>
         <button id="include">Crear Nuevo Beneficiario</button>
       </div>
-      <div class="container_afiliados--list">
+      <div class="container_beneficiatio--list">
         <div id="get_result"></div>
       </div>
     </div>

@@ -5,7 +5,6 @@
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
     <div class="container_afiliados">
       <div class="container_afiliados--menu">
         <div class="container_afiliados--search">
@@ -15,7 +14,7 @@
         <button id="include">Crear Nuevo Afiliado</button>
       </div>
       <div class="container_afiliados--list">
-        <div id="get_result"></div>
+        <div id="consultar_afiliados"></div>
       </div>
     </div>
   </div>

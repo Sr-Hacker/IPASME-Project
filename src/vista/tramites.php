@@ -4,7 +4,6 @@
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
     <div class="container_tramites">
       <div class="container_tramites--menu">
         <div class="container_tramites--search">

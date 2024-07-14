@@ -18,7 +18,7 @@
     </select>
     <input type="number" placeholder="estatura" id="estatura" name="estatura">
     <input type="number" placeholder="peso" id="peso" name="peso">
-    <input type="text" placeholder="Fecha de Nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
+    <input type="date" placeholder="Fecha de Nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
 
     <h4>Direccion</h4>
     <input type="text" style="display: none;" id="id_direccion" name="id_direccion">
@@ -29,7 +29,7 @@
 
     <h4>Institucion</h4>
     <input type="text" style="display: none;" id="id_institucion" name="id_institucion">
-    <input type="text" style="display: none;" placeholder="id_direccion_institucion" id="id_direccion_institucion" name="id_direccion_institucion">
+    <input type="text" style="display: none;" id="id_direccion_institucion" name="id_direccion_institucion">
     <input type="text" placeholder="Nombre" id="nombre_institucion" name="nombre_institucion">
     <input type="text" placeholder="RIF" id="rif_institucion" name="rif_institucion">
     <input type="text" placeholder="Direccion" id="direccion_institucion" name="direccion_institucion">

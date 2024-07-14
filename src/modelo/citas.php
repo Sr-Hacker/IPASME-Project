@@ -1,5 +1,6 @@
 <?php
 require_once('config/db.php');
+require_once('modelo/medicos.php');
 
 
 class Cita extends DB{
@@ -8,7 +9,7 @@ class Cita extends DB{
   private $motivo;
   private $id_medico;
   private $id_beneficiario;
-  private $id_familiar;
+  private $id_afiliado;
 
 	function set_id($valor){
 		$this->id = $valor;
@@ -25,8 +26,8 @@ class Cita extends DB{
   function set_id_beneficiario($valor){
     $this->id_beneficiario = $valor;
   }
-  function set_id_familiar($valor){
-    $this->id_familiar = $valor;
+  function set_id_afiliado($valor){
+    $this->id_afiliado = $valor;
   }
 
 	function incluir(){
@@ -126,6 +127,10 @@ class Cita extends DB{
 		return $r['resultado'];
 	}
 
+  function consultar_medicos() {
+    $medico = new Medico();
+    return $medico->consultar();
+  }
 
 	private function existe($cedula){
 		$co = $this->conecta();

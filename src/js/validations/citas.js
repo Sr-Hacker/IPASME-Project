@@ -86,6 +86,6 @@ mensaje){
 }
 
 function limpia(){
-	$("#fecha").val("");
+	$("#dia").val("");
 	$("#motivo").val("");
 }

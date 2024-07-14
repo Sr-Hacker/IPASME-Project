@@ -1,5 +1,3 @@
-CREATE DATABASE data_uptaeb;
-
 CREATE TABLE direcciones (
   id INT AUTO_INCREMENT PRIMARY KEY,
   direccion CHAR(255),
@@ -126,16 +124,20 @@ CREATE TABLE tramites (
 
 CREATE TABLE beneficiarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  parentesco CHAR(255),
-  cedula CHAR(255),
-  nombres CHAR(255),
-  telefono CHAR(255),
+  parentesco CHAR(50),
+  cedula CHAR(20),
+  nombre CHAR(100),
+  apellido CHAR(100),
+  telefono CHAR(20),
   edad INT,
-  fecha_nacimiento TIME,
+  fecha_nacimiento DATE,
+  estado BOOLEAN,
   id_afiliado INT,
   id_historia INT,
+  id_direccion INT,
+  FOREIGN KEY (id_afiliado) REFERENCES afiliados(id),
   FOREIGN KEY (id_historia) REFERENCES historias(id),
-  FOREIGN KEY (id_afiliado) REFERENCES afiliados(id)
+  FOREIGN KEY (id_direccion) REFERENCES direcciones(id)
 );
 
 CREATE TABLE citas (
