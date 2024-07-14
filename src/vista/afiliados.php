@@ -5,6 +5,9 @@
 
 <body>
   <div>
+    <center>
+      <h2>Afiliados</h2>
+    </center>
     <div class="container_afiliados">
       <div class="container_afiliados--menu">
         <div class="container_afiliados--search">
@@ -19,6 +22,8 @@
     </div>
   </div>
 
+  <?php require_once("vista/comunes/seccion-user.php");?>
+
   <div id="modal" class="modal">
     <?php require_once("vista/formularios/afiliado.formularo.php"); ?>
   </div>
@@ -29,5 +34,6 @@
   <script type="text/javascript" src="js/validations/afiliados.js" defer></script>
   <script type="text/javascript" src="js/actions/afiliados.js" defer></script>
   <script type="text/javascript" src="js/handler.js" defer></script>
+
 </body>
 </html>

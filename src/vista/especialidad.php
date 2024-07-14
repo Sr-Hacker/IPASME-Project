@@ -5,6 +5,9 @@
 
 <body>
   <div>
+    <center>
+      <h2>Especialidades</h2>
+    </center>
     <div class="container_especialidad">
       <div class="container_especialidad--menu">
         <div class="container_especialidad--search">
@@ -18,6 +21,8 @@
       </div>
     </div>
   </div>
+
+  <?php require_once("vista/comunes/seccion-user.php"); ?>
 
   <div id="modal" class="modal">
     <?php require_once("vista/formularios/especialidades.formulario.php"); ?>

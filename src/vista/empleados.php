@@ -5,6 +5,9 @@
 
 <body>
   <div>
+    <center>
+      <h2>Empleados</h2>
+    </center>
     <div class="container_empleados">
       <div class="container_empleados--menu">
         <div class="container_empleados--search">
@@ -18,6 +21,8 @@
       </div>
     </div>
   </div>
+
+  <?php require_once("vista/comunes/seccion-user.php"); ?>
 
   <div id="modal" class="modal">
     <?php require_once("vista/formularios/empleado.formulario.php"); ?>

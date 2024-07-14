@@ -4,6 +4,9 @@
 
 <body>
   <div>
+    <center>
+      <h2>Tramites</h2>
+    </center>
     <div class="container_tramites">
       <div class="container_tramites--menu">
         <div class="container_tramites--search">
@@ -37,5 +40,6 @@
       </div>
     </div>
   </div>
+  <?php require_once("vista/comunes/seccion-user.php"); ?>
 </body>
 </html>

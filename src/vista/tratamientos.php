@@ -5,6 +5,9 @@
 
 <body>
   <div>
+    <center>
+      <h2>Tratamientos</h2>
+    </center>
     <div class="container_tratamientos">
       <div class="container_tratamientos--menu">
         <div class="container_tratamientos--search">
@@ -18,6 +21,8 @@
       </div>
     </div>
   </div>
+
+  <?php require_once("vista/comunes/seccion-user.php"); ?>
 
   <div id="modal" class="modal">
     <?php require_once("vista/formularios/tratamiento.formulario.php"); ?>

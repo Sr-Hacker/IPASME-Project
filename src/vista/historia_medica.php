@@ -4,7 +4,9 @@
 
 <body>
   <div>
-    <h2>Sistema IPASME gestion administrativa</h2>
+    <center>
+      <h2>Histarias</h2>
+    </center>
     <div class="hogar_div">
       <div class="hogar_div--search">
         <input placeholder="cedula" type="number">
@@ -12,5 +14,8 @@
       </div>
     </div>
   </div>
+
+  <?php require_once("vista/comunes/seccion-user.php"); ?>
+
 </body>
 </html>

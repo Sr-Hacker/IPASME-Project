@@ -5,36 +5,22 @@
   margin: 3% auto 0;
 }
 
-.container_citas--menu {
+.container_citas--menu{
   display: flex;
   justify-content: space-around;
-}
-
-.container_citas--menu a{
-  display: flex;
-  justify-content: space-around;
-  padding: 2px;
-  border-radius: 5px;
-  background-color: rgba(143, 212, 52, 0.594);
 }
 
 .container_citas--list{
   width: 95%;
-  margin: 0 auto;
   background-color: rgba(93, 95, 93, 0.416);
+  margin: 3% auto 0;
 }
 
 .container_citas--list .item{
-  text-align: center;
   display: flex;
   justify-content: space-around;
-  width: 100%;
-  background-color: rgba(138, 228, 13, 0.594);
+  width: 95%;
+  background-color: rgba(130, 99, 99, 0.594);
   margin: 3% auto 0;
   padding: 2px;
-}
-
-.item .options{
-  display: flex;
-  flex-direction: column;
 }

@@ -5,7 +5,9 @@
 
 <body>
   <div>
-    <h2>This is a BUG</h2>
+    <center>
+      <h2>Documentos</h2>
+    </center>
     <div class="container_solicitudes">
       <div class="container_solicitudes--menu">
         <div class="container_solicitudes--search">
@@ -19,6 +21,8 @@
       </div>
     </div>
   </div>
+
+  <?php require_once("vista/comunes/seccion-user.php"); ?>
 
   <div id="modal" class="modal">
     <?php require_once("vista/formularios/solicitud.formulario.php"); ?>

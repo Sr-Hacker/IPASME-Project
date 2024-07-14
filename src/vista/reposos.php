@@ -5,6 +5,9 @@
 
 <body>
   <div>
+    <center>
+      <h2>Reposos</h2>
+    </center>
     <div class="container_reposos">
       <div class="container_reposos--menu">
         <div class="container_reposos--search">
@@ -18,6 +21,9 @@
       </div>
     </div>
   </div>
+
+  <?php require_once("vista/comunes/seccion-user.php"); ?>
+
 
   <div id="modal" class="modal">
     <?php require_once("vista/formularios/reposo.formulario.php"); ?>
