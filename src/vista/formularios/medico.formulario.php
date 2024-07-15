@@ -2,6 +2,8 @@
   <h5>Crear Nuevo Medico</h5>
   <div class="container_empleados--form">
     <input type="text" style="display: none;" id="id" name="id">
+    <input type="text" style="display: none;" id="id_especialidad" name="id_especialidad">
+    <input type="text" style="display: none;" id="id_medico" name="id_medico">
     <input type="text" placeholder="Nombres" id="nombres" name="nombres">
     <input type="text" placeholder="Apellidos" id="apellidos" name="apellidos">
     <input type="text" placeholder="Telefono" id="telefono" name="telefono">
@@ -10,6 +12,16 @@
       <option value="0">Interno</option>
       <option value="1">Externo</option>
     </select>
+
+    <div id="especialidades"></div>
+
+    <div>
+      <div>
+        <p>Buscar Especialidad</p>
+      </div>
+      <div id="consultar_especialidades"></div>
+    </div>
+
     <div>
       <button id="action_modal"></button>
       <button id="closeModal">cancelar</button>

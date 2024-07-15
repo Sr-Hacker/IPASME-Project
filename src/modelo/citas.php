@@ -160,8 +160,30 @@ class Cita extends DB{
 	}
 
   function consultar_medicos() {
-    $medico = new Medico();
-    return $medico->consultar();
+    $r1 = [];
+    try{
+      $bd = $this->conecta();
+			$resultados = $bd->query("SELECT * from medicos");
+			if($resultados){
+				$respuesta = [];
+				foreach($resultados as $resultado){
+					$medico['id'] = $resultado['id'];
+          $medico['nombres'] = $resultado['nombres'];
+          $medico['apellidos'] = $resultado['apellidos'];
+          $medico['cedula'] = $resultado['cedula'];
+          array_push($respuesta, $medico);
+				}
+				$r1 =  $respuesta;
+			}
+			else{
+				$r1['resultado'] = 'consultar';
+				$r1['mensaje'] =  '';
+			}
+		}catch(Exception $e){
+			$r1['resultado'] = 'error';
+			$r1['mensaje'] =  $e->getMessage();
+		}
+    return $r1;
   }
 
   function consultar_pacientes() {

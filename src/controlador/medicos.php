@@ -16,11 +16,12 @@
 		  if($accion=='consultar'){
 			 echo  json_encode($medicos->consultar());
 		  }
-		  else if($accion=='obtienefecha'){
-			 echo json_encode($medicos->obtienefecha());
-		  }
+      elseif($accion=='consultar_especialidades'){
+        echo  json_encode($medicos->consultar_especialidades());
+      }
 		  elseif($accion=='eliminar'){
         $medicos->set_id($_POST['id']);
+        $medicos->set_id_medico($_POST['id_medico']);
         echo  json_encode($medicos->eliminar());
 		  }
 		  else{
@@ -29,12 +30,13 @@
 			  $medicos->set_externo($_POST['externo']);
 			  $medicos->set_cedula($_POST['cedula']);
 			  $medicos->set_telefono($_POST['telefono']);
+			  $medicos->set_id_especialidad($_POST['id_especialidad']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($medicos->incluir());
 			  }
 			  elseif($accion=='modificar'){
-			    $medicos->set_id($_POST['id']);
+			    $medicos->set_id_medico($_POST['id_medico']);
 				  echo  json_encode($medicos->modificar());
 			  }
 		  }

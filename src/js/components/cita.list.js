@@ -65,7 +65,7 @@ function citas(data){
           <p>Paciente: ${item.nombre_afiliado}</p>
           <p>Medico: ${item.nombres_medico}</p>
           <div class="options">
-          <button type='button' class="editar" onclick="pre_editar('${item.id}')">Editar</button>
+          <button type='button' class="editar" onclick="editModal('${item.id}, cargarDatos')">Editar</button>
           <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
