@@ -77,7 +77,9 @@ class Cita extends DB{
       $bd = $this->conecta();
       $bd->query("UPDATE citas SET
           fecha = '$this->fecha',
-          motivo = '$this->motivo'
+          motivo = '$this->motivo',
+          id_medico = '$this->id_medico',
+          id_afiliado = '$this->id_afiliado'
           WHERE
           id = '$this->id'
         ");
@@ -94,8 +96,8 @@ class Cita extends DB{
 	function eliminar(){
     $r = array();
     try {
-      $co = $this->conecta();
-      $co->query("DELETE FROM citas
+      $bd = $this->conecta();
+      $bd->query("DELETE FROM citas
         WHERE
         id = '$this->id'
       ");
@@ -189,6 +191,19 @@ class Cita extends DB{
 		}
 
     return $r1;
+  }
+
+  function buscar() {
+    try {
+      $bd = $this->conecta();
+      $query = $bd->prepare("SELECT * FROM citas WHERE fecha = :fecha");
+      $query->bindParam(':fecha', $this->fecha, PDO::PARAM_STR);
+      $query->execute();
+      $fila = $query->fetchAll(PDO::FETCH_BOTH);
+      return $fila;
+    } catch (Exception $e) {
+      return false;
+    }
   }
 
 	private function existe($cedula){

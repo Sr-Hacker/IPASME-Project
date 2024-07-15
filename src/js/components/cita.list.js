@@ -18,6 +18,8 @@ function cargarDatos(item){
 	$("#id").val(citas.id);
 	$("#dia").val(citas.fecha);
 	$("#motivo").val(citas.motivo);
+  $("#id_medico").val(citas.id_medico);
+  $("#id_afiliado").val(citas.id_afiliado);
 }
 
 function agregar_medico(id){

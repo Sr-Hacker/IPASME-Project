@@ -16,6 +16,10 @@
 		  if($accion=='consultar'){
 			 echo json_encode($citas->consultar());
 		  }
+      elseif($accion=='buscar'){
+			  $citas->set_fecha($_POST['buscador']);
+        echo json_encode($citas->buscar());
+      }
       elseif($accion=='consultar_medicos'){
         echo json_encode($citas->consultar_medicos());
       }
