@@ -20,7 +20,7 @@ function empleados(data){
     const card = `
       <div class="item">
         <p>no hay resultados</p>
-        <button type='button' onclick="_get()">Listar todo</button>
+        <button type='button' class="listar" onclick="_get()">Listar todo</button>
       </div>
     `;
     result = result.concat("",card);
@@ -33,8 +33,8 @@ function empleados(data){
           <p>Cedula: ${item.cedula}</p>
           <p>Rol: ${item.rol}</p>
           <div class="options">
-          <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
-          <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
+          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
       empleadosArray[item.id] = item;

@@ -6,15 +6,15 @@
 <body>
   <div>
     <center>
-      <h2>Beneficiarios</h2>
+      <h2>GESTION DE BENEFICIARIOS</h2>
     </center>
     <div class="container_beneficiario">
       <div class="container_beneficiario--menu">
         <div class="container_beneficiatio--search">
-          <input placeholder="cedula" type="number" id="cedulaBuscador">
-          <button id="buscar">buscar</button>
+          <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
+          <button id="buscar"><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include">Crear Nuevo Beneficiario</button>
+        <button id="include" class="crear">Crear Nuevo Beneficiario</button>
       </div>
       <div class="container_beneficiario--list">
         <div id="get_result"></div>

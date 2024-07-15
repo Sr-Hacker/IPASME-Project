@@ -16,7 +16,7 @@ function especialidades(data){
     const card = `
       <div class="item">
         <p>no hay resultados</p>
-        <button type='button' onclick="_get()">Listar todo</button>
+        <button class="listar" type='button' onclick="_get()">Listar todo</button>
       </div>
     `;
     result = result.concat("",card);
@@ -28,8 +28,8 @@ function especialidades(data){
           <p>Codigo: ${item.codigo}</p>
           <p>id: ${item.id}</p>
           <div class="options">
-          <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
-          <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
+          <button class="editar" type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button class="eliminar" type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
       especialidadsArray[item.id] = item;

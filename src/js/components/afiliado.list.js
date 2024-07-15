@@ -43,7 +43,7 @@ function afiliados(data){
     const card = `
       <div class="item">
         <p>no hay resultados</p>
-        <button type='button' onclick="_get()">Listar todo</button>
+        <button type='button' class="listar" onclick="_get()">Listar todo</button>
       </div>
     `;
     result = result.concat("",card);
@@ -59,8 +59,8 @@ function afiliados(data){
           <p>cargo: ${item.cargo}</p>
           <p>historia: ${item.cod_historia}</p>
           <div class="options">
-          <button type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
-          <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
+          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>
       `;

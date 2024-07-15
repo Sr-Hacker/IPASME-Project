@@ -6,15 +6,15 @@
 <body>
   <div>
     <center>
-      <h2>Afiliados</h2>
+      <h2>GESTION DE AFILIADOS</h2>
     </center>
     <div class="container_afiliados">
       <div class="container_afiliados--menu">
         <div class="container_afiliados--search">
-          <input placeholder="cedula" type="number" id="cedulaBuscador">
-          <button id="buscar">buscar</button>
+          <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
+          <button id="buscar"><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include">Crear Nuevo Afiliado</button>
+        <button id="include" class="crear">Crear Nuevo Afiliado</button>
       </div>
       <div class="container_afiliados--list">
         <div id="consultar_afiliados"></div>

@@ -11,8 +11,9 @@
     --color-dark: #363949;
     --color-light: rgba(255, 255, 255, 0.30);
     --color-dark-variant: #677483;
+    --color-user: rgba(66, 57, 57, 0.3);
 
-    --card-border-radius: 2rem;
+
     --border-radius-1: 0.4rem;
     --border-radius: 1.2rem;
 
@@ -23,7 +24,6 @@
 }
 
 .dark-mode-variables{
-    --color-background: rgba(255, 255, 255, 0.1);
     --color-white: #202528;
     --color-dark: #edeffd;
     --color-dark-variant: #a3bdcc;
@@ -66,12 +66,12 @@ body{
     animation: gradient 4s infinite;
 }
 
-/* @keyframes gradient{
+@keyframes gradient{
     70%{
         transform: scale(1.2) translate(30px);
     }
 
-} */
+}
 
 .content div:nth-child(1){
     height: 90%;
@@ -124,10 +124,13 @@ body{
 h1{
     font-weight: 800;
     font-size: 1.8rem;
+    margin-top: 0.3em;
+
 }
 
 h2{
     font-weight: 600;
+    margin-top: 0;
     font-size: 1.4rem;
 }
 

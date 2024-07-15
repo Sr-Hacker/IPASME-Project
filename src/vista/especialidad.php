@@ -11,10 +11,10 @@
     <div class="container_especialidad">
       <div class="container_especialidad--menu">
         <div class="container_especialidad--search">
-          <input placeholder="Buscar especialidad" type="text" id="EspecialidadBuscador">
-          <button id="buscar" button>buscar</button>
+          <input class="buscador" placeholder="Buscar especialidad" type="text" id="EspecialidadBuscador">
+          <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include">Crear Nueva Especialidad</button>
+        <button id="include" class="crear">Crear Nueva Especialidad</button>
       </div>
       <div class="container_especialidad--list">
         <div id="get_result"></div>

@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="sidebar">
-                  <a href="?pagina=historia_medica">
+                  <a href="?pagina=historia_medica" id="historias">
                       <span class="material-icons-sharp">
                         receipt_long
                       </span>

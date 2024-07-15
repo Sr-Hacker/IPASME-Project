@@ -11,10 +11,10 @@
     <div class="container_empleados">
       <div class="container_empleados--menu">
         <div class="container_empleados--search">
-          <input placeholder="cedula" type="number" id="cedulaBuscador">
-          <button id="buscar" button>buscar</button>
+          <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
+          <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include">Crear Nuevo Medico</button>
+        <button id="include" class="crear">Crear Nuevo Medico</button>
       </div>
       <div class="container_empleados--list">
         <div id="get_result"></div>

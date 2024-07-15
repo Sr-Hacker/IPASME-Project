@@ -11,10 +11,10 @@
     <div class="container_citas">
       <div class="container_citas--menu">
         <div class="container_citas--search">
-          <input type="date" name="fecha" id="fecha">
-          <button id="buscar" button>buscar</button>
+          <input class="buscador" type="date" name="fecha" id="fecha">
+          <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include">Agendar Cita</button>
+        <button class="crear" id="include">Agendar Cita</button>
       </div>
       <div class="container_citas--list">
         <div id="get_result"></div>
