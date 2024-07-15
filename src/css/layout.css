@@ -66,12 +66,12 @@ body{
     animation: gradient 4s infinite;
 }
 
-/* @keyframes gradient{
+@keyframes gradient{
     70%{
         transform: scale(1.2) translate(30px);
     }
 
-} */
+}
 
 .content div:nth-child(1){
     height: 90%;
