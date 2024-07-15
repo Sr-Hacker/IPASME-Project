@@ -51,7 +51,6 @@ function afiliados(data){
     data.map((item) => {
       const card = `
         <div class="item">
-          <p>id? ${item.id}</p>
           <p>${item.nombre} ${item.apellido}</p>
           <p>Edad: ${item.edad}</p>
           <p>Telefono: ${item.telefono}</p>

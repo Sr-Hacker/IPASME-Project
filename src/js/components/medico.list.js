@@ -55,7 +55,6 @@ function medicos(data){
           <p>Apellidos: ${item.apellidos_medico}</p>
           <p>Tipo: ${externo}</p>
           <p>cedula: ${item.cedula_medico}</p>
-          <p>id: ${item.id}</p>
           <div class="options">
           <button type='button' onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
           <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
