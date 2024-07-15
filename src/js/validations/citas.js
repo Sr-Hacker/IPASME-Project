@@ -86,6 +86,10 @@ mensaje){
 }
 
 function limpia(){
+	$("#id").val("");
 	$("#dia").val("");
 	$("#motivo").val("");
+  $("#id_medico").val("");
+	$("#id_afiliado").val("");
+	$("#id_beneficiario").val("");
 }

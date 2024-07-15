@@ -1,15 +1,17 @@
 <?php
 require_once('config/db.php');
 require_once('modelo/medicos.php');
+require_once('modelo/afiliados.php');
+require_once('modelo/beneficiario.php');
 
 
 class Cita extends DB{
   private $id;
   private $fecha;
   private $motivo;
-  private $id_medico;
-  private $id_beneficiario;
-  private $id_afiliado;
+  private $id_medico = 0;
+  private $id_beneficiario = 0;
+  private $id_afiliado = 0;
 
 	function set_id($valor){
 		$this->id = $valor;
@@ -24,37 +26,47 @@ class Cita extends DB{
     $this->id_medico = $valor;
   }
   function set_id_beneficiario($valor){
-    $this->id_beneficiario = $valor;
+    if($valor){
+      $this->id_beneficiario = $valor;
+    }
   }
   function set_id_afiliado($valor){
-    $this->id_afiliado = $valor;
+    if($valor){
+      $this->id_afiliado = $valor;
+    }
   }
 
 	function incluir(){
 		$r = array();
-			try {
-        $bd = $this->conecta();
-        $query = $bd->prepare("
-          INSERT INTO citas (
-            fecha,
-            motivo
-          ) VALUES (
-            :fecha,
-            :motivo
-          )
-        ");
+    try {
+      $bd = $this->conecta();
+      $query = $bd->prepare("
+        INSERT INTO citas (
+          fecha,
+          motivo,
+          id_medico,
+          id_afiliado
+        ) VALUES (
+          :fecha,
+          :motivo,
+          :id_medico,
+          :id_afiliado
+        )
+      ");
 
-        $query->execute([
-          ':fecha' => $this->fecha,
-          ':motivo' => $this->motivo,
-        ]);
+      $query->execute([
+        ':fecha' => $this->fecha,
+        ':motivo' => $this->motivo,
+        ':id_medico' => $this->id_medico,
+        ':id_afiliado' => $this->id_afiliado
+      ]);
 
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] = 'Registro Incluido';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			  $r['mensaje'] =  $e->getMessage();
-			}
+      $r['resultado'] = 'incluir';
+      $r['mensaje'] = 'Registro Incluido';
+    } catch(Exception $e) {
+      $r['resultado'] = 'error';
+      $r['mensaje'] =  $e->getMessage();
+    }
     $result = $this->consultar();
 		return $result;
 	}
@@ -62,8 +74,8 @@ class Cita extends DB{
 	function modificar(){
     $r = array();
     try {
-      $co = $this->conecta();
-      $co->query("UPDATE citas SET
+      $bd = $this->conecta();
+      $bd->query("UPDATE citas SET
           fecha = '$this->fecha',
           motivo = '$this->motivo'
           WHERE
@@ -100,8 +112,23 @@ class Cita extends DB{
 	function consultar(){
 		$r = array();
 		try{
-      $co = $this->conecta();
-			$resultados = $co->query("SELECT * from citas");
+      $bd = $this->conecta();
+			$resultados = $bd->query("SELECT
+        c.*,
+          m1.nombres AS nombres_medico,
+          m1.apellidos AS apellidos_medico,
+          m1.cedula AS cedula_medico,
+
+          a2.nombre AS nombre_afiliado,
+          a2.apellido AS apellido_afiliado,
+          a2.cedula AS cedula_afiliado
+        FROM
+          citas c
+        JOIN
+          medicos m1 ON c.id_medico = m1.id
+        JOIN
+          afiliados a2 ON c.id_afiliado = a2.id;
+      ");
 			if($resultados){
 
 				$respuesta = [];
@@ -112,6 +139,9 @@ class Cita extends DB{
           $citas['id_medico'] = $resultado['id_medico'];
           $citas['id_beneficiario'] = $resultado['id_beneficiario'];
           $citas['id_afiliado'] = $resultado['id_afiliado'];
+
+          $citas['nombres_medico'] = $resultado['nombres_medico'];
+          $citas['nombre_afiliado'] = $resultado['nombre_afiliado'];
           array_push($respuesta, $citas);
 				}
 				$r['resultado'] =  $respuesta;
@@ -130,6 +160,35 @@ class Cita extends DB{
   function consultar_medicos() {
     $medico = new Medico();
     return $medico->consultar();
+  }
+
+  function consultar_pacientes() {
+    $r1 = [];
+    try{
+      $bd = $this->conecta();
+			$resultados = $bd->query("SELECT * from afiliados");
+			if($resultados){
+				$respuesta = [];
+				foreach($resultados as $resultado){
+					$afiliado['id'] = $resultado['id'];
+          $afiliado['nombre'] = $resultado['nombre'];
+          $afiliado['apellido'] = $resultado['apellido'];
+          $afiliado['cedula'] = $resultado['cedula'];
+          $afiliado['tipo'] = 'afiliado';
+          array_push($respuesta, $afiliado);
+				}
+				$r1 =  $respuesta;
+			}
+			else{
+				$r1['resultado'] = 'consultar';
+				$r1['mensaje'] =  '';
+			}
+		}catch(Exception $e){
+			$r1['resultado'] = 'error';
+			$r1['mensaje'] =  $e->getMessage();
+		}
+
+    return $r1;
   }
 
 	private function existe($cedula){

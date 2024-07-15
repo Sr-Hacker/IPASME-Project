@@ -22,15 +22,26 @@ function medico_get(){
 	ajax(data, cita_medicos);
 }
 
+function pacientes_get(){
+	let data = new FormData();
+	data.append('accion','consultar_pacientes');
+	ajax(data, cita_pacientes);
+}
+
 function _include(){
   const dia = document.getElementById("dia").value;
   const motivo = document.getElementById("motivo").value;
-  console.log("🚀 ~ _include ~ dia:", motivo)
+  const id_medico = document.getElementById("id_medico").value;
+  const id_afiliado = document.getElementById("id_afiliado").value;
+  const id_beneficiario = document.getElementById("id_beneficiario").value;
 
 	let data = new FormData();
 	data.append('accion','incluir');
   data.append('fecha', dia);
   data.append('motivo', motivo);
+  data.append('id_medico', id_medico);
+  data.append('id_afiliado', id_afiliado);
+  data.append('id_beneficiario', id_beneficiario);
 
 	ajax(data, citas);
   let modal1 =  document.getElementById("modal");
