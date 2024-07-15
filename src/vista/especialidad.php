@@ -14,7 +14,7 @@
           <input class="buscador" placeholder="Buscar especialidad" type="text" id="EspecialidadBuscador">
           <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include" class="crear">Crear Nueva Especialidad</button>
+        <button id="include" class="crear">Registrar Especialidad</button>
       </div>
       <div class="container_especialidad--list">
         <div id="get_result"></div>

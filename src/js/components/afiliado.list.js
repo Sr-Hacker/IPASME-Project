@@ -59,7 +59,7 @@ function afiliados(data){
           <p>cargo: ${item.cargo}</p>
           <p>historia: ${item.cod_historia}</p>
           <div class="options">
-          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
           <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>

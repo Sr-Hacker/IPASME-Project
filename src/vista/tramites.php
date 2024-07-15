@@ -13,7 +13,7 @@
           <input placeholder="cedula" type="number">
           <button button>buscar</button>
         </div>
-        <button>Crear Nuevo Tramite</button>
+        <button>Registrar Tramite</button>
       </div>
       <div class="container_tramites--list">
         <div class="item">

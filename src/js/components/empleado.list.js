@@ -33,7 +33,7 @@ function empleados(data){
           <p>Cedula: ${item.cedula}</p>
           <p>Rol: ${item.rol}</p>
           <div class="options">
-          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
           <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;

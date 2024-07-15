@@ -14,7 +14,7 @@
           <input placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar" button>buscar</button>
         </div>
-        <button id="include">Crear Nuevo patologiasbutton>
+        <button id="include">Registrar Patologias</button>
       </div>
       <div class="container_patologias--list">
         <div id="get_result"></div>
