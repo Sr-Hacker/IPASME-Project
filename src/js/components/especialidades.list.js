@@ -26,9 +26,8 @@ function especialidades(data){
         <div class="item">
           <p>Especialidad: ${item.nombre}</p>
           <p>Codigo: ${item.codigo}</p>
-          <p>id: ${item.id}</p>
           <div class="options">
-          <button class="editar" type='button' onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button class="editar" type='button' onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
           <button class="eliminar" type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;

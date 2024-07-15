@@ -51,7 +51,6 @@ function afiliados(data){
     data.map((item) => {
       const card = `
         <div class="item">
-          <p>id? ${item.id}</p>
           <p>${item.nombre} ${item.apellido}</p>
           <p>Edad: ${item.edad}</p>
           <p>Telefono: ${item.telefono}</p>
@@ -59,7 +58,7 @@ function afiliados(data){
           <p>cargo: ${item.cargo}</p>
           <p>historia: ${item.cod_historia}</p>
           <div class="options">
-          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Editar</button>
+          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
           <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
           </div>
         </div>

@@ -14,7 +14,7 @@
           <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button class="crear" id="include">Crear Nuevo Empleado</button>
+        <button class="crear" id="include">Registrar Empleado</button>
       </div>
       <div class="container_empleados--list">
         <div id="consultar_empleados"></div>

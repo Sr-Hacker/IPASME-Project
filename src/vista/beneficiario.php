@@ -14,7 +14,7 @@
           <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar"><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include" class="crear">Crear Nuevo Beneficiario</button>
+        <button id="include" class="crear">Registrar Beneficiario</button>
       </div>
       <div class="container_beneficiario--list">
         <div id="get_result"></div>

@@ -14,7 +14,7 @@
           <input placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar" button>buscar</button>
         </div>
-        <button id="include">Crear Nuevo Reposo</button>
+        <button id="include">Registrar Reposo</button>
       </div>
       <div class="container_reposos--list">
         <div id="get_result"></div>
