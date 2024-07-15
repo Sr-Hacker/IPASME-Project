@@ -28,6 +28,8 @@
     <?php require_once("vista/formularios/cita.formulario.php"); ?>
   </div>
 
+  <!-- <input class="buscador" type="date" name="diaBuscador" id="diaBuscador"> -->
+
   <script type="text/javascript" src="js/modals.js" defer></script>
   <script type="text/javascript" src="js/components/cita.list.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>

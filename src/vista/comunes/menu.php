@@ -39,7 +39,7 @@
                       <span class="material-icons-sharp">
                         receipt_long
                       </span>
-                      <h3>Consultar Historia</h3>
+                      <h3>Inicio</h3>
                   </a>
                     <a href="?pagina=empleados" id="empleados">
                         <span class="material-icons-sharp">

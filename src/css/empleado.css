@@ -64,6 +64,7 @@
 .container_empleados--list .item{
   text-align: center;
   display: flex;
+  align-items: center;
   justify-content: space-around;
   width: 99%;
   background-color: var(--color-user);
@@ -77,3 +78,5 @@
   flex-direction: column;
   gap: 0.3em;
 }
+
+
