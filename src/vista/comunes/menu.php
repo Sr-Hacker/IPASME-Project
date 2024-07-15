@@ -41,11 +41,17 @@
                       </span>
                       <h3>Inicio</h3>
                   </a>
-                    <a href="?pagina=empleados" id="empleados">
-                        <span class="material-icons-sharp">
-                            person_outline
-                        </span>
-                        <h3>Gestionar empleado</h3>
+                  <a href="?pagina=afiliados" id="afiliado">
+                      <span class="material-icons-sharp">
+                        person_outline
+                     </span>
+                      <h3>Gestionar afiliados</h3>
+                  </a>
+                  <a href="?pagina=beneficiario" id="beneficiario">
+                      <span class="material-icons-sharp">
+                        person_outline
+                      </span>
+                       <h3>Gestionar Beneficiario</h3>
                   </a>
                   <a href="?pagina=medicos" id="medicos">
                     <span class="material-icons-sharp">
@@ -53,24 +59,19 @@
                     </span>
                     <h3>Gestionar medicos</h3>
                   </a>
+                  <a href="?pagina=empleados" id="empleados">
+                        <span class="material-icons-sharp">
+                            person_outline
+                        </span>
+                        <h3>Gestionar empleado</h3>
+                  </a>
                   <a href="?pagina=especialidad" id="especialidad">
                     <span class="material-icons-sharp">
                       psychology
                     </span>
                     <h3>Gestionar especialidad</h3>
                    </a>
-                   <a href="?pagina=beneficiario" id="beneficiario">
-                      <span class="material-icons-sharp">
-                        person_outline
-                      </span>
-                       <h3>Gestionar Beneficiario</h3>
-                    </a>
-                    <a href="?pagina=afiliados" id="afiliado">
-                      <span class="material-icons-sharp">
-                        person_outline
-                     </span>
-                      <h3>Gestionar afiliados</h3>
-                    </a>
+
                     <a href="?pagina=citas" id="citas">
                       <span class="material-icons-sharp">
                           list_alt
@@ -89,41 +90,41 @@
                     </span>
                       <h3>Gestionar Tramites</h3>
                     </a>
+                    <a href="?pagina=reposos" id="reposo">
+                        <span class="material-icons-sharp">
+                            personal_injury
+                        </span>
+                        <h3>Gestionar reposo</h3>
+                    </a>
+                    <a href="?pagina=patologias" id="patologia">
+                      <span class="material-icons-sharp">
+                          coronavirus
+                      </span>
+                      <h3>Gestionar patologia</h3>
+                    </a>
+                    <a href="?pagina=tratamientos" id="tratamiento">
+                      <span class="material-icons-sharp">
+                          medication_liquid
+                      </span>
+                      <h3>Gestionar Tratamiento</h3>
+                    </a>
+                    <a href="?pagina=documentos" id="documentos">
+                      <span class="material-icons-sharp">
+                      post_add
+                      </span>
+                      <h3>Gestionar Documentos</h3>
+                    </a>
                     <a href="?pagina=solicitudes" id="solicitudes">
                     <span class="material-icons-sharp">
                       mail_outline
                     </span>
                     <h3>Gestionar solicitudes</h3>
                     </a>
-                    <a href="?pagina=informes">
+                    <a href="?pagina=informes" id="informes">
                       <span class="material-icons-sharp">
                       medical_information
                       </span>
                       <h3>Gestionar informes</h3>
-                    </a>
-                    <a href="?pagina=documentos">
-                      <span class="material-icons-sharp">
-                      post_add
-                      </span>
-                      <h3>Gestionar Documentos</h3>
-                    </a>
-                    <a href="?pagina=tratamientos">
-                      <span class="material-icons-sharp">
-                          medication_liquid
-                      </span>
-                      <h3>Gestionar Tratamiento</h3>
-                    </a>
-                    <a href="?pagina=patologias">
-                      <span class="material-icons-sharp">
-                          coronavirus
-                      </span>
-                      <h3>Gestionar patologia</h3>
-                    </a>
-                    <a href="?pagina=reposos">
-                        <span class="material-icons-sharp">
-                            personal_injury
-                        </span>
-                        <h3>Gestionar reposo</h3>
                     </a>
                     <a href="?pagina=reportes" id="reportes">
                       <span class="material-icons-sharp">
