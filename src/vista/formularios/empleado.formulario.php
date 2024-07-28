@@ -12,8 +12,8 @@
       <option value="empleado">empleado</option>
     </select>
     <div>
-      <button id="action_modal"></button>
-      <button id="closeModal">cancelar</button>
+      <button class="btn-modal" id="action_modal"></button>
+      <button class="btn-modal" id="closeModal">cancelar</button>
     </div>
   </div>
 </div>

@@ -5,12 +5,14 @@
 <body>
   <div>
     <center>
-      <h2>Histarias</h2>
+      <h2>HISYORIAS</h2>
     </center>
-    <div class="hogar_div">
-      <div class="hogar_div--search">
-        <input placeholder="cedula" type="number">
-        <button>buscar</button>
+    <div class="container_historias">
+      <div class="hogar_div">
+        <div class="hogar_div--search">
+          <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
+          <button id="buscar"><span class="material-symbols-rounded">search</span></button>
+        </div>
       </div>
     </div>
   </div>

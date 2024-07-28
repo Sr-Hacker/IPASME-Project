@@ -1,7 +1,7 @@
 <div class="container_beneficiarios">
   <h4>Crear Nuevo Afiliado</h4>
   <div class="container_beneficiarios--form">
-    <input type="text" style="display: none;" id="id" name="id">
+    <input type="text" style="display: none;" id="id" name="id" autofocus>
     <input type="text" placeholder="Nombre" id="nombre" name="nombre">
     <input type="text" placeholder="Apellido" id="apellido" name="apellido">
     <input type="text" placeholder="telefono" id="telefono" name="telefono">
@@ -12,13 +12,13 @@
     <input type="text" style="display: none;" id="id_historia" name="id_historia">
     <input type="text" placeholder="codigo historia" id="cod_historia" name="cod_historia">
     <input type="text" placeholder="tipo_sangre" id="tipo_sangre" name="tipo_sangre">
-    <select id="sexo" name="sexo">
-      <option value="Masculino">Hombre</option>
-      <option value="Femenino">Mujer</option>
-    </select>
     <input type="number" placeholder="estatura" id="estatura" name="estatura">
     <input type="number" placeholder="peso" id="peso" name="peso">
     <input type="date" placeholder="Fecha de Nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
+    <select class="opc-modal" id="sexo" name="sexo">
+      <option value="Masculino">Hombre</option>
+      <option value="Femenino">Mujer</option>
+    </select>
 
     <h4>Direccion</h4>
     <input type="text" style="display: none;" id="id_direccion" name="id_direccion">
@@ -37,6 +37,6 @@
     <input type="text" placeholder="Referencia" id="descripcion_institucion" name="descripcion_institucion">
     <input type="text" placeholder="Codigo Postal" id="postal_institucion" name="postal_institucion">
   <div>
-  <button id="action_modal"></button>
-  <button id="closeModal">cancelar</button>
+  <button class="btn-modal" id="action_modal"></button>
+  <button class="btn-modal" id="closeModal">cancelar</button>
 </div>
