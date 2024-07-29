@@ -21,21 +21,11 @@
     </select>
 
     <h4>Direccion</h4>
-    <input type="text" style="display: none;" id="id_direccion" name="id_direccion">
     <input type="text" placeholder="Direccion" id="direccion" name="direccion">
-    <input type="text" placeholder="Zona" id="zona" name="zona">
-    <input type="text" placeholder="Referencia" id="descripcion" name="descripcion">
-    <input type="text" placeholder="Postal" id="postal" name="postal">
-
-    <h4>Institucion</h4>
-    <input type="text" style="display: none;" id="id_institucion" name="id_institucion">
-    <input type="text" style="display: none;" id="id_direccion_institucion" name="id_direccion_institucion">
-    <input type="text" placeholder="Nombre" id="nombre_institucion" name="nombre_institucion">
-    <input type="text" placeholder="RIF" id="rif_institucion" name="rif_institucion">
-    <input type="text" placeholder="Direccion" id="direccion_institucion" name="direccion_institucion">
-    <input type="text" placeholder="Zona" id="zona_institucion" name="zona_institucion">
-    <input type="text" placeholder="Referencia" id="descripcion_institucion" name="descripcion_institucion">
-    <input type="text" placeholder="Codigo Postal" id="postal_institucion" name="postal_institucion">
+    <input type="text" placeholder="Zona" id="numero_casa" name="numero_casa">
+    <input type="text" placeholder="estado/provincia" id="estado_provincia" name="estado_provincia">
+    <input type="text" placeholder="Referencia" id="codigo_postal" name="codigo_postal">
+    <input type="text" placeholder="Postal" id="correo" name="correo">
   <div>
   <button class="btn-modal" id="action_modal"></button>
   <button class="btn-modal" id="closeModal">cancelar</button>

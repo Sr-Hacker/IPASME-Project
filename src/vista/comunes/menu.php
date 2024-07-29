@@ -71,12 +71,17 @@
                     </span>
                     <h3>Gestionar especialidad</h3>
                    </a>
-
                     <a href="?pagina=citas" id="citas">
                       <span class="material-icons-sharp">
                           list_alt
                       </span>
                       <h3>Gestionar Citas</h3>
+                    </a>
+                    <a href="?pagina=instituciones" id="instituciones">
+                      <span class="material-icons-sharp">
+                          list_alt
+                      </span>
+                      <h3>Gestionar instituciones</h3>
                     </a>
                     <a href="?pagina=requisitos" id="requisitos">
                       <span class="material-icons-sharp">

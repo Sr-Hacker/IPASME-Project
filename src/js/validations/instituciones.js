@@ -2,29 +2,29 @@ $(document).ready(function(){
 	_get();
 
 //VALIDACION DE DATOS
-	$("#cedula_afiliado").on("keypress",function(e){
+	$("#cedula").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
-	$("#cedula_afiliado").on("keyup",function(){
+	$("#cedula").on("keyup",function(){
 		validarkeyup(/^[0-9]{7,8}$/,$(this),
 		$("#scedula"),"El formato debe ser 9999999 ");
 	});
 
-	$("#apellido").on("keypress",function(e){
+	$("#apellidos").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 
-	$("#apellido").on("keyup",function(){
+	$("#apellidos").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$(this),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres");
 	});
 
-	$("#nombre").on("keypress",function(e){
+	$("#nombres").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 
-	$("#nombre").on("keyup",function(){
+	$("#nombres").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$(this),$("#snombres"),"Solo letras  entre 3 y 30 caracteres");
 	});
@@ -39,12 +39,12 @@ function validarenvio(){
 		return false;
 	}
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#apellido"),$("#sapellido"),"Solo letras  entre 3 y 30 caracteres")==0){
+		$("#apellidos"),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombre"),$("#snombre"),"Solo letras  entre 3 y 30 caracteres")==0){
+		$("#nombres"),$("#snombres"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
@@ -86,16 +86,29 @@ mensaje){
 }
 
 function limpia(){
-	$("#cedula_afiliado").val("");
-	$("#n_historia").val("");
 	$("#nombre").val("");
 	$("#apellido").val("");
-	$("#sexo").val("");
-	$("#fecha_nacimiento").val("");
-	$("#estado_provincia").val("");
-	$("#direccion").val("");
-	$("#numero_casa").val("");
-	$("#codigo_postal").val("");
+	$("#edad").val("");
 	$("#telefono").val("");
-	$("#correo").val("");
+	$("#cargo").val("");
+	$("#cedula").val("");
+
+	$("#cod_historia").val("");
+	$("#tipo_sangre").val("");
+	$("#sexo").val("");
+	$("#estatura").val("");
+	$("#peso").val("");
+	$("#fecha_nacimiento").val("");
+
+	$("#direccion").val("");
+	$("#zona").val("");
+	$("#descripcion").val("");
+	$("#postal").val("");
+
+  $("#nombre_institucion").val("");
+	$("#rif_institucion").val("");
+	$("#direccion_institucion").val("");
+	$("#zona_institucion").val("");
+	$("#descripcion_institucion").val("");
+	$("#postal_institucion").val("");
 }
