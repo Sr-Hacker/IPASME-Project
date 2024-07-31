@@ -6,7 +6,7 @@
 <body>
   <div>
     <center>
-      <h2>GESTION DE AFILIADOS</h2>
+      <h2>GESTION DE INSTITUCIONES</h2>
     </center>
     <div class="container_afiliados">
       <div class="container_afiliados--menu">
@@ -17,7 +17,7 @@
         <button id="include" class="crear">Registrar Instituciones</button>
       </div>
       <div class="container_afiliados--list">
-        <div id="consultar_afiliados"></div>
+        <div id="consultar_instituciones"></div>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@
   <script type="text/javascript" src="js/components/institucion.list.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
   <script type="text/javascript" src="js/validations/instituciones.js" defer></script>
-  <script type="text/javascript" src="js/actions/instituciones.js" defer></script>
+  <script type="text/javascript" src="js/actions/institucion.js" defer></script>
   <script type="text/javascript" src="js/handler.js" defer></script>
 
 </body>

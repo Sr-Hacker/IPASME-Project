@@ -86,29 +86,12 @@ mensaje){
 }
 
 function limpia(){
+	$("#rif").val("");
 	$("#nombre").val("");
-	$("#apellido").val("");
-	$("#edad").val("");
-	$("#telefono").val("");
-	$("#cargo").val("");
-	$("#cedula").val("");
-
-	$("#cod_historia").val("");
-	$("#tipo_sangre").val("");
-	$("#sexo").val("");
-	$("#estatura").val("");
-	$("#peso").val("");
-	$("#fecha_nacimiento").val("");
-
+	$("#estado_provincia").val("");
+	$("#ciudad").val("");
 	$("#direccion").val("");
-	$("#zona").val("");
-	$("#descripcion").val("");
-	$("#postal").val("");
-
-  $("#nombre_institucion").val("");
-	$("#rif_institucion").val("");
-	$("#direccion_institucion").val("");
-	$("#zona_institucion").val("");
-	$("#descripcion_institucion").val("");
-	$("#postal_institucion").val("");
+	$("#zona_postal").val("");
+	$("#telefono").val("");
+	$("#correo").val("");
 }

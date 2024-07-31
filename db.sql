@@ -1,16 +1,3 @@
--- Tabla: institucion
-CREATE TABLE institucion (
-  rif VARCHAR(20) PRIMARY KEY,
-  direccion VARCHAR(255),
-  nombre VARCHAR(100),
-  telefono VARCHAR(15),
-  correo VARCHAR(50),
-  ciudad VARCHAR(100),
-  estado_provincia VARCHAR(100),
-  zona_postal VARCHAR(10)
-);
-
--- Tabla: empleado
 CREATE TABLE empleado (
   ced_empleado CHAR(10) PRIMARY KEY,
   apellido CHAR(50),
@@ -168,15 +155,6 @@ CREATE TABLE reposos (
   fecha_fin DATE,
   n_historia VARCHAR(50),
   FOREIGN KEY (n_historia) REFERENCES historia_medica(n_historia)
-);
-
--- Tabla union: especialidad_medico
-CREATE TABLE especialidad_medico (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  ced_medico VARCHAR(20),
-  cod_especialidad VARCHAR(50),
-  FOREIGN KEY (ced_medico) REFERENCES medico(ced_medico),
-  FOREIGN KEY (cod_especialidad) REFERENCES especialidad(cod_especialidad)
 );
 
 -- Tabla: documentos_personales
