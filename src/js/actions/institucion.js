@@ -36,9 +36,12 @@ function _include(){
   data.append('telefono', telefono);
   data.append('correo', correo);
 
-	ajax(data, instituciones);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const valido = validarEnvio()
+  if(valido){
+    ajax(data, instituciones);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _edit(){

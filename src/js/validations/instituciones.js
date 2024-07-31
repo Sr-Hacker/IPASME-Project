@@ -1,53 +1,51 @@
 $(document).ready(function(){
-	_get();
-
 //VALIDACION DE DATOS
-	$("#cedula").on("keypress",function(e){
+	$("#rif").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
-	$("#cedula").on("keyup",function(){
+	$("#rif").on("keyup",function(){
 		validarkeyup(/^[0-9]{7,8}$/,$(this),
-		$("#scedula"),"El formato debe ser 9999999 ");
+		$("#m_rif"),"El formato no coincide con un rif");
 	});
 
-	$("#apellidos").on("keypress",function(e){
+	$("#nombre").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 
-	$("#apellidos").on("keyup",function(){
+	$("#nombre").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres");
+		$(this),$("#m_nombre"),"Solo letras  entre 3 y 30 caracteres");
 	});
 
-	$("#nombres").on("keypress",function(e){
+	$("#telefono").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 
-	$("#nombres").on("keyup",function(){
+	$("#telefono").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#snombres"),"Solo letras  entre 3 y 30 caracteres");
+		$(this),$("#m_telefono"),"Solo letras  entre 3 y 30 caracteres");
 	});
 });
 
 //Validación de todos los campos antes del envio
-function validarenvio(){
-	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
-		$("#scedula"),"El formato debe ser 9999999")==0){
+function validarEnvio(){
+	if(validarkeyup(/^[0-9]{7,8}$/,$("#rif"),
+		$("#m_rif"),"El formato debe ser 9999999")==0){
 	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
-						"99999999");
+				"99999999");
 		return false;
 	}
-	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#apellidos"),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
-	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombres"),$("#snombres"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
+	// else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+	// 	$("#apellidos"),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
+	// 	muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
+	// 	return false;
+	// }
+	// else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+	// 	$("#nombres"),$("#snombres"),"Solo letras  entre 3 y 30 caracteres")==0){
+	// 	muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
+	// 	return false;
+	// }
 
 	return true;
 }

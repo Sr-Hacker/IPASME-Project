@@ -1,5 +1,7 @@
+$(document).ready(function(){
+  _get();
+})
 let listaInstituciones = document.getElementById("consultar_instituciones");
-
 let institucionesArray = [];
 
 function cargarDatos(item){
@@ -29,8 +31,8 @@ function instituciones(data){
     data.map((item) => {
       const carta = `
         <div class="item">
-          <p>${item.rif}</p>
-          <p>${item.nombre}</p>
+          <p>Rif: ${item.rif}</p>
+          <p>Nombre: ${item.nombre}</p>
           <p>Telefono: ${item.telefono}</p>
           <p>direccion: ${item.direccion}</p>
           <p>correo: ${item.correo}</p>

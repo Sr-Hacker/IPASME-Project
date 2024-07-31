@@ -88,6 +88,7 @@ class Institucion extends DB{
     try {
       $bd = $this->conecta();
 			$query = $bd->prepare("UPDATE instituciones SET
+        rif = :rif,
         nombre = :nombre,
         estado_provincia = :estado_provincia,
         ciudad = :ciudad,
