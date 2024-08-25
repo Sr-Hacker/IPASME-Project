@@ -1,220 +1,198 @@
 <?php
 require_once('config/db.php');
-require_once('modelo/direccion.php');
-require_once('modelo/instituciones.php');
-require_once('modelo/historia_medica.php');
 
 class Beneficiario extends DB{
-  private $id = 0;
-  private $id_afiliado = 2;
+  private $ced_beneficiario;
+  private $ced_afiliado;
+  private $n_historia;
   private $nombre;
   private $apellido;
-  private $parentesco;
-  private $telefono;
-  private $edad;
-  private $cedula;
-
-  private $id_historia = 0;
-  private $cod_historia;
-  private $tipo_sangre;
-  private $sexo;
-  private $estatura;
-  private $peso;
   private $fecha_nacimiento;
-
-  private $id_direccion = 0;
+  private $sexo;
+  private $estado_provincia;
+  private $ciudad;
   private $direccion;
-  private $zona;
-  private $descripcion;
-  private $postal;
+  private $numero_casa;
+  private $codigo_postal;
+  private $telefono;
+  private $correo;
+  private $tipo_sangre;
+  private $relacion;
 
-  function set_id($valor){
-		$this->id = $valor;
+  function set_ced_beneficiario($valor){
+		$this->ced_beneficiario = $valor;
 	}
-  function set_id_afiliado($valor){
-		$this->id_afiliado = $valor;
+  function set_ced_afiliado($valor){
+		$this->ced_afiliado = $valor;
 	}
-	function set_nombre($valor){
+	function set_n_historia($valor){
+		$this->n_historia = $valor;
+	}
+  function set_nombre($valor){
 		$this->nombre = $valor;
 	}
-  function set_apellido($valor){
+	function set_apellido($valor){
 		$this->apellido = $valor;
-	}
-	function set_parentesco($valor){
-		$this->parentesco = $valor;
-	}
-  function set_telefono($valor){
-		$this->telefono = $valor;
-	}
-	function set_edad($valor){
-		$this->edad = $valor;
-	}
-	function set_cedula($valor){
-		$this->cedula = $valor;
-	}
-
-  function set_id_historia($valor){
-		$this->id_historia = $valor;
-	}
-  function set_cod_historia($valor){
-		$this->cod_historia = $valor;
-	}
-  function set_tipo_sangre($valor){
-		$this->tipo_sangre = $valor;
-	}
-  function set_sexo($valor){
-		$this->sexo = $valor;
-	}
-  function set_estatura($valor){
-		$this->estatura = $valor;
-	}
-  function set_peso($valor){
-		$this->peso = $valor;
 	}
   function set_fecha_nacimiento($valor){
 		$this->fecha_nacimiento = $valor;
 	}
-
-  function set_id_direccion($valor){
-		$this->id_direccion = $valor;
+	function set_sexo($valor){
+		$this->sexo = $valor;
+	}
+	function set_estado_provincia($valor){
+		$this->estado_provincia = $valor;
+	}
+  function set_ciudad($valor){
+		$this->ciudad = $valor;
 	}
   function set_direccion($valor){
 		$this->direccion = $valor;
 	}
-  function set_zona($valor){
-		$this->zona = $valor;
+  function set_numero_casa($valor){
+		$this->numero_casa = $valor;
 	}
-  function set_descripcion($valor){
-		$this->descripcion = $valor;
+  function set_codigo_postal($valor){
+		$this->codigo_postal = $valor;
 	}
-  function set_postal($valor){
-		$this->postal = $valor;
+  function set_telefono($valor){
+		$this->telefono = $valor;
+	}
+  function set_correo($valor){
+		$this->correo = $valor;
+	}
+  function set_tipo_sangre($valor){
+		$this->tipo_sangre = $valor;
+	}
+  function set_relacion($valor){
+		$this->relacion = $valor;
 	}
 
 	function incluir(){
 		$r = array();
-		if(!$this->existe($this->cedula)){
-		  $historia = new Historia(
-        $this->cod_historia,
-        $this->tipo_sangre,
-        $this->sexo,
-        $this->estatura,
-        $this->peso,
-        $this->fecha_nacimiento
-      );
-		  $direccion = new Direccion(
-        $this->direccion,
-        $this->zona,
-        $this->descripcion,
-        $this->postal
-      );
-      $this->set_id_historia($historia->incluir());
-      $this->set_id_direccion($direccion->incluir());
+    try {
+      $bd = $this->conecta();
+      $query = $bd->prepare("
+        INSERT INTO beneficiarios (
+          ced_beneficiario,
+          ced_afiliado,
+          n_historia,
+          nombre,
+          apellido,
+          fecha_nacimiento,
+          sexo,
+          estado_provincia,
+          ciudad,
+          direccion,
+          numero_casa,
+          codigo_postal,
+          telefono,
+          correo,
+          tipo_sangre,
+          relacion
+        ) VALUES (
+          :ced_beneficiario,
+          :ced_afiliado,
+          :n_historia,
+          :nombre,
+          :apellido,
+          :fecha_nacimiento,
+          :sexo,
+          :estado_provincia,
+          :ciudad,
+          :direccion,
+          :numero_casa,
+          :codigo_postal,
+          :telefono,
+          :correo,
+          :tipo_sangre,
+          :relacion
+        )
+      ");
 
- 			try {
-        $bd = $this->conecta();
-        $query = $bd->prepare("
-          INSERT INTO beneficiarios (
-            nombre,
-            apellido,
-            parentesco,
-            telefono,
-            edad,
-            cedula,
-            id_historia,
-            id_afiliado,
-            id_direccion
-          ) VALUES (
-            :nombre,
-            :apellido,
-            :parentesco,
-            :telefono,
-            :edad,
-            :cedula,
-            :id_historia,
-            :id_afiliado,
-            :id_direccion
-          )
-        ");
+      $query->execute([
+        ':ced_beneficiario' => $this->ced_beneficiario,
+        ':ced_afiliado' => $this->ced_afiliado,
+        ':n_historia' => $this->n_historia,
+        ':nombre' => $this->nombre,
+        ':apellido' => $this->apellido,
+        ':fecha_nacimiento' => $this->fecha_nacimiento,
+        ':sexo' => $this->sexo,
+        ':estado_provincia' => $this->estado_provincia,
+        ':ciudad' => $this->ciudad,
+        ':direccion' => $this->direccion,
+        ':numero_casa' => $this->numero_casa,
+        ':codigo_postal' => $this->codigo_postal,
+        ':telefono' => $this->telefono,
+        ':correo' => $this->correo,
+        ':tipo_sangre' => $this->tipo_sangre,
+        ':relacion' => $this->relacion
+      ]);
 
-        $query->execute([
-          ':nombre' => $this->nombre,
-          ':apellido' => $this->apellido,
-          ':parentesco' => $this->parentesco,
-          ':telefono' => $this->telefono,
-          ':edad' => $this->edad,
-          ':cedula' => $this->cedula,
-          ':id_historia' => $this->id_historia,
-          ':id_afiliado' => $this->id_afiliado,
-          ':id_direccion' => $this->id_direccion
-        ]);
-
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] =  'Registro Inluido';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			  $r['mensaje'] = $e->getMessage();
-			}
-		}
-		else{
-			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe la cedula';
-		}
-    $result = $this->consultar();
-		return $result;
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Inluido';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] = $e->getMessage();
+    }
+		return $r;
 	}
 
   function modificar(){
     $r = array();
-
-    // instancia los modelos con informacion en el contructor
-    $historia = new Historia(
-      $this->cod_historia,
-      $this->tipo_sangre,
-      $this->sexo,
-      $this->estatura,
-      $this->peso,
-      $this->fecha_nacimiento
-    );
-
-    $direccion = new Direccion(
-      $this->direccion,
-      $this->zona,
-      $this->descripcion,
-      $this->postal
-    );
-
-    // carga los ids en los modelos
-    $historia->set_id($this->id_historia);
-    $direccion->set_id($this->id_direccion);
-
-    // ejecutar metodos de modificar
-    $historia->modificar();
-    $direccion->modificar();
-
     try {
       $bd = $this->conecta();
-			$bd->query("UPDATE beneficiarios SET
-        nombre = '$this->nombre',
-        apellido = '$this->apellido',
-        parentesco = '$this->parentesco',
-        telefono = '$this->telefono',
-        edad = '$this->edad',
-        cedula = '$this->cedula',
-        id_historia = '$this->id_historia',
-        id_afiliado = '$this->id_afiliado',
-        id_direccion = '$this->id_direccion'
+			$query = $bd->prepare("UPDATE beneficiarios SET
+        ced_beneficiario = :ced_beneficiario,
+        ced_afiliado = :ced_afiliado,
+        n_historia = :n_historia,
+        nombre = :nombre,
+        apellido = :apellido,
+        fecha_nacimiento = :fecha_nacimiento,
+        sexo = :sexo,
+        estado_provincia = :estado_provincia,
+        ciudad = :ciudad,
+        direccion = :direccion,
+        numero_casa = :numero_casa,
+        codigo_postal = :codigo_postal,
+        telefono = :telefono,
+        correo = :correo,
+        tipo_sangre = :tipo_sangre,
+        relacion = :relacion
         WHERE
-        id = '$this->id'
+        ced_beneficiario = :ced_beneficiario
       ");
-      $r['resultado'] = 'modificar';
+
+      $query->execute([
+        ':ced_beneficiario' => $this->ced_beneficiario,
+        ':ced_afiliado' => $this->ced_afiliado,
+        ':n_historia' => $this->n_historia,
+        ':nombre' => $this->nombre,
+        ':apellido' => $this->apellido,
+        ':fecha_nacimiento' => $this->fecha_nacimiento,
+        ':sexo' => $this->sexo,
+        ':estado_provincia' => $this->estado_provincia,
+        ':ciudad' => $this->ciudad,
+        ':direccion' => $this->direccion,
+        ':numero_casa' => $this->numero_casa,
+        ':codigo_postal' => $this->codigo_postal,
+        ':telefono' => $this->telefono,
+        ':correo' => $this->correo,
+        ':tipo_sangre' => $this->tipo_sangre,
+        ':relacion' => $this->relacion
+      ]);
+
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Modificado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function eliminar(){
@@ -223,91 +201,84 @@ class Beneficiario extends DB{
       $bd = $this->conecta();
       $bd->query("DELETE FROM beneficiarios
         WHERE
-        id = '$this->id'
+        ced_beneficiario = '$this->ced_beneficiario'
       ");
-      $r['resultado'] = 'eliminar';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Eliminado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function consultar(){
     $r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT
-        b.*,
-          h1.cod_historia AS cod_historia,
-          h1.tipo_sangre AS tipo_sangre,
-          h1.sexo AS sexo,
-          h1.peso AS peso,
-          h1.estatura AS estatura,
-          h1.fecha_nacimiento AS fecha_nacimiento,
+			$resultados = $bd->query("SELECT * FROM beneficiarios");
 
-          d2.direccion AS direccion,
-          d2.zona AS zona,
-          d2.descripcion AS descripcion,
-          d2.postal AS postal,
+			// $resultados = $bd->query("SELECT
+      //   b.*,
+      //     h1.cod_historia AS cod_historia,
+      //     h1.tipo_sangre AS tipo_sangre,
+      //     h1.sexo AS sexo,
+      //     h1.peso AS peso,
+      //     h1.estatura AS estatura,
+      //     h1.fecha_nacimiento AS fecha_nacimiento,
 
-          a3.nombre AS nombre_afiliado,
-          a3.apellido AS apellido_afiliado,
-          a3.cedula AS cedula_afiliado
-        FROM
-          beneficiarios b
-        JOIN
-          historias h1 ON b.id_historia = h1.id
-        JOIN
-          direcciones d2 ON b.id_direccion = d2.id
-        JOIN
-          afiliados a3 ON b.id_afiliado = a3.id;
-      ");
+      //     d2.direccion AS direccion,
+      //     d2.zona AS zona,
+      //     d2.descripcion AS descripcion,
+      //     d2.postal AS postal,
+
+      //     a3.nombre AS nombre_afiliado,
+      //     a3.apellido AS apellido_afiliado,
+      //     a3.cedula AS cedula_afiliado
+      //   FROM
+      //     beneficiarios b
+      //   JOIN
+      //     historias h1 ON b.id_historia = h1.id
+      //   JOIN
+      //     direcciones d2 ON b.id_direccion = d2.id
+      //   JOIN
+      //     afiliados a3 ON b.id_afiliado = a3.id;
+      // ");
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$beneficiario['id'] = $resultado['id'];
+					$beneficiario['ced_beneficiario'] = $resultado['ced_beneficiario'];
+          $beneficiario['ced_afiliado'] = $resultado['ced_afiliado'];
+          $beneficiario['n_historia'] = $resultado['n_historia'];
           $beneficiario['nombre'] = $resultado['nombre'];
           $beneficiario['apellido'] = $resultado['apellido'];
-          $beneficiario['parentesco'] = $resultado['parentesco'];
-          $beneficiario['telefono'] = $resultado['telefono'];
-          $beneficiario['edad'] = $resultado['edad'];
-          $beneficiario['cedula'] = $resultado['cedula'];
-          $beneficiario['id_historia'] = $resultado['id_historia'];
-          $beneficiario['id_direccion'] = $resultado['id_direccion'];
-          $beneficiario['id_afiliado'] = $resultado['id_afiliado'];
-
-          $beneficiario['cod_historia'] = $resultado['cod_historia'];
-          $beneficiario['tipo_sangre'] = $resultado['tipo_sangre'];
-          $beneficiario['sexo'] = $resultado['sexo'];
-          $beneficiario['peso'] = $resultado['peso'];
-          $beneficiario['estatura'] = $resultado['estatura'];
           $beneficiario['fecha_nacimiento'] = $resultado['fecha_nacimiento'];
-
+          $beneficiario['sexo'] = $resultado['sexo'];
+          $beneficiario['estado_provincia'] = $resultado['estado_provincia'];
+          $beneficiario['ciudad'] = $resultado['ciudad'];
           $beneficiario['direccion'] = $resultado['direccion'];
-          $beneficiario['zona'] = $resultado['zona'];
-          $beneficiario['descripcion'] = $resultado['descripcion'];
-          $beneficiario['postal'] = $resultado['postal'];
 
-          $beneficiario['nombre_afiliado'] = $resultado['nombre_afiliado'];
-          $beneficiario['apellido_afiliado'] = $resultado['apellido_afiliado'];
-          $beneficiario['cedula_afiliado'] = $resultado['cedula_afiliado'];
-
+          $beneficiario['numero_casa'] = $resultado['numero_casa'];
+          $beneficiario['codigo_postal'] = $resultado['codigo_postal'];
+          $beneficiario['telefono'] = $resultado['telefono'];
+          $beneficiario['correo'] = $resultado['correo'];
+          $beneficiario['tipo_sangre'] = $resultado['tipo_sangre'];
+          $beneficiario['relacion'] = $resultado['relacion'];
           array_push($respuesta, $beneficiario);
 				}
 				$r['resultado'] =  $respuesta;
 			}
 			else{
-				$r['resultado'] = 'consultar';
+				$r['resultado'] = [];
 				$r['mensaje'] =  '';
 			}
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
+			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {

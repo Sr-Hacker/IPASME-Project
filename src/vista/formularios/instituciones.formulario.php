@@ -18,6 +18,6 @@
     <input type="text" placeholder="Zona" id="zona_postal" name="zona_postal">
     <p id="m_zona_postal"></p>
   <div>
-  <button id="action_modal"></button>
-  <button id="closeModal">cancelar</button>
+  <button class="btn-modal" id="action_modal">incluir</button>
+  <button class="btn-modal" id="closeModal">cancelar</button>
 </div>
