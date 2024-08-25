@@ -1,7 +1,8 @@
 let include  = document.getElementById("include")
 include.addEventListener("click", function () {
   let modal = document.getElementById("modal")
-  modal.style.display = "block";
+  modal.style.visibility = 'visible';
+  modal.style.opacity = '1';
   let action_modal = document.getElementById("action_modal")
   action_modal.textContent = "incluir";
 });

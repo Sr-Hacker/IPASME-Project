@@ -28,6 +28,6 @@
     <input type="text" placeholder="Referencia" id="descripcion" name="descripcion">
     <input type="text" placeholder="Postal" id="postal" name="postal">
   <div>
-  <button id="action_modal"></button>
-  <button id="closeModal">cancelar</button>
+  <button class="btn-modal" id="action_modal">incluir</button>
+  <button class="btn-modal" id="closeModal">cancelar</button>
 </div>

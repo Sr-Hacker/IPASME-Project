@@ -27,6 +27,6 @@
     <input type="text" placeholder="Referencia" id="codigo_postal" name="codigo_postal">
     <input type="text" placeholder="Postal" id="correo" name="correo">
   <div>
-  <button class="btn-modal" id="action_modal"></button>
+  <button class="btn-modal" id="action_modal">incluir</button>
   <button class="btn-modal" id="closeModal">cancelar</button>
 </div>

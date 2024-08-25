@@ -1,7 +1,7 @@
 <?php
 require_once('config/db.php');
 require_once('modelo/direccion.php');
-require_once('modelo/institucion.php');
+require_once('modelo/instituciones.php');
 require_once('modelo/historia_medica.php');
 
 class Beneficiario extends DB{

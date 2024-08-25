@@ -4,11 +4,13 @@
   margin: 1.5rem 5rem;
   width: 80%;
   height: 90vh;
-  display: none;
+  display: flex;
   gap: 3rem;
-  background-color: rgba(146, 155, 175, 0.948);
-  color: white;
-  border-radius: var(--border-radius);
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  background-color: rgba(146, 155, 175, 0.948);  border-radius: var(--border-radius);
 }
 
 input[type="password"],
@@ -17,8 +19,7 @@ input[type="number"],
 input[type="date"] {
     border: none;
     outline: none;
-    background: var(--color-light);
-    color: white;
+    color: #000;
     margin: .3rem;
     padding: 1rem 1.5rem;
     padding-left: calc(1rem * 3.5);
@@ -34,7 +35,6 @@ input[type="date"] {
 .opc-modal{
   border: none;
   appearance: none;
-  background-color: var(--color-light);
   font-size: 15px;
 }
 

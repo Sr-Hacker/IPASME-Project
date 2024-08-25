@@ -12,7 +12,7 @@
       <option value="empleado">empleado</option>
     </select>
     <div>
-      <button class="btn-modal" id="action_modal"></button>
+      <button class="btn-modal" id="action_modal">incluir</button>
       <button class="btn-modal" id="closeModal">cancelar</button>
     </div>
   </div>
