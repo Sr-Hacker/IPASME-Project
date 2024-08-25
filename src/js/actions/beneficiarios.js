@@ -15,45 +15,41 @@ function _get(){
 }
 
 function _include(){
+  const ced_beneficiario = document.getElementById("ced_beneficiario").value;
+  const ced_afiliado = document.getElementById("ced_afiliado").value;
+  const n_historia = document.getElementById("n_historia").value;
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
-  const parentesco = document.getElementById("parentesco").value;
-  const telefono = document.getElementById("telefono").value;
-  const edad = document.getElementById("edad").value;
-  const cedula = document.getElementById("cedula").value;
-
-  const cod_historia = document.getElementById("cod_historia").value;
-  const tipo_sangre = document.getElementById("tipo_sangre").value;
-  const sexo = document.getElementById("sexo").value;
-  const estatura = document.getElementById("estatura").value;
-  const peso = document.getElementById("peso").value;
   const fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
-
+  const codigo_postal = document.getElementById("codigo_postal").value;
+  const estado_provincia = document.getElementById("estado_provincia").value;
+  const ciudad = document.getElementById("ciudad").value;
   const direccion = document.getElementById("direccion").value;
-  const zona = document.getElementById("zona").value;
-  const descripcion = document.getElementById("descripcion").value;
-  const postal = document.getElementById("postal").value;
+  const numero_casa = document.getElementById("numero_casa").value;
+  const sexo = document.getElementById("sexo").value;
+  const telefono = document.getElementById("telefono").value;
+  const correo = document.getElementById("correo").value;
+  const tipo_sangre = document.getElementById("tipo_sangre").value;
+  const relacion = document.getElementById("relacion").value;
 
 	let data = new FormData();
 	data.append('accion','incluir');
+  data.append('ced_beneficiario', ced_beneficiario);
+  data.append('ced_afiliado', ced_afiliado);
+  data.append('n_historia', n_historia);
   data.append('nombre', nombre);
   data.append('apellido', apellido);
-  data.append('parentesco', parentesco);
-  data.append('telefono', telefono);
-  data.append('edad', edad);
-  data.append('cedula', cedula);
-
-  data.append('cod_historia', cod_historia);
-  data.append('tipo_sangre', tipo_sangre);
-  data.append('sexo', sexo);
-  data.append('estatura', estatura);
-  data.append('peso', peso);
   data.append('fecha_nacimiento', fecha_nacimiento);
-
+  data.append('codigo_postal', codigo_postal);
+  data.append('estado_provincia', estado_provincia);
+  data.append('ciudad', ciudad);
   data.append('direccion', direccion);
-  data.append('zona', zona);
-  data.append('descripcion', descripcion);
-  data.append('postal', postal);
+  data.append('numero_casa', numero_casa);
+  data.append('sexo', sexo);
+  data.append('telefono', telefono);
+  data.append('correo', correo);
+  data.append('tipo_sangre', tipo_sangre);
+  data.append('relacion', relacion);
 
 	ajax(data, beneficiarios);
   let modal =  document.getElementById("modal")
@@ -61,53 +57,41 @@ function _include(){
 }
 
 function _edit(){
-  const id = document.getElementById("id").value;
-  const id_afiliado = document.getElementById("id_afiliado").value;
+  const ced_beneficiario = document.getElementById("ced_beneficiario").value;
+  const ced_afiliado = document.getElementById("ced_afiliado").value;
+  const n_historia = document.getElementById("n_historia").value;
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
-  const parentesco = document.getElementById("parentesco").value;
-  const telefono = document.getElementById("telefono").value;
-  const edad = document.getElementById("edad").value;
-  const cedula = document.getElementById("cedula").value;
-
-  const id_historia = document.getElementById("id_historia").value;
-  const cod_historia = document.getElementById("cod_historia").value;
-  const tipo_sangre = document.getElementById("tipo_sangre").value;
-  const sexo = document.getElementById("sexo").value;
-  const estatura = document.getElementById("estatura").value;
-  const peso = document.getElementById("peso").value;
   const fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
-
-  const id_direccion = document.getElementById("id_direccion").value;
+  const sexo = document.getElementById("sexo").value;
+  const estado_provincia = document.getElementById("estado_provincia").value;
+  const ciudad = document.getElementById("ciudad").value;
   const direccion = document.getElementById("direccion").value;
-  const zona = document.getElementById("zona").value;
-  const descripcion = document.getElementById("descripcion").value;
-  const postal = document.getElementById("postal").value;
+  const numero_casa = document.getElementById("numero_casa").value;
+  const codigo_postal = document.getElementById("codigo_postal").value;
+  const telefono = document.getElementById("telefono").value;
+  const correo = document.getElementById("correo").value;
+  const tipo_sangre = document.getElementById("tipo_sangre").value;
+  const relacion = document.getElementById("relacion").value;
 
 	let data = new FormData();
 	data.append('accion','modificar');
-  data.append('id', id);
-  data.append('id_afiliado', id_afiliado);
+  data.append('ced_beneficiario', ced_beneficiario);
+  data.append('ced_afiliado', ced_afiliado);
+  data.append('n_historia', n_historia);
   data.append('nombre', nombre);
   data.append('apellido', apellido);
-  data.append('parentesco', parentesco);
-  data.append('telefono', telefono);
-  data.append('edad', edad);
-  data.append('cedula', cedula);
-
-  data.append('id_historia', id_historia);
-  data.append('cod_historia', cod_historia);
-  data.append('tipo_sangre', tipo_sangre);
-  data.append('sexo', sexo);
-  data.append('estatura', estatura);
-  data.append('peso', peso);
   data.append('fecha_nacimiento', fecha_nacimiento);
-
-  data.append('id_direccion', id_direccion);
+  data.append('sexo', sexo);
+  data.append('estado_provincia', estado_provincia);
+  data.append('ciudad', ciudad);
   data.append('direccion', direccion);
-  data.append('zona', zona);
-  data.append('descripcion', descripcion);
-  data.append('postal', postal);
+  data.append('numero_casa', numero_casa);
+  data.append('codigo_postal', codigo_postal);
+  data.append('telefono', telefono);
+  data.append('correo', correo);
+  data.append('tipo_sangre', tipo_sangre);
+  data.append('relacion', relacion);
 
 	ajax(data, beneficiarios);
   let modal =  document.getElementById("modal")
@@ -115,11 +99,11 @@ function _edit(){
 }
 
 function _delete(){
-  const id = document.getElementById("id").value;
+  const ced_beneficiario = document.getElementById("ced_beneficiario").value;
 
 	let data = new FormData();
 	data.append('accion','eliminar');
-  data.append('id', id);
+  data.append('ced_beneficiario', ced_beneficiario);
 
 	ajax(data, beneficiarios);
   let modal =  document.getElementById("modal")

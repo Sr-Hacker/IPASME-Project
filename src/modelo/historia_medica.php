@@ -2,79 +2,73 @@
 require_once('config/db.php');
 
 class Historia extends DB{
-  private $id;
-  private $peso;
-  private $sexo;
-  private $estatura;
-  private $tipo_sangre;
-  private $cod_historia;
-  private $fecha_nacimiento;
+  private $n_historia;
+  private $fecha_registro;
+  private $partida_de_nacimiento;
+  private $acta_de_matrimonio;
+  private $constancia_Trabajo;
 
-  public function __construct($cod_historia, $tipo_sangre, $sexo, $estatura, $peso, $fecha_nacimiento) {
-    $this->cod_historia = $cod_historia;
-    $this->tipo_sangre = $tipo_sangre;
-    $this->sexo = $sexo;
-    $this->estatura = $estatura;
-    $this->peso = $peso;
-    $this->fecha_nacimiento = $fecha_nacimiento;
-  }
+  // public function __construct($n_historia, $fecha_registro, $partida_de_nacimiento, $acta_de_matrimonio, $constancia_Trabajo) {
+  //   $this->n_historia = $n_historia;
+  //   $this->fecha_registro = $fecha_registro;
+  //   $this->partida_de_nacimiento = $partida_de_nacimiento;
+  //   $this->acta_de_matrimonio = $acta_de_matrimonio;
+  //   $this->constancia_Trabajo = $constancia_Trabajo;
+  // }
 
-  function set_id($valor){
-		$this->id = $valor;
+  function set_n_historia($valor){
+		$this->n_historia = $valor;
 	}
-  function set_peso($valor){
-    $this->peso = $valor;
+  function set_fecha_registro($valor){
+    $this->fecha_registro = $valor;
   }
-  function set_sexo($valor){
-    $this->sexo = $valor;
+  function set_partida_de_nacimiento($valor){
+    $this->partida_de_nacimiento = $valor;
   }
-  function set_estatura($valor){
-    $this->estatura = $valor;
+  function set_acta_de_matrimonio($valor){
+    $this->acta_de_matrimonio = $valor;
   }
-  function set_tipo_sangre($valor){
-    $this->tipo_sangre = $valor;
+  function set_constancia_Trabajo($valor){
+    $this->constancia_Trabajo = $valor;
   }
-	function set_cod_historia($valor){
-		$this->cod_historia = $valor;
-	}
-	function set_fecha_nacimiento($valor){
-		$this->fecha_nacimiento = $valor;
-	}
 
   public function incluir() {
     $r = array();
       try {
         $bd = $this->conecta();
         $query = $bd->prepare("
-          INSERT INTO historias (
-            cod_historia,
-            tipo_sangre,
-            sexo,
-            estatura,
-            peso
+          INSERT INTO historias_medicas (
+            n_historia,
+            fecha_registro,
+            partida_de_nacimiento,
+            acta_de_matrimonio,
+            constancia_Trabajo
           ) VALUES (
-            :cod_historia,
-            :tipo_sangre,
-            :sexo,
-            :estatura,
-            :peso
+            :n_historia,
+            :fecha_registro,
+            :partida_de_nacimiento,
+            :acta_de_matrimonio,
+            :constancia_Trabajo
           )
         ");
 
         $query->execute([
-          ':cod_historia' => $this->cod_historia,
-          ':tipo_sangre' => $this->tipo_sangre,
-          ':sexo' => $this->sexo,
-          ':estatura' => $this->estatura,
-          ':peso' => $this->peso,
+          ':n_historia' => $this->n_historia,
+          ':fecha_registro' => $this->fecha_registro,
+          ':partida_de_nacimiento' => $this->partida_de_nacimiento,
+          ':acta_de_matrimonio' => $this->acta_de_matrimonio,
+          ':constancia_Trabajo' => $this->constancia_Trabajo,
         ]);
 
-        $r['id'] = $bd->lastInsertId();
-      } catch (PDOException $e) {
-        $r['resultado'] = 'error';
-        $r['mensaje'] = $e->getMessage();
-      }
-    return $r["id"];
+        $consulta = $this->consultar();
+        $r['resultado'] =  $consulta['resultado'];
+        $r['mensaje'] =  'Registro Inluido';
+			} catch(Exception $e) {
+        $consulta = $this->consultar();
+        $r['resultado'] =  $consulta['resultado'];
+			  $r['mensaje'] = $e->getMessage();
+			}
+		return $r;
   }
 
 
@@ -82,47 +76,52 @@ class Historia extends DB{
     $r = array();
     try {
       $bd = $this->conecta();
-			$bd->query("UPDATE historias SET
-        cod_historia = '$this->cod_historia',
-        tipo_sangre = '$this->tipo_sangre',
-        sexo = '$this->sexo',
-        estatura = '$this->estatura',
-        peso = '$this->peso'
+      $query = $bd->prepare("UPDATE historias_medicas SET
+        n_historia = :n_historia,
+        fecha_registro = :fecha_registro,
+        partida_de_nacimiento = :partida_de_nacimiento,
+        acta_de_matrimonio = :acta_de_matrimonio,
+        constancia_Trabajo = :constancia_Trabajo
         WHERE
-        id = '$this->id'
+        n_historia = :n_historia
       ");
-      $r['resultado'] = 'modificar';
+
+      $query->execute([
+        ':n_historia' => $this->n_historia,
+        ':fecha_registro' => $this->fecha_registro,
+        ':partida_de_nacimiento' => $this->partida_de_nacimiento,
+        ':acta_de_matrimonio' => $this->acta_de_matrimonio,
+        ':constancia_Trabajo' => $this->constancia_Trabajo,
+      ]);
+
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Modificado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
 		return $r;
 	}
 
 	function eliminar(){
-		$co = $this->conecta();
-		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
-		if($this->existe($this->cedula)){
-			try {
-					$co->query("DELETE FROM historias
-						WHERE
-						cedula = '$this->cedula'
-						");
-						$r['resultado'] = 'eliminar';
-			            $r['mensaje'] =  'Registro Eliminado';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
-			}
-		}
-		else{
-			$r['resultado'] = 'eliminar';
-			$r['mensaje'] =  'No existe la cedula';
-		}
-    $result = $this->consultar();
-		return $result;
+    try {
+      $bd = $this->conecta();
+      $bd->query("DELETE FROM historias_medicas
+        WHERE
+        n_historia = '$this->n_historia'
+      ");
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Eliminado';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 
@@ -131,42 +130,29 @@ class Historia extends DB{
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
 		try{
-			$resultados = $co->query("SELECT * from historias");
-
+			$resultados = $co->query("SELECT * from historias_medicas");
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$historias['apellidosynombres'] = $resultado['apellidosynombres'];
-          $historias['cedula'] = $resultado['cedula'];
-          $historias['rif'] = $resultado['rif'];
-          $historias['fechadenacimiento'] = $resultado['fechadenacimiento'];
-          $historias['vivienda'] = $resultado['vivienda'];
-          $historias['automovil'] = $resultado['automovil'];
-          $historias['modelo'] = $resultado['modelo'];
-          $historias['ano'] = $resultado['ano'];
-          $historias['telefono'] = $resultado['telefono'];
-          $historias['celular'] = $resultado['celular'];
-          $historias['estadocivil'] = $resultado['estadocivil'];
-          $historias['tipodesangre'] = $resultado['tipodesangre'];
-          $historias['talladecamisa'] = $resultado['talladecamisa'];
-          $historias['talladezapato'] = $resultado['talladezapato'];
-          $historias['talladepantalon'] = $resultado['talladepantalon'];
-          $historias['correo'] = $resultado['correo'];
-          $historias['cargo'] = $resultado['cargo'];
-          $historias['estatus'] = $resultado['estatus'];
+					$historias['n_historia'] = $resultado['n_historia'];
+          $historias['fecha_registro'] = $resultado['fecha_registro'];
+          $historias['partida_de_nacimiento'] = $resultado['partida_de_nacimiento'];
+          $historias['acta_de_matrimonio'] = $resultado['acta_de_matrimonio'];
+          $historias['constancia_Trabajo'] = $resultado['constancia_Trabajo'];
           array_push($respuesta, $historias);
 				}
 				$r['resultado'] =  $respuesta;
+        $r['mensaje'] =  'consulta';
 			}
 			else{
-				$r['resultado'] = 'consultar';
-				$r['mensaje'] =  '';
+				$r['resultado'] = [];
+				$r['mensaje'] =  'sin resultados';
 			}
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
+			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   private function existe($cedula) {

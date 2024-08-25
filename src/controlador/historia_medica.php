@@ -16,14 +16,19 @@
 			 echo  json_encode($historia->consultar());
 		  }
 		  else if($accion=='buscar'){
-			  $empleado->set_cedula($_POST['buscador']);
+			  $historia->set_cedula($_POST['buscador']);
         echo json_encode($historia->buscar());
 		  }
 		  elseif($accion=='eliminar'){
-			 $historia->set_cedula($_POST['cedula']);
-			 echo  json_encode($historia->eliminar());
+        $historia->set_n_historia($_POST['n_historia']);
+			  echo  json_encode($historia->eliminar());
 		  }
 		  else{
+        $historia->set_n_historia($_POST['n_historia']);
+        $historia->set_fecha_registro($_POST['fecha_registro']);
+        $historia->set_partida_de_nacimiento($_POST['partida_de_nacimiento']);
+        $historia->set_acta_de_matrimonio($_POST['acta_de_matrimonio']);
+        $historia->set_constancia_Trabajo($_POST['constancia_Trabajo']);
 			  if($accion=='incluir'){
 				  echo  json_encode($historia->incluir());
 			  }
@@ -33,7 +38,6 @@
 		  }
 		  exit;
 	  }
-
 	  require_once("vista/".$pagina.".php");
   }
   else{

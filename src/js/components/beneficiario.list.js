@@ -4,29 +4,23 @@ let beneficiariosArray = [];
 
 function cargarDatos(item){
   const beneficiarios = beneficiariosArray[item]
-	$("#id").val(beneficiarios.id);
-	$("#id_afiliado").val(beneficiarios.id_afiliado);
-	$("#parentesco").val(beneficiarios.parentesco);
+	$("#ced_beneficiario").val(beneficiarios.ced_beneficiario);
+	$("#ced_afiliado").val(beneficiarios.ced_afiliado);
+	$("#n_historia").val(beneficiarios.n_historia);
   $("#nombre").val(beneficiarios.nombre);
 	$("#apellido").val(beneficiarios.apellido);
-	$("#edad").val(beneficiarios.edad);
-	$("#telefono").val(beneficiarios.telefono);
-	$("#cargo").val(beneficiarios.cargo);
-	$("#cedula").val(beneficiarios.cedula);
-
-	$("#id_historia").val(beneficiarios.id_historia);
-	$("#cod_historia").val(beneficiarios.cod_historia);
-	$("#tipo_sangre").val(beneficiarios.tipo_sangre);
-	$("#sexo").val(beneficiarios.sexo);
-	$("#estatura").val(beneficiarios.estatura);
-	$("#peso").val(beneficiarios.peso);
 	$("#fecha_nacimiento").val(beneficiarios.fecha_nacimiento);
+	$("#codigo_postal").val(beneficiarios.codigo_postal);
+	$("#estado_provincia").val(beneficiarios.estado_provincia);
+	$("#ciudad").val(beneficiarios.ciudad);
 
-	$("#id_direccion").val(beneficiarios.id_direccion);
 	$("#direccion").val(beneficiarios.direccion);
-	$("#zona").val(beneficiarios.zona);
-	$("#descripcion").val(beneficiarios.descripcion);
-	$("#postal").val(beneficiarios.postal);
+	$("#numero_casa").val(beneficiarios.numero_casa);
+	$("#sexo").val(beneficiarios.sexo);
+	$("#telefono").val(beneficiarios.telefono);
+	$("#correo").val(beneficiarios.correo);
+	$("#tipo_sangre").val(beneficiarios.tipo_sangre);
+	$("#relacion").val(beneficiarios.relacion);
 }
 
 function beneficiarios(data){
@@ -45,7 +39,7 @@ function beneficiarios(data){
       const card = `
         <div class="item">
           <p>Nombre: ${item.nombre}</p>
-          <p>Parentesco: ${item.parentesco}</p>
+          <p>Parentesco: ${item.relacion}</p>
           <p>Telefono: ${item.telefono}</p>
           <p>Cedula: ${item.cedula}</p>
           <p>historia: ${item.cod_historia}</p>

@@ -73,7 +73,7 @@ CREATE TABLE afiliados (
   n_historia VARCHAR(20),
   rif_institucion VARCHAR(20),
   FOREIGN KEY (n_historia) REFERENCES historias_medicas(n_historia),
-  FOREIGN KEY (rif_institucion) REFERENCES instituciones(rif_institucion)
+  FOREIGN KEY (rif_institucion) REFERENCES instituciones(rif)
 );
 
 CREATE TABLE beneficiarios (
