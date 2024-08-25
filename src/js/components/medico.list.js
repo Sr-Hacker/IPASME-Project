@@ -11,19 +11,17 @@ $(document).ready(function(){
 
 function cargarDatos(item){
   const medicos = medicosArray[item];
-	$("#id").val(medicos.id);
-	$("#nombres").val(medicos.nombres_medico);
-	$("#apellidos").val(medicos.apellidos_medico);
-  $("#cedula").val(medicos.cedula_medico);
-	$("#telefono").val(medicos.telefono_medico);
-	$("#externo").val(medicos.externo_medico);
-	$("#id_medico").val(medicos.id_medico);
-	$("#id_especialidad").val(medicos.id_especialidad);
+
+	$("#ced_medico").val(medicos.ced_medico);
+	$("#nombre").val(medicos.nombre);
+  $("#apellido").val(medicos.apellido);
+	$("#estado").val(medicos.estado);
+	$("#cod_especialidad").val(medicos.cod_especialidad);
 }
 
 function agregar_especialidad(id){
   const especialidad = especialidadesArray[id]
-  $("#id_especialidad").val(especialidad.id);
+  $("#cod_especialidad").val(especialidad.id);
   const carta = `
   <div styles="background: black;">
     <p>Especialidad:${especialidad.nombre} ${especialidad.codigo}</p>
@@ -51,16 +49,16 @@ function medicos(data){
       }
       const card = `
         <div class="item">
-          <p>Nombres: ${item.nombres_medico}</p>
-          <p>Apellidos: ${item.apellidos_medico}</p>
+          <p>Nombres: ${item.nombre}</p>
+          <p>Apellidos: ${item.apellido}</p>
           <p>Tipo: ${externo}</p>
-          <p>cedula: ${item.cedula_medico}</p>
+          <p>cedula: ${item.ced_medico}</p>
           <div class="options">
-          <button type='button' onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
-          <button type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
+          <button type='button' onclick="editModal('${item.ced_medico}', cargarDatos)">Modificar</button>
+          <button type='button' onclick="deleteModal('${item.ced_medico}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
-      medicosArray[item.id] = item;
+      medicosArray[item.ced_medico] = item;
       result = result.concat("",card);
     })
   }
@@ -83,8 +81,8 @@ function medico_especialidades(data){
     data.map((item) => {
       const carta = `
         <div class="item">
-          <p>especialidad: ${item.nombre}  ${item.codigo}</p>
-          <button type='button' onclick="agregar_especialidad('${item.id}')">Agregar</button>
+          <p>especialidad: ${item.nombre}  ${item.cod_especialidad}</p>
+          <button type='button' onclick="agregar_especialidad('${item.cod_especialidad}')">Agregar</button>
         </div>`;
       especialidadesArray[item.id] = item;
       result = result.concat("",carta);

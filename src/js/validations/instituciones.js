@@ -18,45 +18,41 @@ $(document).ready(function(){
 		$(this),$("#m_nombre"),"Solo letras  entre 3 y 30 caracteres");
 	});
 
+  $("#correo").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#correo").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_correo"),"correo electronico no valido");
+	});
+
 	$("#telefono").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
 	});
 
 	$("#telefono").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#m_telefono"),"Solo letras  entre 3 y 30 caracteres");
+		$(this),$("#m_telefono"),"Formato de numero telefonoco invalido");
 	});
 });
 
 //Validación de todos los campos antes del envio
 function validarEnvio(){
 	if(validarkeyup(/^[0-9]{7,8}$/,$("#rif"),
-		$("#m_rif"),"El formato debe ser 9999999")==0){
-	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
-				"99999999");
+		$("#m_rif"),"El formato no coincide con un rifz")==0){
 		return false;
 	}
-	// else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-	// 	$("#apellidos"),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
-	// 	muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
-	// 	return false;
-	// }
-	// else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-	// 	$("#nombres"),$("#snombres"),"Solo letras  entre 3 y 30 caracteres")==0){
-	// 	muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
-	// 	return false;
-	// }
+	else if(validarkeyup(/^\+?(\d{1,3})?[-.\s]?(\(?\d{1,4}\)?)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
+		$("#telefono"),$("#m_telefono"),"Solo numeros")==0){
 
+		return false;
+	}
+	else if(validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+		$("#correo"),$("#m_correo"),"correo electronico no valido")==0){
+		return false;
+	}
 	return true;
-}
-
-//Funcion que muestra el modal con un mensaje
-function muestraMensaje(mensaje){
-	$("#contenidodemodal").html(mensaje);
-    $("#mostrarmodal").modal("show");
-    setTimeout(function() {
-      $("#mostrarmodal").modal("hide");
-    },5000);
 }
 
 //Función para validar por Keypress

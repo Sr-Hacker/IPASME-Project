@@ -73,14 +73,15 @@ class Institucion extends DB{
           ':correo' => $this->correo
         ]);
 
-        $r['resultado'] = 'incluir';
+        $consulta = $this->consultar();
+        $r['resultado'] =  $consulta['resultado'];
         $r['mensaje'] =  'Registro Inluido';
 			} catch(Exception $e) {
-				$r['resultado'] = 'error';
+        $consulta = $this->consultar();
+        $r['resultado'] =  $consulta['resultado'];
 			  $r['mensaje'] = $e->getMessage();
 			}
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function modificar(){
@@ -111,14 +112,15 @@ class Institucion extends DB{
         ':correo' => $this->correo
       ]);
 
-      $r['resultado'] = 'modificar';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Modificado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function eliminar(){
@@ -129,14 +131,15 @@ class Institucion extends DB{
       $query->bindParam(':rif', $this->rif, PDO::PARAM_STR);
       $query->execute();
 
-      $r['resultado'] = 'eliminar';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Eliminado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function consultar(){
@@ -159,17 +162,17 @@ class Institucion extends DB{
           array_push($respuesta, $institucion);
 				}
 				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  "consulta";
 			}
 			else{
-				$r['resultado'] = 'consultar';
-				$r['mensaje'] =  '';
+				$r['resultado'] = [];
+				$r['mensaje'] =  'sin resultados';
 			}
-
 		}catch(Exception $e){
-			$r['resultado'] = $e->getMessage();
+			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {

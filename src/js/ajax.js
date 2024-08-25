@@ -13,8 +13,11 @@ function ajax(data, callback) {
       try {
         console.log('response: ', response)
         const result = JSON.parse(response)
-        console.log(result)
-        callback(result)
+        console.log(result.resultado)
+        if(result?.mensaje){
+          alerta(result?.mensaje)
+        }
+        callback(result.resultado)
         limpia()
       } catch (e) {
         console.log(e);

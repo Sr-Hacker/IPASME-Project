@@ -8,7 +8,6 @@ include.addEventListener("click", function () {
 });
 
 function editModal(e, callback){
-  console.log("wtf?")
   callback(e);
   let modal = document.getElementById("modal")
   modal.style.display = "block";

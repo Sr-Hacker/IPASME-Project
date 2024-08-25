@@ -1,235 +1,211 @@
 <?php
 require_once('config/db.php');
-require_once('modelo/especialidad.php');
 
 class Medico extends DB{
-  private $id;
-  private $nombres;
-  private $apellidos;
-  private $externo;
-  private $cedula;
-  private $telefono;
-  private $id_especialidad;
-  private $id_medico;
+  private $ced_medico;
+  private $nombre;
+  private $apellido;
+  private $estado;
 
-	function set_id($valor){
-		$this->id = $valor;
+  function set_ced_medico($valor){
+    $this->ced_medico = $valor;
+  }
+	function set_nombre($valor){
+		$this->nombre = $valor;
 	}
-  function set_nombres($valor){
-		$this->nombres = $valor;
+	function set_apellido($valor){
+		$this->apellido = $valor;
 	}
-  function set_apellidos($valor){
-		$this->apellidos = $valor;
-	}
-  function set_externo($valor){
-		$this->externo = $valor;
-	}
-  function set_cedula($valor){
-		$this->cedula = $valor;
-	}
-  function set_telefono($valor){
-		$this->telefono = $valor;
-	}
-  function set_id_especialidad($valor){
-		$this->id_especialidad = $valor;
-	}
-  function set_id_medico($valor){
-		$this->id_medico = $valor;
-	}
+  function set_estado($valor){
+    $this->estado = $valor;
+  }
 
 	function incluir(){
 		$r = array();
-    $r2 = array();
-		if(!$this->existe($this->cedula)){
-			try {
-        $bd = $this->conecta();
-        $query = $bd->prepare("
-          INSERT INTO medicos (
-            nombres,
-            apellidos,
-            externo,
-            cedula,
-            telefono
-          ) VALUES (
-            :nombres,
-            :apellidos,
-            :externo,
-            :cedula,
-            :telefono
-          )
-        ");
-
-        $query->execute([
-          ':nombres' => $this->nombres,
-          ':apellidos' => $this->apellidos,
-          ':externo' => $this->externo,
-          ':cedula' => $this->cedula,
-          ':telefono' => $this->telefono,
-        ]);
-        $r['id'] = $bd->lastInsertId();
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			  $r['mensaje'] =  $e->getMessage();
-			}
-		} else {
-			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Esta especialidad ya existe';
-		}
-    $this->set_id_medico($r["id"]);
-
     try {
       $bd = $this->conecta();
       $query = $bd->prepare("
-        INSERT INTO medico_especialidad (
-          id_medico,
-          id_especialidad
+        INSERT INTO medicos (
+          ced_medico,
+          nombre,
+          apellido,
+          estado
         ) VALUES (
-          :id_medico,
-          :id_especialidad
+          :ced_medico,
+          :nombre,
+          :apellido,
+          :estado
         )
       ");
 
       $query->execute([
-        ':id_medico' => $this->id_medico,
-        ':id_especialidad' => $this->id_especialidad
+        ':ced_medico' => $this->ced_medico,
+        ':nombre' => $this->nombre,
+        ':apellido' => $this->apellido,
+        ':estado' => $this->estado
       ]);
-      $r2['id'] = $bd->lastInsertId();
-    } catch(Exception $e) {
-      $r2['resultado'] = 'error';
-      $r2['mensaje'] =  $e->getMessage();
-    }
 
-    $result = $this->consultar();
-		return $result;
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Inluido';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] = $e->getMessage();
+    }
+		return $r;
 	}
 
-	public function modificar(){
+	function modificar(){
     $r = array();
     try {
-      $co = $this->conecta();
-			$co->query("UPDATE medicos SET
-        nombres = '$this->nombres',
-        apellidos = '$this->apellidos',
-        externo = '$this->externo',
-        cedula = '$this->cedula',
-        telefono = '$this->telefono'
+      $bd = $this->conecta();
+			$query = $bd->prepare("UPDATE medicos SET
+        ced_medico = :ced_medico,
+        nombre = :nombre,
+        apellido = :apellido,
+        estado = :estado
         WHERE
-        id = '$this->id_medico'
+        ced_medico = :ced_medico
       ");
-      $r['resultado'] = 'modificar';
+
+      $query->execute([
+        ':ced_medico' => $this->ced_medico,
+        ':nombre' => $this->nombre,
+        ':apellido' => $this->apellido,
+        ':estado' => $this->estado
+      ]);
+
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Modificado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function eliminar(){
     $r = array();
     try {
-      $co = $this->conecta();
-      $co->query("DELETE FROM medico_especialidad
+      $bd = $this->conecta();
+      $bd->query("DELETE FROM medicos
         WHERE
-        id = '$this->id'
-        ");
-        $r['resultado'] = 'eliminar';
-        $r['mensaje'] =  'Registro Eliminado';
+        ced_medico = '$this->ced_medico'
+      ");
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Eliminado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-
-    try {
-      $co = $this->conecta();
-      $co->query("DELETE FROM medicos
-        WHERE
-        id = '$this->id_medico'
-        ");
-        $r['resultado'] = 'eliminar';
-        $r['mensaje'] =  'Registro Eliminado';
-    } catch(Exception $e) {
-      $r['resultado'] = 'error';
-      $r['mensaje'] =  $e->getMessage();
-    }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function consultar(){
     $r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT
-        m_e.*,
-          m1.nombres AS nombres_medico,
-          m1.apellidos AS apellidos_medico,
-          m1.externo AS externo_medico,
-          m1.cedula AS cedula_medico,
-          m1.telefono AS telefono_medico,
+			$resultados = $bd->query("SELECT * FROM medicos");
 
-          e2.nombre AS nombre_especialidad,
-          e2.codigo AS codigo_especialidad
-        FROM
-          medico_especialidad m_e
-        JOIN
-          medicos m1 ON m_e.id_medico = m1.id
-        JOIN
-          especialidades e2 ON m_e.id_especialidad = e2.id;
-      ");
-
-      if($resultados){
+			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$medicos['id'] = $resultado['id'];
-					$medicos['id_medico'] = $resultado['id_medico'];
-					$medicos['id_especialidad'] = $resultado['id_especialidad'];
-
-					$medicos['nombres_medico'] = $resultado['nombres_medico'];
-          $medicos['apellidos_medico'] = $resultado['apellidos_medico'];
-          $medicos['externo_medico'] = $resultado['externo_medico'];
-          $medicos['cedula_medico'] = $resultado['cedula_medico'];
-          $medicos['telefono_medico'] = $resultado['telefono_medico'];
-
-          $medicos['nombre_especialidad'] = $resultado['nombre_especialidad'];
-          $medicos['codigo_especialidad'] = $resultado['codigo_especialidad'];
-          array_push($respuesta, $medicos);
+					$afiliado['ced_medico'] = $resultado['ced_medico'];
+          $afiliado['nombre'] = $resultado['nombre'];
+          $afiliado['apellido'] = $resultado['apellido'];
+          $afiliado['estado'] = $resultado['estado'];
+          array_push($respuesta, $afiliado);
 				}
 				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  'consulta';
 			}
 			else{
-				$r['resultado'] = 'consultar';
-				$r['mensaje'] =  '';
+				$r['resultado'] = [];
+				$r['mensaje'] =  'sin resultados';
 			}
-
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
+			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
+
+  function buscar() {
+    try {
+      $bd = $this->conecta();
+      $query = $bd->prepare("SELECT
+        a.*,
+          h1.cod_historia AS cod_historia,
+          h1.tipo_sangre AS tipo_sangre,
+          h1.sexo AS sexo,
+          h1.peso AS peso,
+          h1.estatura AS estatura,
+          h1.fecha_nacimiento AS fecha_nacimiento,
+
+          d2.direccion AS direccion,
+          d2.zona AS zona,
+          d2.descripcion AS descripcion,
+          d2.postal AS postal,
+
+          i3.nombre AS nombre_institucion,
+          i3.rif AS rif_institucion,
+          i3.id_direccion AS id_direccion_institucion,
+
+          d4.direccion AS direccion_institucion,
+          d4.zona AS zona_institucion,
+          d4.descripcion AS descripcion_institucion,
+          d4.postal AS postal_institucion
+        FROM
+          medicos a
+        JOIN
+          historias h1 ON a.id_historia = h1.id
+        JOIN
+          direcciones d2 ON a.id_direccion = d2.id
+        JOIN
+          instituciones i3 ON a.id_institucion = i3.id
+        JOIN
+          direcciones d4 ON i3.id_direccion = d4.id
+        WHERE cedula = :cedula");
+      $query->bindParam(':cedula', $this->cedula, PDO::PARAM_STR);
+      $query->execute();
+      $fila = $query->fetchAll(PDO::FETCH_BOTH);
+      return $fila;
+    } catch (Exception $e) {
+      return false;
+    }
+  }
 
   function consultar_especialidades(){
-    $especialidad = new Especialidad();
-    return $especialidad->consultar();
-	}
-
-	private function existe($cedula){
-    try{
+    $r = array();
+		try{
       $bd = $this->conecta();
-			$resultado = $bd->query("SELECT * FROM medicos WHERE cedula='$cedula'");
+			$resultados = $bd->query("SELECT * FROM especialidades");
 
-			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
-			if($fila){
-				return true;
+			if($resultados){
+				$respuesta = [];
+				foreach($resultados as $resultado){
+          $institucion['cod_especialidad'] = $resultado['cod_especialidad'];
+          $institucion['nombre'] = $resultado['nombre'];
+          array_push($respuesta, $institucion);
+				}
+				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  'consulta de instituciones';
 			}
 			else{
-				return false;;
+				$r['resultado'] = [];
+				$r['mensaje'] =  'consultar';
 			}
+
 		}catch(Exception $e){
-			return false;
+			$r['resultado'] = [];
+			$r['mensaje'] =  $e->getMessage();
 		}
-	}
+		return $r;
+  }
 }
 ?>

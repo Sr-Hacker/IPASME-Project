@@ -20,6 +20,11 @@
   <!--Fin Fondo-->
 
 
+  <p id="alert" style="position: absolute; color: white;">
+    no hay mensaje
+  </p>
+
+
   <!--seccion del menu-->
             <div class="container">
             <aside>
@@ -32,9 +37,9 @@
                             close
                         </span>
                     </div>
-                </div>
+                  </div>
 
-                <div class="sidebar">
+                  <div class="sidebar">
                   <a href="?pagina=historia_medica" id="historias">
                       <span class="material-icons-sharp">
                         receipt_long
@@ -150,6 +155,7 @@
 
 
 <script src="js/actions/menu.js"></script>
+<script src="js/alerta.js"></script>
 
 
 </body>

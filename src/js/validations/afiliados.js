@@ -32,22 +32,22 @@ $(document).ready(function(){
 
 //Validación de todos los campos antes del envio
 function validarenvio(){
-	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
-		$("#scedula"),"El formato debe ser 9999999")==0){
-	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
-						"99999999");
-		return false;
-	}
-	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#apellido"),$("#sapellido"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
-	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombre"),$("#snombre"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
+	// if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
+	// 	$("#scedula"),"El formato debe ser 9999999")==0){
+	//     muestraMensaje("La cedula debe coincidir con el formato <br/>"+
+	// 					"99999999");
+	// 	return false;
+	// }
+	// else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+	// 	$("#apellido"),$("#sapellido"),"Solo letras  entre 3 y 30 caracteres")==0){
+	// 	muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
+	// 	return false;
+	// }
+	// else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+	// 	$("#nombre"),$("#snombre"),"Solo letras  entre 3 y 30 caracteres")==0){
+	// 	muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
+	// 	return false;
+	// }
 
 	return true;
 }
@@ -86,16 +86,19 @@ mensaje){
 }
 
 function limpia(){
-	$("#cedula_afiliado").val("");
-	$("#n_historia").val("");
+	$("#ced_afiliado").val("");
 	$("#nombre").val("");
 	$("#apellido").val("");
-	$("#sexo").val("");
 	$("#fecha_nacimiento").val("");
+	$("#sexo").val("");
 	$("#estado_provincia").val("");
+	$("#ciudad").val("");
 	$("#direccion").val("");
 	$("#numero_casa").val("");
 	$("#codigo_postal").val("");
 	$("#telefono").val("");
 	$("#correo").val("");
+	$("#tipo_sangre").val("");
+	$("#n_historia").val("");
+	$("#rif_institucion").val("");
 }

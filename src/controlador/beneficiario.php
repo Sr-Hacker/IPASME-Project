@@ -17,40 +17,34 @@
 			  echo  json_encode($beneficiarios->consultar());
 		  }
       else if($accion=='buscar'){
-			  $beneficiarios->set_cedula($_POST['buscador']);
+			  $beneficiarios->set_ced_beneficiario($_POST['buscador']);
         echo json_encode($beneficiarios->buscar());
 		  }
       elseif($accion=='eliminar'){
-			  $beneficiarios->set_id($_POST['id']);
+			  $beneficiarios->set_ced_beneficiario($_POST['ced_beneficiario']);
 			  echo  json_encode($beneficiarios->eliminar());
 		  }
 		  else{
-        $beneficiarios->set_parentesco($_POST['parentesco']);
+        $beneficiarios->set_ced_beneficiario($_POST['ced_beneficiario']);
+        $beneficiarios->set_ced_afiliado($_POST['ced_afiliado']);
+        $beneficiarios->set_n_historia($_POST['n_historia']);
         $beneficiarios->set_nombre($_POST['nombre']);
         $beneficiarios->set_apellido($_POST['apellido']);
-        $beneficiarios->set_telefono($_POST['telefono']);
-        $beneficiarios->set_edad($_POST['edad']);
-        $beneficiarios->set_cedula($_POST['cedula']);
-
-        $beneficiarios->set_cod_historia($_POST['cod_historia']);
-        $beneficiarios->set_tipo_sangre($_POST['tipo_sangre']);
-        $beneficiarios->set_sexo($_POST['sexo']);
-        $beneficiarios->set_estatura($_POST['estatura']);
-        $beneficiarios->set_peso($_POST['peso']);
         $beneficiarios->set_fecha_nacimiento($_POST['fecha_nacimiento']);
-
+        $beneficiarios->set_codigo_postal($_POST['codigo_postal']);
+        $beneficiarios->set_estado_provincia($_POST['estado_provincia']);
+        $beneficiarios->set_ciudad($_POST['ciudad']);
         $beneficiarios->set_direccion($_POST['direccion']);
-        $beneficiarios->set_zona($_POST['zona']);
-        $beneficiarios->set_descripcion($_POST['descripcion']);
-        $beneficiarios->set_postal($_POST['postal']);
+        $beneficiarios->set_numero_casa($_POST['numero_casa']);
+        $beneficiarios->set_sexo($_POST['sexo']);
+        $beneficiarios->set_telefono($_POST['telefono']);
+        $beneficiarios->set_correo($_POST['correo']);
+        $beneficiarios->set_tipo_sangre($_POST['tipo_sangre']);
+        $beneficiarios->set_relacion($_POST['relacion']);
 
 			  if($accion=='incluir'){
           echo  json_encode($beneficiarios->incluir());
 			  }elseif($accion=='modificar'){
-          $beneficiarios->set_id($_POST['id']);
-          $beneficiarios->set_id_historia($_POST['id_historia']);
-          $beneficiarios->set_id_direccion($_POST['id_direccion']);
-          $beneficiarios->set_id_afiliado($_POST['id_afiliado']);
 				  echo  json_encode($beneficiarios->modificar());
 			  }
 		  }
