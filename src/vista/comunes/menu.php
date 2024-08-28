@@ -64,12 +64,6 @@
                     </span>
                     <h3>Gestionar medicos</h3>
                   </a>
-                  <a href="?pagina=empleados" id="empleados">
-                        <span class="material-icons-sharp">
-                            person_outline
-                        </span>
-                        <h3>Gestionar empleado</h3>
-                  </a>
                   <a href="?pagina=especialidad" id="especialidad">
                     <span class="material-icons-sharp">
                       psychology
@@ -88,12 +82,6 @@
                       </span>
                       <h3>Gestionar instituciones</h3>
                     </a>
-                    <a href="?pagina=requisitos" id="requisitos">
-                      <span class="material-icons-sharp">
-                        list_alt
-                      </span>
-                      <h3>Gestionar requisitos</h3>
-                    </a>
                     <a href="?pagina=tramites" id="tramites">
                     <span class="material-icons-sharp">
                       list_alt
@@ -105,12 +93,6 @@
                             personal_injury
                         </span>
                         <h3>Gestionar reposo</h3>
-                    </a>
-                    <a href="?pagina=patologias" id="patologia">
-                      <span class="material-icons-sharp">
-                          coronavirus
-                      </span>
-                      <h3>Gestionar patologia</h3>
                     </a>
                     <a href="?pagina=tratamientos" id="tratamiento">
                       <span class="material-icons-sharp">
