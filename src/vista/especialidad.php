@@ -1,6 +1,6 @@
 <html>
   <?php require_once("vista/comunes/header.php"); ?>
-  <link rel="stylesheet" href="css/especialidades.css">
+  <link rel="stylesheet" href="css/afiliados.css">
   <link rel="stylesheet" href="css/modal.css">
 
 <body>
@@ -8,15 +8,15 @@
     <center>
       <h2>Especialidades</h2>
     </center>
-    <div class="container_especialidad">
-      <div class="container_especialidad--menu">
-        <div class="container_especialidad--search">
+    <div class="container_center">
+      <div class="container_center--menu">
+        <div class="container_center--search">
           <input class="buscador" placeholder="Buscar especialidad" type="text" id="EspecialidadBuscador">
-          <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
+          <button id="buscar"><span class="material-symbols-rounded">search</span></button>
         </div>
         <button id="include" class="crear">Registrar Especialidad</button>
       </div>
-      <div class="container_especialidad--list">
+      <div class="container_center--list">
         <div id="get_result"></div>
       </div>
     </div>

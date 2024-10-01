@@ -19,12 +19,6 @@
   </div>
   <!--Fin Fondo-->
 
-
-  <p id="alert" style="position: absolute; color: white;">
-    no hay mensaje
-  </p>
-
-
   <!--seccion del menu-->
             <div class="container">
             <aside>
@@ -137,7 +131,6 @@
 
 
 <script src="js/actions/menu.js"></script>
-<script src="js/alerta.js"></script>
 
 
 </body>

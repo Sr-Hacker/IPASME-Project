@@ -8,15 +8,15 @@
     <center>
       <h2>GESTION DE INSTITUCIONES</h2>
     </center>
-    <div class="container_afiliados">
-      <div class="container_afiliados--menu">
-        <div class="container_afiliados--search">
+    <div class="container_center">
+      <div class="container_center--menu">
+        <div class="container_center--search">
           <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar"><span class="material-symbols-rounded">search</span></button>
         </div>
         <button id="include" class="crear">Registrar Instituciones</button>
       </div>
-      <div class="container_afiliados--list">
+      <div class="container_center--list">
         <div id="consultar_instituciones"></div>
       </div>
     </div>

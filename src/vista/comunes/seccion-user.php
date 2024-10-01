@@ -16,26 +16,21 @@
 
                 <!--Nav User-->
 
-                <div class="nav">
-                    <button id="menu-btn">
-                        <span class="material-icons-sharp">menu</span>
-                    </button>
-                    <div class="dark-mode">
-                        <span class="material-icons-sharp active">light_mode</span>
-                        <span class="material-icons-sharp">dark_mode</span>
+                  <div class="nav">
+                    <div class="dark-mode" id="dark-mode">
+                      <span class="material-icons-sharp active">light_mode</span>
+                      <span class="material-icons-sharp">dark_mode</span>
                     </div>
-
                     <div class="profile">
                         <div class="info">
-                                <p>Hey, <b>User</b></p>
-                                <small class="text-muted">admin</small>
+                                <p>Hey, User</p>
+                                <p>admin</p>
                         </div>
                         <div class="profile-photo">
                             <img src="cr7.jpg" alt="">
                         </div>
                     </div>
-
-                </div>
+                  </div>
                 <!--End of Nav User-->
 
                 <div class="user-profile">
@@ -60,19 +55,18 @@
                     <div class="notifications">
                         <div class="icon">
                             <span class="material-icons-sharp">
-                                edit
+                                error_outline
                             </span>
                         </div>
                         <div class="content-user">
                             <div class="info">
                                 <h3>Espacio de trabajo</h3>
                                 <small class="text_muted">
-                                    08:00 AM - 12:00 PM
+                                  <p id="alert">
+                                  no hay mensaje
+                                  </p>
                                 </small>
                             </div>
-                            <span class="material-icons-sharp">
-                                more_vert
-                            </span>
                         </div>
                     </div>
 
@@ -89,16 +83,17 @@
                                     08:00 AM - 12:00 PM
                                 </small>
                             </div>
-                            <span class="material-icons-sharp">
-                                more_vert
-                            </span>
                         </div>
                     </div>
-
                 </div>
 
 
             </section>
             <!--Section User end-->
+
+  <script src="js/alerta.js"></script>
+  <script src="js/dark-mode.js"></script>
+
+
 </body>
 </html>

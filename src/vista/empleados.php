@@ -1,22 +1,22 @@
 <html>
   <?php require_once("vista/comunes/header.php"); ?>
   <link rel="stylesheet" href="css/modal.css">
-  <link rel="stylesheet" href="css/empleado.css">
+  <link rel="stylesheet" href="css/afiliados.css">
 
 <body>
   <div>
     <center>
       <h2>Empleados</h2>
     </center>
-    <div class="container_empleados">
-      <div class="container_empleados--menu">
-        <div class="container_empleados--search">
+    <div class="container_center">
+      <div class="container_center--menu">
+        <div class="container_center--search">
           <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
           <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
         </div>
         <button class="crear" id="include">Registrar Empleado</button>
       </div>
-      <div class="container_empleados--list">
+      <div class="container_center--list">
         <div id="consultar_empleados"></div>
       </div>
     </div>

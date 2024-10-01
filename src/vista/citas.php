@@ -1,6 +1,6 @@
 <html>
   <?php require_once("vista/comunes/header.php"); ?>
-  <link rel="stylesheet" href="css/cita.css">
+  <link rel="stylesheet" href="css/afiliados.css">
   <link rel="stylesheet" href="css/modal.css">
 
 <body>
@@ -8,15 +8,15 @@
     <center>
       <h2>Citas</h2>
     </center>
-    <div class="container_citas">
-      <div class="container_citas--menu">
-        <div class="container_citas--search">
+    <div class="container_center">
+      <div class="container_center--menu">
+        <div class="container_center--search">
           <input class="buscador" type="date" name="fecha" id="fecha">
           <button id="buscar" button><span class="material-symbols-rounded">search</span></button>
         </div>
         <button class="crear" id="include">Registrar Cita</button>
       </div>
-      <div class="container_citas--list">
+      <div class="container_center--list">
         <div id="get_result"></div>
       </div>
     </div>
