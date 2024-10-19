@@ -1,22 +1,20 @@
 .container-user .nav{
   display: flex;
   justify-content: end;
+  align-items: center;
   gap: 2rem;
 }
 
-.container-user .nav button{
-  display: none;
-}
-
-.container-user .dark-mode{
-  background-color: var(--color-light);
+.container-user .nav .dark-mode{
+  color: white;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 1.6rem;
-  width: 4.2rem;
+  width: 4rem;
   cursor: pointer;
-  border-radius: var(--border-radius-1);
 }
 
 .container-user .dark-mode span{
@@ -29,8 +27,7 @@
 }
 
 .container-user .dark-mode span.active{
-  background-color: var(--color-primary);
-  color: white;
+  background-color: #747171;
   border-radius: var(--border-radius-1);
 }
 
@@ -38,6 +35,7 @@
   display: flex;
   gap: 2rem;
   text-align: right;
+  color: var(--color-dark);
 }
 
 .container-user .nav .profile .profile-photo{
@@ -58,6 +56,7 @@
   box-shadow: var(--box-shadow);
   cursor: pointer;
   transition: all 0.3s ease;
+  border-radius: var(--border-radius);
 }
 
 .container-user .user-profile:hover{
@@ -73,18 +72,25 @@
 
 .container-user .user-profile h2{
   margin-bottom: 0.2rem;
+  color: var(--color-dark);
+
 }
 
 .container-user .user-profile p{
-  color: black;
+  color: var(--color-dark);
   font-size: 1rem;
+}
+
+.container-user .recordatorio{
+  color: var(--color-dark);
 }
 
 .container-user .recordatorio .header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.4rem;
+  margin-top: .8rem;
 }
 
 .container-user .recordatorio .header span{
@@ -99,7 +105,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
   padding: .5rem var(--border-radius-1);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);

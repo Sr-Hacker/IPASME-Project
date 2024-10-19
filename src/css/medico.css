@@ -66,11 +66,18 @@
   text-align: center;
   display: flex;
   justify-content: space-around;
-  width: 99%;
+  width: 97%;
+  height: 80%;
   background-color: var(--color-user);
   margin: 3% auto 0;
   border-radius: var(--border-radius);
   padding: 2px;
+}
+
+.get_result{
+height: 85%;
+overflow: hidden;
+overflow-y: scroll;
 }
 
 .item .options{

@@ -1,6 +1,6 @@
 <html>
   <?php require_once("vista/comunes/header.php"); ?>
-  <link rel="stylesheet" href="css/tratamiento.css">
+  <link rel="stylesheet" href="css/afiliados.css">
   <link rel="stylesheet" href="css/modal.css">
 
 <body>
@@ -8,15 +8,15 @@
     <center>
       <h2>Tratamientos</h2>
     </center>
-    <div class="container_tratamientos">
-      <div class="container_tratamientos--menu">
-        <div class="container_tratamientos--search">
+    <div class="container_center">
+      <div class="container_center--menu">
+        <div class="container_center--search">
           <input placeholder="cedula" type="number" id="cedulaBuscador">
-          <button id="buscar" button>buscar</button>
+          <button id="buscar"><span class="material-symbols-rounded">search</span></button>
         </div>
-        <button id="include">Registrar Tratamiento</button>
+        <button id="include" class="crear">Registrar Tratamiento</button>
       </div>
-      <div class="container_tratamientos--list">
+      <div class="container_center--list">
         <div id="get_result"></div>
       </div>
     </div>

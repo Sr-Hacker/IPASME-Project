@@ -2,13 +2,13 @@
 @import url(reset.css);
 
 :root{
-    --color-primary: #6c9bfc;
+    --color-primary: #b2c9f7;
     --color-danger: #169c05;
     --color-success: #189C85;
-    --color-warning: #F7D060;
+    --color-light-mode: #ffa500;
     --color-white: #fff;
     --color-info-dark: #232529;
-    --color-dark: #363949;
+    --color-dark: #0f0f10;
     --color-light: rgba(255, 255, 255, 0.30);
     --color-dark-variant: #677483;
     --color-user: rgba(66, 57, 57, 0.3);
@@ -27,7 +27,7 @@
     --color-white: #202528;
     --color-dark: #edeffd;
     --color-dark-variant: #a3bdcc;
-    --color-ligth: rgba(0, 0, 0, 0.4);
+    --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
