@@ -12,9 +12,9 @@
       <div class="container_reposos--menu">
         <div class="container_reposos--search">
           <input placeholder="cedula" type="number" id="cedulaBuscador">
-          <button id="buscar" button>buscar</button>
+          <button id="buscar">buscar</button>
         </div>
-        <button id="include">Registrar Reposo</button>
+        <button id="include" class="crear">Registrar Reposo</button>
       </div>
       <div class="container_reposos--list">
         <div id="get_result"></div>

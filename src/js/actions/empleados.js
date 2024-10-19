@@ -17,21 +17,35 @@ function _get(){
 }
 
 function _include(){
+  const ced_empleado = document.getElementById("ced_empleado").value;
+  const fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
-  const cedula = document.getElementById("cedula").value;
   const telefono = document.getElementById("telefono").value;
   const contrasena = document.getElementById("contrasena").value;
   const rol = document.getElementById("rol").value;
+  const estado_provincia = document.getElementById("estado_provincia").value;
+  const ciudad = document.getElementById("ciudad").value;
+  const direccion = document.getElementById("direccion").value;
+  const codigo_postal = document.getElementById("codigo_postal").value;
+  const numero_casa = document.getElementById("numero_casa").value;
+  const correo = document.getElementById("correo").value;
 
 	let data = new FormData();
 	data.append('accion','incluir');
+  data.append('ced_empleado', ced_empleado);
   data.append('nombre', nombre);
   data.append('apellido', apellido);
-  data.append('cedula', cedula);
+  data.append('fecha_nacimiento', fecha_nacimiento);
   data.append('telefono', telefono);
   data.append('contrasena', contrasena);
   data.append('rol', rol);
+  data.append('estado_provincia', estado_provincia);
+  data.append('ciudad', ciudad);
+  data.append('direccion', direccion);
+  data.append('codigo_postal', codigo_postal);
+  data.append('numero_casa', numero_casa);
+  data.append('correo', correo);
 
 	ajax(data, empleados);
   let modal1 =  document.getElementById("modal");
@@ -39,23 +53,35 @@ function _include(){
 }
 
 function _edit(){
-  const id = document.getElementById("id").value;
+  const ced_empleado = document.getElementById("ced_empleado").value;
+  const fecha_nacimiento = document.getElementById("fecha_nacimiento").value;
   const nombre = document.getElementById("nombre").value;
   const apellido = document.getElementById("apellido").value;
-  const cedula = document.getElementById("cedula").value;
   const telefono = document.getElementById("telefono").value;
   const contrasena = document.getElementById("contrasena").value;
   const rol = document.getElementById("rol").value;
+  const estado_provincia = document.getElementById("estado_provincia").value;
+  const ciudad = document.getElementById("ciudad").value;
+  const direccion = document.getElementById("direccion").value;
+  const codigo_postal = document.getElementById("codigo_postal").value;
+  const numero_casa = document.getElementById("numero_casa").value;
+  const correo = document.getElementById("correo").value;
 
 	let data = new FormData();
   data.append('accion','modificar');
-  data.append('id', id);
+  data.append('ced_empleado', ced_empleado);
   data.append('nombre', nombre);
   data.append('apellido', apellido);
-  data.append('cedula', cedula);
+  data.append('fecha_nacimiento', fecha_nacimiento);
   data.append('telefono', telefono);
   data.append('contrasena', contrasena);
   data.append('rol', rol);
+  data.append('estado_provincia', estado_provincia);
+  data.append('ciudad', ciudad);
+  data.append('direccion', direccion);
+  data.append('codigo_postal', codigo_postal);
+  data.append('numero_casa', numero_casa);
+  data.append('correo', correo);
 
 	ajax(data, empleados);
   let modal1 =  document.getElementById("modal")
@@ -63,11 +89,11 @@ function _edit(){
 }
 
 function _delete(){
-  const idValue = document.getElementById("id").value;
+  const ced_empleado = document.getElementById("ced_empleado").value;
 
 	let data = new FormData();
 	data.append('accion','eliminar');
-  data.append('id', idValue);
+  data.append('ced_empleado', ced_empleado);
 	ajax(data, empleados);
   let modal1 =  document.getElementById("modal")
   modal1.style.display = "none";

@@ -2,25 +2,32 @@
 require_once('config/db.php');
 
 class Empleado extends DB{
-  private $id;
+  private $ced_empleado;
   private $nombre;
   private $apellido;
-  private $cedula;
+  private $fecha_nacimiento;
   private $telefono;
   private $contrasena;
   private $rol;
+  private $sexo;
+  private $estado_provincia;
+  private $ciudad;
+  private $direccion;
+  private $numero_casa;
+  private $codigo_postal;
+  private $correo;
 
-	function set_id($valor){
-		$this->id = $valor;
+	function set_ced_empleado($valor){
+		$this->ced_empleado = $valor;
 	}
-	function set_name($valor){
+	function set_nombre($valor){
 		$this->nombre = $valor;
 	}
 	function set_apellido($valor){
 		$this->apellido = $valor;
 	}
-	function set_cedula($valor){
-		$this->cedula = $valor;
+	function set_fecha_nacimiento($valor){
+		$this->fecha_nacimiento = $valor;
 	}
   function set_telefono($valor){
 		$this->telefono = $valor;
@@ -31,93 +38,162 @@ class Empleado extends DB{
   function set_rol($valor){
 		$this->rol = $valor;
 	}
+  function set_sexo($valor){
+		$this->sexo = $valor;
+	}
+  function set_estado_provincia($valor){
+		$this->estado_provincia = $valor;
+	}
+  function set_ciudad($valor){
+		$this->ciudad = $valor;
+	}
+  function set_direccion($valor){
+		$this->direccion = $valor;
+	}
+  function set_numero_casa($valor){
+		$this->numero_casa = $valor;
+	}
+  function set_codigo_postal($valor){
+		$this->codigo_postal = $valor;
+	}
+  function set_correo($valor){
+		$this->correo = $valor;
+	}
 
 	function incluir(){
 		$r = array();
-		if(!$this->existe($this->cedula)){
-			try {
-        $bd = $this->conecta();
-        $query = $bd->prepare("
-          INSERT INTO empleados (
-            apellido,
-            nombre,
-            telefono,
-            contrasena,
-            cedula,
-            rol
-          ) VALUES (
-            :apellido,
-            :nombre,
-            :telefono,
-            :contrasena,
-            :cedula,
-            :rol
-          )
-        ");
+    try {
+      $bd = $this->conecta();
+      $query = $bd->prepare("
+        INSERT INTO empleados (
+          ced_empleado,
+          nombre,
+          apellido,
+          fecha_nacimiento,
+          telefono,
+          contrasena,
+          rol,
+          sexo,
+          estado_provincia,
+          ciudad,
+          direccion,
+          numero_casa,
+          codigo_postal,
+          correo
+        ) VALUES (
+          :ced_empleado,
+          :nombre,
+          :apellido,
+          :fecha_nacimiento,
+          :telefono,
+          :contrasena,
+          :rol,
+          :sexo,
+          :estado_provincia,
+          :ciudad,
+          :direccion,
+          :numero_casa,
+          :codigo_postal,
+          :correo
+        )
+      ");
 
-        $query->execute([
-          ':apellido' => $this->apellido,
-          ':nombre' => $this->nombre,
-          ':telefono' => $this->telefono,
-          ':contrasena' => $this->contrasena,
-          ':cedula' => $this->cedula,
-          ':rol' => $this->rol
-        ]);
+      $query->execute([
+        ':ced_empleado' => $this->ced_empleado,
+        ':nombre' => $this->nombre,
+        ':apellido' => $this->apellido,
+        ':fecha_nacimiento' => $this->fecha_nacimiento,
+        ':telefono' => $this->telefono,
+        ':contrasena' => $this->contrasena,
+        ':rol' => $this->rol,
+        ':sexo' => $this->sexo,
+        ':estado_provincia' => $this->estado_provincia,
+        ':ciudad' => $this->ciudad,
+        ':direccion' => $this->direccion,
+        ':numero_casa' => $this->numero_casa,
+        ':codigo_postal' => $this->codigo_postal,
+        ':correo' => $this->correo
+      ]);
 
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] = 'Registro Incluido';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			  $r['mensaje'] =  $e->getMessage();
-			}
-		} else {
-			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe la cedula';
-		}
-    $result = $this->consultar();
-		return $result;
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] = 'Registro Incluido';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 	function modificar(){
     $r = array();
     try {
-        $co = $this->conecta();
-        $co->query("UPDATE empleados SET
-          apellido = '$this->apellido',
-          nombre = '$this->nombre',
-          telefono = '$this->telefono',
-          contrasena = '$this->contrasena',
-          cedula = '$this->cedula',
-          rol = '$this->rol'
-          WHERE
-          id = '$this->id'
-        ");
-        $r['resultado'] = 'modificar';
-        $r['mensaje'] =  'Registro Modificado';
-      } catch(Exception $e) {
-        $r['resultado'] = 'error';
-        $r['mensaje'] =  $e->getMessage();
-      }
-    $result = $this->consultar();
-		return $result;
+      $bd = $this->conecta();
+			$query = $bd->prepare("UPDATE empleados SET
+        ced_empleado = :ced_empleado,
+        nombre = :nombre,
+        apellido = :apellido,
+        fecha_nacimiento = :fecha_nacimiento,
+        telefono = :telefono,
+        contrasena = :contrasena,
+        rol = :rol,
+        sexo = :sexo,
+        estado_provincia = :estado_provincia,
+        ciudad = :ciudad,
+        direccion = :direccion,
+        numero_casa = :numero_casa,
+        codigo_postal = :codigo_postal,
+        correo = :correo
+        WHERE
+        ced_empleado = :ced_empleado
+      ");
+
+      $query->execute([
+        ':ced_empleado' => $this->ced_empleado,
+        ':nombre' => $this->nombre,
+        ':apellido' => $this->apellido,
+        ':fecha_nacimiento' => $this->fecha_nacimiento,
+        ':telefono' => $this->telefono,
+        ':contrasena' => $this->contrasena,
+        ':rol' => $this->rol,
+        ':sexo' => $this->sexo,
+        ':estado_provincia' => $this->estado_provincia,
+        ':ciudad' => $this->ciudad,
+        ':direccion' => $this->direccion,
+        ':numero_casa' => $this->numero_casa,
+        ':codigo_postal' => $this->codigo_postal,
+        ':correo' => $this->correo
+      ]);
+
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Modificado';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 	function eliminar(){
     $r = array();
     try {
-      $co = $this->conecta();
-      $co->query("DELETE FROM empleados
+      $bd = $this->conecta();
+      $bd->query("DELETE FROM empleados
         WHERE
-        id = '$this->id'
-        ");
-        $r['resultado'] = 'eliminar';
-        $r['mensaje'] =  'Registro Eliminado';
+        ced_empleado = '$this->ced_empleado'
+      ");
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Eliminado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function consultar(){
@@ -129,27 +205,35 @@ class Empleado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['id'] = $resultado['id'];
+					$trabajador['ced_empleado'] = $resultado['ced_empleado'];
 					$trabajador['nombre'] = $resultado['nombre'];
 					$trabajador['apellido'] = $resultado['apellido'];
+					$trabajador['fecha_nacimiento'] = $resultado['fecha_nacimiento'];
 					$trabajador['telefono'] = $resultado['telefono'];
-					$trabajador['cedula'] = $resultado['cedula'];
 					$trabajador['contrasena'] = $resultado['contrasena'];
 					$trabajador['rol'] = $resultado['rol'];
+					$trabajador['sexo'] = $resultado['sexo'];
+					$trabajador['estado_provincia'] = $resultado['estado_provincia'];
+					$trabajador['ciudad'] = $resultado['ciudad'];
+					$trabajador['direccion'] = $resultado['direccion'];
+					$trabajador['numero_casa'] = $resultado['numero_casa'];
+					$trabajador['codigo_postal'] = $resultado['codigo_postal'];
+					$trabajador['correo'] = $resultado['correo'];
           array_push($respuesta, $trabajador);
 				}
 				$r['resultado'] =  $respuesta;
+        $r['mensaje'] =  'consulta';
 			}
 			else{
-				$r['resultado'] = 'consultar';
+				$r['resultado'] = [];
 				$r['mensaje'] =  '';
 			}
 
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
+			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {
