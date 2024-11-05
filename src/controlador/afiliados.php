@@ -29,20 +29,26 @@
 		  }
 		  else{
         $afiliados->set_ced_afiliado($_POST['ced_afiliado']);
-        $afiliados->set_nombre($_POST['nombre']);
-        $afiliados->set_apellido($_POST['apellido']);
-        $afiliados->set_fecha_nacimiento($_POST['fecha_nacimiento']);
-        $afiliados->set_sexo($_POST['sexo']);
-        $afiliados->set_estado_provincia($_POST['estado_provincia']);
-        $afiliados->set_ciudad($_POST['ciudad']);
-        $afiliados->set_direccion($_POST['direccion']);
-        $afiliados->set_numero_casa($_POST['numero_casa']);
-        $afiliados->set_codigo_postal($_POST['codigo_postal']);
-        $afiliados->set_telefono($_POST['telefono']);
-        $afiliados->set_correo($_POST['correo']);
-        $afiliados->set_tipo_sangre($_POST['tipo_sangre']);
-        $afiliados->set_n_historia($_POST['n_historia']);
         $afiliados->set_rif_institucion($_POST['rif_institucion']);
+        $afiliados->set_primer_nombre($_POST['primer_nombre']);
+        $afiliados->set_segundo_nombre($_POST['segundo_nombre']);
+        $afiliados->set_primer_apellido($_POST['primer_apellido']);
+        $afiliados->set_segundo_apellido($_POST['segundo_apellido']);
+        $afiliados->set_sexo($_POST['sexo']);
+        $afiliados->set_fecha_nacimiento($_POST['fecha_nacimiento']);
+        $afiliados->set_estado_civil($_POST['estado_civil']);
+        $afiliados->set_direccion_habitacion($_POST['direccion_habitacion']);
+        $afiliados->set_estado($_POST['estado']);
+        $afiliados->set_ciudad($_POST['ciudad']);
+        $afiliados->set_municipio($_POST['municipio']);
+        $afiliados->set_parroquia($_POST['parroquia']);
+        $afiliados->set_correo_electronico($_POST['correo_electronico']);
+        $afiliados->set_telefono_celular($_POST['telefono_celular']);
+        $afiliados->set_telefono_habitacion($_POST['telefono_habitacion']);
+        $afiliados->set_telefono_trabajo($_POST['telefono_trabajo']);
+        $afiliados->set_fecha_ingreso($_POST['fecha_ingreso']);
+        $afiliados->set_cargo($_POST['cargo']);
+        $afiliados->set_situacion_laboral($_POST['situacion_laboral']);
 
 			  if($accion=='incluir'){
           echo  json_encode($afiliados->incluir());

@@ -3,65 +3,89 @@ require_once('config/db.php');
 
 class Afiliado extends DB{
   private $ced_afiliado;
-  private $nombre;
-  private $apellido;
-  private $fecha_nacimiento;
-  private $sexo;
-  private $estado_provincia;
-  private $ciudad;
-  private $direccion;
-  private $numero_casa;
-  private $codigo_postal;
-  private $telefono;
-  private $correo;
-  private $tipo_sangre;
-  private $n_historia;
   private $rif_institucion;
+  private $primer_nombre;
+  private $segundo_nombre;
+  private $primer_apellido;
+  private $segundo_apellido;
+  private $sexo;
+  private $fecha_nacimiento;
+  private $estado_civil;
+  private $direccion_habitacion;
+  private $estado;
+  private $ciudad;
+  private $municipio;
+  private $parroquia;
+  private $correo_electronico;
+  private $telefono_celular;
+  private $telefono_habitacion;
+  private $telefono_trabajo;
+  private $fecha_ingreso;
+  private $cargo;
+  private $situacion_laboral;
 
   function set_ced_afiliado($valor){
     $this->ced_afiliado = $valor;
   }
-	function set_nombre($valor){
-		$this->nombre = $valor;
+	function set_rif_institucion($valor){
+		$this->rif_institucion = $valor;
 	}
-	function set_apellido($valor){
-		$this->apellido = $valor;
+	function set_primer_nombre($valor){
+		$this->primer_nombre = $valor;
 	}
-  function set_fecha_nacimiento($valor){
-    $this->fecha_nacimiento = $valor;
+  function set_segundo_nombre($valor){
+    $this->segundo_nombre = $valor;
+  }
+  function set_primer_apellido($valor){
+    $this->primer_apellido = $valor;
+  }
+  function set_segundo_apellido($valor){
+    $this->segundo_apellido = $valor;
   }
   function set_sexo($valor){
     $this->sexo = $valor;
   }
-  function set_estado_provincia($valor){
-    $this->estado_provincia = $valor;
+  function set_fecha_nacimiento($valor){
+    $this->fecha_nacimiento = $valor;
+  }
+  function set_estado_civil($valor){
+    $this->estado_civil = $valor;
+  }
+  function set_cdireccion_habitacion($valor){
+    $this->direccion_habitacion = $valor;
+  }
+  function set_estado($valor){
+    $this->estado = $valor;
   }
   function set_ciudad($valor){
-    $this->ciudad = $valor;
-  }
-  function set_direccion($valor){
-    $this->direccion = $valor;
-  }
-  function set_numero_casa($valor){
-    $this->numero_casa = $valor;
-  }
-  function set_codigo_postal($valor){
-    $this->codigo_postal = $valor;
-  }
-  function set_telefono($valor){
-    $this->telefono = $valor;
-  }
-  function set_correo($valor){
-		$this->correo = $valor;
+		$this->ciudad = $valor;
 	}
-  function set_tipo_sangre($valor){
-		$this->tipo_sangre = $valor;
+  function set_municipio($valor){
+		$this->municipio = $valor;
 	}
-  function set_n_historia($valor){
-		$this->n_historia = $valor;
+  function set_parroquia($valor){
+		$this->parroquia = $valor;
 	}
-  function set_rif_institucion($valor){
-		$this->rif_institucion = $valor;
+  function set_correo_electronico($valor){
+		$this->correo_electronico = $valor;
+	}
+  function set_telefono_celular($valor){
+		$this->telefono_celular = $valor;
+	}
+  function set_telefono_habitacion($valor){
+		$this->telefono_habitacion = $valor;
+	}
+  function set_telefono_trabajo($valor){
+		$this->telefono_trabajo = $valor;
+	}
+  function set_fecha_ingreso($valor){
+		$this->fecha_ingreso = $valor;
+	}
+  function set_cargo($valor){
+		$this->cargo = $valor;
+	}
+  function set_situacion_laboral($valor){
+		$this->situacion_laboral = $valor;
 	}
 
 	function incluir(){
@@ -71,55 +95,73 @@ class Afiliado extends DB{
       $query = $bd->prepare("
         INSERT INTO afiliados (
           ced_afiliado,
-          nombre,
-          apellido,
-          fecha_nacimiento,
+          rif_institucion,
+          primer_nombre,
+          segundo_nombre,
+          primer_apellido,
+          segundo_apellido,
           sexo,
-          estado_provincia,
+          fecha_nacimiento,
+          estado_civil,
+          direccion_habitacion,
+          estado,
           ciudad,
-          direccion,
-          numero_casa,
-          codigo_postal,
-          telefono,
-          correo,
-          tipo_sangre,
-          n_historia,
-          rif_institucion
+          municipio,
+          parroquia,
+          correo_electronico,
+          telefono_celular,
+          telefono_habitacion,
+          telefono_trabajo,
+          fecha_ingreso,
+          cargo
+          situacion_laboral
         ) VALUES (
           :ced_afiliado,
-          :nombre,
-          :apellido,
-          :fecha_nacimiento,
+          :rif_institucion,
+          :primer_nombre,
+          :segundo_nombre,
+          :primer_apellido,
+          :segundo_apellido,
           :sexo,
-          :estado_provincia,
+          :fecha_nacimiento,
+          :estado_civil,
+          :direccion_habitacion,
+          :estado,
           :ciudad,
-          :direccion,
-          :numero_casa,
-          :codigo_postal,
-          :telefono,
-          :correo,
-          :tipo_sangre,
-          :n_historia,
-          :rif_institucion
+          :municipio,
+          :parroquia,
+          :correo_electronico,
+          :telefono_celular,
+          :telefono_habitacion,
+          :telefono_trabajo,
+          :fecha_ingreso,
+          :cargo,
+          :situacion_laboral
         )
       ");
 
       $query->execute([
         ':ced_afiliado' => $this->ced_afiliado,
-        ':nombre' => $this->nombre,
-        ':apellido' => $this->apellido,
-        ':fecha_nacimiento' => $this->fecha_nacimiento,
+        ':rif_institucion' => $this->rif_institucion,
+        ':primer_nombre' => $this->primer_nombre,
+        ':segundo_nombre' => $this->segundo_nombre,
+        ':primer_apellido' => $this->primer_apellido,
+        ':segundo_apellido' => $this->segundo_apellido,
         ':sexo' => $this->sexo,
-        ':estado_provincia' => $this->estado_provincia,
+        ':fecha_nacimiento' => $this->fecha_nacimiento,
+        ':estado_civil' => $this->estado_civil,
+        ':direccion_habitacion' => $this->direccion_habitacion,
+        ':estado' => $this->estado,
         ':ciudad' => $this->ciudad,
-        ':direccion' => $this->direccion,
-        ':numero_casa' => $this->numero_casa,
-        ':codigo_postal' => $this->codigo_postal,
-        ':telefono' => $this->telefono,
-        ':correo' => $this->correo,
-        ':tipo_sangre' => $this->tipo_sangre,
-        ':n_historia' => $this->n_historia,
-        ':rif_institucion' => $this->rif_institucion
+        ':municipio' => $this->municipio,
+        ':parroquia' => $this->parroquia,
+        ':correo_electronico' => $this->correo_electronico,
+        ':telefono_celular' => $this->telefono_celular,
+        ':telefono_habitacion' => $this->telefono_habitacion,
+        ':telefono_trabajo' => $this->telefono_trabajo,
+        ':fecha_ingreso' => $this->fecha_ingreso,
+        ':cargo' => $this->cargo,
+        ':situacion_laboral' => $this->situacion_laboral
       ]);
 
       $consulta = $this->consultar();
@@ -215,20 +257,26 @@ class Afiliado extends DB{
 				$respuesta = [];
 				foreach($resultados as $resultado){
 					$afiliado['ced_afiliado'] = $resultado['ced_afiliado'];
-          $afiliado['nombre'] = $resultado['nombre'];
-          $afiliado['apellido'] = $resultado['apellido'];
-          $afiliado['fecha_nacimiento'] = $resultado['fecha_nacimiento'];
-          $afiliado['sexo'] = $resultado['sexo'];
-          $afiliado['estado_provincia'] = $resultado['estado_provincia'];
-          $afiliado['ciudad'] = $resultado['ciudad'];
-          $afiliado['direccion'] = $resultado['direccion'];
-          $afiliado['numero_casa'] = $resultado['numero_casa'];
-          $afiliado['codigo_postal'] = $resultado['codigo_postal'];
-          $afiliado['telefono'] = $resultado['telefono'];
-          $afiliado['correo'] = $resultado['correo'];
-          $afiliado['tipo_sangre'] = $resultado['tipo_sangre'];
-          $afiliado['n_historia'] = $resultado['n_historia'];
           $afiliado['rif_institucion'] = $resultado['rif_institucion'];
+          $afiliado['primer_nombre'] = $resultado['primer_nombre'];
+          $afiliado['segundo_nombre'] = $resultado['segundo_nombre'];
+          $afiliado['primer_apellido'] = $resultado['primer_apellido'];
+          $afiliado['segundo_apellido'] = $resultado['segundo_apellido'];
+          $afiliado['sexo'] = $resultado['sexo'];
+          $afiliado['fecha_nacimiento'] = $resultado['fecha_nacimiento'];
+          $afiliado['estado_civil'] = $resultado['estado_civil'];
+          $afiliado['direccion_habitacion'] = $resultado['direccion_habitacion'];
+          $afiliado['estado'] = $resultado['estado'];
+          $afiliado['ciudad'] = $resultado['ciudad'];
+          $afiliado['municipio'] = $resultado['municipio'];
+          $afiliado['parroquia'] = $resultado['parroquia'];
+          $afiliado['correo_electronico'] = $resultado['correo_electronico'];
+          $afiliado['telefono_celular'] = $resultado['telefono_celular'];
+          $afiliado['telefono_habitacion'] = $resultado['telefono_habitacion'];
+          $afiliado['telefono_trabajo'] = $resultado['telefono_trabajo'];
+          $afiliado['fecha_ingreso'] = $resultado['fecha_ingreso'];
+          $afiliado['cargo'] = $resultado['cargo'];
+          $afiliado['situacion_laboral'] = $resultado['situacion_laboral'];
           array_push($respuesta, $afiliado);
 				}
 				$r['resultado'] =  $respuesta;
