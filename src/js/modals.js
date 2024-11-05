@@ -31,7 +31,6 @@ function deleteModal(e, callback){
 let closeModal = document.getElementById("closeModal")
 closeModal.addEventListener("click", function () {
   let modal =  document.getElementById("modal")
-  console.log("limpiar??")
   limpia()
   modal.style.visibility = "hidden";
   modal.style.opacity = "0"

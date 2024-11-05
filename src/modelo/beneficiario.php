@@ -269,6 +269,7 @@ class Beneficiario extends DB{
           array_push($respuesta, $beneficiario);
 				}
 				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  'consulta';
 			}
 			else{
 				$r['resultado'] = [];

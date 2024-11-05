@@ -2,104 +2,98 @@
 require_once('config/db.php');
 
 class Empleado extends DB{
-  private $id;
-  private $nombre;
-  private $apellido;
-  private $cedula;
-  private $telefono;
-  private $contrasena;
-  private $rol;
 
-	function set_id($valor){
-		$this->id = $valor;
+  private $n_reposo;
+  private $n_consulta;
+  private $instrucciones;
+  private $motivo;
+  private $fecha_inicio;
+  private $fecha_fin;
+
+	function set_n_reposo($valor){
+		$this->n_reposo = $valor;
 	}
-	function set_name($valor){
-		$this->nombre = $valor;
+	function set_n_consulta($valor){
+		$this->n_consulta = $valor;
 	}
-	function set_apellido($valor){
-		$this->apellido = $valor;
+	function set_instrucciones($valor){
+		$this->instrucciones = $valor;
 	}
-	function set_cedula($valor){
-		$this->cedula = $valor;
+	function set_motivo($valor){
+		$this->motivo = $valor;
 	}
-  function set_telefono($valor){
-		$this->telefono = $valor;
+  function set_fecha_inicio($valor){
+		$this->fecha_inicio = $valor;
 	}
-  function set_contrasena($valor){
-		$this->contrasena = $valor;
-	}
-  function set_rol($valor){
-		$this->rol = $valor;
+  function set_fecha_fin($valor){
+		$this->fecha_fin = $valor;
 	}
 
 	function incluir(){
 		$r = array();
-		if(!$this->existe($this->cedula)){
-			try {
-        $bd = $this->conecta();
-        $query = $bd->prepare("
-          INSERT INTO reposos (
-            apellido,
-            nombre,
-            telefono,
-            contrasena,
-            cedula,
-            rol
-          ) VALUES (
-            :apellido,
-            :nombre,
-            :telefono,
-            :contrasena,
-            :cedula,
-            :rol
-          )
-        ");
+    try {
+      $bd = $this->conecta();
+      $query = $bd->prepare("
+        INSERT INTO reposos (
+          n_reposo,
+          n_consulta,
+          instrucciones,
+          motivo,
+          fecha_inicio,
+          fecha_fin
+        ) VALUES (
+          :n_reposo,
+          :n_consulta,
+          :instrucciones,
+          :motivo,
+          :fecha_inicio,
+          :fecha_fin
+        )
+      ");
 
-        $query->execute([
-          ':apellido' => $this->apellido,
-          ':nombre' => $this->nombre,
-          ':telefono' => $this->telefono,
-          ':contrasena' => $this->contrasena,
-          ':cedula' => $this->cedula,
-          ':rol' => $this->rol
-        ]);
+      $query->execute([
+        ':n_reposo' => $this->n_reposo,
+        ':n_consulta' => $this->n_consulta,
+        ':instrucciones' => $this->instrucciones,
+        ':motivo' => $this->motivo,
+        ':fecha_inicio' => $this->fecha_inicio,
+        ':fecha_fin' => $this->fecha_fin
+      ]);
 
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] = 'Registro Incluido';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			  $r['mensaje'] =  $e->getMessage();
-			}
-		} else {
-			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Ya existe la cedula';
-		}
-    $result = $this->consultar();
-		return $result;
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] = 'Registro Incluido';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 	function modificar(){
     $r = array();
     try {
-        $co = $this->conecta();
-        $co->query("UPDATE reposos SET
-          apellido = '$this->apellido',
-          nombre = '$this->nombre',
-          telefono = '$this->telefono',
-          contrasena = '$this->contrasena',
-          cedula = '$this->cedula',
-          rol = '$this->rol'
-          WHERE
-          id = '$this->id'
-        ");
-        $r['resultado'] = 'modificar';
-        $r['mensaje'] =  'Registro Modificado';
-      } catch(Exception $e) {
-        $r['resultado'] = 'error';
-        $r['mensaje'] =  $e->getMessage();
-      }
-    $result = $this->consultar();
-		return $result;
+      $co = $this->conecta();
+      $co->query("UPDATE reposos SET
+        n_reposo = '$this->n_reposo',
+        n_consulta = '$this->n_consulta',
+        instrucciones = '$this->instrucciones',
+        motivo = '$this->motivo',
+        fecha_inicio = '$this->fecha_inicio',
+        fecha_fin = '$this->fecha_fin'
+        WHERE
+        n_reposo = '$this->n_reposo'
+      ");
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Modificado';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 	function eliminar(){
@@ -108,7 +102,7 @@ class Empleado extends DB{
       $co = $this->conecta();
       $co->query("DELETE FROM reposos
         WHERE
-        id = '$this->id'
+        n_reposo = '$this->n_reposo'
         ");
         $r['resultado'] = 'eliminar';
         $r['mensaje'] =  'Registro Eliminado';
@@ -129,27 +123,29 @@ class Empleado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['id'] = $resultado['id'];
-					$trabajador['nombre'] = $resultado['nombre'];
-					$trabajador['apellido'] = $resultado['apellido'];
-					$trabajador['telefono'] = $resultado['telefono'];
-					$trabajador['cedula'] = $resultado['cedula'];
-					$trabajador['contrasena'] = $resultado['contrasena'];
-					$trabajador['rol'] = $resultado['rol'];
+					$trabajador['n_reposo'] = $resultado['n_reposo'];
+					$trabajador['n_consulta'] = $resultado['n_consulta'];
+					$trabajador['instrucciones'] = $resultado['instrucciones'];
+					$trabajador['motivo'] = $resultado['motivo'];
+					$trabajador['fecha_inicio'] = $resultado['fecha_inicio'];
+					$trabajador['fecha_fin'] = $resultado['fecha_fin'];
           array_push($respuesta, $trabajador);
 				}
-				$r['resultado'] =  $respuesta;
+        $consulta = $this->consultar();
+        $r['resultado'] =  $consulta['resultado'];
+				$r['mensaje'] =  'consulta';
 			}
 			else{
-				$r['resultado'] = 'consultar';
+        $consulta = $this->consultar();
+        $r['resultado'] =  $consulta['resultado'];
 				$r['mensaje'] =  '';
 			}
-
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {
