@@ -5,9 +5,7 @@
 
 <body>
   <div>
-    <center>
       <h2>Informes Medicos</h2>
-    </center>
     <div class="container_center">
       <div class="container_center--menu">
         <div class="container_center--search">

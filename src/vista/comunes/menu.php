@@ -11,12 +11,12 @@
 <body>
 
   <!--Fondo-->
-  <div class="content">
+  <!-- <div class="content">
         <div class="background"></div>
         <div class="background"></div>
         <div class="background"></div>
         <div class="background"></div>
-  </div>
+  </div> -->
   <!--Fin Fondo-->
 
   <!--seccion del menu-->
@@ -26,14 +26,15 @@
                     <div class="logo">
                         <h1>IPA<span class="danger">SME</span></h1>
                     </div>
-                    <div class="close" id="close-btn">
+                  </div>
+
+                  <div class="sidebar">
+
+                  <div class="close" id="close-btn">
                         <span class="material-icons-sharp">
                             close
                         </span>
                     </div>
-                  </div>
-
-                  <div class="sidebar">
                   <a href="?pagina=historia_medica" id="historias">
                       <span class="material-icons-sharp">
                         receipt_long

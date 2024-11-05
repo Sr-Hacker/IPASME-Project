@@ -12,7 +12,12 @@ function editModal(e, callback){
   let modal = document.getElementById("modal")
   modal.style.display = "block";
   let action_modal = document.getElementById("action_modal")
-  action_modal.textContent = "modificar";
+  action_modal.textContent = "Modificar";
+  console.log(
+    'modal'
+  )
+  modal.style.visibility = 'visible';
+  modal.style.opacity = '1';
 }
 
 function deleteModal(e, callback){
@@ -27,5 +32,6 @@ let closeModal = document.getElementById("closeModal")
 closeModal.addEventListener("click", function () {
   let modal =  document.getElementById("modal")
   limpia()
-  modal.style.display = "none";
+  modal.style.visibility = "hidden";
+  modal.style.opacity = "0"
 });

@@ -17,22 +17,22 @@
 			  echo json_encode($especialidad->consultar());
 		  }
 		  else if($accion=='buscar'){
-			  $especialidad->set_cedula($_POST['buscador']);
+			  $especialidad->set_cod_espe($_POST['buscador']);
         echo json_encode($especialidad->buscar());
 		  }
 		  elseif($accion=='eliminar'){
-			 $especialidad->set_id($_POST['id']);
+			 $especialidad->set_cod_espe($_POST['cod_espe']);
 			 echo json_encode($especialidad->eliminar());
 		  }
 		  else{
+        $especialidad->set_cod_espe($_POST['cod_espe']);
         $especialidad->set_nombre($_POST['nombre']);
-        $especialidad->set_codigo($_POST['codigo']);
 
 			  if($accion=='incluir'){
           echo  json_encode($especialidad->incluir());
 			  }
 			  elseif($accion=='modificar'){
-          $especialidad->set_id($_POST['id']);
+          $especialidad->set_code_espe($_POST['code_espe']);
 				  echo  json_encode($especialidad->modificar());
 			  }
 		  }

@@ -4,13 +4,14 @@ let especialidadsArray = []
 
 function cargarDatos(item){
   const especialidad = especialidadsArray[item];
-	$("#id").val(especialidad.id);
 	$("#nombre").val(especialidad.nombre);
-	$("#codigo").val(especialidad.codigo);
+	$("#cod_espe").val(especialidad.cod_espe);
+  console.log(especialidad)
 }
 
 function especialidades(data){
   listaEspecialidades.style.removeProperty("display");
+  console.log('1',data)
   let result = '';
   if(data.length <= 0){
     const card = `
@@ -25,13 +26,13 @@ function especialidades(data){
       const card = `
         <div class="item">
           <p>Especialidad: ${item.nombre}</p>
-          <p>Codigo: ${item.codigo}</p>
+          <p>Codigo: ${item.cod_espe}</p>
           <div class="options">
-          <button class="editar" type='button' onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
-          <button class="eliminar" type='button' onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
+          <button class="editar" type='button' onclick="editModal('${item.cod_espe}', cargarDatos)">Modificar</button>
+          <button class="eliminar" type='button' onclick="deleteModal('${item.cod_espe}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
-      especialidadsArray[item.id] = item;
+      especialidadsArray[item.cod_espe] = item;
       result = result.concat("",card);
     })
   }
