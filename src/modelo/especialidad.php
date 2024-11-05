@@ -2,52 +2,45 @@
 require_once('config/db.php');
 
 class Especialidad extends DB{
-  private $id;
+  private $cod_espe;
   private $nombre;
-  private $codigo;
 
-	function set_id($valor){
-		$this->id = $valor;
+	function set_cod_espe($valor){
+		$this->cod_espe = $valor;
 	}
 	function set_nombre($valor){
 		$this->nombre = $valor;
 	}
-	function set_codigo($valor){
-		$this->codigo = $valor;
-	}
+
 
 	function incluir(){
 		$r = array();
-		if(!$this->existe($this->codigo)){
 			try {
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO especialidades (
-            nombre,
-            codigo
+            cod_espe,
+            nombre
           ) VALUES (
-            :nombre,
-            :codigo
+            :cod_espe,
+            :nombre
           )
         ");
 
         $query->execute([
-          ':nombre' => $this->nombre,
-          ':codigo' => $this->codigo,
+          ':cod_espe' => $this->cod_espe,
+          ':nombre' => $this->nombre
         ]);
 
-        $r['resultado'] = 'incluir';
-        $r['mensaje'] = 'Registro Incluido';
-			} catch(Exception $e) {
-				$r['resultado'] = 'error';
-			  $r['mensaje'] =  $e->getMessage();
-			}
-		} else {
-			$r['resultado'] = 'incluir';
-			$r['mensaje'] =  'Esta especialidad ya existe';
-		}
-    $result = $this->consultar();
-		return $result;
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro incluido';
+    } catch(Exception $e) {
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  $e->getMessage();
+    }
+		return $r;
 	}
 
 	function modificar(){
@@ -56,9 +49,8 @@ class Especialidad extends DB{
         $co = $this->conecta();
         $co->query("UPDATE especialidades SET
           nombre = '$this->nombre',
-          codigo = '$this->codigo'
           WHERE
-          id = '$this->id'
+          cod_espe = '$this->cod_espe'
         ");
         $r['resultado'] = 'modificar';
         $r['mensaje'] =  'Registro Modificado';
@@ -76,7 +68,7 @@ class Especialidad extends DB{
       $co = $this->conecta();
       $co->query("DELETE FROM especialidades
         WHERE
-        id = '$this->id'
+        cod_espe = '$this->cod_espe'
         ");
         $r['resultado'] = 'eliminar';
         $r['mensaje'] =  'Registro Eliminado';
@@ -97,12 +89,12 @@ class Especialidad extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$especialidad['id'] = $resultado['id'];
+					$especialidad['cod_espe'] = $resultado['cod_espe'];
 					$especialidad['nombre'] = $resultado['nombre'];
-					$especialidad['codigo'] = $resultado['codigo'];
           array_push($respuesta, $especialidad);
 				}
 				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  "consulta";
 			}
 			else{
 				$r['resultado'] = 'consultar';
@@ -110,10 +102,11 @@ class Especialidad extends DB{
 			}
 
 		}catch(Exception $e){
+
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {
@@ -128,21 +121,5 @@ class Especialidad extends DB{
       return false;
     }
   }
-
-  private function existe($codigo){
-    try{
-      $co = $this->conecta();
-			$resultado = $co->query("SELECT * FROM especialidades WHERE codigo='$codigo'");
-
-			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
-			if($fila){
-				return true;
-			}
-			else{
-				return false;;
-			}
-		}catch(Exception $e){
-			return false;
-		}
-	}
-}?>
+}
+?>

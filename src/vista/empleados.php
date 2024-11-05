@@ -5,10 +5,11 @@
 
 <body>
   <div>
+
+    <div class="container_center">
     <center>
       <h2>Empleados</h2>
     </center>
-    <div class="container_center">
       <div class="container_center--menu">
         <div class="container_center--search">
           <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
