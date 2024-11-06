@@ -28,6 +28,8 @@ class Medico extends DB{
 		$r = array();
     try {
       $bd = $this->conecta();
+      $bd->beginTransaction();
+
       $query = $bd->prepare("
         INSERT INTO medico (
           ced_medico,
@@ -52,10 +54,12 @@ class Medico extends DB{
         ':telefono' => $this->telefono
       ]);
 
+      $bd->commit();
       $consulta = $this->consultar();
       $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Inluido';
     } catch(Exception $e) {
+      $bd->rollBack();
       $consulta = $this->consultar();
       $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] = $e->getMessage();
