@@ -3,21 +3,25 @@ require_once('config/db.php');
 
 class Medico extends DB{
   private $ced_medico;
-  private $nombre;
-  private $apellido;
-  private $estado;
+  private $nombres;
+  private $apellidos;
+  private $activo;
+  private $telefono;
 
   function set_ced_medico($valor){
     $this->ced_medico = $valor;
   }
-	function set_nombre($valor){
-		$this->nombre = $valor;
+	function set_nombres($valor){
+		$this->nombres = $valor;
 	}
-	function set_apellido($valor){
-		$this->apellido = $valor;
+	function set_apellidos($valor){
+		$this->apellidos = $valor;
 	}
-  function set_estado($valor){
-    $this->estado = $valor;
+  function set_activo($valor){
+    $this->activo = $valor;
+  }
+  function set_telefono($valor){
+    $this->telefono = $valor;
   }
 
 	function incluir(){
@@ -25,24 +29,27 @@ class Medico extends DB{
     try {
       $bd = $this->conecta();
       $query = $bd->prepare("
-        INSERT INTO medicos (
+        INSERT INTO medico (
           ced_medico,
-          nombre,
-          apellido,
-          estado
+          nombres,
+          apellidos,
+          activo,
+          telefono
         ) VALUES (
           :ced_medico,
-          :nombre,
-          :apellido,
-          :estado
+          :nombres,
+          :apellidos,
+          :activo,
+          :telefono
         )
       ");
 
       $query->execute([
         ':ced_medico' => $this->ced_medico,
-        ':nombre' => $this->nombre,
-        ':apellido' => $this->apellido,
-        ':estado' => $this->estado
+        ':nombres' => $this->nombres,
+        ':apellidos' => $this->apellidos,
+        ':activo' => $this->activo,
+        ':telefono' => $this->telefono
       ]);
 
       $consulta = $this->consultar();
@@ -60,20 +67,22 @@ class Medico extends DB{
     $r = array();
     try {
       $bd = $this->conecta();
-			$query = $bd->prepare("UPDATE medicos SET
+			$query = $bd->prepare("UPDATE medico SET
         ced_medico = :ced_medico,
-        nombre = :nombre,
-        apellido = :apellido,
-        estado = :estado
+        nombres = :nombres,
+        apellidos = :apellidos,
+        activo = :activo,
+        telefono = :telefono
         WHERE
         ced_medico = :ced_medico
       ");
 
       $query->execute([
         ':ced_medico' => $this->ced_medico,
-        ':nombre' => $this->nombre,
-        ':apellido' => $this->apellido,
-        ':estado' => $this->estado
+        ':nombres' => $this->nombres,
+        ':apellidos' => $this->apellidos,
+        ':activo' => $this->activo,
+        ':telefono' => $this->telefono
       ]);
 
       $consulta = $this->consultar();
@@ -91,7 +100,7 @@ class Medico extends DB{
     $r = array();
     try {
       $bd = $this->conecta();
-      $bd->query("DELETE FROM medicos
+      $bd->query("DELETE FROM medico
         WHERE
         ced_medico = '$this->ced_medico'
       ");
@@ -110,15 +119,16 @@ class Medico extends DB{
     $r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT * FROM medicos");
+			$resultados = $bd->query("SELECT * FROM medico");
 
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
 					$afiliado['ced_medico'] = $resultado['ced_medico'];
-          $afiliado['nombre'] = $resultado['nombre'];
-          $afiliado['apellido'] = $resultado['apellido'];
-          $afiliado['estado'] = $resultado['estado'];
+          $afiliado['nombres'] = $resultado['nombres'];
+          $afiliado['apellidos'] = $resultado['apellidos'];
+          $afiliado['activo'] = $resultado['activo'];
+          $afiliado['telefono'] = $resultado['telefono'];
           array_push($respuesta, $afiliado);
 				}
 				$r['resultado'] =  $respuesta;

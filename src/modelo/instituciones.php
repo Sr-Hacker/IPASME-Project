@@ -2,38 +2,38 @@
 require_once('config/db.php');
 
 class Institucion extends DB{
-  private $rif;
+  private $rif_institucion;
+  private $cod_estado;
   private $nombre;
-  private $estado_provincia;
-  private $ciudad;
   private $direccion;
-  private $zona_postal;
+  private $codigo_postal;
   private $telefono;
   private $correo;
+  private $tipo_institucion;
 
-  function set_rif($valor){
-		$this->rif = $valor;
+  function set_rif_institucion($valor){
+		$this->rif_institucion = $valor;
+	}
+	function set_cod_estado($valor){
+		$this->cod_estado = $valor;
 	}
 	function set_nombre($valor){
 		$this->nombre = $valor;
 	}
-	function set_estado_provincia($valor){
-		$this->estado_provincia = $valor;
-	}
-  function set_ciudad($valor){
-		$this->ciudad = $valor;
-	}
-	function set_direccion($valor){
+  function set_direccion($valor){
 		$this->direccion = $valor;
 	}
-	function set_zona_postal($valor){
-		$this->zona_postal = $valor;
+	function set_codigo_postal($valor){
+		$this->codigo_postal = $valor;
 	}
 	function set_telefono($valor){
 		$this->telefono = $valor;
 	}
-  function set_correo($valor){
+	function set_correo($valor){
 		$this->correo = $valor;
+	}
+  function set_tipo_institucion($valor){
+		$this->tipo_institucion = $valor;
 	}
 
 	function incluir(){
@@ -42,35 +42,35 @@ class Institucion extends DB{
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO instituciones (
-            rif,
+            rif_institucion,
+            cod_estado,
             nombre,
-            estado_provincia,
-            ciudad,
             direccion,
-            zona_postal,
+            codigo_postal,
             telefono,
-            correo
+            correo,
+            tipo_institucion
           ) VALUES (
-            :rif,
+            :rif_institucion,
+            :cod_estado,
             :nombre,
-            :estado_provincia,
-            :ciudad,
             :direccion,
-            :zona_postal,
+            :codigo_postal,
             :telefono,
-            :correo
+            :correo,
+            :tipo_institucion
           )
         ");
 
         $query->execute([
-          ':rif' => $this->rif,
+          ':rif_institucion' => $this->rif_institucion,
+          ':cod_estado' => $this->cod_estado,
           ':nombre' => $this->nombre,
-          ':estado_provincia' => $this->estado_provincia,
-          ':ciudad' => $this->ciudad,
           ':direccion' => $this->direccion,
-          ':zona_postal' => $this->zona_postal,
+          ':codigo_postal' => $this->codigo_postal,
           ':telefono' => $this->telefono,
-          ':correo' => $this->correo
+          ':correo' => $this->correo,
+          ':tipo_institucion' => $this->tipo_institucion
         ]);
 
         $consulta = $this->consultar();
@@ -89,27 +89,27 @@ class Institucion extends DB{
     try {
       $bd = $this->conecta();
 			$query = $bd->prepare("UPDATE instituciones SET
-        rif = :rif,
+        rif_institucion = :rif_institucion,
+        cod_estado = :cod_estado,
         nombre = :nombre,
-        estado_provincia = :estado_provincia,
-        ciudad = :ciudad,
         direccion = :direccion,
-        zona_postal = :zona_postal,
+        codigo_postal = :codigo_postal,
         telefono = :telefono,
-        correo = :correo
+        correo = :correo,
+        tipo_institucion = :tipo_institucion
         WHERE
         rif = :rif
       ");
 
       $query->execute([
-        ':rif' => $this->rif,
+        ':rif_institucion' => $this->rif_institucion,
+        ':cod_estado' => $this->cod_estado,
         ':nombre' => $this->nombre,
-        ':estado_provincia' => $this->estado_provincia,
-        ':ciudad' => $this->ciudad,
         ':direccion' => $this->direccion,
-        ':zona_postal' => $this->zona_postal,
+        ':codigo_postal' => $this->codigo_postal,
         ':telefono' => $this->telefono,
-        ':correo' => $this->correo
+        ':correo' => $this->correo,
+        ':tipo_institucion' => $this->tipo_institucion
       ]);
 
       $consulta = $this->consultar();
@@ -127,8 +127,8 @@ class Institucion extends DB{
     $r = array();
     try {
       $bd = $this->conecta();
-      $query = $bd->prepare("DELETE FROM instituciones WHERE rif = :rif");
-      $query->bindParam(':rif', $this->rif, PDO::PARAM_STR);
+      $query = $bd->prepare("DELETE FROM instituciones WHERE rif_institucion = :rif_institucion");
+      $query->bindParam(':rif_institucion', $this->rif_institucion, PDO::PARAM_STR);
       $query->execute();
 
       $consulta = $this->consultar();
@@ -151,14 +151,14 @@ class Institucion extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-          $institucion['rif'] = $resultado['rif'];
+          $institucion['rif_institucion'] = $resultado['rif_institucion'];
+          $institucion['cod_estado'] = $resultado['cod_estado'];
           $institucion['nombre'] = $resultado['nombre'];
-          $institucion['estado_provincia'] = $resultado['estado_provincia'];
-          $institucion['ciudad'] = $resultado['ciudad'];
           $institucion['direccion'] = $resultado['direccion'];
-          $institucion['zona_postal'] = $resultado['zona_postal'];
+          $institucion['codigo_postal'] = $resultado['codigo_postal'];
           $institucion['telefono'] = $resultado['telefono'];
           $institucion['correo'] = $resultado['correo'];
+          $institucion['tipo_institucion'] = $resultado['tipo_institucion'];
           array_push($respuesta, $institucion);
 				}
 				$r['resultado'] =  $respuesta;
@@ -179,7 +179,7 @@ class Institucion extends DB{
     try {
       $bd = $this->conecta();
       $query = $bd->prepare("SELECT * FROM instituciones WHERE rif = :rif");
-      $query->bindParam(':rif', $this->rif, PDO::PARAM_STR);
+      $query->bindParam(':rif_institucion', $this->rif_institucion, PDO::PARAM_STR);
       $query->execute();
       $fila = $query->fetchAll(PDO::FETCH_BOTH);
       return $fila;
@@ -187,23 +187,5 @@ class Institucion extends DB{
       return false;
     }
   }
-
-	private function existe($rif){
-		try{
-      $bd = $this->conecta();
-			$resultado = $bd->query("SELECT * FROM instituciones WHERE rif = :rif");
-      $query->bindParam(':rif', $this->rif, PDO::PARAM_STR);
-      $query->execute();
-			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
-			if($fila){
-				return true;
-			}
-			else{
-				return false;;
-			}
-		}catch(Exception $e){
-			return false;
-		}
-	}
 }
 ?>

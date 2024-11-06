@@ -93,7 +93,7 @@ class Afiliado extends DB{
     try {
       $bd = $this->conecta();
       $query = $bd->prepare("
-        INSERT INTO afiliados (
+        INSERT INTO afiliado (
           ced_afiliado,
           rif_institucion,
           primer_nombre,
@@ -179,42 +179,54 @@ class Afiliado extends DB{
     $r = array();
     try {
       $bd = $this->conecta();
-			$query = $bd->prepare("UPDATE afiliados SET
+			$query = $bd->prepare("UPDATE afiliado SET
         ced_afiliado = :ced_afiliado,
-        nombre = :nombre,
-        apellido = :apellido,
-        fecha_nacimiento = :fecha_nacimiento,
+        rif_institucion = :rif_institucion,
+        primer_nombre = :primer_nombre,
+        segundo_nombre = :segundo_nombre,
+        primer_apellido = :primer_apellido,
+        segundo_apellido = :segundo_apellido,
         sexo = :sexo,
-        estado_provincia = :estado_provincia,
+        fecha_nacimiento = :fecha_nacimiento,
+        estado_civil = :estado_civil,
+        direccion_habitacion = :direccion_habitacion,
+        estado = :estado,
         ciudad = :ciudad,
-        direccion = :direccion,
-        numero_casa = :numero_casa,
-        codigo_postal = :codigo_postal,
-        telefono = :telefono,
-        correo = :correo,
-        tipo_sangre = :tipo_sangre,
-        n_historia = :n_historia,
-        rif_institucion = :rif_institucion
+        municipio = :municipio,
+        parroquia = :parroquia,
+        correo_electronico = :correo_electronico,
+        telefono_celular = :telefono_celular,
+        telefono_habitacion = :telefono_habitacion,
+        telefono_trabajo = :telefono_trabajo,
+        fecha_ingreso = :fecha_ingreso,
+        cargo = :cargo,
+        situacion_laboral = :situacion_laboral
         WHERE
         ced_afiliado = :ced_afiliado
       ");
 
       $query->execute([
         ':ced_afiliado' => $this->ced_afiliado,
-        ':nombre' => $this->nombre,
-        ':apellido' => $this->apellido,
-        ':fecha_nacimiento' => $this->fecha_nacimiento,
-        ':sexo' => $this->sexo,
-        ':estado_provincia' => $this->estado_provincia,
-        ':ciudad' => $this->ciudad,
-        ':direccion' => $this->direccion,
-        ':numero_casa' => $this->numero_casa,
-        ':codigo_postal' => $this->codigo_postal,
-        ':telefono' => $this->telefono,
-        ':correo' => $this->correo,
-        ':tipo_sangre' => $this->tipo_sangre,
-        ':n_historia' => $this->n_historia,
         ':rif_institucion' => $this->rif_institucion,
+        ':primer_nombre' => $this->primer_nombre,
+        ':segundo_nombre' => $this->segundo_nombre,
+        ':primer_apellido' => $this->primer_apellido,
+        ':segundo_apellido' => $this->segundo_apellido,
+        ':sexo' => $this->sexo,
+        ':fecha_nacimiento' => $this->fecha_nacimiento,
+        ':estado_civil' => $this->estado_civil,
+        ':direccion_habitacion' => $this->direccion_habitacion,
+        ':estado' => $this->estado,
+        ':ciudad' => $this->ciudad,
+        ':municipio' => $this->municipio,
+        ':parroquia' => $this->parroquia,
+        ':correo_electronico' => $this->correo_electronico,
+        ':telefono_celular' => $this->telefono_celular,
+        ':telefono_habitacion' => $this->telefono_habitacion,
+        ':telefono_trabajo' => $this->telefono_trabajo,
+        ':fecha_ingreso' => $this->fecha_ingreso,
+        ':cargo' => $this->cargo,
+        ':situacion_laboral' => $this->situacion_laboral,
       ]);
 
       $consulta = $this->consultar();
@@ -232,7 +244,7 @@ class Afiliado extends DB{
     $r = array();
     try {
       $bd = $this->conecta();
-      $bd->query("DELETE FROM afiliados
+      $bd->query("DELETE FROM afiliado
         WHERE
         ced_afiliado = '$this->ced_afiliado'
       ");
@@ -251,7 +263,7 @@ class Afiliado extends DB{
     $r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT * FROM afiliados");
+			$resultados = $bd->query("SELECT * FROM afiliado");
 
 			if($resultados){
 				$respuesta = [];

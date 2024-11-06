@@ -24,18 +24,18 @@ function especialidad_get(){
 
 function _include(){
   const ced_medico = document.getElementById("ced_medico").value;
-  const nombre = document.getElementById("nombre").value;
-  const apellido = document.getElementById("apellido").value;
-  const estado = document.getElementById("estado").value;
-  const cod_especialidad = document.getElementById("cod_especialidad").value;
+  const nombres = document.getElementById("nombres").value;
+  const apellidos = document.getElementById("apellidos").value;
+  const activo = document.getElementById("activo").value;
+  const telefono = document.getElementById("telefono").value;
 
 	let data = new FormData();
 	data.append('accion','incluir');
   data.append('ced_medico', ced_medico);
-  data.append('nombre', nombre);
-  data.append('apellido', apellido);
-  data.append('estado', estado);
-  data.append('cod_especialidad', cod_especialidad);
+  data.append('nombres', nombres);
+  data.append('apellidos', apellidos);
+  data.append('activo', activo);
+  data.append('telefono', telefono);
 
 	ajax(data, medicos);
   let modal1 =  document.getElementById("modal");
@@ -44,18 +44,18 @@ function _include(){
 
 function _edit(){
   const ced_medico = document.getElementById("ced_medico").value;
-  const nombre = document.getElementById("nombre").value;
-  const apellido = document.getElementById("apellido").value;
-  const estado = document.getElementById("estado").value;
-  const cod_especialidad = document.getElementById("cod_especialidad").value;
+  const nombres = document.getElementById("nombres").value;
+  const apellidos = document.getElementById("apellidos").value;
+  const activo = document.getElementById("activo").value;
+  const telefono = document.getElementById("telefono").value;
 
 	let data = new FormData();
   data.append('accion','modificar');
   data.append('ced_medico', ced_medico);
-  data.append('nombre', nombre);
-  data.append('apellido', apellido);
-  data.append('estado', estado);
-  data.append('cod_especialidad', cod_especialidad);
+  data.append('nombres', nombres);
+  data.append('apellidos', apellidos);
+  data.append('activo', activo);
+  data.append('telefono', telefono);
 
 	ajax(data, medicos);
   let modal1 =  document.getElementById("modal");
