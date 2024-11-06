@@ -25,9 +25,10 @@
 		  }
 		  else{
 			  $medicos->set_ced_medico($_POST['ced_medico']);
-			  $medicos->set_nombre($_POST['nombre']);
-			  $medicos->set_apellido($_POST['apellido']);
-			  $medicos->set_estado($_POST['estado']);
+			  $medicos->set_nombres($_POST['nombres']);
+			  $medicos->set_apellidos($_POST['apellidos']);
+			  $medicos->set_activo($_POST['activo']);
+			  $medicos->set_telefono($_POST['telefono']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($medicos->incluir());

@@ -27,20 +27,23 @@
         echo json_encode($citas->consultar_pacientes());
       }
 		  elseif($accion=='eliminar'){
-			 $citas->set_id($_POST['id']);
+			 $citas->set_id($_POST['cod_cita']);
 			 echo json_encode($citas->eliminar());
 		  }
 		  else{
-			  $citas->set_fecha($_POST['fecha']);
-        $citas->set_motivo($_POST['motivo']);
-        $citas->set_id_medico($_POST['id_medico']);
-        $citas->set_id_afiliado($_POST['id_afiliado']);
+			  $citas->set_cod_cita($_POST['cod_cita']);
+        $citas->set_ced_afiliado($_POST['ced_afiliado']);
+        $citas->set_cod_especialidad_medico($_POST['cod_especialidad_medico']);
+        $citas->set_ced_beneficiario($_POST['ced_beneficiario']);
+        $citas->set_fecha($_POST['fecha']);
+        $citas->set_hora($_POST['hora']);
+        $citas->set_detalle($_POST['detalle']);
+        $citas->set_vigente($_POST['vigente']);
 
 			  if($accion=='incluir'){
 				  echo json_encode($citas->incluir());
 			  }
 			  elseif($accion=='modificar'){
-			    $citas->set_id($_POST['id']);
 				  echo json_encode($citas->modificar());
 			  }
 		  }

@@ -192,7 +192,3 @@ CREATE TABLE tratamientos (
   tiempo_tratamiento VARCHAR(25),
   FOREIGN KEY (cod_informe) REFERENCES informe_medico(cod_informe)
 );
-
-INSERT INTO beneficiarios (ced_beneficiario, ced_afiliado, nombres, apellidos, fecha_nacimiento, sexo, parentesco, estado_civil, direccion, telefono_celular)
-VALUES ('27025337', NULL, 'leonardo', 'Melendez', '1999-07-09', 'M', 'parentesco3', 'soltero', 'barquisimeto', '0424587022');
-

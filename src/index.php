@@ -10,6 +10,6 @@
   }
 
   else{
-    echo "error 404";
+    echo "error 404 el equipo ipasme aun esta configurando el .htaccess";
   }
 ?>

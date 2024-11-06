@@ -6,6 +6,7 @@ require_once('modelo/beneficiario.php');
 
 
 class Cita extends DB{
+<<<<<<< HEAD
 
   private $ced_afiliado;
   private $cod_cita;
@@ -22,6 +23,23 @@ class Cita extends DB{
 	function set_ced_afiliado($valor){
 		$this->ced_afiliado = $valor;
 	}
+=======
+  private $cod_cita;
+  private $ced_afiliado;
+  private $cod_especialidad_medico;
+  private $ced_beneficiario;
+  private $fecha;
+  private $hora;
+  private $detalle;
+  private $vigente;
+
+	function set_cod_cita($valor){
+		$this->cod_cita = $valor;
+	}
+  function set_ced_afiliado($valor){
+		$this->ced_afiliado = $valor;
+	}
+>>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
   function set_cod_especialidad_medico($valor){
     $this->cod_especialidad_medico = $valor;
 	}
@@ -30,6 +48,7 @@ class Cita extends DB{
   }
   function set_fecha($valor){
     $this->fecha = $valor;
+<<<<<<< HEAD
 	}
   function set_hora($valor){
     $this->hora = $valor;
@@ -40,6 +59,18 @@ class Cita extends DB{
   function set_vigente($valor){
     $this->vigente = $valor;
 	}
+=======
+  }
+  function set_hora($valor){
+    $this->hora = $valor;
+  }
+  function set_detalle($valor){
+    $this->detalle = $valor;
+  }
+  function set_vigente($valor){
+    $this->vigente = $valor;
+  }
+>>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
 
 	function incluir(){
 		$r = array();
@@ -47,7 +78,11 @@ class Cita extends DB{
       $bd = $this->conecta();
       $query = $bd->prepare("
         INSERT INTO citas (
+<<<<<<< HEAD
           cdo_cita,
+=======
+          cod_cita,
+>>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
           ced_afiliado,
           cod_especialidad_medico,
           ced_beneficiario,
@@ -56,7 +91,11 @@ class Cita extends DB{
           detalle,
           vigente
         ) VALUES (
+<<<<<<< HEAD
           :cdo_cita,
+=======
+          :cod_cita,
+>>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
           :ced_afiliado,
           :cod_especialidad_medico,
           :ced_beneficiario,
@@ -68,14 +107,22 @@ class Cita extends DB{
       ");
 
       $query->execute([
+<<<<<<< HEAD
         ':cdo_citas' => $this->citas,
+=======
+        ':cod_cita' => $this->cod_cita,
+>>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
         ':ced_afiliado' => $this->ced_afiliado,
         ':cod_especialidad_medico' => $this->cod_especialidad_medico,
         ':ced_beneficiario' => $this->ced_beneficiario,
         ':fecha' => $this->fecha,
         ':hora' => $this->hora,
         ':detalle' => $this->detalle,
+<<<<<<< HEAD
         ':vigente' => $this->vigente,
+=======
+        ':vigente' => $this->vigente
+>>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
       ]);
 
       $r['resultado'] = 'incluir';
@@ -93,10 +140,14 @@ class Cita extends DB{
     try {
       $bd = $this->conecta();
       $bd->query("UPDATE citas SET
+          cod_cita = '$this->cod_cita',
+          ced_afiliado = '$this->ced_afiliado',
+          cod_especialidad_medico = '$this->cod_especialidad_medico',
+          ced_beneficiario = '$this->ced_beneficiario',
           fecha = '$this->fecha',
-          motivo = '$this->motivo',
-          id_medico = '$this->id_medico',
-          id_afiliado = '$this->id_afiliado'
+          hora = '$this->hora',
+          detalle = '$this->detalle',
+          vigente = '$this->vigente'
           WHERE
           id = '$this->id'
         ");
@@ -122,7 +173,7 @@ class Cita extends DB{
       $r['mensaje'] =  'Registro Eliminado';
 			} catch(Exception $e) {
 				$r['resultado'] = 'error';
-			    $r['mensaje'] =  $e->getMessage();
+			  $r['mensaje'] =  $e->getMessage();
 			}
     $result = $this->consultar();
 		return $result;
@@ -132,8 +183,7 @@ class Cita extends DB{
 		$r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT * FROM citas;
-      ");
+			$resultados = $bd->query("SELECT * FROM citas;");
 			if($resultados){
 
 				$respuesta = [];
@@ -157,7 +207,7 @@ class Cita extends DB{
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function consultar_medicos() {

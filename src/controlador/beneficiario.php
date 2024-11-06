@@ -27,20 +27,14 @@
 		  else{
         $beneficiarios->set_ced_beneficiario($_POST['ced_beneficiario']);
         $beneficiarios->set_ced_afiliado($_POST['ced_afiliado']);
-        $beneficiarios->set_n_historia($_POST['n_historia']);
-        $beneficiarios->set_nombre($_POST['nombre']);
-        $beneficiarios->set_apellido($_POST['apellido']);
+        $beneficiarios->set_nombres($_POST['nombres']);
+        $beneficiarios->set_apellidos($_POST['apellidos']);
         $beneficiarios->set_fecha_nacimiento($_POST['fecha_nacimiento']);
-        $beneficiarios->set_codigo_postal($_POST['codigo_postal']);
-        $beneficiarios->set_estado_provincia($_POST['estado_provincia']);
-        $beneficiarios->set_ciudad($_POST['ciudad']);
-        $beneficiarios->set_direccion($_POST['direccion']);
-        $beneficiarios->set_numero_casa($_POST['numero_casa']);
         $beneficiarios->set_sexo($_POST['sexo']);
-        $beneficiarios->set_telefono($_POST['telefono']);
-        $beneficiarios->set_correo($_POST['correo']);
-        $beneficiarios->set_tipo_sangre($_POST['tipo_sangre']);
-        $beneficiarios->set_relacion($_POST['relacion']);
+        $beneficiarios->set_parentesco($_POST['parentesco']);
+        $beneficiarios->set_estado_civil($_POST['estado_civil']);
+        $beneficiarios->set_direccion($_POST['direccion']);
+        $beneficiarios->set_telefono_celular($_POST['telefono_celular']);
 
 			  if($accion=='incluir'){
           echo  json_encode($beneficiarios->incluir());
