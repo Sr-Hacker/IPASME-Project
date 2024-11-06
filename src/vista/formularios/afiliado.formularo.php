@@ -2,16 +2,6 @@
   <h4>Crear Nuevo Afiliado</h4>
   <div class="container_beneficiarios--form">
 
-<<<<<<< HEAD
-    <input type="number" placeholder="cedula" id="ced_afiliado" name="ced_afiliado">
-    <input type="text" placeholder="Nombre" id="nombre" name="nombre">
-    <input type="text" placeholder="Apellido" id="apellido" name="apellido">
-    <input type="number" placeholder="telefono" id="telefono" name="telefono">
-    <input type="mail" placeholder="correo" id="correo" name="correo">
-    <input type="text" placeholder="codigo historia" id="n_historia" name="n_historia">
-    <input type="text" placeholder="tipo_sangre" id="tipo_sangre" name="tipo_sangre">
-    <input type="date" placeholder="Fecha de Nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
-=======
     <label for="">cedula</label>
     <input type="text" placeholder="cedula" id="ced_afiliado" name="ced_afiliado">
     <label for="">Institucion</label>
@@ -41,7 +31,6 @@
     <label for="">Fecha</label>
     <input type="date" placeholder="Fecha de Nacimiento" id="estado" name="fecha_nacimiento">
 
->>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
     <p id="instituto"></p>
     <label for="">sexo</label>
     <select class="opc-modal" id="sexo" name="sexo">

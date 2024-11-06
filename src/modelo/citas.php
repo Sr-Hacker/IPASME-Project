@@ -107,22 +107,14 @@ class Cita extends DB{
       ");
 
       $query->execute([
-<<<<<<< HEAD
-        ':cdo_citas' => $this->citas,
-=======
         ':cod_cita' => $this->cod_cita,
->>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
         ':ced_afiliado' => $this->ced_afiliado,
         ':cod_especialidad_medico' => $this->cod_especialidad_medico,
         ':ced_beneficiario' => $this->ced_beneficiario,
         ':fecha' => $this->fecha,
         ':hora' => $this->hora,
         ':detalle' => $this->detalle,
-<<<<<<< HEAD
-        ':vigente' => $this->vigente,
-=======
         ':vigente' => $this->vigente
->>>>>>> 2df0c5580a27c60e99cb7ad7155170ae4c15ac41
       ]);
 
       $r['resultado'] = 'incluir';
