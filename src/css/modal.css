@@ -13,6 +13,8 @@
   background-color: rgba(146, 155, 175, 0.948);  border-radius: var(--border-radius);
 }
 
+.opc-modal,
+input[type="mail"],
 input[type="password"],
 input[type="text"],
 input[type="number"],
@@ -25,7 +27,6 @@ input[type="date"] {
     padding-left: calc(1rem * 3.5);
     border-radius: 100px;
     transition: background .5s;
-
 }
 
 .login-card input:focus {

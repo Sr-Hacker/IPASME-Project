@@ -2,11 +2,11 @@
   <h4>Crear Nuevo Afiliado</h4>
   <div class="container_beneficiarios--form">
 
-    <input type="text" placeholder="cedula" id="ced_afiliado" name="ced_afiliado">
+    <input type="number" placeholder="cedula" id="ced_afiliado" name="ced_afiliado">
     <input type="text" placeholder="Nombre" id="nombre" name="nombre">
     <input type="text" placeholder="Apellido" id="apellido" name="apellido">
-    <input type="text" placeholder="telefono" id="telefono" name="telefono">
-    <input type="text" placeholder="correo" id="correo" name="correo">
+    <input type="number" placeholder="telefono" id="telefono" name="telefono">
+    <input type="mail" placeholder="correo" id="correo" name="correo">
     <input type="text" placeholder="codigo historia" id="n_historia" name="n_historia">
     <input type="text" placeholder="tipo_sangre" id="tipo_sangre" name="tipo_sangre">
     <input type="date" placeholder="Fecha de Nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
