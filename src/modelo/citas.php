@@ -6,35 +6,40 @@ require_once('modelo/beneficiario.php');
 
 
 class Cita extends DB{
-  private $id;
-  private $fecha;
-  private $motivo;
-  private $id_medico = 0;
-  private $id_beneficiario = 0;
-  private $id_afiliado = 0;
 
-	function set_id($valor){
-		$this->id = $valor;
+  private $ced_afiliado;
+  private $cod_cita;
+  private $cod_especialidad_medico;
+  private $ced_beneficiario;
+  private $fecha;
+  private $hora;
+  private $detalle;
+  private $vigente;
+
+  function set_cita($valor){
+    $this->cod_cita = $valor;
+  }
+	function set_ced_afiliado($valor){
+		$this->ced_afiliado = $valor;
 	}
+  function set_cod_especialidad_medico($valor){
+    $this->cod_especialidad_medico = $valor;
+	}
+  function set_ced_beneficiario($valor){
+    $this->ced_beneficiario = $valor;
+  }
   function set_fecha($valor){
-		$this->fecha = $valor;
+    $this->fecha = $valor;
 	}
-  function set_motivo($valor){
-    $this->motivo = $valor;
+  function set_hora($valor){
+    $this->hora = $valor;
 	}
-  function set_id_medico($valor){
-    $this->id_medico = $valor;
-  }
-  function set_id_beneficiario($valor){
-    if($valor){
-      $this->id_beneficiario = $valor;
-    }
-  }
-  function set_id_afiliado($valor){
-    if($valor){
-      $this->id_afiliado = $valor;
-    }
-  }
+  function set_detalle($valor){
+    $this->detalle = $valor;
+	}
+  function set_vigente($valor){
+    $this->vigente = $valor;
+	}
 
 	function incluir(){
 		$r = array();
@@ -42,23 +47,35 @@ class Cita extends DB{
       $bd = $this->conecta();
       $query = $bd->prepare("
         INSERT INTO citas (
+          cdo_cita,
+          ced_afiliado,
+          cod_especialidad_medico,
+          ced_beneficiario,
           fecha,
-          motivo,
-          id_medico,
-          id_afiliado
+          hora,
+          detalle,
+          vigente
         ) VALUES (
+          :cdo_cita,
+          :ced_afiliado,
+          :cod_especialidad_medico,
+          :ced_beneficiario,
           :fecha,
-          :motivo,
-          :id_medico,
-          :id_afiliado
+          :hora,
+          :detalle,
+          :vigente
         )
       ");
 
       $query->execute([
+        ':cdo_citas' => $this->citas,
+        ':ced_afiliado' => $this->ced_afiliado,
+        ':cod_especialidad_medico' => $this->cod_especialidad_medico,
+        ':ced_beneficiario' => $this->ced_beneficiario,
         ':fecha' => $this->fecha,
-        ':motivo' => $this->motivo,
-        ':id_medico' => $this->id_medico,
-        ':id_afiliado' => $this->id_afiliado
+        ':hora' => $this->hora,
+        ':detalle' => $this->detalle,
+        ':vigente' => $this->vigente,
       ]);
 
       $r['resultado'] = 'incluir';
@@ -115,35 +132,19 @@ class Cita extends DB{
 		$r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT
-        c.*,
-          m1.nombres AS nombres_medico,
-          m1.apellidos AS apellidos_medico,
-          m1.cedula AS cedula_medico,
-
-          a2.nombre AS nombre_afiliado,
-          a2.apellido AS apellido_afiliado,
-          a2.cedula AS cedula_afiliado
-        FROM
-          citas c
-        JOIN
-          medicos m1 ON c.id_medico = m1.id
-        JOIN
-          afiliados a2 ON c.id_afiliado = a2.id;
+			$resultados = $bd->query("SELECT * FROM citas;
       ");
 			if($resultados){
 
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$citas['id'] = $resultado['id'];
-          $citas['motivo'] = $resultado['motivo'];
+					$citas['cod_cita'] = $resultado['cod_cita'];
+          $citas['ced_afiliado'] = $resultado['ced_afiliado'];
+          $citas['cod_especialidad_medico'] = $resultado['cod_especialidad_medico'];
           $citas['fecha'] = $resultado['fecha'];
-          $citas['id_medico'] = $resultado['id_medico'];
-          $citas['id_beneficiario'] = $resultado['id_beneficiario'];
-          $citas['id_afiliado'] = $resultado['id_afiliado'];
-
-          $citas['nombres_medico'] = $resultado['nombres_medico'];
-          $citas['nombre_afiliado'] = $resultado['nombre_afiliado'];
+          $citas['hora'] = $resultado['hora'];
+          $citas['detalle'] = $resultado['detalle'];
+          $citas['vigente'] = $resultado['vigente'];
           array_push($respuesta, $citas);
 				}
 				$r['resultado'] =  $respuesta;
