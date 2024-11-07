@@ -84,19 +84,7 @@ mensaje){
 }
 
 function limpia(){
-	$("#ced_afiliado").val("");
-	$("#nombre").val("");
-	$("#apellido").val("");
-	$("#fecha_nacimiento").val("");
-	$("#sexo").val("");
-	$("#estado_provincia").val("");
-	$("#ciudad").val("");
-	$("#direccion").val("");
-	$("#numero_casa").val("");
-	$("#codigo_postal").val("");
-	$("#telefono").val("");
-	$("#correo").val("");
-	$("#tipo_sangre").val("");
-	$("#n_historia").val("");
-	$("#rif_institucion").val("");
+	$("#cod_ciudad").val("");
+	$("#cod_estado").val("");
+	$("#nombre_ciudad").val("");
 }

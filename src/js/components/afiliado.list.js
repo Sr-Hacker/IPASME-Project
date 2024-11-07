@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  _get();
   instituciones_get();
 })
 
