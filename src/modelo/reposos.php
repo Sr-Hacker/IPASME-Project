@@ -1,7 +1,7 @@
 <?php
 require_once('config/db.php');
 
-class Empleado extends DB{
+class Reposo extends DB{
 
   private $n_reposo;
   private $n_consulta;
@@ -131,18 +131,15 @@ class Empleado extends DB{
 					$trabajador['fecha_final'] = $resultado['fecha_final'];
           array_push($respuesta, $trabajador);
 				}
-        $consulta = $this->consultar();
-        $r['resultado'] =  $consulta['resultado'];
+        $r['resultado'] =  $respuesta;
 				$r['mensaje'] =  'consulta';
 			}
 			else{
-        $consulta = $this->consultar();
-        $r['resultado'] =  $consulta['resultado'];
-				$r['mensaje'] =  '';
+        $r['resultado'] =  [];
+				$r['mensaje'] =  'sin resultados';
 			}
 		}catch(Exception $e){
-      $consulta = $this->consultar();
-      $r['resultado'] =  $consulta['resultado'];
+      $r['resultado'] =  [];
 			$r['mensaje'] =  $e->getMessage();
 		}
 		return $r;

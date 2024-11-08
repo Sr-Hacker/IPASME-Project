@@ -17,7 +17,7 @@
         <button id="include" class="crear">Registrar Tratamiento</button>
       </div>
       <div class="container_center--list">
-        <div id="get_result"></div>
+        <div id="consultar_tratamientos"></div>
       </div>
     </div>
   </div>
