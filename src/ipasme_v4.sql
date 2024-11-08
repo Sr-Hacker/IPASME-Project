@@ -1,3 +1,5 @@
+use data_uptaeb;
+
 CREATE TABLE estados (
   cod_estado INT PRIMARY KEY,
   nombre_estado VARCHAR(30)
