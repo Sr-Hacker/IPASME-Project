@@ -33,9 +33,12 @@ function _include(){
   data.append('cod_estado', codEstado);
   data.append('nombre_ciudad', nombreCiudad);
 
-	ajax(data, ciudades);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  valido = validarenvio()
+  if(valido){
+    ajax(data, ciudades);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _edit(){

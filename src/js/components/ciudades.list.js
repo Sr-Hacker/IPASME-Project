@@ -28,8 +28,9 @@ function ciudades(data){
     data.map((item) => {
       const card = `
         <div class="item">
-          <p>Especialidad: ${item.nombre}</p>
-          <p>Codigo: ${item.cod_espe}</p>
+          <p>Codigo: ${item.cod_ciudad}</p>
+          <p>Ciudad: ${item.nombre_ciudad}</p>
+          <p>Estado: ${item.cod_estado}</p>
           <div class="options">
           <button class="editar" type='button' onclick="editModal('${item.cod_espe}', cargarDatos)">Modificar</button>
           <button class="eliminar" type='button' onclick="deleteModal('${item.cod_espe}', cargarDatos)">Eliminar</button>

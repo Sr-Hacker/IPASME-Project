@@ -58,18 +58,18 @@ class Ciudad extends DB{
         cod_estado =  '$this->cod_estado',
         nombre_ciudad = '$this->nombre_ciudad'
         WHERE
-        cod_ciudad = '$this->cod_ciudad',
-        cod_estado = '$this->cod_estado',
-        nombre_ciudad = '$this->nombre_ciudad'
+        cod_ciudad = '$this->cod_ciudad'
       ");
-      $r['resultado'] = 'modificar';
+
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Modificado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+    return $r;
 	}
 
 	function eliminar(){

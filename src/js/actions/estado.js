@@ -47,9 +47,12 @@ function _edit(){
   data.append('cod_estado', cod_estado);
   data.append('nombre_estado', nombre_estado);
 
-	ajax(data, estados);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, estados);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _delete(){
@@ -59,7 +62,10 @@ function _delete(){
 	data.append('accion','eliminar');
   data.append('cod_estado', cod_estado);
 
-	ajax(data, estados);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, estados);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
