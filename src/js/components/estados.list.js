@@ -7,8 +7,8 @@ let estadosArray = [];
 
 function cargarDatos(item){
   const estados = estadosArray[item]
-	$("#cod_estado").val(estados.ced_afiliado);
-  $("#nombre_estado").val(estados.n_historia);
+	$("#cod_estado").val(estados.cod_estado);
+  $("#nombre_estado").val(estados.nombre_estado);
 }
 
 function estados(data){
@@ -26,19 +26,15 @@ function estados(data){
     data.map((item) => {
       const card = `
         <div class="item">
-          <p>${item.nombre} ${item.apellido}</p>
-          <p>Edad: ${item.correo}</p>
-          <p>Telefono: ${item.telefono}</p>
-          <p>Cedula: ${item.ced_afiliado}</p>
-          <p>sexo: ${item.sexo}</p>
-          <p>historia: ${item.rif_institucion}</p>
+          <p>Codigo estado: ${item.cod_estado}</p>
+          <p>Nombre: ${item.nombre_estado}</p>
           <div class="options">
-          <button type='button' class="editar" onclick="editModal('${item.ced_afiliado}', cargarDatos)">Modificar</button>
-          <button type='button' class="eliminar" onclick="deleteModal('${item.ced_afiliado}', cargarDatos)">Eliminar</button>
+          <button type='button' class="editar" onclick="editModal('${item.cod_estado}', cargarDatos)">Modificar</button>
+          <button type='button' class="eliminar" onclick="deleteModal('${item.cod_estado}', cargarDatos)">Eliminar</button>
           </div>
         </div>
       `;
-      estadosArray[item.ced_afiliado] = item;
+      estadosArray[item.cod_estado] = item;
       result = result.concat("",card);
     })
   }
