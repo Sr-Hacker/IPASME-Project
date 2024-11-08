@@ -32,7 +32,6 @@
           echo  json_encode($especialidad->incluir());
 			  }
 			  elseif($accion=='modificar'){
-          $especialidad->set_code_espe($_POST['code_espe']);
 				  echo  json_encode($especialidad->modificar());
 			  }
 		  }

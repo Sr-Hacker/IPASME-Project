@@ -12,7 +12,8 @@ function ajax(data, callback) {
     success: function (response) {
       try {
         const result = JSON.parse(response)
-        console.log(result.resultado)
+        console.log(result)
+        console.log("Result: ",result.resultado)
         if(result?.mensaje){
           alerta(result?.mensaje)
         }

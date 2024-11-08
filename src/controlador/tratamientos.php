@@ -10,35 +10,34 @@
   if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
-		  $reposos = new Reposo();
+		  $tratamientos = new Tratamiento();
 
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){
-			  echo json_encode($reposos->consultar());
+			  echo json_encode($tratamientos->consultar());
 		  }
 		  else if($accion=='buscar'){
-			  $reposos->set_cedula($_POST['buscador']);
-        echo json_encode($reposos->buscar());
+			  $tratamientos->set_cedula($_POST['buscador']);
+        echo json_encode($tratamientos->buscar());
 		  }
 		  elseif($accion=='eliminar'){
-			 $reposos->set_id($_POST['id']);
-			 echo json_encode($reposos->eliminar());
+			 $tratamientos->set_id($_POST['n_tratamiento']);
+			 echo json_encode($tratamientos->eliminar());
 		  }
 		  else{
-        $reposos->set_name($_POST['nombre']);
-        $reposos->set_apellido($_POST['apellido']);
-        $reposos->set_cedula($_POST['cedula']);
-        $reposos->set_telefono($_POST['telefono']);
-        $reposos->set_contrasena($_POST['contrasena']);
-        $reposos->set_rol($_POST['rol']);
+        $tratamientos->set_n_tratamiento($_POST['n_tratamiento']);
+        $tratamientos->set_cod_informe($_POST['cod_informe']);
+        $tratamientos->set_tipo_tratamiento($_POST['tipo_tratamiento']);
+        $tratamientos->set_instrucciones($_POST['instrucciones']);
+        $tratamientos->set_motivo($_POST['motivo']);
+        $tratamientos->set_tiempo_tratamiento($_POST['tiempo_tratamiento']);
 
 			  if($accion=='incluir'){
-				  echo  json_encode($reposos->incluir());
+				  echo  json_encode($tratamientos->incluir());
 			  }
 			  elseif($accion=='modificar'){
-          $reposos->set_id($_POST['id']);
-				  echo  json_encode($reposos->modificar());
+				  echo  json_encode($tratamientos->modificar());
 			  }
 		  }
 		  exit;

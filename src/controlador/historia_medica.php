@@ -25,10 +25,12 @@
 		  }
 		  else{
         $historia->set_n_historia($_POST['n_historia']);
-        $historia->set_fecha_registro($_POST['fecha_registro']);
+        $historia->set_Fecha_de_registro($_POST['Fecha_de_registro']);
         $historia->set_partida_de_nacimiento($_POST['partida_de_nacimiento']);
         $historia->set_acta_de_matrimonio($_POST['acta_de_matrimonio']);
-        $historia->set_constancia_Trabajo($_POST['constancia_Trabajo']);
+        $historia->set_constancia_trabajo($_POST['constancia_trabajo']);
+        $historia->set_tipo_sangre($_POST['tipo_sangre']);
+
 			  if($accion=='incluir'){
 				  echo  json_encode($historia->incluir());
 			  }

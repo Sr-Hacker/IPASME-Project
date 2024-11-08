@@ -17,7 +17,7 @@
         <button id="include" class="crear">Registrar Reposo</button>
       </div>
       <div class="container_center--list">
-        <div id="get_result"></div>
+        <div id="consultar_reposos"></div>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
   </div>
 
   <script type="text/javascript" src="js/modals.js" defer></script>
-  <script type="text/javascript" src="js/components/reposo.list.js" defer></script>
+  <script type="text/javascript" src="js/components/reposos.list.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
   <script type="text/javascript" src="js/validations/reposos.js" defer></script>
   <script type="text/javascript" src="js/actions/reposos.js" defer></script>

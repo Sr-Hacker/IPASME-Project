@@ -14,7 +14,7 @@ function editModal(e, callback){
   modal.style.visibility = 'visible';
   modal.style.opacity = '1';
   let action_modal = document.getElementById("action_modal")
-  action_modal.textContent = "Modificar";
+  action_modal.textContent = "modificar";
 }
 
 function deleteModal(e, callback){
