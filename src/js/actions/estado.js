@@ -30,9 +30,12 @@ function _include(){
   data.append('cod_estado', codEstado);
   data.append('nombre_estado', nombreEstado);
 
-	ajax(data, estados);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, estados);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _edit(){

@@ -65,5 +65,5 @@ mensaje){
 
 function limpia(){
 	$("#nombre").val("");
-	$("#codigo").val("");
+	$("#cod_espe").val("");
 }

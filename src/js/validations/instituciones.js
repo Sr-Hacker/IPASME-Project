@@ -1,12 +1,12 @@
 $(document).ready(function(){
 //VALIDACION DE DATOS
-	$("#rif").on("keypress",function(e){
+	$("#rif_institucion").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
-	$("#rif").on("keyup",function(){
+	$("#rif_institucion").on("keyup",function(){
 		validarkeyup(/^[0-9]{7,8}$/,$(this),
-		$("#m_rif"),"El formato no coincide con un rif");
+		$("#m_rif_institucion"),"El formato no coincide con un rif");
 	});
 
 	$("#nombre").on("keypress",function(e){
@@ -80,12 +80,12 @@ mensaje){
 }
 
 function limpia(){
-	$("#rif").val("");
+	$("#rif_institucion").val("");
+	$("#cod_estado").val("");
 	$("#nombre").val("");
-	$("#estado_provincia").val("");
-	$("#ciudad").val("");
 	$("#direccion").val("");
-	$("#zona_postal").val("");
+	$("#codigo_postal").val("");
 	$("#telefono").val("");
 	$("#correo").val("");
+	$("#tipo_institucion").val("");
 }

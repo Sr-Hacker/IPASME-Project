@@ -37,10 +37,11 @@ function _include(){
   data.append('tipo_institucion', tipo_institucion);
 
   const valido = validarEnvio()
+  if(valido){
     ajax(data, instituciones);
     let modal =  document.getElementById("modal")
     modal.style.display = "none";
-
+  }
 }
 
 function _edit(){

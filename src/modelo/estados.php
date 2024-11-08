@@ -4,7 +4,6 @@ require_once('config/db.php');
 class Estado extends DB{
   private $cod_estado;
   private $nombre_estado;
-  private $nombre_ciudad;
 
 	function set_cod_estado($valor){
 		$this->cod_estado = $valor;
@@ -45,22 +44,27 @@ class Estado extends DB{
 	function modificar(){
     $r = array();
     try {
-      $co = $this->conecta();
-      $co->query("UPDATE estados SET
-        cod_estado = '$this->cod_estado',
-        nombre_estado =  '$this->nombre_estado'
+      $bd = $this->conecta();
+      $query = $bd->prepare("UPDATE estados SET
+        nombre_estado =  :nombre_estado
         WHERE
-        cod_estado = '$this->cod_estado',
-        nombre_estado = '$this->nombre_estado'
+        cod_estado = :cod_estado
       ");
-      $r['resultado'] = 'modificar';
+
+      $query->execute([
+        ':cod_estado' => $this->cod_estado,
+        ':nombre_estado' => $this->nombre_estado,
+      ]);
+
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Modificado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function eliminar(){
@@ -69,16 +73,18 @@ class Estado extends DB{
       $co = $this->conecta();
       $co->query("DELETE FROM estados
         WHERE
-        cod_ciudad = '$this->cod_ciudad'
+        cod_estado = '$this->cod_estado'
         ");
-        $r['resultado'] = 'eliminar';
-        $r['mensaje'] =  'Registro Eliminado';
+
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
+      $r['mensaje'] =  'Registro Modificado';
     } catch(Exception $e) {
-      $r['resultado'] = 'error';
+      $consulta = $this->consultar();
+      $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  $e->getMessage();
     }
-    $result = $this->consultar();
-		return $result;
+    return $r;
 	}
 
 	function consultar(){
