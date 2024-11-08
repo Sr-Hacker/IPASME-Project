@@ -5,6 +5,12 @@ CREATE TABLE estados (
   nombre_estado VARCHAR(30)
 );
 
+CREATE TABLE patologias (
+  cod_patologia INT PRIMARY KEY,
+  nombre VARCHAR(30),
+  descripcion VARCHAR(30)
+);
+
 CREATE TABLE ciudades (
   cod_ciudad INT PRIMARY KEY,
   cod_estado INT,

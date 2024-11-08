@@ -21,28 +21,14 @@
 			 echo json_encode($tramites->obtienefecha());
 		  }
 		  elseif($accion=='eliminar'){
-			 $tramites->set_cedula($_POST['cedula']);
+			 $tramites->set_cod_tramite($_POST['cod_tramite']);
 			 echo  json_encode($tramites->eliminar());
 		  }
 		  else{
-			  $tramites->set_nombre_apellido($_POST['nombre_apellido']);
-        $tramites->set_cedula($_POST['cedula']);
-        $tramites->set_rif($_POST['rif']);
-        $tramites->set_fecha_nac($_POST['fecha_nac']);
-        $tramites->set_vivienda($_POST['vivienda']);
-        $tramites->set_automovil($_POST['automovil']);
-        $tramites->set_modelo($_POST['modelo']);
-        $tramites->set_ano($_POST['ano']);
-        $tramites->set_telefono($_POST['telefono']);
-        $tramites->set_celular($_POST['celular']);
-        $tramites->set_estado_civil($_POST['estado_civil']);
-        $tramites->set_tipo_sangre($_POST['tipo_sangre']);
-        $tramites->set_talla_camisa($_POST['talla_camisa']);
-        $tramites->set_talla_zapato($_POST['talla_zapato']);
-        $tramites->set_talla_pantalon($_POST['talla_pantalon']);
-        $tramites->set_correo($_POST['correo']);
-        $tramites->set_cargo($_POST['cargo']);
-        $tramites->set_estatus($_POST['estatus']);
+			  $tramites->set_cod_tramite($_POST['cod_tramite']);
+        $tramites->set_ced_empleado($_POST['ced_empleado']);
+        $tramites->set_nombre($_POST['nombre']);
+        $tramites->set_descripcion($_POST['descripcion']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($tramites->incluir());

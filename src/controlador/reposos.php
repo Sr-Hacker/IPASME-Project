@@ -22,22 +22,21 @@
         echo json_encode($reposos->buscar());
 		  }
 		  elseif($accion=='eliminar'){
-			 $reposos->set_id($_POST['id']);
-			 echo json_encode($reposos->eliminar());
+        $reposos->set_n_reposo($_POST['n_reposo']);
+			  echo json_encode($reposos->eliminar());
 		  }
 		  else{
-        $reposos->set_name($_POST['nombre']);
-        $reposos->set_apellido($_POST['apellido']);
-        $reposos->set_cedula($_POST['cedula']);
-        $reposos->set_telefono($_POST['telefono']);
-        $reposos->set_contrasena($_POST['contrasena']);
-        $reposos->set_rol($_POST['rol']);
+        $reposos->set_n_reposo($_POST['n_reposo']);
+        $reposos->set_n_consulta($_POST['n_consulta']);
+        $reposos->set_motivo($_POST['motivo']);
+        $reposos->set_instrucciones($_POST['instrucciones']);
+        $reposos->set_fecha_inicio($_POST['fecha_inicio']);
+        $reposos->set_fecha_final($_POST['fecha_final']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($reposos->incluir());
 			  }
 			  elseif($accion=='modificar'){
-          $reposos->set_id($_POST['id']);
 				  echo  json_encode($reposos->modificar());
 			  }
 		  }
