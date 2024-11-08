@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("action_modal").addEventListener("click", function(event) {
       event.preventDefault(); // Evita el envío del formulario para realizar las validaciones
 
-      if (validarCedula() && validarNombre() && validarApellido() && validarTelefono() && validarCorreo() && validarCodigoHistoria() && validarTipoSangre() && validarFechaNacimiento() && validarpostal()) {
+      if (validarCedula() &&  validarRif() && validarNombre() && validarSegNombre() && validarApellido() && validarSegApellido() && validarTelefono() && validarCorreo() && validarCodigoHistoria() && validarTipoSangre() && validarFechaNacimiento() && validarFechaIngreso() && validarpostal()) {
           alert("Formulario validado correctamente");
       } else {
       }
@@ -21,6 +21,17 @@ function validarCedula() {
   return true;
 }
 
+// Función para validar la rif
+function validarRif() {
+  const rif = document.getElementById("rif_institucion").value;
+  const regex = /^[0-9]{5,10}$/;
+  if (!regex.test(rif)) {
+      alert("El rif debe tener entre 5 y 10 dígitos numéricos");
+      return false;
+  }
+  return true;
+}
+
 // Función para validar el nombre
 function validarNombre() {
   const nombre = document.getElementById("nombre").value;
@@ -32,12 +43,34 @@ function validarNombre() {
   return true;
 }
 
+// Función para validar el segundo nombre
+function validarSegNombre() {
+  const SegNombre = document.getElementById("segundo_nombre").value;
+  const regex = /^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,12}$/;
+  if (!regex.test(SegNombre)) {
+      alert("El segundo nombre debe contener solo letras y espacios, entre 3 y 12 caracteres");
+      return false;
+  }
+  return true;
+}
+
 // Función para validar el apellido
 function validarApellido() {
   const apellido = document.getElementById("apellido").value;
   const regex = /^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,12}$/;
   if (!regex.test(apellido)) {
       alert("El apellido debe contener solo letras y espacios, entre 3 y 12 caracteres");
+      return false;
+  }
+  return true;
+}
+
+// Función para validar el segundo apellido
+function validarSegApellido() {
+  const Segapellido = document.getElementById("segundo_apellido").value;
+  const regex = /^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,12}$/;
+  if (!regex.test(Segapellido)) {
+      alert("El segundo apellido debe contener solo letras y espacios, entre 3 y 12 caracteres");
       return false;
   }
   return true;
@@ -108,5 +141,13 @@ function validarFechaNacimiento() {
   return true;
 }
 
-
+// Función para validar la fecha de ingreso
+function validarFechaIngreso() {
+  const fechaIng = document.getElementById("fecha_ingreso").value;
+  if (!fechaIng) {
+      alert("La fecha de ingreso es obligatoria");
+      return false;
+  }
+  return true;
+}
 

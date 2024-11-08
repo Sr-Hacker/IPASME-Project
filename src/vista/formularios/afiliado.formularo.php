@@ -3,14 +3,18 @@
   <div class="container_beneficiarios--form">
 
     <input type="number" placeholder="cedula" id="ced_afiliado" name="ced_afiliado">
-    <input type="text" placeholder="Institucion" id="rif_institucion" name="rif_institucion">
-    <input type="text" placeholder="Nombre" id="nombre" name="nombre">
+    <input type="number" placeholder="Rif de la institucion" id="rif_institucion" name="rif_institucion">
+    <input type="text" placeholder="Primer nombre" id="nombre" name="nombre">
+    <input type="text" placeholder="segundo nombre" id="segundo_nombre" name="segundo_nombre">
     <input type="text" placeholder="Apellido" id="apellido" name="apellido">
+    <input type="text" placeholder="segundo apellido" id="segundo_apellido" name="segundo_apellido">
     <input type="number" placeholder="telefono" id="telefono" name="telefono">
     <input type="mail" placeholder="correo" id="correo" name="correo">
     <input type="text" placeholder="codigo historia" id="n_historia" name="n_historia">
     <input type="text" placeholder="tipo_sangre" id="tipo_sangre" name="tipo_sangre">
     <input type="date" placeholder="Fecha de Nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
+    <input type="date" placeholder="fecha_ingreso" id="fecha_ingreso" name="fecha_ingreso">
+
     <p id="instituto"></p>
     <label for="">sexo</label>
     <select class="opc-modal" id="sexo" name="sexo">
