@@ -48,18 +48,20 @@ class Especialidad extends DB{
     try {
         $co = $this->conecta();
         $co->query("UPDATE especialidades SET
-          nombre = '$this->nombre',
+          nombre = '$this->nombre'
           WHERE
           cod_espe = '$this->cod_espe'
         ");
-        $r['resultado'] = 'modificar';
+
+        $consulta = $this->consultar();
+        $r['resultado'] = $consulta['resultado'];
         $r['mensaje'] =  'Registro Modificado';
       } catch(Exception $e) {
-        $r['resultado'] = 'error';
+        $consulta = $this->consultar();
+        $r['resultado'] = $consulta['resultado'];
         $r['mensaje'] =  $e->getMessage();
       }
-    $result = $this->consultar();
-		return $result;
+		return $r;
 	}
 
 	function eliminar(){
