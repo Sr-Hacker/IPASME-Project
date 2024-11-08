@@ -34,6 +34,5 @@
   <script type="text/javascript" src="js/validations/afiliados.js" defer></script>
   <script type="text/javascript" src="js/actions/afiliados.js" defer></script>
   <script type="text/javascript" src="js/handler.js" defer></script>
-
 </body>
 </html>

@@ -2,13 +2,17 @@ $(document).ready(function(){
 	_get();
 
 //VALIDACION DE DATOS
-	$("#nombre").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
+$("#cod_espe").on("keypress", function(e) {
+  validarkeypress(/^[0-9\b]*$/, e); // Solo permite números y la tecla de retroceso
+});
+
+$("#cod_espe").on("keyup", function() {
+  validarkeyup(/^[0-9]{3,10}$/, $(this), $("#validations"), "El código debe contener entre 3 y 10 dígitos numéricos.");
+});
 
 	$("#nombre").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#snombres"),"Solo letras  entre 3 y 30 caracteres");
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,13}$/,
+		$(this),$("#vali"),"Solo letras  entre 3 y 13 caracteres");
 	});
 });
 
@@ -54,6 +58,10 @@ mensaje){
 		return 0;
 	}
 }
+
+
+
+
 
 function limpia(){
 	$("#nombre").val("");

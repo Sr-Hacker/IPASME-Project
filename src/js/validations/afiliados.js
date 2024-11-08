@@ -151,3 +151,10 @@ function validarFechaIngreso() {
   return true;
 }
 
+function cerrarFormulario() {
+  // Si el formulario está en un modal de Bootstrap
+  const modal = document.getElementById("modal");
+  if (modal) {
+    modal.style.display = "none"; // O usa `classList.remove("show")` si tienes una clase de visibilidad
+  }
+}
