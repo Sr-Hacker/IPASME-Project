@@ -1,35 +1,19 @@
 <?php
 require_once('config/db.php');
 
-class Empleado extends DB{
-  private $id;
+class Patologia extends DB{
+  private $cod_patologia;
   private $nombre;
-  private $apellido;
-  private $cedula;
-  private $telefono;
-  private $contrasena;
-  private $rol;
+  private $descripcion;
 
-	function set_id($valor){
-		$this->id = $valor;
+	function set_cod_patologia($valor){
+		$this->cod_patologia = $valor;
 	}
-	function set_name($valor){
+	function set_nombre($valor){
 		$this->nombre = $valor;
 	}
-	function set_apellido($valor){
-		$this->apellido = $valor;
-	}
-	function set_cedula($valor){
-		$this->cedula = $valor;
-	}
-  function set_telefono($valor){
-		$this->telefono = $valor;
-	}
-  function set_contrasena($valor){
-		$this->contrasena = $valor;
-	}
-  function set_rol($valor){
-		$this->rol = $valor;
+	function set_descripcion($valor){
+		$this->descripcion = $valor;
 	}
 
 	function incluir(){
@@ -39,29 +23,20 @@ class Empleado extends DB{
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO reposos (
-            apellido,
+            cod_patologia,
             nombre,
-            telefono,
-            contrasena,
-            cedula,
-            rol
+            descripcion
           ) VALUES (
-            :apellido,
+            :cod_patologia,
             :nombre,
-            :telefono,
-            :contrasena,
-            :cedula,
-            :rol
+            :descripcion
           )
         ");
 
         $query->execute([
-          ':apellido' => $this->apellido,
+          ':cod_patologia' => $this->cod_patologia,
           ':nombre' => $this->nombre,
-          ':telefono' => $this->telefono,
-          ':contrasena' => $this->contrasena,
-          ':cedula' => $this->cedula,
-          ':rol' => $this->rol
+          ':descripcion' => $this->descripcion
         ]);
 
         $r['resultado'] = 'incluir';
@@ -83,12 +58,9 @@ class Empleado extends DB{
     try {
         $co = $this->conecta();
         $co->query("UPDATE reposos SET
-          apellido = '$this->apellido',
+          cod_patologia = '$this->cod_patologia',
           nombre = '$this->nombre',
-          telefono = '$this->telefono',
-          contrasena = '$this->contrasena',
-          cedula = '$this->cedula',
-          rol = '$this->rol'
+          descripcion = '$this->descripcion'
           WHERE
           id = '$this->id'
         ");
@@ -129,13 +101,9 @@ class Empleado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['id'] = $resultado['id'];
+					$trabajador['cod_patologia'] = $resultado['cod_patologia'];
 					$trabajador['nombre'] = $resultado['nombre'];
-					$trabajador['apellido'] = $resultado['apellido'];
-					$trabajador['telefono'] = $resultado['telefono'];
-					$trabajador['cedula'] = $resultado['cedula'];
-					$trabajador['contrasena'] = $resultado['contrasena'];
-					$trabajador['rol'] = $resultado['rol'];
+					$trabajador['descripcion'] = $resultado['descripcion'];
           array_push($respuesta, $trabajador);
 				}
 				$r['resultado'] =  $respuesta;

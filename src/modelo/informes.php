@@ -1,35 +1,23 @@
 <?php
 require_once('config/db.php');
 
-class Empleado extends DB{
-  private $id;
-  private $nombre;
-  private $apellido;
-  private $cedula;
-  private $telefono;
-  private $contrasena;
-  private $rol;
+class Informe extends DB{
+  private $cod_informe;
+  private $n_consulta;
+  private $descripcion;
+  private $diagnostico;
 
 	function set_id($valor){
-		$this->id = $valor;
+		$this->cod_informe = $valor;
 	}
 	function set_name($valor){
-		$this->nombre = $valor;
+		$this->n_consulta = $valor;
 	}
 	function set_apellido($valor){
-		$this->apellido = $valor;
+		$this->descripcion = $valor;
 	}
 	function set_cedula($valor){
-		$this->cedula = $valor;
-	}
-  function set_telefono($valor){
-		$this->telefono = $valor;
-	}
-  function set_contrasena($valor){
-		$this->contrasena = $valor;
-	}
-  function set_rol($valor){
-		$this->rol = $valor;
+		$this->diagnostico = $valor;
 	}
 
 	function incluir(){
@@ -38,30 +26,24 @@ class Empleado extends DB{
 			try {
         $bd = $this->conecta();
         $query = $bd->prepare("
-          INSERT INTO reposos (
-            apellido,
-            nombre,
-            telefono,
-            contrasena,
-            cedula,
-            rol
+          INSERT INTO informe_medico (
+            cod_informe,
+            n_consulta,
+            descripcion,
+            diagnostico
           ) VALUES (
-            :apellido,
-            :nombre,
-            :telefono,
-            :contrasena,
-            :cedula,
-            :rol
+            :cod_informe,
+            :n_consulta,
+            :descripcion,
+            :diagnostico
           )
         ");
 
         $query->execute([
-          ':apellido' => $this->apellido,
-          ':nombre' => $this->nombre,
-          ':telefono' => $this->telefono,
-          ':contrasena' => $this->contrasena,
-          ':cedula' => $this->cedula,
-          ':rol' => $this->rol
+          ':cod_informe' => $this->cod_informe,
+          ':n_consulta' => $this->n_consulta,
+          ':descripcion' => $this->descripcion,
+          ':diagnostico' => $this->diagnostico
         ]);
 
         $r['resultado'] = 'incluir';
@@ -82,13 +64,11 @@ class Empleado extends DB{
     $r = array();
     try {
         $co = $this->conecta();
-        $co->query("UPDATE reposos SET
-          apellido = '$this->apellido',
-          nombre = '$this->nombre',
-          telefono = '$this->telefono',
-          contrasena = '$this->contrasena',
-          cedula = '$this->cedula',
-          rol = '$this->rol'
+        $co->query("UPDATE informe_medico SET
+          cod_informe = '$this->cod_informe',
+          n_consulta = '$this->n_consulta',
+          descripcion = '$this->descripcion',
+          diagnostico = '$this->diagnostico'
           WHERE
           id = '$this->id'
         ");
@@ -106,7 +86,7 @@ class Empleado extends DB{
     $r = array();
     try {
       $co = $this->conecta();
-      $co->query("DELETE FROM reposos
+      $co->query("DELETE FROM informe_medico
         WHERE
         id = '$this->id'
         ");
@@ -124,18 +104,15 @@ class Empleado extends DB{
     $r = array();
 		try{
       $co = $this->conecta();
-			$resultados = $co->query("SELECT * from reposos");
+			$resultados = $co->query("SELECT * from informe_medico");
 
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['id'] = $resultado['id'];
-					$trabajador['nombre'] = $resultado['nombre'];
-					$trabajador['apellido'] = $resultado['apellido'];
-					$trabajador['telefono'] = $resultado['telefono'];
-					$trabajador['cedula'] = $resultado['cedula'];
-					$trabajador['contrasena'] = $resultado['contrasena'];
-					$trabajador['rol'] = $resultado['rol'];
+					$trabajador['cod_informe'] = $resultado['cod_informe'];
+					$trabajador['n_consulta'] = $resultado['n_consulta'];
+					$trabajador['descripcion'] = $resultado['descripcion'];
+					$trabajador['diagnostico'] = $resultado['diagnostico'];
           array_push($respuesta, $trabajador);
 				}
 				$r['resultado'] =  $respuesta;
@@ -144,7 +121,6 @@ class Empleado extends DB{
 				$r['resultado'] = 'consultar';
 				$r['mensaje'] =  '';
 			}
-
 		}catch(Exception $e){
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();
@@ -155,7 +131,7 @@ class Empleado extends DB{
   function buscar() {
     try {
       $co = $this->conecta();
-      $stmt = $co->prepare("SELECT * FROM reposos WHERE cedula = :cedula");
+      $stmt = $co->prepare("SELECT * FROM informe_medico WHERE cedula = :cedula");
       $stmt->bindParam(':cedula', $this->cedula, PDO::PARAM_STR);
       $stmt->execute();
       $fila = $stmt->fetchAll(PDO::FETCH_BOTH);
@@ -168,7 +144,7 @@ class Empleado extends DB{
   private function existe($cedula){
     try{
       $co = $this->conecta();
-			$resultado = $co->query("SELECT * FROM beneficiarios WHERE cedula='$cedula'");
+			$resultado = $co->query("SELECT * FROM informe_medico WHERE cedula='$cedula'");
 
 			$fila = $resultado->fetchAll(PDO::FETCH_BOTH);
 			if($fila){

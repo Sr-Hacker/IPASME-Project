@@ -5,10 +5,10 @@ class Empleado extends DB{
 
   private $n_reposo;
   private $n_consulta;
-  private $instrucciones;
   private $motivo;
+  private $instrucciones;
   private $fecha_inicio;
-  private $fecha_fin;
+  private $fecha_final;
 
 	function set_n_reposo($valor){
 		$this->n_reposo = $valor;
@@ -16,17 +16,17 @@ class Empleado extends DB{
 	function set_n_consulta($valor){
 		$this->n_consulta = $valor;
 	}
-	function set_instrucciones($valor){
-		$this->instrucciones = $valor;
-	}
 	function set_motivo($valor){
 		$this->motivo = $valor;
+	}
+	function set_instrucciones($valor){
+		$this->instrucciones = $valor;
 	}
   function set_fecha_inicio($valor){
 		$this->fecha_inicio = $valor;
 	}
-  function set_fecha_fin($valor){
-		$this->fecha_fin = $valor;
+  function set_fecha_final($valor){
+		$this->fecha_final = $valor;
 	}
 
 	function incluir(){
@@ -37,27 +37,27 @@ class Empleado extends DB{
         INSERT INTO reposos (
           n_reposo,
           n_consulta,
-          instrucciones,
           motivo,
+          instrucciones,
           fecha_inicio,
-          fecha_fin
+          fecha_final
         ) VALUES (
           :n_reposo,
           :n_consulta,
-          :instrucciones,
           :motivo,
+          :instrucciones,
           :fecha_inicio,
-          :fecha_fin
+          :fecha_final
         )
       ");
 
       $query->execute([
         ':n_reposo' => $this->n_reposo,
         ':n_consulta' => $this->n_consulta,
-        ':instrucciones' => $this->instrucciones,
         ':motivo' => $this->motivo,
+        ':instrucciones' => $this->instrucciones,
         ':fecha_inicio' => $this->fecha_inicio,
-        ':fecha_fin' => $this->fecha_fin
+        ':fecha_final' => $this->fecha_final
       ]);
 
       $consulta = $this->consultar();
@@ -78,10 +78,10 @@ class Empleado extends DB{
       $co->query("UPDATE reposos SET
         n_reposo = '$this->n_reposo',
         n_consulta = '$this->n_consulta',
-        instrucciones = '$this->instrucciones',
         motivo = '$this->motivo',
+        instrucciones = '$this->instrucciones',
         fecha_inicio = '$this->fecha_inicio',
-        fecha_fin = '$this->fecha_fin'
+        fecha_final = '$this->fecha_final'
         WHERE
         n_reposo = '$this->n_reposo'
       ");
@@ -125,10 +125,10 @@ class Empleado extends DB{
 				foreach($resultados as $resultado){
 					$trabajador['n_reposo'] = $resultado['n_reposo'];
 					$trabajador['n_consulta'] = $resultado['n_consulta'];
-					$trabajador['instrucciones'] = $resultado['instrucciones'];
 					$trabajador['motivo'] = $resultado['motivo'];
+					$trabajador['instrucciones'] = $resultado['instrucciones'];
 					$trabajador['fecha_inicio'] = $resultado['fecha_inicio'];
-					$trabajador['fecha_fin'] = $resultado['fecha_fin'];
+					$trabajador['fecha_final'] = $resultado['fecha_final'];
           array_push($respuesta, $trabajador);
 				}
         $consulta = $this->consultar();
