@@ -3,6 +3,7 @@
   <div class="container_beneficiarios--form">
 
     <input type="number" placeholder="cedula" id="ced_afiliado" name="ced_afiliado">
+    <input type="text" placeholder="Institucion" id="rif_institucion" name="rif_institucion">
     <input type="text" placeholder="Nombre" id="nombre" name="nombre">
     <input type="text" placeholder="Apellido" id="apellido" name="apellido">
     <input type="number" placeholder="telefono" id="telefono" name="telefono">
