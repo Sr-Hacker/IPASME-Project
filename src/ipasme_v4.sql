@@ -24,7 +24,7 @@ CREATE TABLE instituciones (
   nombre VARCHAR(50),
   direccion VARCHAR(255),
   codigo_postal VARCHAR(10),
-  telefono INT,
+  telefono VARCHAR(11),
   correo VARCHAR(50),
   tipo_institucion VARCHAR(30),
   FOREIGN KEY (cod_estado) REFERENCES estados(cod_estado)

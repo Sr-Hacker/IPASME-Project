@@ -6,14 +6,14 @@ let institucionesArray = [];
 
 function cargarDatos(item){
   const instituciones = institucionesArray[item]
-	$("#rif").val(instituciones.rif);
-  $("#nombre").val(instituciones.nombre);
-	$("#estado_provincia").val(instituciones.estado_provincia);
-	$("#ciudad").val(instituciones.ciudad);
+	$("#rif_institucion").val(instituciones.rif_institucion);
+  $("#cod_estado").val(instituciones.cod_estado);
+	$("#nombre").val(instituciones.nombre);
 	$("#direccion").val(instituciones.direccion);
-	$("#zona_postal").val(instituciones.zona_postal);
+	$("#codigo_postal").val(instituciones.codigo_postal);
 	$("#telefono").val(instituciones.telefono);
 	$("#correo").val(instituciones.correo);
+	$("#tipo_institucion").val(instituciones.tipo_institucion);
 }
 
 function instituciones(data){
@@ -31,21 +31,21 @@ function instituciones(data){
     data.map((item) => {
       const carta = `
         <div class="item">
-          <p>Rif: ${item.rif}</p>
-          <p>Nombre: ${item.nombre}</p>
-          <p>Telefono: ${item.telefono}</p>
+          <p>Rif: ${item.rif_institucion}</p>
+          <p>Nombre: ${item.cod_estado}</p>
+          <p>Telefono: ${item.nombre}</p>
           <p>direccion: ${item.direccion}</p>
-          <p>correo: ${item.correo}</p>
-          <p>ciudad: ${item.ciudad}</p>
-          <p>estado: ${item.estado_provincia}</p>
-          <p>zona: ${item.zona_postal}</p>
+          <p>correo: ${item.codigo_postal}</p>
+          <p>ciudad: ${item.telefono}</p>
+          <p>estado: ${item.correo}</p>
+          <p>zona: ${item.tipo_institucion}</p>
           <div class="options">
-          <button type='button' class="editar" onclick="editModal('${item.rif}', cargarDatos)">Modificar</button>
-          <button type='button' class="eliminar" onclick="deleteModal('${item.rif}', cargarDatos)">Eliminar</button>
+          <button type='button' class="editar" onclick="editModal('${item.rif_institucion}', cargarDatos)">Modificar</button>
+          <button type='button' class="eliminar" onclick="deleteModal('${item.rif_institucion}', cargarDatos)">Eliminar</button>
           </div>
         </div>
       `;
-      institucionesArray[item.rif] = item;
+      institucionesArray[item.rif_institucion] = item;
       result = result.concat("",carta);
     })
   }

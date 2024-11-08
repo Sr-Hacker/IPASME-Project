@@ -23,9 +23,12 @@ function _include(){
   data.append('cod_espe', codigoValue);
   data.append('nombre', nombreValue);
 
-	ajax(data, especialidades);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const valido = validarEnvio()
+  if(valido){
+    ajax(data, especialidades);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _edit(){
@@ -37,9 +40,12 @@ function _edit(){
   data.append('cod_espe', codigoValue);
   data.append('nombre', nombreValue);
 
-	ajax(data, especialidades);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const valido = validarEnvio()
+  if(valido){
+    ajax(data, especialidades);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _delete(){

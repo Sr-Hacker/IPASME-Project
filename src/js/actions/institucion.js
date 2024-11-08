@@ -27,17 +27,18 @@ function _include(){
 
 	let data = new FormData();
 	data.append('accion','incluir');
-  data.append('rif_institucion', rif_institucion);
+  data.append('rif_institucion', 1);
   data.append('cod_estado', cod_estado);
   data.append('nombre', nombre);
   data.append('direccion', direccion);
   data.append('codigo_postal', codigo_postal);
-  data.append('telefono', telefono);
+  data.append('telefono', 2);
   data.append('correo', correo);
   data.append('tipo_institucion', tipo_institucion);
 
-  const valido = validarEnvio()
+  let valido = validarEnvio()
   if(valido){
+    console.log("??")
     ajax(data, instituciones);
     let modal =  document.getElementById("modal")
     modal.style.display = "none";
@@ -65,9 +66,12 @@ function _edit(){
   data.append('correo', correo);
   data.append('tipo_institucion', tipo_institucion);
 
-	ajax(data, instituciones);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const valido = validarEnvio()
+  if(valido){
+    ajax(data, instituciones);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _delete(){

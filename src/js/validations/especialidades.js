@@ -17,13 +17,19 @@ $("#cod_espe").on("keyup", function() {
 });
 
 //Validación de todos los campos antes del envio
-function validarenvio(){
-	if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombre"),$("#snombre"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
-	return true;
+function validarEnvio(){
+  if(validarkeyup(/^[0-9]{4,8}$/,$("#cod_espe"),
+    $("#m_cod_espe"),"El formato debe llevar un minimo de 4 digitos")==0){
+    muestraMensaje("El codigo no es valido");
+    return false;
+  }
+  else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+    $("#nombre"),$("#m_nombre"),"Solo letras  entre 3 y 30 caracteres")==0){
+    muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
+    return false;
+  }
+
+  return true;
 }
 
 //Funcion que muestra el modal con un mensaje
