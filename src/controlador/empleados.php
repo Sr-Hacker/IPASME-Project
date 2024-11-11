@@ -27,18 +27,11 @@
 		  }
 		  else{
         $empleado->set_ced_empleado($_POST['ced_empleado']);
-        $empleado->set_fecha_nacimiento($_POST['fecha_nacimiento']);
-        $empleado->set_nombre($_POST['nombre']);
-        $empleado->set_apellido($_POST['apellido']);
-        $empleado->set_telefono($_POST['telefono']);
-        $empleado->set_contrasena($_POST['contrasena']);
-        $empleado->set_rol($_POST['rol']);
-        $empleado->set_estado_provincia($_POST['estado_provincia']);
-        $empleado->set_ciudad($_POST['ciudad']);
-        $empleado->set_direccion($_POST['direccion']);
-        $empleado->set_codigo_postal($_POST['codigo_postal']);
-        $empleado->set_numero_casa($_POST['numero_casa']);
-        $empleado->set_correo($_POST['correo']);
+        $empleado->set_fecha_nacimiento($_POST['nombres']);
+        $empleado->set_nombre($_POST['apellidos']);
+        $empleado->set_apellido($_POST['telefono_celular']);
+        $empleado->set_telefono($_POST['contrasena']);
+        $empleado->set_contrasena($_POST['rol']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($empleado->incluir());

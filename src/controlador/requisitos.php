@@ -10,35 +10,30 @@
   if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
-		  $reposos = new Reposo();
+		  $requisitos = new Requisito();
 
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){
-			  echo json_encode($reposos->consultar());
+			  echo json_encode($requisitos->consultar());
 		  }
 		  else if($accion=='buscar'){
-			  $reposos->set_cedula($_POST['buscador']);
-        echo json_encode($reposos->buscar());
+			  $requisitos->set_cedula($_POST['buscador']);
+        echo json_encode($requisitos->buscar());
 		  }
 		  elseif($accion=='eliminar'){
-			 $reposos->set_id($_POST['id']);
-			 echo json_encode($reposos->eliminar());
+			 $requisitos->set_id($_POST['cod_requisito']);
+			 echo json_encode($requisitos->eliminar());
 		  }
 		  else{
-        $reposos->set_name($_POST['nombre']);
-        $reposos->set_apellido($_POST['apellido']);
-        $reposos->set_cedula($_POST['cedula']);
-        $reposos->set_telefono($_POST['telefono']);
-        $reposos->set_contrasena($_POST['contrasena']);
-        $reposos->set_rol($_POST['rol']);
+        $requisitos->set_cod_requisito($_POST['cod_requisito']);
+        $requisitos->set_nombre($_POST['nombre']);
 
 			  if($accion=='incluir'){
-				  echo  json_encode($reposos->incluir());
+				  echo  json_encode($requisitos->incluir());
 			  }
 			  elseif($accion=='modificar'){
-          $reposos->set_id($_POST['id']);
-				  echo  json_encode($reposos->modificar());
+				  echo  json_encode($requisitos->modificar());
 			  }
 		  }
 		  exit;

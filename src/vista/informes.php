@@ -15,7 +15,7 @@
         <button id="include" class="crear">Registrar informe</button>
       </div>
       <div class="container_center--list">
-        <div id="get_result"></div>
+        <div id="consultar_informes"></div>
       </div>
     </div>
   </div>

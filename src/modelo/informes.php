@@ -116,16 +116,17 @@ class Informe extends DB{
           array_push($respuesta, $trabajador);
 				}
 				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  "consultar informes";
 			}
 			else{
-				$r['resultado'] = 'consultar';
-				$r['mensaje'] =  '';
+				$r['resultado'] = [];
+				$r['mensaje'] =  'no hay infomres';
 			}
 		}catch(Exception $e){
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {

@@ -1,35 +1,15 @@
 <?php
 require_once('config/db.php');
 
-class Empleado extends DB{
-  private $id;
+class Requisito extends DB{
+  private $cod_requisito;
   private $nombre;
-  private $apellido;
-  private $cedula;
-  private $telefono;
-  private $contrasena;
-  private $rol;
 
-	function set_id($valor){
-		$this->id = $valor;
+	function set_cod_requisito($valor){
+		$this->cod_requisito = $valor;
 	}
-	function set_name($valor){
+	function set_nombre($valor){
 		$this->nombre = $valor;
-	}
-	function set_apellido($valor){
-		$this->apellido = $valor;
-	}
-	function set_cedula($valor){
-		$this->cedula = $valor;
-	}
-  function set_telefono($valor){
-		$this->telefono = $valor;
-	}
-  function set_contrasena($valor){
-		$this->contrasena = $valor;
-	}
-  function set_rol($valor){
-		$this->rol = $valor;
 	}
 
 	function incluir(){
@@ -39,29 +19,17 @@ class Empleado extends DB{
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO reposos (
-            apellido,
-            nombre,
-            telefono,
-            contrasena,
-            cedula,
-            rol
+            cod_requisito,
+            nombre
           ) VALUES (
-            :apellido,
-            :nombre,
-            :telefono,
-            :contrasena,
-            :cedula,
-            :rol
+            :cod_requisito,
+            :nombre
           )
         ");
 
         $query->execute([
-          ':apellido' => $this->apellido,
-          ':nombre' => $this->nombre,
-          ':telefono' => $this->telefono,
-          ':contrasena' => $this->contrasena,
-          ':cedula' => $this->cedula,
-          ':rol' => $this->rol
+          ':cod_requisito' => $this->cod_requisito,
+          ':nombre' => $this->nombre
         ]);
 
         $r['resultado'] = 'incluir';
@@ -83,14 +51,10 @@ class Empleado extends DB{
     try {
         $co = $this->conecta();
         $co->query("UPDATE reposos SET
-          apellido = '$this->apellido',
-          nombre = '$this->nombre',
-          telefono = '$this->telefono',
-          contrasena = '$this->contrasena',
-          cedula = '$this->cedula',
-          rol = '$this->rol'
+          cod_requisito = '$this->cod_requisito',
+          nombre = '$this->nombre'
           WHERE
-          id = '$this->id'
+          cod_requisito = '$this->cod_requisito'
         ");
         $r['resultado'] = 'modificar';
         $r['mensaje'] =  'Registro Modificado';
@@ -108,7 +72,7 @@ class Empleado extends DB{
       $co = $this->conecta();
       $co->query("DELETE FROM reposos
         WHERE
-        id = '$this->id'
+        cod_requisito = '$this->cod_requisito'
         ");
         $r['resultado'] = 'eliminar';
         $r['mensaje'] =  'Registro Eliminado';
@@ -129,27 +93,23 @@ class Empleado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['id'] = $resultado['id'];
+					$trabajador['cod_requisito'] = $resultado['cod_requisito'];
 					$trabajador['nombre'] = $resultado['nombre'];
-					$trabajador['apellido'] = $resultado['apellido'];
-					$trabajador['telefono'] = $resultado['telefono'];
-					$trabajador['cedula'] = $resultado['cedula'];
-					$trabajador['contrasena'] = $resultado['contrasena'];
-					$trabajador['rol'] = $resultado['rol'];
           array_push($respuesta, $trabajador);
 				}
 				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  'Consulta exitosa';
 			}
 			else{
-				$r['resultado'] = 'consultar';
-				$r['mensaje'] =  '';
+				$r['resultado'] = [];
+				$r['mensaje'] =  'no hay requisitos';
 			}
 
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
+			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {

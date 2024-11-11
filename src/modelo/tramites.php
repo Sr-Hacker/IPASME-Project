@@ -110,22 +110,19 @@ class Tramite extends DB{
 
 
 	function consultar(){
-		$co = $this->conecta();
-		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
 		try{
-
-			$resultados = $co->query("SELECT * from tramite");
+      $db = $this->conecta();
+			$resultados = $db->query("SELECT * from tramite");
 
 			if($resultados){
-
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['cod_tramite'] = $resultado['cod_tramite'];
-          $trabajador['ced_empleado'] = $resultado['ced_empleado'];
-          $trabajador['nombre'] = $resultado['nombre'];
-          $trabajador['descripcion'] = $resultado['descripcion'];
-          array_push($respuesta, $trabajador);
+					$tramite['cod_tramite'] = $resultado['cod_tramite'];
+          $tramite['ced_empleado'] = $resultado['ced_empleado'];
+          $tramite['nombre'] = $resultado['nombre'];
+          $tramite['descripcion'] = $resultado['descripcion'];
+          array_push($respuesta, $tramite);
 				}
 
 				$r['resultado'] =  $respuesta;
@@ -139,7 +136,7 @@ class Tramite extends DB{
 			$r['resultado'] = 'error';
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
 
