@@ -3,14 +3,14 @@
 
 :root{
     --color-primary: #b2c9f7;
-    --color-danger: #169c05;
+    --color-danger: #1ddd4347;
     --color-success: #189C85;
     --color-light-mode: #ffa500;
     --color-info-dark: #232529;
     --color-dark: #0f0f10;
-    --color-light: #fff;
+    --color-light: rgba(255, 255, 255, 0.30);
     --color-dark-variant: #677483;
-    --color-background: #f6f6f9;
+    --color-background: #dfdfe2;
 
 
     --border-radius-1: 0.4rem;
@@ -43,6 +43,7 @@ body{
     font-size: 0.88rem;
     user-select: none;
     overflow: hidden;
+    background-color: var(--color-background);
 }
 
 

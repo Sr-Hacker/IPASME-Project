@@ -33,7 +33,7 @@
 {
   flex: 1;
   border-radius: var(--border-radius);
-  background-color: var(--color-light);
+  background-color: var(--color-danger);
   width: 80%;
   border: 0;
   outline: none;
@@ -70,7 +70,7 @@
   width: 95%;
   margin: 0 auto;
   border-radius: var(--border-radius);
-  background-color: #1ddd4347;
+  background-color: var(--color-danger);
 }
 
 .container_center--list .item{
