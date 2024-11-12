@@ -113,19 +113,19 @@ class Tratamiento extends DB{
 	function consultar(){
     $r = array();
 		try{
-      $co = $this->conecta();
-			$resultados = $co->query("SELECT * from tratamientos");
+      $db = $this->conecta();
+			$resultados = $db->query("SELECT * from tratamientos");
 
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['n_tratamiento'] = $resultado['n_tratamiento'];
-					$trabajador['cod_informe'] = $resultado['cod_informe'];
-					$trabajador['tipo_tratamiento'] = $resultado['tipo_tratamiento'];
-					$trabajador['instrucciones'] = $resultado['instrucciones'];
-					$trabajador['motivo'] = $resultado['motivo'];
-					$trabajador['tiempo_tratamiento'] = $resultado['tiempo_tratamiento'];
-          array_push($respuesta, $trabajador);
+					$tratamientos['n_tratamiento'] = $resultado['n_tratamiento'];
+					$tratamientos['cod_informe'] = $resultado['cod_informe'];
+					$tratamientos['tipo_tratamiento'] = $resultado['tipo_tratamiento'];
+					$tratamientos['instrucciones'] = $resultado['instrucciones'];
+					$tratamientos['motivo'] = $resultado['motivo'];
+					$tratamientos['tiempo_tratamiento'] = $resultado['tiempo_tratamiento'];
+          array_push($respuesta, $tratamientos);
 				}
 				$r['resultado'] =  $respuesta;
 				$r['mensaje'] =  'consulta';

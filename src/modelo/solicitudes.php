@@ -1,35 +1,35 @@
 <?php
 require_once('config/db.php');
 
-class Empleado extends DB{
-  private $id;
-  private $nombre;
-  private $apellido;
-  private $cedula;
-  private $telefono;
-  private $contrasena;
-  private $rol;
+class Solicitud extends DB{
+  private $n_solicitud;
+  private $ced_afiliado;
+  private $cod_tramite;
+  private $estado_solicitud;
+  private $fecha_emision;
+  private $fecha_final;
+  private $condicion_aceptado_denegado;
 
-	function set_id($valor){
-		$this->id = $valor;
+	function set_n_solicitud($valor){
+		$this->n_solicitud = $valor;
 	}
-	function set_name($valor){
-		$this->nombre = $valor;
+	function set_ced_afiliado($valor){
+		$this->ced_afiliado = $valor;
 	}
-	function set_apellido($valor){
-		$this->apellido = $valor;
+	function set_cod_tramite($valor){
+		$this->cod_tramite = $valor;
 	}
-	function set_cedula($valor){
-		$this->cedula = $valor;
+	function set_estado_solicitud($valor){
+		$this->estado_solicitud = $valor;
 	}
-  function set_telefono($valor){
-		$this->telefono = $valor;
+  function set_fecha_emision($valor){
+		$this->fecha_emision = $valor;
 	}
-  function set_contrasena($valor){
-		$this->contrasena = $valor;
+  function set_fecha_final($valor){
+		$this->fecha_final = $valor;
 	}
-  function set_rol($valor){
-		$this->rol = $valor;
+  function set_condicion_aceptado_denegado($valor){
+		$this->condicion_aceptado_denegado = $valor;
 	}
 
 	function incluir(){
@@ -39,29 +39,32 @@ class Empleado extends DB{
         $bd = $this->conecta();
         $query = $bd->prepare("
           INSERT INTO reposos (
-            apellido,
-            nombre,
-            telefono,
-            contrasena,
-            cedula,
-            rol
+            n_solicitud,
+            ced_afiliado,
+            cod_tramite,
+            estado_solicitud,
+            fecha_emision,
+            fecha_final,
+            condicion_aceptado_denegado
           ) VALUES (
-            :apellido,
-            :nombre,
-            :telefono,
-            :contrasena,
-            :cedula,
-            :rol
+            :n_solicitud,
+            :ced_afiliado,
+            :cod_tramite,
+            :estado_solicitud,
+            :fecha_emision,
+            :fecha_final,
+            :condicion_aceptado_denegado
           )
         ");
 
         $query->execute([
-          ':apellido' => $this->apellido,
-          ':nombre' => $this->nombre,
-          ':telefono' => $this->telefono,
-          ':contrasena' => $this->contrasena,
-          ':cedula' => $this->cedula,
-          ':rol' => $this->rol
+          ':n_solicitud' => $this->n_solicitud,
+          ':ced_afiliado' => $this->ced_afiliado,
+          ':cod_tramite' => $this->cod_tramite,
+          ':estado_solicitud' => $this->estado_solicitud,
+          ':fecha_emision' => $this->fecha_emision,
+          ':fecha_final' => $this->fecha_final,
+          ':condicion_aceptado_denegado' => $this->condicion_aceptado_denegado
         ]);
 
         $r['resultado'] = 'incluir';
@@ -83,14 +86,15 @@ class Empleado extends DB{
     try {
         $co = $this->conecta();
         $co->query("UPDATE reposos SET
-          apellido = '$this->apellido',
-          nombre = '$this->nombre',
-          telefono = '$this->telefono',
-          contrasena = '$this->contrasena',
-          cedula = '$this->cedula',
-          rol = '$this->rol'
+          n_solicitud = '$this->n_solicitud',
+          ced_afiliado = '$this->ced_afiliado',
+          cod_tramite = '$this->cod_tramite',
+          estado_solicitud = '$this->estado_solicitud',
+          fecha_emision = '$this->fecha_emision',
+          fecha_final = '$this->fecha_final',
+          condicion_aceptado_denegado = '$this->condicion_aceptado_denegado'
           WHERE
-          id = '$this->id'
+          n_solicitud = '$this->n_solicitud'
         ");
         $r['resultado'] = 'modificar';
         $r['mensaje'] =  'Registro Modificado';
@@ -108,7 +112,7 @@ class Empleado extends DB{
       $co = $this->conecta();
       $co->query("DELETE FROM reposos
         WHERE
-        id = '$this->id'
+        n_solicitud = '$this->n_solicitud'
         ");
         $r['resultado'] = 'eliminar';
         $r['mensaje'] =  'Registro Eliminado';
@@ -129,27 +133,28 @@ class Empleado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$trabajador['id'] = $resultado['id'];
-					$trabajador['nombre'] = $resultado['nombre'];
-					$trabajador['apellido'] = $resultado['apellido'];
-					$trabajador['telefono'] = $resultado['telefono'];
-					$trabajador['cedula'] = $resultado['cedula'];
-					$trabajador['contrasena'] = $resultado['contrasena'];
-					$trabajador['rol'] = $resultado['rol'];
+					$trabajador['n_solicitud'] = $resultado['n_solicitud'];
+					$trabajador['ced_afiliado'] = $resultado['ced_afiliado'];
+					$trabajador['cod_tramite'] = $resultado['cod_tramite'];
+					$trabajador['estado_solicitud'] = $resultado['estado_solicitud'];
+					$trabajador['fecha_emision'] = $resultado['fecha_emision'];
+					$trabajador['fecha_final'] = $resultado['fecha_final'];
+					$trabajador['condicion_aceptado_denegado'] = $resultado['condicion_aceptado_denegado'];
           array_push($respuesta, $trabajador);
 				}
 				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  'consultar solicitudes';
 			}
 			else{
-				$r['resultado'] = 'consultar';
-				$r['mensaje'] =  '';
+				$r['resultado'] = [];
+				$r['mensaje'] =  'no hay solicitudes';
 			}
 
 		}catch(Exception $e){
-			$r['resultado'] = 'error';
+			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();
 		}
-		return $r['resultado'];
+		return $r;
 	}
 
   function buscar() {

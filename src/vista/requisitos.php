@@ -17,7 +17,7 @@
         <button id="include" class="crear">Registrar Requisito</button>
       </div>
       <div class="container_center--list">
-        <div id="get_result"></div>
+        <div id="consultar_requisitos"></div>
       </div>
     </div>
   </div>
@@ -25,14 +25,14 @@
   <?php require_once("vista/comunes/seccion-user.php"); ?>
 
   <div id="modal" class="modal">
-    <?php require_once("vista/formularios/solicitud.formulario.php"); ?>
+    <?php require_once("vista/formularios/requisito.formulario.php"); ?>
   </div>
 
   <script type="text/javascript" src="js/modals.js" defer></script>
-  <script type="text/javascript" src="js/components/solicitud.list.js" defer></script>
+  <script type="text/javascript" src="js/components/requisito.list.js" defer></script>
   <script type="text/javascript" src="js/ajax.js" defer></script>
-  <script type="text/javascript" src="js/validations/solicitudes.js" defer></script>
-  <script type="text/javascript" src="js/actions/solicitudes.js" defer></script>
+  <script type="text/javascript" src="js/validations/requisitos.js" defer></script>
+  <script type="text/javascript" src="js/actions/requisito.js" defer></script>
   <script type="text/javascript" src="js/handler.js" defer></script>
 </body>
 </html>

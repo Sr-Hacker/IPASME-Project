@@ -10,35 +10,32 @@
   if(is_file("vista/".$pagina.".php")){
 
 	  if(!empty($_POST)){
-		  $reposos = new Reposo();
+		  $informes = new Informe();
 
 		  $accion = $_POST['accion'];
 
 		  if($accion=='consultar'){
-			  echo json_encode($reposos->consultar());
+			  echo json_encode($informes->consultar());
 		  }
 		  else if($accion=='buscar'){
-			  $reposos->set_cedula($_POST['buscador']);
-        echo json_encode($reposos->buscar());
+			  $informes->set_cedula($_POST['buscador']);
+        echo json_encode($informes->buscar());
 		  }
 		  elseif($accion=='eliminar'){
-			 $reposos->set_id($_POST['id']);
-			 echo json_encode($reposos->eliminar());
+			 $informes->set_id($_POST['cod_informe']);
+			 echo json_encode($informes->eliminar());
 		  }
 		  else{
-        $reposos->set_name($_POST['nombre']);
-        $reposos->set_apellido($_POST['apellido']);
-        $reposos->set_cedula($_POST['cedula']);
-        $reposos->set_telefono($_POST['telefono']);
-        $reposos->set_contrasena($_POST['contrasena']);
-        $reposos->set_rol($_POST['rol']);
+        $informes->set_name($_POST['cod_informe']);
+        $informes->set_apellido($_POST['n_consulta']);
+        $informes->set_cedula($_POST['descripcion']);
+        $informes->set_telefono($_POST['diagnostico']);
 
 			  if($accion=='incluir'){
-				  echo  json_encode($reposos->incluir());
+				  echo  json_encode($informes->incluir());
 			  }
 			  elseif($accion=='modificar'){
-          $reposos->set_id($_POST['id']);
-				  echo  json_encode($reposos->modificar());
+				  echo  json_encode($informes->modificar());
 			  }
 		  }
 		  exit;

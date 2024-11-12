@@ -102,7 +102,6 @@ class Ciudad extends DB{
 					$ciudades['cod_ciudad'] = $resultado['cod_ciudad'];
 					$ciudades['cod_estado'] = $resultado['cod_estado'];
           $ciudades['nombre_ciudad'] = $resultado['nombre_ciudad'];
-          array_push($respuesta, $ciudades);
 				}
 				$r['resultado'] =  $respuesta;
 				$r['mensaje'] =  "consulta";

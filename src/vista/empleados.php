@@ -17,7 +17,7 @@
         </div>
         <button class="crear" id="include">Registrar Empleado</button>
       </div>
-      <div class="container_center--list">
+      <div class="container_center--list" style="margin-left: 15px">
         <div id="consultar_empleados"></div>
       </div>
     </div>
