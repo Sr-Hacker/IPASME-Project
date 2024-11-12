@@ -5,7 +5,9 @@
 
 <body>
   <div>
+    <div class="titulo">
       <h2>Informes Medicos</h2>
+    </div>
     <div class="container_center">
       <div class="container_center--menu">
         <div class="container_center--search">

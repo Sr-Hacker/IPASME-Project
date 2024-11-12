@@ -4,9 +4,9 @@
 
 <body>
   <div>
-    <center>
+    <div class="titulo">
       <h2>Tramites</h2>
-    </center>
+    </div>
     <div class="container_center">
       <div class="container_center--menu">
         <div class="container_center--search">

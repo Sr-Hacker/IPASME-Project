@@ -5,9 +5,9 @@
 
 <body>
   <div>
-    <center>
+    <div class="titulo">
       <h2>Patologias</h2>
-    </center>
+    </div>
     <div class="container_patologias">
       <div class="container_patologias--menu">
         <div class="container_patologias--search">

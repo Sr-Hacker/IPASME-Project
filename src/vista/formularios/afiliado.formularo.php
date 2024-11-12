@@ -1,46 +1,77 @@
+<link rel="stylesheet" href="css/error.css">
 <div class="container_beneficiarios">
   <h4>Crear Nuevo Afiliado</h4>
   <div class="container_beneficiarios--form">
 
     <input type="number" placeholder="cedula" id="ced_afiliado" name="ced_afiliado">
-    <input type="number" placeholder="Rif de la institucion" id="rif_institucion" name="rif_institucion">
-    <input type="text" placeholder="Primer nombre" id="nombre" name="nombre">
+    <samp id="scedula"></samp>
+
+    <input type="text" placeholder="Primer nombre" id="primer_nombre" name="nombre">
+    <span id="snombres"></span>
     <input type="text" placeholder="segundo nombre" id="segundo_nombre" name="segundo_nombre">
-    <input type="text" placeholder="Apellido" id="apellido" name="apellido">
+    <samp id="seg_nombre"></samp>
+
+    <input type="text" placeholder="Apellido" id="primer_apellido" name="apellido">
+    <span id="sapellidos"></span>
     <input type="text" placeholder="segundo apellido" id="segundo_apellido" name="segundo_apellido">
-    <input type="number" placeholder="telefono" id="telefono" name="telefono">
-    <input type="mail" placeholder="correo" id="correo" name="correo">
-    <input type="text" placeholder="codigo historia" id="n_historia" name="n_historia">
-    <input type="text" placeholder="tipo_sangre" id="tipo_sangre" name="tipo_sangre">
+    <span id="seg_apellidos"></span>
+
     <input type="date" placeholder="Fecha de Nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
-    <input type="date" placeholder="fecha_ingreso" id="fecha_ingreso" name="fecha_ingreso">
 
-    <p id="instituto"></p>
-    <label for="">sexo</label>
+    <input type="number" placeholder="telefono celular" id="telefono_celular" name="telefono_celular">
+    <span id="tlf_celular"></span>
+    <input type="number" placeholder="Telefono habitacion" id="telefono_habitacion" name=" telefono_habitacion">
+    <span id="tlf_habitacion"></span>
+    <input type="number" placeholder="Telefono Trabajo" id="telefono_trabajo" name=" telefono_trabajo">
+    <span id="tlf_trabajo"></span>
+
+    <input type="mail" placeholder="correo" id="correo_electronico" name="correo_electronico">
+    <span id="correo"></span>
+
+    <input type="text" placeholder="tipo_sangre" id="tipo_sangre" name="tipo_sangre">
+
+    <input type="date" placeholder="fecha ingreso" id="fecha_ingreso" name="fecha_ingreso">
+
     <select class="opc-modal" id="sexo" name="sexo">
-      <option value=1>Hombre</option>
       <option value=0>Mujer</option>
+      <option value=1>Hombre</option>
     </select>
+    <span id="sexo_error" class="erro_message"></span>
 
-    <input type="text" style="display: none;" id="municipio" name="rif_institucion">
-    <div id="instituciones"></div>
 
-    <div>
-      <div>
-        <p>Instituciones</p>
-      </div>
-      <div id="consultar_instituciones"></div>
-    </div>
+    <select class="opc-modal" name="situacion_laboral" id="situacion_lavoral">
+      <option value="0">Trabajador/a</option>
+      <option value="1">Desempleado/a</option>
+      <option value="2">Jubilado/a</option>
+    </select>
+    <span id="situacion_laboral_error" class="erro_message"></span>
 
-    <h4>Direccion</h4>
-    <input type="text" placeholder="Ciudad" id="parroquia" name="ciudad">
-    <input type="text" placeholder="Direccion" id="correo_electronico" name="direccion">
-    <input type="text" placeholder="Zona" id="zona" name="zona">
-    <input type="text" placeholder="Estado/Provincia" id="telefono_habitacion" name="estado_provincia">
-    <input type="number" placeholder="Postal" id="postal" name="codigo_postal">
+    <select class="opc-modal" name="estado_civil" id="estado_civil">
+      <option value="0">Soltero/a</option>
+      <option value="1">Casado/a</option>
+      <option value="2">Viudo/a</option>
+    </select>
+    <span id="estado_civil_error" class="erro_message"></span>
+
+    <select class="opc-modal" name="cargo" id="cargo">
+      <option value="0">Soltero/a</option>
+      <option value="1">Casado/a</option>
+      <option value="2">Viudo/a</option>
+    </select>
+    <span id="cargo_error" class="erro_message"></span>
+
+      <h4>Direccion</h4>
+    <input type="number" placeholder="Rif de la institucion" id="rif_institucion" name="rif_institucion">
+    <span id="rif"></span>
+
+    <input type="text" placeholder="Estado" id="estado" name="estado">
+    <input type="text" placeholder="Ciudad" id="ciudad" name="ciudad">
+    <input type="number" placeholder="Municipio" id="municipio" name="municipio">
+    <input type="text" placeholder="Parroquia" id="parroquia" name="parroquia">
+    <input type="text" placeholder="Direccion" id="direccion_habitacion" name="direccion">
   <div>
-  <button class="btn-modal" id="action_modal">incluir</button>
-  <button class="btn-modal" id="closeModal">cancelar</button>
+  <button type="submit" class="btn-modal" id="action_modal">incluir</button>
+  <button type="reset" class="btn-modal" id="closeModal">cancelar</button>
 </div>
 
 <script src="js/validations/afiliados.js"></script>
