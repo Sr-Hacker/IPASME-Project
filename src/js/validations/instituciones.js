@@ -38,7 +38,7 @@ $(document).ready(function(){
 	});
 
 	$("#telefono").on("keypress",function(e){
-		validarkeypress(/^[0-9-\b]*$/,e);
+	 	validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
 	$("#telefono").on("keyup",function(){
