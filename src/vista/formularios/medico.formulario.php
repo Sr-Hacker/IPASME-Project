@@ -1,11 +1,11 @@
 <div class="container_empleados">
   <h5>Crear Nuevo Medico</h5>
   <div class="container_empleados--form">
-    <input type="text" style="display: none;" id="cod_especialidad" name="cod_especialidad">
-    <input type="number" placeholder="cedula" id="ced_medico" name="ced_medico">
-    <input type="text" placeholder="nombre" id="nombre" name="nombre">
-    <input type="text" placeholder="apellido" id="apellido" name="apellido">
-    <select class="opc-modal" id="estado" name="estado">
+    <input type="text" placeholder="cedula" id="ced_medico" name="ced_medico">
+    <input type="text" placeholder="nombres" id="nombres" name="nombres">
+    <input type="text" placeholder="apellidos" id="apellidos" name="apellidos">
+    <input type="text" placeholder="telefono" id="telefono" name="telefono">
+    <select class="opc-modal" id="activo" name="estado">
       <option value="0">Interno</option>
       <option value="1">Externo</option>
     </select>
@@ -16,7 +16,8 @@
       <div>
         <p>Buscar Especialidad</p>
       </div>
-      <div id="consultar_especialidades"></div>
+      <select class="opc-modal" id="consultar_especialidades" name="consultar_especialidades">
+      </select>
     </div>
 
     <div>

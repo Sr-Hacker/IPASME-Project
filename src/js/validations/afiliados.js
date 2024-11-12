@@ -158,3 +158,29 @@ function cerrarFormulario() {
     modal.style.display = "none"; // O usa `classList.remove("show")` si tienes una clase de visibilidad
   }
 }
+
+
+function limpia(){
+  $('ced_afiliado').val("");
+  $('rif_institucion').val("");
+  $('primer_nombre').val("");
+  $('segundo_nombre').val("");
+  $('primer_apellido').val("");
+  $('segundo_apellido').val("");
+  $('sexo').val("");
+  $('fecha_nacimiento').val("");
+  $('estado_civil').val("");
+  $('direccion_habitacion').val("");
+  $('estado').val("");
+  $('ciudad').val("");
+  $('municipio').val("");
+  $('parroquia').val("");
+  $('correo_electronico').val("");
+  $('telefono_celular').val("");
+  $('telefono_habitacion').val("");
+  $('telefono_trabajo').val("");
+  $('fecha_ingreso').val("");
+  $('cargo').val("");
+  $('situacion_laboral').val("");
+	$("#postal_institucion").val("");
+}

@@ -17,7 +17,7 @@
         <button id="include" class="crear">Registrar Medico</button>
       </div>
       <div class="container_center--list">
-        <div id="get_result"></div>
+        <div id="consultar_medicos"></div>
       </div>
     </div>
   </div>

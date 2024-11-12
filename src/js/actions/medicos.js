@@ -28,6 +28,7 @@ function _include(){
   const apellidos = document.getElementById("apellidos").value;
   const activo = document.getElementById("activo").value;
   const telefono = document.getElementById("telefono").value;
+  const cod_espe = document.getElementById("consultar_especialidades").value;
 
 	let data = new FormData();
 	data.append('accion','incluir');
@@ -36,6 +37,7 @@ function _include(){
   data.append('apellidos', apellidos);
   data.append('activo', activo);
   data.append('telefono', telefono);
+  data.append('cod_espe', cod_espe);
 
 	ajax(data, medicos);
   let modal1 =  document.getElementById("modal");
