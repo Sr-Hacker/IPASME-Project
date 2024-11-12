@@ -8,22 +8,22 @@
     <input type="number" placeholder="codigo estado" id="cod_estado" name="codigo estado">
     <p id="m_cod_estado"></p>
 
-    <input type="text" placeholder="nombre" id="nombre" name="telefono">
+    <input type="text" placeholder="nombre" id="nombre" name="nombre">
     <p id="m_nombre"></p>
 
-    <input type="text" placeholder="direccion" id="direccion" name="correo">
+    <input type="text" placeholder="direccion" id="direccion" name="direccion">
     <p id="m_direccion"></p>
 
-    <input type="number" placeholder="codigo postal" id="codigo_postal" name="nombre">
+    <input type="number" placeholder="codigo postal" id="codigo_postal" name="postal">
     <p id="m_codigo_postal"></p>
 
-    <input type="number" placeholder="telefono" id="telefono" name="postal">
+    <input type="number" placeholder="telefono" id="telefono" name="telefono">
     <p id="m_telefono"></p>
 
-    <input type="email" placeholder="correo" id="correo" name="direccion">
+    <input type="email" placeholder="correo" id="correo" name="mail">
     <p id="m_correo"></p>
 
-    <input type="text" placeholder="tipo institucion" id="tipo_institucion" name="zona_postal">
+    <input type="text" placeholder="tipo institucion" id="tipo_institucion" name="tipo_institucion">
     <p id="m_tipo_institucion"></p>
   <div>
   <button class="btn-modal" id="action_modal">incluir</button>
