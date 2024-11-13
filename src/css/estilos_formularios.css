@@ -1,18 +1,7 @@
-/*Para que todos los tamaños de los elementos no sobrapasen las medidas establecidas*/
-* {
-	box-sizing: border-box;
-}
-
-body {
-	font-family: 'Roboto', sans-serif;
-	background: #E5E5E5;
-}
-
 main {
 	/*max-width: 800px;*/
 	width: 100%;
 	margin: 0;
-	padding: 5px;
 }
 
 /*Estilos de las divisiones del formulario*/
@@ -111,8 +100,8 @@ boton de enviar haciendo que se le agg a la clase el modificador de activo*/
 el envio exitoso*/
 .formulario__grupo-btn-enviar {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	flex-direction: row;
+	justify-items:self-start;
 }
 
 /*para darle estilos al boton especificamente*/
