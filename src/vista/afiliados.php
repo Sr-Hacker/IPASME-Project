@@ -25,7 +25,9 @@
   <?php require_once("vista/comunes/seccion-user.php");?>
 
   <div id="modal" class="modal">
-    <?php require_once("vista/formularios/afiliado.formularo.php"); ?>
+    <div class="content-modal">
+      <?php require_once("vista/formularios/afiliado.formularo.php"); ?>
+    </div>
   </div>
 
   <script type="text/javascript" src="js/modals.js" defer></script>

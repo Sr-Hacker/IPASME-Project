@@ -5,11 +5,10 @@
 
 <body>
   <div>
-
-    <div class="container_center">
-    <center>
+    <div class="titulo">
       <h2>Empleados</h2>
-    </center>
+    </div>
+    <div class="container_center">
       <div class="container_center--menu">
         <div class="container_center--search">
           <input class="buscador" placeholder="cedula" type="number" id="cedulaBuscador">
@@ -26,7 +25,9 @@
   <?php require_once("vista/comunes/seccion-user.php"); ?>
 
   <div id="modal" class="modal">
-    <?php require_once("vista/formularios/empleado.formulario.php"); ?>
+    <div class="content-modal">
+      <?php require_once("vista/formularios/empleado.formulario.php"); ?>
+    </div>
   </div>
 
   <script type="text/javascript" src="js/modals.js" defer></script>

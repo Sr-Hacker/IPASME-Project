@@ -25,7 +25,9 @@
   <?php require_once("vista/comunes/seccion-user.php"); ?>
 
   <div id="modal" class="modal">
-    <?php require_once("vista/formularios/consulta.formulario.php"); ?>
+    <div class="content-modal">
+      <?php require_once("vista/formularios/consulta.formulario.php"); ?>
+    </div>
   </div>
 
   <!-- <input class="buscador" type="date" name="diaBuscador" id="diaBuscador"> -->

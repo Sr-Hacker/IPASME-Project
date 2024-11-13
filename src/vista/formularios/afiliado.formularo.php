@@ -75,7 +75,7 @@
     <input type="text" placeholder="Municipio" id="municipio" name="municipio">
     <input type="text" placeholder="Parroquia" id="parroquia" name="parroquia">
     <input type="text" placeholder="Direccion" id="direccion_habitacion" name="direccion">
-  <div>
+  </div>
   <button type="submit" class="btn-modal" id="action_modal">incluir</button>
   <button type="reset" class="btn-modal" id="closeModal">cancelar</button>
 </div>
