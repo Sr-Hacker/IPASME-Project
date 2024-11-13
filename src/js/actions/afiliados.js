@@ -68,9 +68,13 @@ function _include(){
   data.append('cargo', cargo);
   data.append('situacion_laboral', situacionLaboral);
 
+  let validar = validarenvio();
+
+  if(validar){
 	ajax(data, afiliados);
   let modal =  document.getElementById("modal")
   modal.style.display = "none";
+  }
 }
 
 function _edit(){

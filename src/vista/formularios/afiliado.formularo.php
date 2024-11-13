@@ -32,33 +32,37 @@
 
     <input type="date" placeholder="fecha ingreso" id="fecha_ingreso" name="fecha_ingreso">
 
-    <select class="opc-modal" id="sexo" name="sexo">
-      <option value=0>Mujer</option>
-      <option value=1>Hombre</option>
-    </select>
-    <span id="sexo_error" class="erro_message"></span>
-
-
     <select class="opc-modal" name="situacion_laboral" id="situacion_lavoral">
-      <option value="0">Trabajador/a</option>
-      <option value="1">Desempleado/a</option>
-      <option value="2">Jubilado/a</option>
+      <option value="0"></option>
+      <option value="1">Trabajador/a</option>
+      <option value="2">Desempleado/a</option>
+      <option value="3">Jubilado/a</option>
     </select>
     <span id="situacion_laboral_error" class="erro_message"></span>
 
     <select class="opc-modal" name="estado_civil" id="estado_civil">
-      <option value="0">Soltero/a</option>
-      <option value="1">Casado/a</option>
-      <option value="2">Viudo/a</option>
+      <option value="0"></option>
+      <option value="1">Soltero/a</option>
+      <option value="2">Casado/a</option>
+      <option value="3">Viudo/a</option>
     </select>
     <span id="estado_civil_error" class="erro_message"></span>
 
     <select class="opc-modal" name="cargo" id="cargo">
-      <option value="0">Soltero/a</option>
-      <option value="1">Casado/a</option>
-      <option value="2">Viudo/a</option>
+      <option value="0"></option>
+      <option value="1">Soltero/a</option>
+      <option value="2">Casado/a</option>
+      <option value="3">Viudo/a</option>
     </select>
     <span id="cargo_error" class="erro_message"></span>
+
+    <label for="">Sexo?</label>
+    <select class="opc-modal" id="sexo" name="sexo">
+      <option value="0"></option>
+      <option value="1">Hombre</option>
+      <option value="2">Mujer</option>
+    </select>
+    <span id="sexo_error" class="erro_message"></span>
 
       <h4>Direccion</h4>
     <input type="number" placeholder="Rif de la institucion" id="rif_institucion" name="rif_institucion">
@@ -66,7 +70,7 @@
 
     <input type="text" placeholder="Estado" id="estado" name="estado">
     <input type="text" placeholder="Ciudad" id="ciudad" name="ciudad">
-    <input type="number" placeholder="Municipio" id="municipio" name="municipio">
+    <input type="text" placeholder="Municipio" id="municipio" name="municipio">
     <input type="text" placeholder="Parroquia" id="parroquia" name="parroquia">
     <input type="text" placeholder="Direccion" id="direccion_habitacion" name="direccion">
   <div>
