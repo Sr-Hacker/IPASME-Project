@@ -31,8 +31,8 @@ CREATE TABLE instituciones (
 );
 
 CREATE TABLE afiliado (
-  ced_afiliado INT PRIMARY KEY,
-  rif_institucion INT,
+  ced_afiliado INT(10) PRIMARY KEY,
+  rif_institucion INT(10),
   primer_nombre VARCHAR(20),
   segundo_nombre VARCHAR(20),
   primer_apellido VARCHAR(20),
@@ -56,13 +56,13 @@ CREATE TABLE afiliado (
 );
 
 CREATE TABLE beneficiarios (
-  ced_beneficiario INT PRIMARY KEY,
-  ced_afiliado INT,
+  ced_beneficiario INT(10) PRIMARY KEY,
+  ced_afiliado INT(10),
   nombres VARCHAR(50),
   apellidos VARCHAR(50),
   fecha_nacimiento DATE,
   sexo ENUM('M', 'F'),
-  parentesco ENUM('parentesco1', 'parentesco2', 'parentesco3'),
+  parentesco ENUM('padre', 'hijo', 'esposo'),
   estado_civil ENUM('soltero', 'casado', 'divorciado', 'viudo'),
   direccion VARCHAR(100),
   telefono_celular VARCHAR(11),

@@ -11,13 +11,13 @@ $(document).ready(function(){
 		$("#m_ced_beneficiario"),"El formato debe ser una cedula valida de 6 a 8 digitos");
 	});
 
-	$("#apellidos").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	$("#ced_afiliado").on("keypress",function(e){
+		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
-	$("#apellidos").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres");
+	$("#ced_afiliado").on("keyup",function(){
+		validarkeyup(/^[0-9]{6,8}$/,$(this),
+    $("#m_ced_afiliado"),"El formato debe ser una cedula valida de 6 a 8 digitos");
 	});
 
 	$("#nombres").on("keypress",function(e){
@@ -26,29 +26,101 @@ $(document).ready(function(){
 
 	$("#nombres").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#snombres"),"Solo letras  entre 3 y 30 caracteres");
+		$(this),$("#m_nombres"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
+  $("#apellidos").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#apellidos").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_apellidos"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
+  $("#fecha_nacimiento").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#fecha_nacimiento").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_fecha_nacimiento"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
+  $("#sexo").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#sexo").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_sexo"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
+  $("#parentesco").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#parentesco").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_parentesco"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
+  $("#estado_civil").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#estado_civil").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_estado_civil"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
+	$("#direccion").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_direccion"),"Solo letras  entre 3 y 30 caracteres");
+	});
+
+  $("#telefono_celular").on("keypress",function(e){
+		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+	});
+
+	$("#telefono_celular").on("keyup",function(){
+		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		$(this),$("#m_telefono_celular"),"Solo letras  entre 3 y 30 caracteres");
 	});
 });
 
 //Validación de todos los campos antes del envio
 function validarEnvio(){
-	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
-		$("#scedula"),"El formato debe ser 9999999")==0){
+	if(validarkeyup(/^[0-9]{7,8}$/,$("#ced_beneficiario"),
+		$("#m_ced_beneficiario"),"El formato debe ser 9999999")==0){
 	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
 						"99999999");
 		return false;
 	}
+  else if(validarkeyup(/^[0-9]{7,8}$/,$("#ced_afiliado"),
+    $("#m_ced_afiliado"),"El formato debe ser 9999999")==0){
+    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
+      "99999999");
+    return false;
+  }
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#apellidos"),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
+		$("#nombres"),$("#m_nombres"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombres"),$("#snombres"),"Solo letras  entre 3 y 30 caracteres")==0){
+		$("#apellidos"),$("#m_apellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
-
+  else if($("#estado_civil").val() === null || $("#estado_civil").val() === "") {
+    $("#m_estado_civil").text("Debe seleccionar un estado civil");
+    return false;
+  }
+  else if($("#sexo").val() === null || $("#sexo").val() === "") {
+    $("#m_sexo").text("Debe seleccionar un sexo");
+    return false;
+  }
 	return true;
 }
 
