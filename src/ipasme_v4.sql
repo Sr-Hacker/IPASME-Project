@@ -6,9 +6,9 @@ CREATE TABLE estados (
 );
 
 CREATE TABLE patologias (
-  cod_patologia INT PRIMARY KEY,
+  cod_patologia INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(30),
-  descripcion VARCHAR(30)
+  descripcion TEXT
 );
 
 CREATE TABLE ciudades (
@@ -112,7 +112,7 @@ CREATE TABLE requisito_tramite (
 );
 
 CREATE TABLE especialidades (
-  cod_espe INT PRIMARY KEY,
+  cod_espe INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(50)
 );
 
