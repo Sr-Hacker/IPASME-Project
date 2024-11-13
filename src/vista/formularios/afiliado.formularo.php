@@ -7,7 +7,9 @@
     <samp id="scedula"></samp>
 
     <input type="text" placeholder="Primer nombre" id="primer_nombre" name="nombre">
-    <span id="snombres"></span>
+    <div >
+      <span id="snombres"></span>
+    </div>
     <input type="text" placeholder="segundo nombre" id="segundo_nombre" name="segundo_nombre">
     <samp id="seg_nombre"></samp>
 

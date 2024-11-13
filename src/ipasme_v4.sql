@@ -1,7 +1,7 @@
 use data_uptaeb;
 
 CREATE TABLE estados (
-  cod_estado INT PRIMARY KEY,
+  cod_estado INT AUTO_INCREMENT PRIMARY KEY,
   nombre_estado VARCHAR(30)
 );
 
@@ -12,14 +12,14 @@ CREATE TABLE patologias (
 );
 
 CREATE TABLE ciudades (
-  cod_ciudad INT PRIMARY KEY,
+  cod_ciudad INT AUTO_INCREMENT PRIMARY KEY,
   cod_estado INT,
   nombre_ciudad VARCHAR(30),
   FOREIGN KEY (cod_estado) REFERENCES estados(cod_estado)
 );
 
 CREATE TABLE instituciones (
-  rif_institucion INT PRIMARY KEY,
+  rif_institucion INT(10) PRIMARY KEY,
   cod_estado INT,
   nombre VARCHAR(50),
   direccion VARCHAR(255),

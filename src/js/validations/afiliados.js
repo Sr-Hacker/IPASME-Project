@@ -130,6 +130,9 @@ $("#action_modal").on("click", function(event) {
 
 //Validación de todos los campos antes del envio
  function validarenvio(){
+  const hoy = new Date;
+  const fecha1 = document.getElementById('')
+
  	 if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
  	 	$("#scedula"),"El formato debe ser 9999999")==0){
  	     muestraMensaje("La cedula debe coincidir con el formato <br/>"+
@@ -146,6 +149,10 @@ $("#action_modal").on("click", function(event) {
  	 	muestraMensaje("Nombres <br/>Solo letras  entre 3 y 15 caracteres");
  		return false;
  	 }
+   else if(fecha1 >= hoy){
+    muestraMensaje("Nombres <br/>Solo letras  entre 3 y 15 caracteres");
+   return false;
+  }
 
  	return true;
  }

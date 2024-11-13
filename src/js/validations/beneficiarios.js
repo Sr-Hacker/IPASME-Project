@@ -2,13 +2,13 @@ $(document).ready(function(){
 	_get();
 
 //VALIDACION DE DATOS
-	$("#cedula").on("keypress",function(e){
+	$("#ced_beneficiario").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
-	$("#cedula").on("keyup",function(){
-		validarkeyup(/^[0-9]{7,8}$/,$(this),
-		$("#scedula"),"El formato debe ser 9999999 ");
+	$("#ced_beneficiario").on("keyup",function(){
+		validarkeyup(/^[0-9]{6,8}$/,$(this),
+		$("#m_ced_beneficiario"),"El formato debe ser una cedula valida de 6 a 8 digitos");
 	});
 
 	$("#apellidos").on("keypress",function(e){
@@ -31,7 +31,7 @@ $(document).ready(function(){
 });
 
 //Validación de todos los campos antes del envio
-function validarenvio(){
+function validarEnvio(){
 	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
 		$("#scedula"),"El formato debe ser 9999999")==0){
 	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
@@ -86,29 +86,14 @@ mensaje){
 }
 
 function limpia(){
-	$("#nombre").val("");
-	$("#apellido").val("");
-	$("#edad").val("");
-	$("#telefono").val("");
-	$("#cargo").val("");
-	$("#cedula").val("");
-
-	$("#cod_historia").val("");
-	$("#tipo_sangre").val("");
-	$("#sexo").val("");
-	$("#estatura").val("");
-	$("#peso").val("");
+	$("#ced_beneficiario").val("");
+	$("#ced_afiliado").val("");
+	$("#nombres").val("");
+	$("#apellidos").val("");
 	$("#fecha_nacimiento").val("");
-
+	$("#sexo").val("");
+	$("#parentesco").val("");
+	$("#estado_civil").val("");
 	$("#direccion").val("");
-	$("#zona").val("");
-	$("#descripcion").val("");
-	$("#postal").val("");
-
-  $("#nombre_institucion").val("");
-	$("#rif_institucion").val("");
-	$("#direccion_institucion").val("");
-	$("#zona_institucion").val("");
-	$("#descripcion_institucion").val("");
-	$("#postal_institucion").val("");
+	$("#telefono_celular").val("");
 }

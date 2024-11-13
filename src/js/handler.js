@@ -1,6 +1,6 @@
 let action_modal = document.getElementById("action_modal")
 action_modal.addEventListener('click', function(e){
-  e.preventDefault()
+  e.preventDefault();
   let action = action_modal.textContent;
 
   let object = {

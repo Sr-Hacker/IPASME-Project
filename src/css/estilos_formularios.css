@@ -1,0 +1,197 @@
+/*Para que todos los tamaños de los elementos no sobrapasen las medidas establecidas*/
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #E5E5E5;
+}
+
+main {
+	/*max-width: 800px;*/
+	width: 100%;
+	margin: 0;
+	padding: 5px;
+}
+
+/*Estilos de las divisiones del formulario*/
+.formulario {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);/*filas con 2 columnas*/
+	gap: 10px; /*separacion entre columnas*/
+
+}
+
+.formulario__label {
+	display: block;/*para que el label abarque una fila entera*/
+	font-weight: 700;/*tamaño de la fuente*/
+	padding: 10px;
+	cursor: pointer;/*para converir el curso en puntero*/
+}
+
+
+
+.formulario__grupo-input ,select {
+	position: relative;/*para qie la posicion de los inputs sea relativa*/
+	padding: 0;
+	margin: 0;
+}
+
+.formulario__input , select{
+	width: 100%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;/*duracion de la transicion*/
+}
+
+/*estilos de los imputs cuando se le hagan clic*/
+.formulario__input:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+/*estilos para ocultar el mensaje de error de cada input por defecto*/
+.formulario__input-error {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: block;
+}
+
+/*estilos para el icono*/
+.formulario__validacion-estado {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+
+/*estilos para el checkbox de las condiciones*/
+.formulario__checkbox {
+	margin-right: 10px;
+}
+
+/*estilos para hacer que el checkbox, el mensaje de error inferior y el boton de enviar
+abarquen dos columas cada uno*/
+.formulario__grupo-terminos,
+.formulario__mensaje,
+.formulario__grupo-btn-enviar {
+	grid-column: span 4;
+}
+
+/*para darle estilos al mensaje que sale cuando se pisa en el boton de enviar del formulario
+para que por defecto esté oculto*/
+.formulario__mensaje {
+	height: 45px;
+	line-height: 45px;
+	background: #F66060;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+
+/*estilos para que el mensaje de envio de formulario se muestre si el presionado el
+boton de enviar haciendo que se le agg a la clase el modificador de activo*/
+.formulario__mensaje-activo {
+	display: block;
+}
+
+/*para quitar todos los margenes por defecto del mensaje del envio de formulario*/
+.formulario__mensaje p {
+	margin: 0;
+}
+/*estilos del grupo de boton de enviar que engloba el boton y el mensaje del mismo al ser
+el envio exitoso*/
+.formulario__grupo-btn-enviar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/*para darle estilos al boton especificamente*/
+.formulario__btn {
+	height: 45px;
+	line-height: 45px;
+	width: 30%;
+	background: #000;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+/*para cuando el boton tiene el cursor encima*/
+.formulario__btn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+/*estilos del mensaje de exito cuando el formulario fue enviado correctamente para que
+este oculto por defecto*/
+.formulario__mensaje-exito {
+	font-size: 14px;
+	color: #119200;
+	display: none;
+}
+
+/*estilos por si este fue enviado para que aparezca*/
+.formulario__mensaje-exito-activo {
+	display: block;
+}
+
+/* Estilos para Validacion */
+
+/*borde del input si los datos son correctos*/
+.formulario__grupo-correcto .formulario__validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+/*borde del input si los datos son incorrectos, para que de esa forma cambie
+el color del label y el borde del mismo*/
+.formulario__grupo-incorrecto .formulario__label {
+	color: #bb2929;
+}
+
+/*estilos para cambiar el color y la visibilidad del icono si los datos
+son incorrectos*/
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+	color: #bb2929;
+	opacity: 1;
+}
+
+/*para cambiarle el color al borde del input si los datos son incorrectos*/
+.formulario__grupo-incorrecto .formulario__input {
+	border: 3px solid #bb2929;
+}
+
+
+/* Mediaqueries */
+
+
+@media screen and (max-width: 800px) {
+	/*para hacer que el formulario tenga 1 sola hilera de columnas*/
+	.formulario {
+		grid-template-columns: 1fr;
+	}
+
+	/*para pasar los tres elementes de nuevo a 1 sola columna cada uno*/
+	.formulario__grupo-terminos,
+	.formulario__mensaje,
+	.formulario__grupo-btn-enviar {
+		grid-column: 1;
+	}
+
+	/*para agradar el tamaño del botón cuando llegue el tamaño de pantalla*/
+	.formulario__btn {
+		width: 100%;
+	}
+}

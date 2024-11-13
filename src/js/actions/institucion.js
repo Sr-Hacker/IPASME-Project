@@ -38,7 +38,6 @@ function _include(){
 
   let valido = validarEnvio()
   if(valido){
-    console.log("??")
     ajax(data, instituciones);
     let modal =  document.getElementById("modal")
     modal.style.display = "none";
