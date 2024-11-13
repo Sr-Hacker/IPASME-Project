@@ -1,13 +1,10 @@
-let listaMedicos = document.getElementById("get_result");
-let listaEspecialidades = document.getElementById("consultar_especialidades");
-let especialidadSeleccionado = document.getElementById("especialidades");
-
-let medicosArray = [];
-let especialidadesArray = [];
-
 $(document).ready(function(){
+  _get();
   especialidad_get();
-})
+});
+
+let listaMedicos = document.getElementById("consultar_medicos");
+let medicosArray = [];
 
 function cargarDatos(item){
   const medicos = medicosArray[item];
@@ -17,17 +14,6 @@ function cargarDatos(item){
   $("#apellido").val(medicos.apellido);
 	$("#estado").val(medicos.estado);
 	$("#cod_especialidad").val(medicos.cod_especialidad);
-}
-
-function agregar_especialidad(id){
-  const especialidad = especialidadesArray[id]
-  $("#cod_especialidad").val(especialidad.id);
-  const carta = `
-  <div styles="background: black;">
-    <p>Especialidad:${especialidad.nombre} ${especialidad.codigo}</p>
-  </div>
-`;
-  especialidadSeleccionado.innerHTML = carta;
 }
 
 function medicos(data){
@@ -65,7 +51,9 @@ function medicos(data){
   listaMedicos.innerHTML = result;
 }
 
-
+let listaEspecialidades = document.getElementById("consultar_especialidades");
+// let especialidadSeleccionado = document.getElementById("especialidades");
+let especialidadesArray = [];
 
 function medico_especialidades(data){
   listaEspecialidades.style.removeProperty("display");
@@ -80,13 +68,24 @@ function medico_especialidades(data){
   }else{
     data.map((item) => {
       const carta = `
-        <div class="item">
-          <p>especialidad: ${item.nombre}  ${item.cod_especialidad}</p>
-          <button type='button' onclick="agregar_especialidad('${item.cod_especialidad}')">Agregar</button>
-        </div>`;
-      especialidadesArray[item.id] = item;
+        <option class="item" value="${item.cod_espe}">
+          ${item.nombre}  ${item.cod_espe}
+        </option>`;
+      especialidadesArray[item.cod_espe] = item;
       result = result.concat("",carta);
     })
   }
   listaEspecialidades.innerHTML = result;
 }
+
+
+// function agregar_especialidad(id){
+//   const especialidad = especialidadesArray[id]
+//   $("#cod_espe").val(especialidad.id);
+//   const carta = `
+//   <div styles="background: black;">
+//     <p>Especialidad:${especialidad.nombre} ${especialidad.codigo}</p>
+//   </div>
+// `;
+//   especialidadSeleccionado.innerHTML = carta;
+// }

@@ -7,6 +7,7 @@ class Medico extends DB{
   private $apellidos;
   private $activo;
   private $telefono;
+  private $cod_espe;
 
   function set_ced_medico($valor){
     $this->ced_medico = $valor;
@@ -22,6 +23,9 @@ class Medico extends DB{
   }
   function set_telefono($valor){
     $this->telefono = $valor;
+  }
+  function set_cod_espe($valor){
+    $this->cod_espe = $valor;
   }
 
 	function incluir(){
@@ -52,6 +56,24 @@ class Medico extends DB{
         ':apellidos' => $this->apellidos,
         ':activo' => $this->activo,
         ':telefono' => $this->telefono
+      ]);
+
+      $query2 = $bd->prepare("
+        INSERT INTO especialidad_medico (
+          cod_especialidad_medico,
+          ced_medico,
+          cod_espe
+        ) VALUES (
+          :cod_especialidad_medico,
+          :ced_medico,
+          :cod_espe
+        )
+      ");
+
+      $query2->execute([
+        ':cod_especialidad_medico' => 1,
+        ':ced_medico' => $this->ced_medico,
+        ':cod_espe' => $this->cod_espe
       ]);
 
       $bd->commit();
@@ -203,12 +225,12 @@ class Medico extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-          $institucion['cod_especialidad'] = $resultado['cod_especialidad'];
+          $institucion['cod_espe'] = $resultado['cod_espe'];
           $institucion['nombre'] = $resultado['nombre'];
           array_push($respuesta, $institucion);
 				}
 				$r['resultado'] =  $respuesta;
-				$r['mensaje'] =  'consulta de instituciones';
+				$r['mensaje'] =  'consulta de especialidades';
 			}
 			else{
 				$r['resultado'] = [];

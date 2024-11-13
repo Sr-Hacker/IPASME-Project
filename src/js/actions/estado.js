@@ -22,12 +22,10 @@ function instituciones_get(){
 }
 
 function _include(){
-  const codEstado = document.getElementById("cod_estado").value;
   const nombreEstado = document.getElementById("nombre_estado").value;
 
 	let data = new FormData();
 	data.append('accion','incluir');
-  data.append('cod_estado', codEstado);
   data.append('nombre_estado', nombreEstado);
 
   const validar = validarEnvio()

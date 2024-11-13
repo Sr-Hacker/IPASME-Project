@@ -39,9 +39,12 @@ function _include(){
   data.append('direccion', direccion);
   data.append('telefono_celular', telefono_celular);
 
-	ajax(data, beneficiarios);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, beneficiarios);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _edit(){

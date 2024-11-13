@@ -25,13 +25,13 @@
 			 echo json_encode($estados->eliminar());
 		  }
 		  else{
-        $estados->set_cod_estado($_POST['cod_estado']);
         $estados->set_nombre_estado($_POST['nombre_estado']);
 
 			  if($accion=='incluir'){
           echo  json_encode($estados->incluir());
 			  }
 			  elseif($accion=='modificar'){
+          $estados->set_cod_estado($_POST['cod_estado']);
 				  echo  json_encode($estados->modificar());
 			  }
 		  }

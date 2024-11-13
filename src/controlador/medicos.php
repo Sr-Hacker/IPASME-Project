@@ -29,6 +29,7 @@
 			  $medicos->set_apellidos($_POST['apellidos']);
 			  $medicos->set_activo($_POST['activo']);
 			  $medicos->set_telefono($_POST['telefono']);
+			  $medicos->set_cod_espe($_POST['cod_espe']);
 
 			  if($accion=='incluir'){
 				  echo  json_encode($medicos->incluir());

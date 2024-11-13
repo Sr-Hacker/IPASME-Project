@@ -1,5 +1,5 @@
 let include  = document.getElementById("include")
-include.addEventListener("click", function () {
+include.addEventListener("click", function (e) {
   let modal = document.getElementById("modal")
   modal.style.display = "block";
   modal.style.visibility = 'visible';
@@ -9,6 +9,7 @@ include.addEventListener("click", function () {
 });
 
 function editModal(e, callback){
+  e.preventDefault();
   callback(e);
   let modal = document.getElementById("modal")
   modal.style.display = "block";
@@ -19,6 +20,7 @@ function editModal(e, callback){
 }
 
 function deleteModal(e, callback){
+  e.preventDefault();
   callback(e);
   let modal = document.getElementById("modal")
   modal.style.display = "block";
@@ -29,7 +31,8 @@ function deleteModal(e, callback){
 }
 
 let closeModal = document.getElementById("closeModal")
-closeModal.addEventListener("click", function () {
+closeModal.addEventListener("click", function (e) {
+  e.preventDefault();
   let modal =  document.getElementById("modal")
   limpia()
   modal.style.visibility = "hidden";
