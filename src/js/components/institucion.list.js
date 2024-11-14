@@ -1,5 +1,6 @@
 $(document).ready(function(){
   _get();
+  estados_get();
 })
 let listaInstituciones = document.getElementById("consultar_instituciones");
 let institucionesArray = [];
@@ -51,3 +52,41 @@ function instituciones(data){
   }
   listaInstituciones.innerHTML = result;
 }
+
+
+let listaCiudades = document.getElementById("consultar_estados");
+// let especialidadSeleccionado = document.getElementById("especialidades");
+let ciudadesArray = [];
+function estado_ciudad(data){
+  console.log("pls", data)
+}
+
+
+
+let listaEstados = document.getElementById("consultar_estados");
+// let especialidadSeleccionado = document.getElementById("especialidades");
+let estadosArray = [];
+
+function institucion_estados(data){
+  listaEstados.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const carta = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",carta);
+  }else{
+    data.map((item) => {
+      const carta = `
+        <option class="item" value="${item.cod_estado}" onclick="ciudades_get(${item.cod_estado})">
+          ${item.nombre_estado}
+        </option>`;
+      estadosArray[item.cod_espe] = item;
+      result = result.concat("",carta);
+    })
+  }
+  listaEstados.innerHTML = result;
+}
+

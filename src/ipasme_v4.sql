@@ -128,7 +128,7 @@ CREATE TABLE horario_medico (
   cod_horario INT PRIMARY KEY,
   ced_medico INT,
   dia VARCHAR(9),
-  hora VARCHAR(10),
+  hora ENUM('estado1', 'estado2', 'estado3'),
   FOREIGN KEY (ced_medico) REFERENCES medico(ced_medico)
 );
 

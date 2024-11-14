@@ -16,6 +16,13 @@
 		  if($accion=='consultar'){
 			  echo  json_encode($instituciones->consultar());
 		  }
+      else if($accion=='consultar_estados'){
+        echo  json_encode($instituciones->consultar_estados());
+      }
+      else if($accion=='consultar_ciudades'){
+			  $cod_estado = $_POST['cod_estado'];
+        echo json_encode($instituciones->consultar_ciudades($cod_estado));
+		  }
       else if($accion=='buscar'){
 			  $instituciones->set_rif_institucion($_POST['buscador']);
         echo json_encode($instituciones->buscar());
