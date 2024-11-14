@@ -359,14 +359,14 @@ class Afiliado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-          $institucion['rif'] = $resultado['rif'];
+          $institucion['rif_institucion'] = $resultado['rif_institucion'];
+          $institucion['cod_ciudad'] = $resultado['cod_ciudad'];
           $institucion['nombre'] = $resultado['nombre'];
-          $institucion['estado_provincia'] = $resultado['estado_provincia'];
-          $institucion['ciudad'] = $resultado['ciudad'];
           $institucion['direccion'] = $resultado['direccion'];
-          $institucion['zona_postal'] = $resultado['zona_postal'];
+          $institucion['codigo_postal'] = $resultado['codigo_postal'];
           $institucion['telefono'] = $resultado['telefono'];
           $institucion['correo'] = $resultado['correo'];
+          $institucion['tipo_institucion'] = $resultado['tipo_institucion'];
           array_push($respuesta, $institucion);
 				}
 				$r['resultado'] =  $respuesta;

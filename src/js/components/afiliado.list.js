@@ -61,22 +61,8 @@ function afiliados(data){
 
 // cargar lista de instituciones
 let listaInstituciones = document.getElementById("consultar_instituciones");
-let institutoSeleccionado = document.getElementById("instituto");
-let institucionArray = [];
-
-function agregar_intitucion(rif){
-  const instituto = institucionArray[rif]
-  $("#rif_institucion").val(instituto.rif);
-  const carta = `
-  <div styles="background: black;">
-    <p>Institucion:${instituto.rif} ${instituto.nombre}</p>
-  </div>
-`;
-  institutoSeleccionado.innerHTML = carta;
-}
 
 function afiliado_instituciones(data){
-  listaInstituciones.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
     const carta = `
@@ -88,11 +74,9 @@ function afiliado_instituciones(data){
   }else{
     data.map((item) => {
       const carta = `
-        <div class="item">
-          <p>Institucion: ${item.nombre}</p>
-          <button type='button' onclick="agregar_intitucion('${item.rif}')">Agregar</button>
-        </div>`;
-        institucionArray[item.rif] = item;
+        <option class="item" value="${item.cod_espe}">
+          ${item.nombre}  ${item.rif_institucion}
+        </option>`;
       result = result.concat("",carta);
     })
   }

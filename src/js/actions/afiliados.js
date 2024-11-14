@@ -23,7 +23,7 @@ function instituciones_get(){
 
 function _include(){
   const cedAfiliado = document.getElementById("ced_afiliado").value;
-  const rifInstitucion = document.getElementById("rif_institucion").value;
+  const rifInstitucion = document.getElementById("consultar_instituciones").value;
   const primerNombre = document.getElementById("primer_nombre").value;
   const segundoNombre = document.getElementById("segundo_nombre").value;
   const primerApellido = document.getElementById("primer_apellido").value;
@@ -92,7 +92,7 @@ function _edit(){
   const correo = document.getElementById("correo").value;
   const tipo_sangre = document.getElementById("tipo_sangre").value;
   const n_historia = document.getElementById("n_historia").value;
-  const rif_institucion = document.getElementById("rif_institucion").value;
+  const rif_institucion = document.getElementById("consultar_instituciones").value;
 
 	let data = new FormData();
 	data.append('accion','modificar');
