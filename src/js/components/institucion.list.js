@@ -54,18 +54,38 @@ function instituciones(data){
 }
 
 
-let listaCiudades = document.getElementById("consultar_estados");
+let listaCiudades = document.getElementById("consultar_ciudades");
 // let especialidadSeleccionado = document.getElementById("especialidades");
-let ciudadesArray = [];
-function estado_ciudad(data){
-  console.log("pls", data)
-}
 
+function estado_ciudades(data){
+  listaCiudades.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const carta = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",carta);
+  }else{
+    data.map((item) => {
+      const carta = `
+        <option class="item" value="${item.cod_ciudad}">
+          ${item.nombre_ciudad}
+        </option>`;
+      result = result.concat("",carta);
+    })
+  }
+  listaCiudades.innerHTML = result;
+}
 
 
 let listaEstados = document.getElementById("consultar_estados");
 // let especialidadSeleccionado = document.getElementById("especialidades");
-let estadosArray = [];
+
+listaEstados.addEventListener('change', function() {
+  ciudades_get(listaEstados.value);
+});
 
 function institucion_estados(data){
   listaEstados.style.removeProperty("display");
@@ -80,10 +100,9 @@ function institucion_estados(data){
   }else{
     data.map((item) => {
       const carta = `
-        <option class="item" value="${item.cod_estado}" onclick="ciudades_get(${item.cod_estado})">
+        <option class="item" value="${item.cod_estado}">
           ${item.nombre_estado}
         </option>`;
-      estadosArray[item.cod_espe] = item;
       result = result.concat("",carta);
     })
   }

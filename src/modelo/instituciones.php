@@ -185,6 +185,7 @@ class Institucion extends DB{
 				$respuesta = [];
 				foreach($resultados as $resultado){
           $institucion['nombre_estado'] = $resultado['nombre_estado'];
+          $institucion['cod_estado'] = $resultado['cod_estado'];
           array_push($respuesta, $institucion);
 				}
 				$r['resultado'] =  $respuesta;
@@ -211,6 +212,7 @@ class Institucion extends DB{
 				$respuesta = [];
 				foreach($resultados as $resultado){
           $institucion['nombre_ciudad'] = $resultado['nombre_ciudad'];
+          $institucion['cod_ciudad'] = $resultado['cod_ciudad'];
           array_push($respuesta, $institucion);
 				}
 				$r['resultado'] =  $respuesta;

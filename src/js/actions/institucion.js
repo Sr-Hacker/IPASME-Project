@@ -21,11 +21,12 @@ function estados_get(){
 	ajax(data, institucion_estados);
 }
 
-function ciudades_get(){
-  console.log("???")
-  // let data = new FormData();
-	// data.append('accion','consultar_ciudades');
-	// ajax(data, estado_ciudades);
+function ciudades_get(cod_estado){
+  let data = new FormData();
+
+	data.append('accion','consultar_ciudades');
+  data.append('cod_estado', cod_estado);
+	ajax(data, estado_ciudades);
 }
 
 function _include(){
