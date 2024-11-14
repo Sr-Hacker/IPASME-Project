@@ -8,6 +8,7 @@
   transition: visibility 0s, opacity 0.5s linear;
   overflow-y: hidden;
   visibility: hidden;
+  margin: -0.7% -1.2%;
 }
 
 .content-modal{
@@ -20,6 +21,8 @@
   background-color: var(--color-background);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  overflow-y: scroll;
+  padding: 1rem;
 }
 
 .opc-modal,

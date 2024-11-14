@@ -4,6 +4,11 @@
     exit;
   }
 
+  session_start();
+  if(isset($_SESSION['user2'])){
+    header("location:usuario.php");
+  }
+
   require_once("modelo/".$pagina.".php");
 
   if(is_file("vista/".$pagina.".php")){

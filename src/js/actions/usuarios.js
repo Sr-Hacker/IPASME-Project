@@ -6,13 +6,12 @@ function cargarUsuario(data){
 }
 
 ingresar.addEventListener('click', () => {
-  const cedulaValue = document.getElementById("cedula").value;
-  const contrasenaValue = document.getElementById("contrasena").value;
+  const cedulaValue = document.getElementById("usuario").value;
+  const contrasenaValue = document.getElementById("password").value;
 
 	let data = new FormData();
 	data.append('accion','iniciar');
-  data.append('cedula', cedulaValue);
-  data.append('contrasena', contrasenaValue);
-  console.log(cedulaValue, contrasenaValue)
+  data.append('usuario', cedulaValue);
+  data.append('password', contrasenaValue);
 	ajax(data, cargarUsuario);
 })
