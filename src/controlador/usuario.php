@@ -14,9 +14,12 @@
 		  $accion = $_POST['accion'];
 
 		  if($accion=='iniciar'){
-			 $usuario->set_cedula($_POST['cedula']);
-			 $usuario->set_contrasena($_POST['contrasena']);
-			 echo  json_encode($usuario->iniciar());
+			//  $usuario->set_cedula($_POST['usuario']);
+			//  $usuario->set_contrasena($_POST['password']);
+			//  echo  json_encode($usuario->iniciar());
+      session_start();
+      $_SESSION['user'] = true;
+      header("location:historia_medica");
 		  }
 		  exit;
 	  }

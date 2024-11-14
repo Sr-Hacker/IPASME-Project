@@ -17,14 +17,18 @@ class Usuario extends DB{
 		$co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$r = array();
 		try{
-			$resultados = $co->query("SELECT * from empleados where cadula = '$this->cedula'");
+			$resultados = $co->query("SELECT * from empleados where ced_empleado = '$this->usuario'");
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-          $trabajador['cedula'] = $resultado['cedula'];
-					$trabajador['apellidosynombres'] = $resultado['apellidosynombres'];
+          $trabajador['ced_empleado'] = $resultado['ced_empleado'];
+					$trabajador['contrasena'] = $resultado['contrasena'];
           array_push($respuesta, $trabajador);
 				}
+        if($trabajador['ced_empleado'] = $this->usuario && $trabajador['contrasena'] = $this->password){
+          session_start();
+        }
+
 				$r['resultado'] =  $respuesta;
 			}
 			else{

@@ -120,10 +120,13 @@ function _edit(){
 function _delete(){
   const ced_afiliado = document.getElementById("ced_afiliado").value;
 
-	let data = new FormData();
+  let validar = validarenvio();
+
+  if(validar){
+  let data = new FormData();
 	data.append('accion','eliminar');
   data.append('ced_afiliado', ced_afiliado);
-
+  }
 	ajax(data, afiliados);
   let modal =  document.getElementById("modal")
   modal.style.display = "none";
