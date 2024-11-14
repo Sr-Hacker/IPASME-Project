@@ -50,8 +50,8 @@ CREATE TABLE afiliado (
   telefono_habitacion VARCHAR(11),
   telefono_trabajo VARCHAR(11),
   fecha_ingreso DATE,
-  cargo ENUM('cargo1', 'cargo2', 'cargo3'),
-  situacion_laboral ENUM('situacion1', 'situacion2', 'situacion3'),
+  cargo ENUM('docente', 'adminoistrativo', 'obrero', 'otros'),
+  situacion_laboral ENUM('jubilado', 'pensionado', 'contratado'),
   FOREIGN KEY (rif_institucion) REFERENCES instituciones(rif_institucion)
 );
 

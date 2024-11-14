@@ -1,6 +1,7 @@
 $(document).ready(function(){
   _get();
   instituciones_get();
+  estados_get();
 })
 
 let listaAfiliados = document.getElementById("consultar_afiliados");
@@ -74,11 +75,67 @@ function afiliado_instituciones(data){
   }else{
     data.map((item) => {
       const carta = `
-        <option class="item" value="${item.cod_espe}">
+        <option class="item" value="${item.rif_institucion}">
           ${item.nombre}  ${item.rif_institucion}
         </option>`;
       result = result.concat("",carta);
     })
   }
   listaInstituciones.innerHTML = result;
+}
+
+// cargar lista de ciudades
+let listaCiudades = document.getElementById("consultar_ciudades");
+// let especialidadSeleccionado = document.getElementById("especialidades");
+
+function estado_ciudades(data){
+  listaCiudades.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const carta = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",carta);
+  }else{
+    data.map((item) => {
+      const carta = `
+        <option class="item" value="${item.cod_ciudad}">
+          ${item.nombre_ciudad}
+        </option>`;
+      result = result.concat("",carta);
+    })
+  }
+  listaCiudades.innerHTML = result;
+}
+
+// cargar lista de estados
+let listaEstados = document.getElementById("consultar_estados");
+// let especialidadSeleccionado = document.getElementById("especialidades");
+
+listaEstados.addEventListener('change', function() {
+  ciudades_get(listaEstados.value);
+});
+
+function institucion_estados(data){
+  listaEstados.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const carta = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",carta);
+  }else{
+    data.map((item) => {
+      const carta = `
+        <option class="item" value="${item.cod_estado}">
+          ${item.nombre_estado}
+        </option>`;
+      result = result.concat("",carta);
+    })
+  }
+  listaEstados.innerHTML = result;
 }
