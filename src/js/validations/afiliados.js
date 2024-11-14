@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 	 $("#ced_afiliado").on("keyup",function(){
 	 	validarkeyup(/^[0-9]{7,8}$/,$(this),
-	 	$("#scedula"),"El formato debe ser 9999999 ");
+	 	$("#m_ced_afiliado"),"El formato debe ser 9999999 ");
  });
 
   $("#primer_nombre").on("keypress",function(e){

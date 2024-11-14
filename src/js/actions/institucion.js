@@ -15,6 +15,20 @@ function _get(){
 	ajax(data, instituciones);
 }
 
+function estados_get(){
+	let data = new FormData();
+	data.append('accion','consultar_estados');
+	ajax(data, institucion_estados);
+}
+
+function ciudades_get(cod_estado){
+  let data = new FormData();
+
+	data.append('accion','consultar_ciudades');
+  data.append('cod_estado', cod_estado);
+	ajax(data, estado_ciudades);
+}
+
 function _include(){
   const rif_institucion = document.getElementById("rif_institucion").value;
   const cod_estado = document.getElementById("cod_estado").value;

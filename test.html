@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Valores de Checkboxes</title>
+</head>
+<body>
+    <form id="formulario">
+        <label><input type="checkbox" name="opciones" value="opcion1"> Opción 1</label><br>
+        <label><input type="checkbox" name="opciones" value="opcion2"> Opción 2</label><br>
+        <label><input type="checkbox" name="opciones" value="opcion3"> Opción 3</label><br>
+        <label><input type="checkbox" name="opciones" value="opcion4"> Opción 4</label><br>
+        <button type="button" onclick="recuperarValores()">Recuperar Valores</button>
+    </form>
+    <p id="valoresSeleccionados"></p>
+
+    <script>
+        function recuperarValores() {
+          const checkboxes = document.querySelectorAll('input[name="opciones"]:checked');
+          const selectedValues = Array.from(checkboxes).map(checkbox => checkbox.value);
+          document.getElementById('valoresSeleccionados').textContent = 'Valores seleccionados: ' + selectedValues.join(', ');
+        }
+    </script>
+</body>
+</html>
