@@ -13,11 +13,17 @@
     <input type="text" placeholder="codigo_postal" id="codigo_postal" name="codigo_postal">
     <input type="text" placeholder="numero_casa" id="numero_casa" name="numero_casa">
     <input type="mail" placeholder="correo" id="correo" name="correo">
+
+    <label for="rol">Rol</label>
     <select class="opc-modal" id="rol" name="rol">
+      <option value="">Selected</option>
       <option value="admin">administrador</option>
       <option value="user">empleado</option>
     </select>
+
+    <label for="sexo">Genero</label>
     <select class="opc-modal" id="sexo" name="sexo">
+      <option value="">Selected</option>
       <option value=1>Hombre</option>
       <option value=0>Mujer</option>
     </select>

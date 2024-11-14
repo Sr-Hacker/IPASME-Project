@@ -20,6 +20,9 @@
 			  $citas->set_fecha($_POST['buscador']);
         echo json_encode($citas->buscar());
       }
+      elseif($accion=='consultar_medicos_especialidades'){
+        echo json_encode($citas->consultar_medicos_especialidades());
+      }
       elseif($accion=='consultar_medicos'){
         echo json_encode($citas->consultar_medicos());
       }

@@ -28,6 +28,12 @@ function pacientes_get(){
 	ajax(data, cita_pacientes);
 }
 
+function medicos_especialidades_get(){
+  let data = new FormData();
+	data.append('accion','consultar_medicos_especialidades');
+	ajax(data, medicos_especialidades);
+}
+
 function _include(){
   const dia = document.getElementById("dia").value;
   const motivo = document.getElementById("motivo").value;

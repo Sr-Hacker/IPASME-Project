@@ -33,13 +33,13 @@ function instituciones(data){
       const carta = `
         <div class="item">
           <p>Rif: ${item.rif_institucion}</p>
-          <p>Nombre: ${item.cod_estado}</p>
-          <p>Telefono: ${item.nombre}</p>
-          <p>direccion: ${item.direccion}</p>
-          <p>correo: ${item.codigo_postal}</p>
-          <p>ciudad: ${item.telefono}</p>
-          <p>estado: ${item.correo}</p>
-          <p>zona: ${item.tipo_institucion}</p>
+          <p>Ciudad: ${item.nombre_ciudad}</p>
+          <p>Nombre: ${item.nombre}</p>
+          <p>Direccion: ${item.direccion}</p>
+          <p>Cod Postal: ${item.codigo_postal}</p>
+          <p>Telefono: ${item.telefono}</p>
+          <p>Correo: ${item.correo}</p>
+          <p>Tipo: ${item.tipo_institucion}</p>
           <div class="options">
           <button type='button' class="editar" onclick="editModal('${item.rif_institucion}', cargarDatos)">Modificar</button>
           <button type='button' class="eliminar" onclick="deleteModal('${item.rif_institucion}', cargarDatos)">Eliminar</button>

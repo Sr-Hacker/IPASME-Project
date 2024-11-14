@@ -20,14 +20,14 @@ CREATE TABLE ciudades (
 
 CREATE TABLE instituciones (
   rif_institucion INT(10) PRIMARY KEY,
-  cod_estado INT,
+  cod_ciudad INT,
   nombre VARCHAR(50),
   direccion VARCHAR(255),
   codigo_postal VARCHAR(10),
   telefono VARCHAR(11),
   correo VARCHAR(50),
   tipo_institucion VARCHAR(30),
-  FOREIGN KEY (cod_estado) REFERENCES estados(cod_estado)
+  FOREIGN KEY (cod_ciudad) REFERENCES ciudades(cod_ciudad)
 );
 
 CREATE TABLE afiliado (
@@ -121,7 +121,7 @@ CREATE TABLE medico (
   nombres VARCHAR(50),
   apellidos VARCHAR(50),
   activo BOOLEAN,
-  telefono INT
+  telefono VARCHAR(11)
 );
 
 CREATE TABLE horario_medico (

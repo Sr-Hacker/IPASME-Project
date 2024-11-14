@@ -35,9 +35,10 @@ function medicos(data){
       }
       const card = `
         <div class="item">
-          <p>Nombres: ${item.nombre}</p>
-          <p>Apellidos: ${item.apellido}</p>
+          <p>Nombres: ${item.nombres}</p>
+          <p>Apellidos: ${item.apellidos}</p>
           <p>Tipo: ${externo}</p>
+          <p>Tipo: ${item.especialidad}</p>
           <p>cedula: ${item.ced_medico}</p>
           <div class="options">
           <button type='button' onclick="editModal('${item.ced_medico}', cargarDatos)">Modificar</button>

@@ -145,17 +145,31 @@ class Medico extends DB{
     $r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT * FROM medico");
+			$resultados = $bd->query("SELECT
+        em.*,
+          e1.nombre AS especialidad,
+          m1.nombres AS nombres,
+          m1.apellidos AS apellidos,
+          m1.activo AS activo,
+          m1.telefono AS telefono
+      FROM
+        especialidad_medico em
+      JOIN
+        especialidades e1 ON em.cod_espe = e1.cod_espe
+      JOIN
+        medico m1 ON em.ced_medico = m1.ced_medico
+      ");
 
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-					$afiliado['ced_medico'] = $resultado['ced_medico'];
-          $afiliado['nombres'] = $resultado['nombres'];
-          $afiliado['apellidos'] = $resultado['apellidos'];
-          $afiliado['activo'] = $resultado['activo'];
-          $afiliado['telefono'] = $resultado['telefono'];
-          array_push($respuesta, $afiliado);
+					$medico['ced_medico'] = $resultado['ced_medico'];
+          $medico['nombres'] = $resultado['nombres'];
+          $medico['apellidos'] = $resultado['apellidos'];
+          $medico['activo'] = $resultado['activo'];
+          $medico['telefono'] = $resultado['telefono'];
+          $medico['especialidad'] = $resultado['especialidad'];
+          array_push($respuesta, $medico);
 				}
 				$r['resultado'] =  $respuesta;
 				$r['mensaje'] =  'consulta';

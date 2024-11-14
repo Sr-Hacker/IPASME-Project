@@ -3,7 +3,7 @@ require_once('config/db.php');
 
 class Institucion extends DB{
   private $rif_institucion;
-  private $cod_estado;
+  private $cod_ciudad;
   private $nombre;
   private $direccion;
   private $codigo_postal;
@@ -14,8 +14,8 @@ class Institucion extends DB{
   function set_rif_institucion($valor){
 		$this->rif_institucion = $valor;
 	}
-	function set_cod_estado($valor){
-		$this->cod_estado = $valor;
+	function set_cod_ciudad($valor){
+		$this->cod_ciudad = $valor;
 	}
 	function set_nombre($valor){
 		$this->nombre = $valor;
@@ -43,7 +43,7 @@ class Institucion extends DB{
         $query = $bd->prepare("
           INSERT INTO instituciones (
             rif_institucion,
-            cod_estado,
+            cod_ciudad,
             nombre,
             direccion,
             codigo_postal,
@@ -52,7 +52,7 @@ class Institucion extends DB{
             tipo_institucion
           ) VALUES (
             :rif_institucion,
-            :cod_estado,
+            :cod_ciudad,
             :nombre,
             :direccion,
             :codigo_postal,
@@ -64,7 +64,7 @@ class Institucion extends DB{
 
         $query->execute([
           ':rif_institucion' => $this->rif_institucion,
-          ':cod_estado' => $this->cod_estado,
+          ':cod_ciudad' => $this->cod_ciudad,
           ':nombre' => $this->nombre,
           ':direccion' => $this->direccion,
           ':codigo_postal' => $this->codigo_postal,
@@ -90,7 +90,7 @@ class Institucion extends DB{
       $bd = $this->conecta();
 			$query = $bd->prepare("UPDATE instituciones SET
         rif_institucion = :rif_institucion,
-        cod_estado = :cod_estado,
+        cod_ciudad = :cod_ciudad,
         nombre = :nombre,
         direccion = :direccion,
         codigo_postal = :codigo_postal,
@@ -103,7 +103,7 @@ class Institucion extends DB{
 
       $query->execute([
         ':rif_institucion' => $this->rif_institucion,
-        ':cod_estado' => $this->cod_estado,
+        ':cod_ciudad' => $this->cod_ciudad,
         ':nombre' => $this->nombre,
         ':direccion' => $this->direccion,
         ':codigo_postal' => $this->codigo_postal,
@@ -146,13 +146,23 @@ class Institucion extends DB{
     $r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT * FROM instituciones");
+			$resultados = $bd->query("SELECT
+        i.*,
+          c1.nombre_ciudad AS nombre_ciudad,
+          c1.cod_ciudad AS cod_ciudad,
+          c1.cod_estado AS cod_estado
+        FROM
+          instituciones i
+        JOIN
+          ciudades c1 ON i.cod_ciudad = c1.cod_ciudad
+      ");
 
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
           $institucion['rif_institucion'] = $resultado['rif_institucion'];
-          $institucion['cod_estado'] = $resultado['cod_estado'];
+          $institucion['cod_ciudad'] = $resultado['cod_ciudad'];
+          $institucion['nombre_ciudad'] = $resultado['nombre_ciudad'];
           $institucion['nombre'] = $resultado['nombre'];
           $institucion['direccion'] = $resultado['direccion'];
           $institucion['codigo_postal'] = $resultado['codigo_postal'];

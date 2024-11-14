@@ -31,7 +31,7 @@ function ciudades_get(cod_estado){
 
 function _include(){
   const rif_institucion = document.getElementById("rif_institucion").value;
-  const cod_estado = document.getElementById("cod_estado").value;
+  const cod_ciudad = document.getElementById("consultar_ciudades").value;
   const nombre = document.getElementById("nombre").value;
   const direccion = document.getElementById("direccion").value;
   const codigo_postal = document.getElementById("codigo_postal").value;
@@ -41,12 +41,12 @@ function _include(){
 
 	let data = new FormData();
 	data.append('accion','incluir');
-  data.append('rif_institucion', 1);
-  data.append('cod_estado', cod_estado);
+  data.append('rif_institucion', rif_institucion);
+  data.append('cod_ciudad', cod_ciudad);
   data.append('nombre', nombre);
   data.append('direccion', direccion);
   data.append('codigo_postal', codigo_postal);
-  data.append('telefono', 2);
+  data.append('telefono', telefono);
   data.append('correo', correo);
   data.append('tipo_institucion', tipo_institucion);
 
