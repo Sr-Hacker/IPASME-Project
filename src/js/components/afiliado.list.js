@@ -40,11 +40,11 @@ function afiliados(data){
   }else{
     data.map((item) => {
       const card = `
-        <div class="item">
-          <p>${item.nombre} ${item.apellido}</p>
+      <div class="item">
+          <p>Cedula: ${item.ced_afiliado}</p>
+          <p>${item.primer_nombre} ${item.primer_apellido}</p>
           <p>Edad: ${item.correo}</p>
           <p>Telefono: ${item.telefono}</p>
-          <p>Cedula: ${item.ced_afiliado}</p>
           <p>sexo: ${item.sexo}</p>
           <p>historia: ${item.rif_institucion}</p>
           <div class="options">

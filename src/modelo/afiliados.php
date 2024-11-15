@@ -51,7 +51,7 @@ class Afiliado extends DB{
   function set_estado_civil($valor){
     $this->estado_civil = $valor;
   }
-  function set_cdireccion_habitacion($valor){
+  function set_direccion_habitacion($valor){
     $this->direccion_habitacion = $valor;
   }
   function set_estado($valor){
@@ -89,29 +89,6 @@ class Afiliado extends DB{
 	}
 
 	function incluir(){
-    return[
-      $this->$ced_afiliado,
-      $this->$rif_institucion,
-      $this->$primer_nombre,
-      $this->$segundo_nombre,
-      $this->$primer_apellido,
-      $this->$segundo_apellido,
-      $this->$sexo,
-      $this->$fecha_nacimiento,
-      $this->$estado_civil,
-      $this->$direccion_habitacion,
-      $this->$estado,
-      $this->$ciudad,
-      $this->$municipio,
-      $this->$parroquia,
-      $this->$correo_electronico,
-      $this->$telefono_celular,
-      $this->$telefono_habitacion,
-      $this->$telefono_trabajo,
-      $this->$fecha_ingreso,
-      $this->$cargo,
-      $this->$situacion_laboral
-    ];
 		$r = array();
     try {
       $bd = $this->conecta();
@@ -136,7 +113,7 @@ class Afiliado extends DB{
           telefono_habitacion,
           telefono_trabajo,
           fecha_ingreso,
-          cargo
+          cargo,
           situacion_laboral
         ) VALUES (
           :ced_afiliado,
