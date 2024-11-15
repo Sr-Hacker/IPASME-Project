@@ -1,4 +1,4 @@
-main {
+.main {
 	/*max-width: 800px;*/
 	width: 100%;
 	margin: 0;
@@ -15,7 +15,6 @@ main {
 .formulario__label {
 	display: block;/*para que el label abarque una fila entera*/
 	font-weight: 700;/*tamaño de la fuente*/
-	padding: 10px;
 	cursor: pointer;/*para converir el curso en puntero*/
 }
 
