@@ -12,19 +12,19 @@ class Consulta extends DB{
   private $motivo;
   private $detalle;
 
-	function set_cod_cita($valor){
+	function set_n_consulta($valor){
 		$this->n_consulta = $valor;
 	}
-  function set_ced_afiliado($valor){
+  function set_cod_cita($valor){
 		$this->cod_cita = $valor;
 	}
-  function set_cod_especialidad_medico($valor){
+  function set_n_historia($valor){
     $this->n_historia = $valor;
 	}
-  function set_ced_beneficiario($valor){
+  function set_motivo($valor){
     $this->motivo = $valor;
   }
-  function set_fecha($valor){
+  function set_detalle($valor){
     $this->detalle = $valor;
   }
 

@@ -10,20 +10,26 @@ let afiliadosArray = [];
 function cargarDatos(item){
   const afiliados = afiliadosArray[item]
 	$("#ced_afiliado").val(afiliados.ced_afiliado);
-  $("#n_historia").val(afiliados.n_historia);
-	$("#nombre").val(afiliados.nombre);
-	$("#apellido").val(afiliados.apellido);
+  $("#rif_institucion").val(afiliados.rif_institucion);
+	$("#primer_nombre").val(afiliados.primer_nombre);
+	$("#segundo_nombre").val(afiliados.segundo_nombre);
+	$("#primer_apellido").val(afiliados.primer_apellido);
+	$("#segundo_apellido").val(afiliados.segundo_apellido);
 	$("#sexo").val(afiliados.sexo);
 	$("#fecha_nacimiento").val(afiliados.fecha_nacimiento);
-	$("#estado_provincia").val(afiliados.estado_provincia);
+	$("#estado_civil").val(afiliados.estado_civil);
+	$("#direccion_habitacion").val(afiliados.direccion_habitacion);
+	$("#estado").val(afiliados.estado);
 	$("#ciudad").val(afiliados.ciudad);
-	$("#direccion").val(afiliados.direccion);
-	$("#numero_casa").val(afiliados.numero_casa);
-	$("#codigo_postal").val(afiliados.codigo_postal);
-	$("#telefono").val(afiliados.telefono);
-	$("#correo").val(afiliados.correo);
-	$("#tipo_sangre").val(afiliados.tipo_sangre);
-	$("#rif_institucion").val(afiliados.rif_institucion);
+	$("#municipio").val(afiliados.municipio);
+	$("#parroquia").val(afiliados.parroquia);
+	$("#correo_electronico").val(afiliados.correo_electronico);
+	$("#telefono_celular").val(afiliados.telefono_celular);
+	$("#telefono_habitacion").val(afiliados.telefono_habitacion);
+	$("#telefono_trabajo").val(afiliados.telefono_trabajo);
+	$("#fecha_ingreso").val(afiliados.fecha_ingreso);
+	$("#cargo").val(afiliados.cargo);
+	$("#situacion_laboral").val(afiliados.situacion_laboral);
 }
 
 function afiliados(data){
