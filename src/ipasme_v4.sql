@@ -133,7 +133,7 @@ CREATE TABLE horario_medico (
 );
 
 CREATE TABLE especialidad_medico (
-  cod_especialidad_medico INT PRIMARY KEY,
+  cod_especialidad_medico INT AUTO_INCREMENT PRIMARY KEY,
   ced_medico INT,
   cod_espe INT,
   FOREIGN KEY (ced_medico) REFERENCES medico(ced_medico),

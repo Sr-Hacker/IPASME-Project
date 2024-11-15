@@ -71,7 +71,7 @@ class Medico extends DB{
       ");
 
       $query2->execute([
-        ':cod_especialidad_medico' => 1,
+        ':cod_especialidad_medico' => 2,
         ':ced_medico' => $this->ced_medico,
         ':cod_espe' => $this->cod_espe
       ]);

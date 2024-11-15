@@ -53,8 +53,6 @@ function medicos(data){
 }
 
 let listaEspecialidades = document.getElementById("consultar_especialidades");
-// let especialidadSeleccionado = document.getElementById("especialidades");
-let especialidadesArray = [];
 
 function medico_especialidades(data){
   listaEspecialidades.style.removeProperty("display");
@@ -70,9 +68,8 @@ function medico_especialidades(data){
     data.map((item) => {
       const carta = `
         <option class="item" value="${item.cod_espe}">
-          ${item.nombre}  ${item.cod_espe}
+          ${item.nombre}
         </option>`;
-      especialidadesArray[item.cod_espe] = item;
       result = result.concat("",carta);
     })
   }
