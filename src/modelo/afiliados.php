@@ -51,7 +51,7 @@ class Afiliado extends DB{
   function set_estado_civil($valor){
     $this->estado_civil = $valor;
   }
-  function set_cdireccion_habitacion($valor){
+  function set_direccion_habitacion($valor){
     $this->direccion_habitacion = $valor;
   }
   function set_estado($valor){
@@ -113,7 +113,7 @@ class Afiliado extends DB{
           telefono_habitacion,
           telefono_trabajo,
           fecha_ingreso,
-          cargo
+          cargo,
           situacion_laboral
         ) VALUES (
           :ced_afiliado,
@@ -359,14 +359,14 @@ class Afiliado extends DB{
 			if($resultados){
 				$respuesta = [];
 				foreach($resultados as $resultado){
-          $institucion['rif'] = $resultado['rif'];
+          $institucion['rif_institucion'] = $resultado['rif_institucion'];
+          $institucion['cod_ciudad'] = $resultado['cod_ciudad'];
           $institucion['nombre'] = $resultado['nombre'];
-          $institucion['estado_provincia'] = $resultado['estado_provincia'];
-          $institucion['ciudad'] = $resultado['ciudad'];
           $institucion['direccion'] = $resultado['direccion'];
-          $institucion['zona_postal'] = $resultado['zona_postal'];
+          $institucion['codigo_postal'] = $resultado['codigo_postal'];
           $institucion['telefono'] = $resultado['telefono'];
           $institucion['correo'] = $resultado['correo'];
+          $institucion['tipo_institucion'] = $resultado['tipo_institucion'];
           array_push($respuesta, $institucion);
 				}
 				$r['resultado'] =  $respuesta;
@@ -377,6 +377,60 @@ class Afiliado extends DB{
 				$r['mensaje'] =  'consultar';
 			}
 
+		}catch(Exception $e){
+			$r['resultado'] = [];
+			$r['mensaje'] =  $e->getMessage();
+		}
+		return $r;
+  }
+
+  function consultar_estados(){
+    $r = array();
+		try{
+      $bd = $this->conecta();
+			$resultados = $bd->query("SELECT * FROM estados");
+
+			if($resultados){
+				$respuesta = [];
+				foreach($resultados as $resultado){
+          $institucion['nombre_estado'] = $resultado['nombre_estado'];
+          $institucion['cod_estado'] = $resultado['cod_estado'];
+          array_push($respuesta, $institucion);
+				}
+				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  "consulta";
+			}
+			else{
+				$r['resultado'] = [];
+				$r['mensaje'] =  'sin resultados';
+			}
+		}catch(Exception $e){
+			$r['resultado'] = [];
+			$r['mensaje'] =  $e->getMessage();
+		}
+		return $r;
+  }
+
+  function consultar_ciudades($cod_estado){
+    $r = array();
+		try{
+      $bd = $this->conecta();
+			$resultados = $bd->query("SELECT * FROM ciudades WHERE cod_estado = $cod_estado");
+
+			if($resultados){
+				$respuesta = [];
+				foreach($resultados as $resultado){
+          $institucion['nombre_ciudad'] = $resultado['nombre_ciudad'];
+          $institucion['cod_ciudad'] = $resultado['cod_ciudad'];
+          array_push($respuesta, $institucion);
+				}
+				$r['resultado'] =  $respuesta;
+				$r['mensaje'] =  "consulta";
+			}
+			else{
+				$r['resultado'] = [];
+				$r['mensaje'] =  'sin resultados';
+			}
 		}catch(Exception $e){
 			$r['resultado'] = [];
 			$r['mensaje'] =  $e->getMessage();

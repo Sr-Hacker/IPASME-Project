@@ -33,7 +33,7 @@
 		  }
 		  else{
         $instituciones->set_rif_institucion($_POST['rif_institucion']);
-        $instituciones->set_cod_estado($_POST['cod_estado']);
+        $instituciones->set_cod_ciudad($_POST['cod_ciudad']);
         $instituciones->set_nombre($_POST['nombre']);
         $instituciones->set_direccion($_POST['direccion']);
         $instituciones->set_codigo_postal($_POST['codigo_postal']);

@@ -35,9 +35,10 @@ function medicos(data){
       }
       const card = `
         <div class="item">
-          <p>Nombres: ${item.nombre}</p>
-          <p>Apellidos: ${item.apellido}</p>
+          <p>Nombres: ${item.nombres}</p>
+          <p>Apellidos: ${item.apellidos}</p>
           <p>Tipo: ${externo}</p>
+          <p>Tipo: ${item.especialidad}</p>
           <p>cedula: ${item.ced_medico}</p>
           <div class="options">
           <button type='button' onclick="editModal('${item.ced_medico}', cargarDatos)">Modificar</button>
@@ -52,8 +53,6 @@ function medicos(data){
 }
 
 let listaEspecialidades = document.getElementById("consultar_especialidades");
-// let especialidadSeleccionado = document.getElementById("especialidades");
-let especialidadesArray = [];
 
 function medico_especialidades(data){
   listaEspecialidades.style.removeProperty("display");
@@ -69,9 +68,8 @@ function medico_especialidades(data){
     data.map((item) => {
       const carta = `
         <option class="item" value="${item.cod_espe}">
-          ${item.nombre}  ${item.cod_espe}
+          ${item.nombre}
         </option>`;
-      especialidadesArray[item.cod_espe] = item;
       result = result.concat("",carta);
     })
   }

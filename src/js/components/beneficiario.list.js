@@ -6,21 +6,14 @@ function cargarDatos(item){
   const beneficiarios = beneficiariosArray[item]
 	$("#ced_beneficiario").val(beneficiarios.ced_beneficiario);
 	$("#ced_afiliado").val(beneficiarios.ced_afiliado);
-	$("#n_historia").val(beneficiarios.n_historia);
-  $("#nombre").val(beneficiarios.nombre);
-	$("#apellido").val(beneficiarios.apellido);
+	$("#nombres").val(beneficiarios.nombres);
+  $("#apellidos").val(beneficiarios.apellidos);
 	$("#fecha_nacimiento").val(beneficiarios.fecha_nacimiento);
-	$("#codigo_postal").val(beneficiarios.codigo_postal);
-	$("#estado_provincia").val(beneficiarios.estado_provincia);
-	$("#ciudad").val(beneficiarios.ciudad);
-
-	$("#direccion").val(beneficiarios.direccion);
-	$("#numero_casa").val(beneficiarios.numero_casa);
 	$("#sexo").val(beneficiarios.sexo);
-	$("#telefono").val(beneficiarios.telefono);
-	$("#correo").val(beneficiarios.correo);
-	$("#tipo_sangre").val(beneficiarios.tipo_sangre);
-	$("#relacion").val(beneficiarios.relacion);
+	$("#parentesco").val(beneficiarios.parentesco);
+	$("#estado_civil").val(beneficiarios.estado_civil);
+	$("#direccion").val(beneficiarios.direccion);
+	$("#telefono_celular").val(beneficiarios.telefono_celular);
 }
 
 function beneficiarios(data){
@@ -38,11 +31,10 @@ function beneficiarios(data){
     data.map((item) => {
       const card = `
         <div class="item">
-          <p>Nombre: ${item.nombre}</p>
+          <p>Cedula: ${item.ced_beneficiario}</p>
+          <p>Nombre: ${item.nombres}</p>
           <p>Parentesco: ${item.relacion}</p>
-          <p>Telefono: ${item.telefono}</p>
-          <p>Cedula: ${item.cedula}</p>
-          <p>historia: ${item.cod_historia}</p>
+          <p>Telefono: ${item.telefono_celular}</p>
           <div class="options">
           <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
           <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>

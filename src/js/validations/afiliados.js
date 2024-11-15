@@ -6,10 +6,10 @@ $(document).ready(function(){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
-	 $("#ced_afiliado").on("keyup",function(){
+	$("#ced_afiliado").on("keyup",function(){
 	 	validarkeyup(/^[0-9]{7,8}$/,$(this),
 	 	$("#m_ced_afiliado"),"El formato debe ser 9999999 ");
- });
+  });
 
   $("#primer_nombre").on("keypress",function(e){
 		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 	$("#primer_nombre").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#snombres"),"Solo letras  entre 3 y 15 caracteres");
+		$(this),$("#m_primer_nombre"),"Solo letras  entre 3 y 15 caracteres");
 	});
 
   $("#segundo_nombre").on("keypress",function(e){
@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 	$("#segundo_nombre").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#seg_nombre"),"Solo letras  entre 3 y 15 caracteres");
+		$(this),$("#m_segundo_nombre"),"Solo letras  entre 3 y 15 caracteres");
 	});
 
 	$("#primer_apellido").on("keypress",function(e){
@@ -35,7 +35,7 @@ $(document).ready(function(){
 
 	$("#primer_apellido").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#sapellidos"),"Solo letras  entre 3 y 15 caracteres");
+		$(this),$("#m_primer_apellido"),"Solo letras  entre 3 y 15 caracteres");
 	});
 
   $("#segundo_apellido").on("keypress",function(e){
@@ -44,108 +44,112 @@ $(document).ready(function(){
 
 	$("#segundo_apellido").on("keyup",function(){
 		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#seg_apellidos"),"Solo letras  entre 3 y 15 caracteres");
+		$(this),$("#m_segundo_apellido"),"Solo letras  entre 3 y 15 caracteres");
 	});
 
+  $("#telefono_celular").on("keypress",function(e){
+    validarkeypress(/^[0-9-\b]*$/,e);
+ });
 
-$("#telefono_celular").on("keypress", function(e) {
-    validarkeypress(/^[\d\+\-\s()]*$/, e); // Solo permite caracteres válidos para números de teléfono
+ $("#telefono_celular").on("keyup",function(){
+   validarkeyup(/^0[0-9]{10}$/,
+   $(this),$("#m_telefono_celular"),"Formato de numero telefonoco invalido");
+ });
+
+  $("#telefono_habitacion").on("keypress", function(e) {
+    validarkeypress(/^[0-9-\b]*$/,e); // Solo permite caracteres válidos para números de teléfono
+  });
+
+  $("#telefono_habitacion").on("keyup", function() {
+    validarkeyup(/^0[0-9]{10}$/,
+  $(this), $("#m_telefono_habitacion"), "Ingrese un número de teléfono válido.");
+  });
+
+  $("#telefono_trabajo").on("keypress", function(e) {
+    validarkeypress(/^[0-9-\b]*$/,e); // Solo permite caracteres válidos para números de teléfono
+  });
+
+  $("#telefono_trabajo").on("keyup", function() {
+    validarkeyup(/^0[0-9]{10}$/,
+    $(this), $("#m_telefono_trabajo"), "Ingrese un número de teléfono válido.");
+  });
+
+  $("#correo_electronico").on("keyup",function(){
+    validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    $(this),$("#correo"),"correo electronico no valido");
+  });
+
+  $("#correo_electronico").on("keyup",function(){
+    validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,$(this),
+    $("#m_correo_electronico"),"correo electronico no valido");
+  });
+
+  $("#rif_institucion").on("keypress",function(e){
+    validarkeypress(/^[0-9-\b]*$/,e);
+  });
+
+  $("#rif_institucion").on("keyup",function(){
+    validarkeyup(/^[0-9]{7,8}$/,$(this),
+    $("#rif"),"El formato debe ser 9999999 ");
+  });
+
+  let fecha = $('#fecha_nacimiento').val().trim();
+
+  if(!fecha.length){
+    $('#obligatorio').show();
+    return 0;
+  }
+
 });
 
-$("#telefono_celular").on("keyup", function() {
-    validarkeyup(/^\+?\d{0,3}?[-.\s]?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{4}$/,
-   $(this), $("#tlf_celular"), "Ingrese un número de teléfono válido.");
-});
 
-$("#telefono_habitacion").on("keypress", function(e) {
-  validarkeypress(/^[\d\+\-\s()]*$/, e); // Solo permite caracteres válidos para números de teléfono
-});
-
-$("#telefono_habitacion").on("keyup", function() {
-  validarkeyup(/^\+?\d{0,3}?[-.\s]?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{4}$/,
- $(this), $("#tlf_habitacion"), "Ingrese un número de teléfono válido.");
-});
-
-$("#telefono_trabajo").on("keypress", function(e) {
-  validarkeypress(/^[\d\+\-\s()]*$/, e); // Solo permite caracteres válidos para números de teléfono
-});
-
-$("#telefono_trabajo").on("keyup", function() {
-  validarkeyup(/^\+?\d{0,3}?[-.\s]?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{4}$/,
- $(this), $("#tlf_trabajo"), "Ingrese un número de teléfono válido.");
-});
-
-$("#correo_electronico").on("keyup",function(){
-  validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-  $(this),$("#correo"),"correo electronico no valido");
-});
-
-$("#rif_institucion").on("keypress",function(e){
-	validarkeypress(/^[0-9-\b]*$/,e);
-});
-
-$("#rif_institucion").on("keyup",function(){
-	validarkeyup(/^[0-9]{7,8}$/,$(this),
-	$("#rif"),"El formato debe ser 9999999 ");
-});
-
-let fecha = $('#fecha_nacimiento').val().trim();
-
- if(!fecha.length){
-  $('#obligatorio').show();
-  return 0;
- }
-
-});
-
-
-function validarenvio() {
+function validarEnvio() {
   // Validación de la cédula (número de 7 a 8 dígitos)
-  if (validarkeyup(/^[0-9]{7,8}$/, $("#ced_afiliado"), $("#scedula"), "La cédula debe tener entre 7 y 8 dígitos numéricos") == 0) {
+  if (validarkeyup(/^[0-9]{7,8}$/, $("#ced_afiliado"), $("#m_ced_afiliado"), "La cédula debe tener entre 7 y 8 dígitos numéricos") == 0) {
     muestraMensaje("La cédula debe tener entre 7 y 8 dígitos numéricos");
     return false;
   }
 
   // Validación del primer y segundo nombre (solo letras, entre 3 y 15 caracteres)
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_nombre"), $("#snombres"), "El primer nombre debe contener solo letras, entre 3 y 15 caracteres") == 0) {
+  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_nombre"), $("#m_primer_nombre"), "El primer nombre debe contener solo letras, entre 3 y 15 caracteres") == 0) {
     muestraMensaje("El primer nombre debe contener solo letras, entre 3 y 15 caracteres");
     return false;
   }
 
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#segundo_nombre"), $("#seg_nombre"), "El segundo nombre debe contener solo letras, entre 3 y 15 caracteres") == 0) {
+  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#segundo_nombre"), $("#m_segundo_nombre"), "El segundo nombre debe contener solo letras, entre 3 y 15 caracteres") == 0) {
     muestraMensaje("El segundo nombre debe contener solo letras, entre 3 y 15 caracteres");
     return false;
   }
 
   // Validación de primer y segundo apellido (solo letras, entre 3 y 15 caracteres)
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_apellido"), $("#sapellidos"), "El primer apellido debe contener solo letras, entre 3 y 15 caracteres") == 0) {
+  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_apellido"), $("#m_primer_apellido"), "El primer apellido debe contener solo letras, entre 3 y 15 caracteres") == 0) {
     muestraMensaje("El primer apellido debe contener solo letras, entre 3 y 15 caracteres");
     return false;
   }
 
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#segundo_apellido"), $("#seg_apellidos"), "El segundo apellido debe contener solo letras, entre 3 y 15 caracteres") == 0) {
+  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#segundo_apellido"), $("#m_segundo_apellido"), "El segundo apellido debe contener solo letras, entre 3 y 15 caracteres") == 0) {
     muestraMensaje("El segundo apellido debe contener solo letras, entre 3 y 15 caracteres");
     return false;
   }
 
   // Validación de teléfonos (solo números de 7 a 10 dígitos)
-  if (validarkeyup(/^[0-9]{7,10}$/, $("#telefono_celular"), $("#tlf_celular"), "El teléfono celular debe contener entre 7 y 10 dígitos") == 0) {
+  if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_celular"), $("#m_telefono_celular"), "El teléfono celular debe contener entre 7 y 10 dígitos") == 0) {
     muestraMensaje("El teléfono celular debe contener entre 7 y 10 dígitos");
     return false;
   }
 
-  if (validarkeyup(/^[0-9]{7,10}$/, $("#telefono_habitacion"), $("#tlf_habitacion"), "El teléfono de habitación debe contener entre 7 y 10 dígitos") == 0) {
+  if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_habitacion"), $("#m_telefono_habitacion"), "El teléfono de habitación debe contener entre 7 y 10 dígitos") == 0) {
     muestraMensaje("El teléfono de habitación debe contener entre 7 y 10 dígitos");
     return false;
   }
 
-  if (validarkeyup(/^[0-9]{7,10}$/, $("#telefono_trabajo"), $("#tlf_trabajo"), "El teléfono de trabajo debe contener entre 7 y 10 dígitos") == 0) {
+  if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_trabajo"), $("#m_telefono_trabajo"), "El teléfono de trabajo debe contener entre 7 y 10 dígitos") == 0) {
     muestraMensaje("El teléfono de trabajo debe contener entre 7 y 10 dígitos");
     return false;
   }
 
   // Validación de correo electrónico
-  if (validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, $("#correo_electronico"), $("#correo"), "Correo electrónico no válido") == 0) {
+  if (validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, $("#correo_electronico"), $("#m_correo_electronico"), "Correo electrónico no válido") == 0) {
     muestraMensaje("El correo electrónico no es válido");
     return false;
   }
@@ -172,21 +176,21 @@ function validarenvio() {
   }
 
   // Validación de rif de la institución (7 a 10 dígitos)
-  if (validarkeyup(/^[0-9]{7,10}$/, $("#rif_institucion"), $("#rif"), "El RIF debe contener entre 7 y 10 dígitos numéricos") == 0) {
-    muestraMensaje("El RIF debe contener entre 7 y 10 dígitos numéricos");
-    return false;
-  }
+  // if (validarkeyup(/^[0-9]{7,10}$/, $("#rif_institucion"), $("#rif"), "El RIF debe contener entre 7 y 10 dígitos numéricos") == 0) {
+  //   muestraMensaje("El RIF debe contener entre 7 y 10 dígitos numéricos");
+  //   return false;
+  // }
 
   // Validación de campos de dirección (no vacíos)
-  if ($("#estado").val().trim() === "") {
-    muestraMensaje("El campo Estado no puede estar vacío");
-    return false;
-  }
+  // if ($("#estado").val().trim() === "") {
+  //   muestraMensaje("El campo Estado no puede estar vacío");
+  //   return false;
+  // }
 
-  if ($("#ciudad").val().trim() === "") {
-    muestraMensaje("El campo Ciudad no puede estar vacío");
-    return false;
-  }
+  // if ($("#ciudad").val().trim() === "") {
+  //   muestraMensaje("El campo Ciudad no puede estar vacío");
+  //   return false;
+  // }
 
   if ($("#municipio").val().trim() === "") {
     muestraMensaje("El campo Municipio no puede estar vacío");

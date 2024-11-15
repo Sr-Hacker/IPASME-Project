@@ -1,6 +1,7 @@
 $(document).ready(function(){
   _get();
   instituciones_get();
+  estados_get();
 })
 
 let listaAfiliados = document.getElementById("consultar_afiliados");
@@ -39,11 +40,11 @@ function afiliados(data){
   }else{
     data.map((item) => {
       const card = `
-        <div class="item">
-          <p>${item.nombre} ${item.apellido}</p>
+      <div class="item">
+          <p>Cedula: ${item.ced_afiliado}</p>
+          <p>${item.primer_nombre} ${item.primer_apellido}</p>
           <p>Edad: ${item.correo}</p>
           <p>Telefono: ${item.telefono}</p>
-          <p>Cedula: ${item.ced_afiliado}</p>
           <p>sexo: ${item.sexo}</p>
           <p>historia: ${item.rif_institucion}</p>
           <div class="options">
@@ -61,22 +62,8 @@ function afiliados(data){
 
 // cargar lista de instituciones
 let listaInstituciones = document.getElementById("consultar_instituciones");
-let institutoSeleccionado = document.getElementById("instituto");
-let institucionArray = [];
-
-function agregar_intitucion(rif){
-  const instituto = institucionArray[rif]
-  $("#rif_institucion").val(instituto.rif);
-  const carta = `
-  <div styles="background: black;">
-    <p>Institucion:${instituto.rif} ${instituto.nombre}</p>
-  </div>
-`;
-  institutoSeleccionado.innerHTML = carta;
-}
 
 function afiliado_instituciones(data){
-  listaInstituciones.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
     const carta = `
@@ -88,13 +75,67 @@ function afiliado_instituciones(data){
   }else{
     data.map((item) => {
       const carta = `
-        <div class="item">
-          <p>Institucion: ${item.nombre}</p>
-          <button type='button' onclick="agregar_intitucion('${item.rif}')">Agregar</button>
-        </div>`;
-        institucionArray[item.rif] = item;
+        <option class="item" value="${item.rif_institucion}">
+          ${item.nombre}  ${item.rif_institucion}
+        </option>`;
       result = result.concat("",carta);
     })
   }
   listaInstituciones.innerHTML = result;
+}
+
+// cargar lista de ciudades
+let listaCiudades = document.getElementById("consultar_ciudades");
+// let especialidadSeleccionado = document.getElementById("especialidades");
+
+function estado_ciudades(data){
+  listaCiudades.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const carta = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",carta);
+  }else{
+    data.map((item) => {
+      const carta = `
+        <option class="item" value="${item.cod_ciudad}">
+          ${item.nombre_ciudad}
+        </option>`;
+      result = result.concat("",carta);
+    })
+  }
+  listaCiudades.innerHTML = result;
+}
+
+// cargar lista de estados
+let listaEstados = document.getElementById("consultar_estados");
+// let especialidadSeleccionado = document.getElementById("especialidades");
+
+listaEstados.addEventListener('change', function() {
+  ciudades_get(listaEstados.value);
+});
+
+function institucion_estados(data){
+  listaEstados.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const carta = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",carta);
+  }else{
+    data.map((item) => {
+      const carta = `
+        <option class="item" value="${item.cod_estado}">
+          ${item.nombre_estado}
+        </option>`;
+      result = result.concat("",carta);
+    })
+  }
+  listaEstados.innerHTML = result;
 }

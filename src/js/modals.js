@@ -9,7 +9,6 @@ include.addEventListener("click", function (e) {
 });
 
 function editModal(e, callback){
-  e.preventDefault();
   callback(e);
   let modal = document.getElementById("modal")
   modal.style.display = "block";
@@ -20,7 +19,6 @@ function editModal(e, callback){
 }
 
 function deleteModal(e, callback){
-  e.preventDefault();
   callback(e);
   let modal = document.getElementById("modal")
   modal.style.display = "block";

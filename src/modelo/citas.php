@@ -163,6 +163,48 @@ class Cita extends DB{
 		return $r;
 	}
 
+  function consultar_medicos_especialidades(){
+    $r = [];
+    try{
+      $bd = $this->conecta();
+			$resultados = $bd->query("SELECT
+        em.*,
+          e1.nombre AS nombre_espe,
+          m1.nombres AS nombre_medico,
+          m1.apellidos AS apellido_medico
+        FROM
+          especialidad_medico em
+        JOIN
+          especialidades e1 ON em.cod_espe = e1.cod_espe
+        JOIN
+          medico m1 ON em.ced_medico = m1.ced_medico
+      ");
+
+			if($resultados){
+				$respuesta = [];
+				foreach($resultados as $resultado){
+					$medico_espe['cod_especialidad_medico'] = $resultado['cod_especialidad_medico'];
+          $medico_espe['ced_medico'] = $resultado['ced_medico'];
+          $medico_espe['cod_espe'] = $resultado['cod_espe'];
+          $medico_espe['nombre_medico'] = $resultado['nombre_medico'];
+          $medico_espe['apellido_medico'] = $resultado['apellido_medico'];
+          $medico_espe['nombre_espe'] = $resultado['nombre_espe'];
+          array_push($respuesta, $medico_espe);
+				}
+				$r['resultado'] =  $respuesta;
+        $r['mensaje'] =  'lista de especialidades y medicos';
+			}
+			else{
+				$r['resultado'] = [];
+				$r['mensaje'] =  'no hay especialidades o medicos';
+			}
+		}catch(Exception $e){
+			$r['resultado'] = [];
+			$r['mensaje'] =  $e->getMessage();
+		}
+    return $r;
+  }
+
   function consultar_medicos() {
     $r1 = [];
     try{

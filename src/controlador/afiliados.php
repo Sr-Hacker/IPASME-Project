@@ -20,6 +20,13 @@
 			  $afiliados->set_cedula($_POST['buscador']);
         echo json_encode($afiliados->buscar());
 		  }
+      else if($accion=='consultar_estados'){
+        echo  json_encode($afiliados->consultar_estados());
+      }
+      else if($accion=='consultar_ciudades'){
+			  $cod_estado = $_POST['cod_estado'];
+        echo json_encode($afiliados->consultar_ciudades($cod_estado));
+		  }
       elseif($accion=='consultar_instituciones'){
         echo json_encode($afiliados->consultar_instituciones());
       }

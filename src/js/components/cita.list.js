@@ -1,16 +1,15 @@
-let listaCitas = document.getElementById("get_result");
-let listaMedicos = document.getElementById("consultar_medicos");
-let listaPacientes = document.getElementById("consultar_pacientes");
-let medicoSeleccionado = document.getElementById("medico");
-let pacienteSeleccionado = document.getElementById("paciente");
+let listaCitas = document.getElementById("consultar_citas");
+// let listaMedicos = document.getElementById("consultar_medicos");
+// let listaPacientes = document.getElementById("consultar_pacientes");
+// let medicoSeleccionado = document.getElementById("medico");
+// let pacienteSeleccionado = document.getElementById("paciente");
 
 let citasArray = [];
 let medicosArray = [];
 let pacientesArray = [];
 
 $(document).ready(function(){
-  medico_get();
-  pacientes_get();
+  medicos_especialidades_get();
 })
 
 function cargarDatos(item){
@@ -122,4 +121,29 @@ function cita_pacientes(data){
     })
   }
   listaPacientes.innerHTML = result;
+}
+
+let listaMedicosEspecialidades = document.getElementById("consultar_medicos_especialidades");
+
+function medicos_especialidades(data){
+  console.log("🚀 ~ medicos_especialidades ~ data:", data)
+  listaMedicosEspecialidades.style.removeProperty("display");
+  let result = '';
+  if(data.length <= 0){
+    const carta = `
+      <div class="item">
+        <p>no hay medicos agregados</p>
+      </div>
+    `;
+    result = result.concat("",carta);
+  }else{
+    data.map((item) => {
+      const carta = `
+        <option class="item" value="${item.cod_estado}">
+          ${item.nombre_medico} ${item.apellido_medico} - ${item.nombre_espe}
+        </option>`;
+      result = result.concat("",carta);
+    })
+  }
+  listaMedicosEspecialidades.innerHTML = result;
 }

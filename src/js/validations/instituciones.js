@@ -1,7 +1,7 @@
 $(document).ready(function(){
 //VALIDACION DE DATOS
 	$("#rif_institucion").on("keyup",function(){
-		validarkeyup(/^[JGVEP]-\d{8}-\d$/,$(this),
+		validarkeyup(/^[0-9]{8,9}$/,$(this),
 		$("#m_rif_institucion"),"El formato no coincide con un rif");
 	});
 
@@ -49,7 +49,7 @@ $(document).ready(function(){
 
 //Validación de todos los campos antes del envio
 function validarEnvio(){
-	if(validarkeyup(/^[JGVEP]-\d{8}-\d$/,$("#rif_institucion"),
+	if(validarkeyup(/^[0-9]{8,9}$/,$("#rif_institucion"),
 		$("#m_rif_institucion"),"El formato no coincide con un rif")==0){
 		return false;
 	}

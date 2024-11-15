@@ -20,14 +20,14 @@ CREATE TABLE ciudades (
 
 CREATE TABLE instituciones (
   rif_institucion INT(10) PRIMARY KEY,
-  cod_estado INT,
+  cod_ciudad INT,
   nombre VARCHAR(50),
   direccion VARCHAR(255),
   codigo_postal VARCHAR(10),
   telefono VARCHAR(11),
   correo VARCHAR(50),
   tipo_institucion VARCHAR(30),
-  FOREIGN KEY (cod_estado) REFERENCES estados(cod_estado)
+  FOREIGN KEY (cod_ciudad) REFERENCES ciudades(cod_ciudad)
 );
 
 CREATE TABLE afiliado (
@@ -50,8 +50,8 @@ CREATE TABLE afiliado (
   telefono_habitacion VARCHAR(11),
   telefono_trabajo VARCHAR(11),
   fecha_ingreso DATE,
-  cargo ENUM('cargo1', 'cargo2', 'cargo3'),
-  situacion_laboral ENUM('situacion1', 'situacion2', 'situacion3'),
+  cargo ENUM('docente', 'adminoistrativo', 'obrero', 'otros'),
+  situacion_laboral ENUM('jubilado', 'pensionado', 'contratado'),
   FOREIGN KEY (rif_institucion) REFERENCES instituciones(rif_institucion)
 );
 
@@ -121,7 +121,7 @@ CREATE TABLE medico (
   nombres VARCHAR(50),
   apellidos VARCHAR(50),
   activo BOOLEAN,
-  telefono INT
+  telefono VARCHAR(11)
 );
 
 CREATE TABLE horario_medico (
@@ -133,7 +133,7 @@ CREATE TABLE horario_medico (
 );
 
 CREATE TABLE especialidad_medico (
-  cod_especialidad_medico INT PRIMARY KEY,
+  cod_especialidad_medico INT AUTO_INCREMENT PRIMARY KEY,
   ced_medico INT,
   cod_espe INT,
   FOREIGN KEY (ced_medico) REFERENCES medico(ced_medico),

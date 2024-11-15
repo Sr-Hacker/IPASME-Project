@@ -80,11 +80,11 @@ $(document).ready(function(){
 	});
 
   $("#telefono_celular").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
+		validarkeypress(/^[0-9-\b]*$/,e);
 	});
 
 	$("#telefono_celular").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
+		validarkeyup(/^0[0-9]{10}$/,
 		$(this),$("#m_telefono_celular"),"Solo letras  entre 3 y 30 caracteres");
 	});
 });
@@ -110,6 +110,11 @@ function validarEnvio(){
 	}
 	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
 		$("#apellidos"),$("#m_apellidos"),"Solo letras  entre 3 y 30 caracteres")==0){
+		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
+		return false;
+	}
+  else if(validarkeyup(/^0[0-9]{10}$/,
+		$("#telefono_celular"),$("#m_telefono_celular"),"Solo letras  entre 3 y 30 caracteres")==0){
 		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
 		return false;
 	}
