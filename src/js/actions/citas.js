@@ -34,42 +34,54 @@ function medicos_especialidades_get(){
 	ajax(data, medicos_especialidades);
 }
 
+
 function _include(){
-  const dia = document.getElementById("dia").value;
-  const motivo = document.getElementById("motivo").value;
-  const id_medico = document.getElementById("id_medico").value;
-  const id_afiliado = document.getElementById("id_afiliado").value;
-  const id_beneficiario = document.getElementById("id_beneficiario").value;
+  const cod_cita = document.getElementById("cod_cita").value;
+  const cod_especialidad_medico = document.getElementById("consultar_medicos_especialidades").value;
+  const fecha = document.getElementById("fecha").value;
+  const hora = document.getElementById("hora").value;
+  const detalle = document.getElementById("detalle").value;
+  const vigente = document.getElementById("vigente").value;
+  let ced_afiliado = document.getElementById("ced_afiliado").value;
+  let ced_beneficiario = document.getElementById("ced_beneficiario").value;
+
 
 	let data = new FormData();
 	data.append('accion','incluir');
-  data.append('fecha', dia);
-  data.append('motivo', motivo);
-  data.append('id_medico', id_medico);
-  data.append('id_afiliado', id_afiliado);
-  data.append('id_beneficiario', id_beneficiario);
+  data.append('cod_cita', cod_cita);
+  data.append('ced_afiliado', ced_afiliado);
+  data.append('cod_especialidad_medico', cod_especialidad_medico);
+  data.append('ced_beneficiario', ced_beneficiario);
+  data.append('fecha', fecha);
+  data.append('hora', hora);
+  data.append('detalle', detalle);
+  data.append('vigente', vigente);
 
-	ajax(data, citas);
+  ajax(data, citas);
   let modal1 =  document.getElementById("modal");
   modal1.style.display = "none";
 }
 
 function _edit(){
-  const id = document.getElementById("id").value;
-  const dia = document.getElementById("dia").value;
-  const motivo = document.getElementById("motivo").value;
-  const id_medico = document.getElementById("id_medico").value;
-  const id_afiliado = document.getElementById("id_afiliado").value;
-  const id_beneficiario = document.getElementById("id_beneficiario").value;
+  const cod_cita = document.getElementById("cod_cita").value;
+  const cod_especialidad_medico = document.getElementById("consultar_medicos_especialidades").value;
+  const fecha = document.getElementById("fecha").value;
+  const hora = document.getElementById("hora").value;
+  const detalle = document.getElementById("detalle").value;
+  const vigente = document.getElementById("vigente").value;
+  let ced_afiliado = document.getElementById("ced_afiliado").value;
+  let ced_beneficiario = document.getElementById("ced_beneficiario").value;
 
 	let data = new FormData();
   data.append('accion','modificar');
-  data.append('id', id);
-  data.append('fecha', dia);
-  data.append('motivo', motivo);
-  data.append('id_medico', id_medico);
-  data.append('id_afiliado', id_afiliado);
-  data.append('id_beneficiario', id_beneficiario);
+  data.append('cod_cita', cod_cita);
+  data.append('ced_afiliado', ced_afiliado);
+  data.append('cod_especialidad_medico', cod_especialidad_medico);
+  data.append('ced_beneficiario', ced_beneficiario);
+  data.append('fecha', fecha);
+  data.append('hora', hora);
+  data.append('detalle', detalle);
+  data.append('vigente', vigente);
 
 	ajax(data, citas);
   let modal1 =  document.getElementById("modal")
@@ -77,11 +89,11 @@ function _edit(){
 }
 
 function _delete(){
-  const idValue = document.getElementById("id").value;
+  const cod_cita = document.getElementById("cod_cita").value;
 
 	let data = new FormData();
 	data.append('accion','eliminar');
-  data.append('id', idValue);
+  data.append('cod_cita', cod_cita);
 
 	ajax(data, citas);
   let modal1 =  document.getElementById("modal")

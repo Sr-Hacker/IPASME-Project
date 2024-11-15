@@ -16,7 +16,7 @@ class Cita extends DB{
   private $detalle;
   private $vigente;
 
-  function set_cita($valor){
+  function set_cod_cita($valor){
     $this->cod_cita = $valor;
   }
 	function set_ced_afiliado($valor){
@@ -51,8 +51,6 @@ class Cita extends DB{
           ced_afiliado,
           cod_especialidad_medico,
           ced_beneficiario,
-          fecha,
-          hora,
           detalle,
           vigente
         ) VALUES (
@@ -60,8 +58,6 @@ class Cita extends DB{
           :ced_afiliado,
           :cod_especialidad_medico,
           :ced_beneficiario,
-          :fecha,
-          :hora,
           :detalle,
           :vigente
         )
@@ -72,8 +68,6 @@ class Cita extends DB{
         ':ced_afiliado' => $this->ced_afiliado,
         ':cod_especialidad_medico' => $this->cod_especialidad_medico,
         ':ced_beneficiario' => $this->ced_beneficiario,
-        ':fecha' => $this->fecha,
-        ':hora' => $this->hora,
         ':detalle' => $this->detalle,
         ':vigente' => $this->vigente
       ]);
@@ -93,16 +87,13 @@ class Cita extends DB{
     try {
       $bd = $this->conecta();
       $bd->query("UPDATE citas SET
-          cod_cita = '$this->cod_cita',
           ced_afiliado = '$this->ced_afiliado',
           cod_especialidad_medico = '$this->cod_especialidad_medico',
           ced_beneficiario = '$this->ced_beneficiario',
-          fecha = '$this->fecha',
-          hora = '$this->hora',
           detalle = '$this->detalle',
           vigente = '$this->vigente'
           WHERE
-          id = '$this->id'
+          cod_cita = '$this->cod_cita'
         ");
         $r['resultado'] = 'modificar';
         $r['mensaje'] =  'Registro Modificado';
@@ -120,7 +111,7 @@ class Cita extends DB{
       $bd = $this->conecta();
       $bd->query("DELETE FROM citas
         WHERE
-        id = '$this->id'
+        cod_cita = '$this->cod_cita'
       ");
       $r['resultado'] = 'eliminar';
       $r['mensaje'] =  'Registro Eliminado';
@@ -142,6 +133,7 @@ class Cita extends DB{
 				$respuesta = [];
 				foreach($resultados as $resultado){
 					$citas['cod_cita'] = $resultado['cod_cita'];
+					$citas['ced_beneficiario'] = $resultado['ced_beneficiario'];
           $citas['ced_afiliado'] = $resultado['ced_afiliado'];
           $citas['cod_especialidad_medico'] = $resultado['cod_especialidad_medico'];
           $citas['fecha'] = $resultado['fecha'];

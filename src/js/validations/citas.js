@@ -86,10 +86,12 @@ mensaje){
 }
 
 function limpia(){
-	$("#id").val("");
-	$("#dia").val("");
-	$("#motivo").val("");
-  $("#id_medico").val("");
-	$("#id_afiliado").val("");
-	$("#id_beneficiario").val("");
+	$("#cod_cita").val("");
+	$("#ced_afiliado").val("");
+	$("#cod_especialidad_medico").val("");
+  $("#ced_beneficiario").val("");
+	$("#fecha").val("");
+	$("#hora").val("");
+	$("#detalle").val("");
+	$("#vigente").val("");
 }

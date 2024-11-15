@@ -14,11 +14,12 @@ $(document).ready(function(){
 
 function cargarDatos(item){
   const citas = citasArray[item]
-	$("#id").val(citas.id);
-	$("#dia").val(citas.fecha);
-	$("#motivo").val(citas.motivo);
-  $("#id_medico").val(citas.id_medico);
-  $("#id_afiliado").val(citas.id_afiliado);
+	$("#detalle").val(citas.detalle);
+	$("#ced_afiliado").val(citas.ced_afiliado);
+	$("#cod_especialidad_medico").val(citas.cod_especialidad_medico);
+  $("#cod_cita").val(citas.cod_cita);
+  $("#ced_beneficiario").val(citas.ced_beneficiario);
+  $("#vigente").val(citas.vigente);
 }
 
 function agregar_medico(id){
@@ -60,15 +61,15 @@ function citas(data){
       const carta = `
         <div class="item">
           <p>Fecha: ${new Date(item.fecha).getUTCDate()}-${new Date(item.fecha).getUTCMonth() + 1}-${new Date(item.fecha).getFullYear()}</p>
-          <p>Motivo: ${item.motivo}</p>
-          <p>Paciente: ${item.nombre_afiliado}</p>
-          <p>Medico: ${item.nombres_medico}</p>
+          <p>Motivo: ${item.detalle}</p>
+          <p>Paciente: ${item.ced_afiliado}</p>
+          <p>Medico: ${item.cod_especialidad_medico}</p>
           <div class="options">
-          <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Modificar</button>
-          <button type='button' class="eliminar" onclick="deleteModal('${item.id}', cargarDatos)">Eliminar</button>
+          <button type='button' class="editar" onclick="editModal('${item.cod_cita}', cargarDatos)">Modificar</button>
+          <button type='button' class="eliminar" onclick="deleteModal('${item.cod_cita}', cargarDatos)">Eliminar</button>
           </div>
         </div>`;
-      citasArray[item.id] = item;
+      citasArray[item.cod_cita] = item;
       result = result.concat("",carta);
     })
   }
@@ -126,7 +127,6 @@ function cita_pacientes(data){
 let listaMedicosEspecialidades = document.getElementById("consultar_medicos_especialidades");
 
 function medicos_especialidades(data){
-  console.log("🚀 ~ medicos_especialidades ~ data:", data)
   listaMedicosEspecialidades.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
@@ -139,7 +139,7 @@ function medicos_especialidades(data){
   }else{
     data.map((item) => {
       const carta = `
-        <option class="item" value="${item.cod_estado}">
+        <option class="item" value="${item.cod_especialidad_medico}">
           ${item.nombre_medico} ${item.apellido_medico} - ${item.nombre_espe}
         </option>`;
       result = result.concat("",carta);

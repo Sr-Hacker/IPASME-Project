@@ -141,7 +141,7 @@ CREATE TABLE especialidad_medico (
 );
 
 CREATE TABLE citas (
-  cod_cita INT PRIMARY KEY,
+  cod_cita INT AUTO_INCREMENT PRIMARY KEY,
   ced_afiliado INT,
   cod_especialidad_medico INT,
   ced_beneficiario INT,
