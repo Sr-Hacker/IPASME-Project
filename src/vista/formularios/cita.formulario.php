@@ -1,12 +1,13 @@
 <div class="container_especialidad">
   <h5>Citas</h5>
-    <div class="container_especialidad--form">
-      <div>
-        <label for="">cod cita</label>
-        <input type="text" id="cod_cita" name="cod_cita">
-        <span></span>
+    <form action="" class="formulario" id="formulario">
 
-        <label for="">ced afiliado</label>
+    <div class="formulario__grupo" id="grupo__apellidos">
+      <label for="cod_cita" class="formulario__label">Codigo de cita</label>
+      <input type="text" class="formulario__input" id="cod_cita" name="cod_cita">
+      <span id="m_ced_afiliado"></span>
+    </div>
+
         <input type="text" id="ced_afiliado" name="ced_afiliado">
         <span></span>
 
@@ -42,5 +43,4 @@
         <button class="btn-modal" id="action_modal">incluir</button>
         <button class="btn-modal" id="closeModal">cancelar</button>
       </div>
-  </div>
 </div>
