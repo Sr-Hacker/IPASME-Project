@@ -85,7 +85,7 @@ $(document).ready(function(){
 
 	$("#telefono_celular").on("keyup",function(){
 		validarkeyup(/^0[0-9]{10}$/,
-		$(this),$("#m_telefono_celular"),"Solo letras  entre 3 y 30 caracteres");
+		$(this),$("#m_telefono_celular"),"El formato no es valido");
 	});
 });
 
@@ -115,7 +115,7 @@ function validarEnvio(){
 	}
   else if(validarkeyup(/^0[0-9]{10}$/,
 		$("#telefono_celular"),$("#m_telefono_celular"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
+		muestraMensaje("Nombres <br/>el formato no es valido");
 		return false;
 	}
   else if($("#estado_civil").val() === null || $("#estado_civil").val() === "") {

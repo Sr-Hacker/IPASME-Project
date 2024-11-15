@@ -1,26 +1,27 @@
 <div class="container_beneficiarios">
   <h4>Crear Nuevo Beneficiario</h4>
   <div class="container_beneficiarios--form">
-    <input type="number" placeholder="cedula" id="ced_beneficiario" name="ced_beneficiario">
-    <input type="number" placeholder="cedula del afiliado" id="ced_afiliado" name="ced_afiliado">
+    <label for="">n_consulta</label>
+    <input type="number" placeholder="cedula" id="n_consulta" name="n_consulta">
+    <span id="m_n_consulta"></span>
+
+    <label for="">cod_cita</label>
+    <input type="number" placeholder="cedula del afiliado" id="cod_cita" name="cod_cita">
+    <span id="m_cod_cita"></span>
+
+    <label for="">n_historia</label>
     <input type="text" placeholder="n_historia" id="n_historia" name="n_historia">
-    <input type="text" placeholder="nombre" id="nombre" name="nombre">
-    <input type="text" placeholder="apellido" id="apellido" name="apellido">
-    <input type="date" placeholder="fecha de nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
-    <input type="text" placeholder="codigo_postal" id="codigo_postal" name="codigo_postal">
-    <input type="text" placeholder="estado/provincia" id="estado_provincia" name="estado_provincia">
-    <input type="text" placeholder="ciudad" id="ciudad" name="ciudad">
-    <input type="text" placeholder="codigo historia" id="direccion" name="direccion">
-    <input type="text" placeholder="numero_casa" id="numero_casa" name="numero_casa">
-    <select class="opc-modal" id="sexo" name="sexo">
-      <option value="1">Hombre</option>
-      <option value="0">Mujer</option>
-    </select>
-    <input type="number" placeholder="telefono" id="telefono" name="telefono">
-    <input type="mail" placeholder="correo" id="correo" name="correo">
-    <input type="text" placeholder="tipo_sangre" id="tipo_sangre" name="tipo_sangre">
-    <input type="text" placeholder="relacion" id="relacion" name="relacion">
-  <div>
+    <span id="m_n_historia"></span>
+
+    <label for="">motivo</label>
+    <input type="text" placeholder="nombre" id="motivo" name="motivo">
+    <span id="m_motivo"></span>
+
+    <label for="">detalle</label>
+    <input type="text" placeholder="apellido" id="detalle" name="detalle">
+    <span id="m_detalle"></span>
+
+  </div>
   <button class="btn-modal" id="action_modal">incluir</button>
   <button class="btn-modal" id="closeModal">cancelar</button>
 </div>

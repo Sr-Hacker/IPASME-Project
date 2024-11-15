@@ -30,7 +30,7 @@
         echo json_encode($citas->consultar_pacientes());
       }
 		  elseif($accion=='eliminar'){
-			 $citas->set_id($_POST['cod_cita']);
+			 $citas->set_cod_cita($_POST['cod_cita']);
 			 echo json_encode($citas->eliminar());
 		  }
 		  else{

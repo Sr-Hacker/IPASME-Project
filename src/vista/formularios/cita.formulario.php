@@ -10,21 +10,35 @@
     </div>
 
         <input type="text" id="ced_afiliado" name="ced_afiliado">
-        <input type="date" placeholder="ced_beneficiario" id="ced_beneficiario" name="ced_beneficiario">
-        <input type="text" id="cod_especialidad_medico" name="cod_especialidad_medico">
-        <input type="date" placeholder="Fecha" id="fecha" name="fecha">
-        <input type="date" placeholder="Fecha" id="hora" name="hora">
-        <input type="text" placeholder="detalles" id="detalle" name="detalle">
-        <input type="text" placeholder="vigente" id="vigente" name="vigente">
-    </form>
+        <span></span>
 
-      <div>
-        <div>
-          <p>Buscar Medico</p>
-        </div>
-        <select id="consultar_medicos_especialidades">
+        <label for="">ced beneficiario</label>
+        <input type="text" placeholder="ced_beneficiario" id="ced_beneficiario" name="ced_beneficiario">
+        <span></span>
+
+        <label for="">fecha</label>
+        <input type="date" id="fecha" name="fecha">
+        <span></span>
+
+        <label for="">hora</label>
+        <input type="time" id="hora" name="hora">
+        <span></span>
+
+        <label for="">detalle</label>
+        <input type="text" placeholder="detalles" id="detalle" name="detalle">
+        <span></span>
+
+        <label for="">vigente</label>
+        <select id="vigente" name="vigente">
+          <option value="">Selected</option>
+          <option value="1">Activo</option>
+          <option value="0">Cancelado</option>
         </select>
+        <span></span>
       </div>
+
+      <select id="consultar_medicos_especialidades">
+      </select>
 
       <div>
         <button class="btn-modal" id="action_modal">incluir</button>
