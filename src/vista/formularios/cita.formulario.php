@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/estilos_formularios.css">
 <div class="container_especialidad">
   <h5>Citas</h5>
     <form action="" class="formulario" id="formulario">
@@ -5,7 +6,7 @@
     <div class="formulario__grupo" id="grupo__apellidos">
       <label for="cod_cita" class="formulario__label">Codigo de cita</label>
       <input type="text" class="formulario__input" id="cod_cita" name="cod_cita">
-      <span id="m_ced_afiliado"></span>
+      <span id="cod_cita"></span>
     </div>
 
         <input type="text" id="ced_afiliado" name="ced_afiliado">
