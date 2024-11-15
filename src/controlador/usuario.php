@@ -19,7 +19,7 @@
 			//  echo  json_encode($usuario->iniciar());
       session_start();
       $_SESSION['user'] = true;
-      header("location:historia_medica");
+      header("location: /?pagina=historia_medica");
 		  }
 		  exit;
 	  }

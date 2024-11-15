@@ -74,11 +74,6 @@ $(document).ready(function(){
 		$(this),$("#m_estado_civil"),"Solo letras  entre 3 y 30 caracteres");
 	});
 
-	$("#direccion").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#m_direccion"),"Solo letras  entre 3 y 30 caracteres");
-	});
-
   $("#telefono_celular").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);
 	});

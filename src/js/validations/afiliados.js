@@ -93,6 +93,15 @@ $(document).ready(function(){
     $("#rif"),"El formato debe ser 9999999 ");
   });
 
+  $("#n_historia").on("keypress",function(e){
+    validarkeypress(/^[0-9-\b]*$/,e);
+  });
+
+  $("#n_historia").on("keyup",function(){
+    validarkeyup(/^[0-9]{4,8}$/,$(this),
+    $("#m_n_historia"),"El codigo debe llevar un minimo de 4 digitos");
+  });
+
   let fecha = $('#fecha_nacimiento').val().trim();
 
   if(!fecha.length){
@@ -105,12 +114,14 @@ $(document).ready(function(){
 
 function validarEnvio() {
   // Validación de la cédula (número de 7 a 8 dígitos)
-  if (validarkeyup(/^[0-9]{7,8}$/, $("#ced_afiliado"), $("#m_ced_afiliado"), "La cédula debe tener entre 7 y 8 dígitos numéricos") == 0) {
-    muestraMensaje("La cédula debe tener entre 7 y 8 dígitos numéricos");
-    return false;
-  }
+	if(validarkeyup(/^[0-9]{7,8}$/,$("#ced_afiliado"),
+		$("#m_ced_afiliado"),"El formato debe ser 9999999")==0){
+	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
+						"99999999");
+		return false;
+	}
 
-  // Validación del primer y segundo nombre (solo letras, entre 3 y 15 caracteres)
+  // // Validación del primer y segundo nombre (solo letras, entre 3 y 15 caracteres)
   if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_nombre"), $("#m_primer_nombre"), "El primer nombre debe contener solo letras, entre 3 y 15 caracteres") == 0) {
     muestraMensaje("El primer nombre debe contener solo letras, entre 3 y 15 caracteres");
     return false;
@@ -121,7 +132,7 @@ function validarEnvio() {
     return false;
   }
 
-  // Validación de primer y segundo apellido (solo letras, entre 3 y 15 caracteres)
+  // // Validación de primer y segundo apellido (solo letras, entre 3 y 15 caracteres)
   if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_apellido"), $("#m_primer_apellido"), "El primer apellido debe contener solo letras, entre 3 y 15 caracteres") == 0) {
     muestraMensaje("El primer apellido debe contener solo letras, entre 3 y 15 caracteres");
     return false;
@@ -132,80 +143,85 @@ function validarEnvio() {
     return false;
   }
 
-  // Validación de teléfonos (solo números de 7 a 10 dígitos)
-  if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_celular"), $("#m_telefono_celular"), "El teléfono celular debe contener entre 7 y 10 dígitos") == 0) {
-    muestraMensaje("El teléfono celular debe contener entre 7 y 10 dígitos");
-    return false;
-  }
-
-  if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_habitacion"), $("#m_telefono_habitacion"), "El teléfono de habitación debe contener entre 7 y 10 dígitos") == 0) {
-    muestraMensaje("El teléfono de habitación debe contener entre 7 y 10 dígitos");
-    return false;
-  }
-
-  if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_trabajo"), $("#m_telefono_trabajo"), "El teléfono de trabajo debe contener entre 7 y 10 dígitos") == 0) {
-    muestraMensaje("El teléfono de trabajo debe contener entre 7 y 10 dígitos");
-    return false;
-  }
-
-  // Validación de correo electrónico
-  if (validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, $("#correo_electronico"), $("#m_correo_electronico"), "Correo electrónico no válido") == 0) {
-    muestraMensaje("El correo electrónico no es válido");
-    return false;
-  }
-
-  // Validación de campos select
-  if ($("#situacion_lavoral").val() === null || $("#situacion_lavoral").val() === "") {
-    $("#situacion_laboral_error").text("Debe seleccionar una situación laboral");
-    return false;
-  }
-
-  if ($("#estado_civil").val() === null || $("#estado_civil").val() === "") {
-    $("#estado_civil_error").text("Debe seleccionar un estado civil");
-    return false;
-  }
-
-  if ($("#cargo").val() === null || $("#cargo").val() === "") {
-    $("#cargo_error").text("Debe seleccionar un cargo");
-    return false;
-  }
-
-  if ($("#sexo").val() === null || $("#sexo").val() === "") {
-    $("#sexo_error").text("Debe seleccionar un sexo");
-    return false;
-  }
-
-  // Validación de rif de la institución (7 a 10 dígitos)
-  // if (validarkeyup(/^[0-9]{7,10}$/, $("#rif_institucion"), $("#rif"), "El RIF debe contener entre 7 y 10 dígitos numéricos") == 0) {
-  //   muestraMensaje("El RIF debe contener entre 7 y 10 dígitos numéricos");
+  // // Validación de teléfonos (solo números de 7 a 10 dígitos)
+  // if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_celular"), $("#m_telefono_celular"), "El teléfono celular debe contener entre 7 y 10 dígitos") == 0) {
+  //   muestraMensaje("El teléfono celular debe contener entre 7 y 10 dígitos");
   //   return false;
   // }
 
-  // Validación de campos de dirección (no vacíos)
-  // if ($("#estado").val().trim() === "") {
-  //   muestraMensaje("El campo Estado no puede estar vacío");
+  // if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_habitacion"), $("#m_telefono_habitacion"), "El teléfono de habitación debe contener entre 7 y 10 dígitos") == 0) {
+  //   muestraMensaje("El teléfono de habitación debe contener entre 7 y 10 dígitos");
   //   return false;
   // }
 
-  // if ($("#ciudad").val().trim() === "") {
-  //   muestraMensaje("El campo Ciudad no puede estar vacío");
+  // if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_trabajo"), $("#m_telefono_trabajo"), "El teléfono de trabajo debe contener entre 7 y 10 dígitos") == 0) {
+  //   muestraMensaje("El teléfono de trabajo debe contener entre 7 y 10 dígitos");
   //   return false;
   // }
 
-  if ($("#municipio").val().trim() === "") {
-    muestraMensaje("El campo Municipio no puede estar vacío");
-    return false;
-  }
+  // // Validación de correo electrónico
+  // if (validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, $("#correo_electronico"), $("#m_correo_electronico"), "Correo electrónico no válido") == 0) {
+  //   muestraMensaje("El correo electrónico no es válido");
+  //   return false;
+  // }
 
-  if ($("#parroquia").val().trim() === "") {
-    muestraMensaje("El campo Parroquia no puede estar vacío");
-    return false;
-  }
+  // // // Validación de campos select
+  // // if ($("#situacion_lavoral").val() === null || $("#situacion_lavoral").val() === "") {
+  // //   $("#situacion_laboral_error").text("Debe seleccionar una situación laboral");
+  // //   return false;
+  // // }
 
-  if ($("#direccion_habitacion").val().trim() === "") {
-    muestraMensaje("El campo Dirección no puede estar vacío");
-    return false;
-  }
+  // // if ($("#estado_civil").val() === null || $("#estado_civil").val() === "") {
+  // //   $("#estado_civil_error").text("Debe seleccionar un estado civil");
+  // //   return false;
+  // // }
+
+  // // if ($("#cargo").val() === null || $("#cargo").val() === "") {
+  // //   $("#cargo_error").text("Debe seleccionar un cargo");
+  // //   return false;
+  // // }
+
+  // // if ($("#sexo").val() === null || $("#sexo").val() === "") {
+  // //   $("#sexo_error").text("Debe seleccionar un sexo");
+  // //   return false;
+  // // }
+
+  // // Validación de rif de la institución (7 a 10 dígitos)
+  // // if (validarkeyup(/^[0-9]{7,10}$/, $("#rif_institucion"), $("#rif"), "El RIF debe contener entre 7 y 10 dígitos numéricos") == 0) {
+  // //   muestraMensaje("El RIF debe contener entre 7 y 10 dígitos numéricos");
+  // //   return false;
+  // // }
+
+  // // Validación de campos de dirección (no vacíos)
+  // // if ($("#estado").val().trim() === "") {
+  // //   muestraMensaje("El campo Estado no puede estar vacío");
+  // //   return false;
+  // // }
+
+  // // if ($("#ciudad").val().trim() === "") {
+  // //   muestraMensaje("El campo Ciudad no puede estar vacío");
+  // //   return false;
+  // // }
+
+  // // if ($("#municipio").val().trim() === "") {
+  // //   muestraMensaje("El campo Municipio no puede estar vacío");
+  // //   return false;
+  // // }
+
+  // // if ($("#parroquia").val().trim() === "") {
+  // //   muestraMensaje("El campo Parroquia no puede estar vacío");
+  // //   return false;
+  // // }
+
+  // // if ($("#direccion_habitacion").val().trim() === "") {
+  // //   muestraMensaje("El campo Dirección no puede estar vacío");
+  // //   return false;
+  // // }
+
+  // if (validarkeyup(/^[0-9]{4,8}$/, $("#n_historia"), $("#m_n_historia"), "el codigo debe tener un minimo de 4 digitos") == 0) {
+  //   muestraMensaje("el codigo debe tener un minimo de 4 digitos");
+  //   return false;
+  // }
 
   return true; // Si todas las validaciones se pasan, permitir el envío del formulario
 }
@@ -246,26 +262,26 @@ mensaje){
 
 function limpia() {
   $("#ced_afiliado").val("");
+  $("#rif_institucion").val("");
   $("#primer_nombre").val("");
   $("#segundo_nombre").val("");
   $("#primer_apellido").val("");
   $("#segundo_apellido").val("");
-  $("#fecha_nacimiento").val("");
-  $("#fecha_ingreso").val("");
   $("#sexo").val("");
+  $("#fecha_nacimiento").val("");
+  $("#estado_civil").val("");
+  $("#direccion_habitacion").val("");
   $("#estado").val("");
   $("#ciudad").val("");
   $("#municipio").val("");
   $("#parroquia").val("");
-  $("#direccion_habitacion").val("");
+  $("#correo_electronico").val("");
   $("#telefono_celular").val("");
   $("#telefono_habitacion").val("");
   $("#telefono_trabajo").val("");
-  $("#correo_electronico").val("");
-  $("#tipo_sangre").val("");
-  $("#situacion_lavoral").val("");
-  $("#estado_civil").val("");
+  $("#fecha_ingreso").val("");
   $("#cargo").val("");
-  $("#rif_institucion").val("");
+  $("#situacion_laboral").val("");
+  $("#n_historia").val("");
 }
 

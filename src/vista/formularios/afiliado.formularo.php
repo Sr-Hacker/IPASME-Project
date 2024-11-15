@@ -11,19 +11,19 @@
     </div>
 
     <div class="formulario__grupo">
-      <label for="ced_afiliado" class="formulario__label">Nombre</label>
+      <label for="primer_nombre" class="formulario__label">Nombre</label>
       <input class="formulario__input" type="text" name="primer_nombre" id="primer_nombre">
       <span id="m_primer_nombre"></span>
     </div>
 
     <div class="formulario__grupo">
-      <label for="ced_afiliado" class="formulario__label">Segundo Nombre</label>
+      <label for="segundo_nombre" class="formulario__label">Segundo Nombre</label>
       <input class="formulario__input" type="text" name="segundo_nombre" id="segundo_nombre">
       <span id="m_segundo_nombre"></span>
     </div>
 
     <div class="formulario__grupo">
-      <label for="ced_afiliado" class="formulario__label">Apellido</label>
+      <label for="primer_apellido" class="formulario__label">Apellido</label>
       <input class="formulario__input" type="text" name="primer_apellido" id="primer_apellido">
       <span id="m_primer_apellido"></span>
     </div>
@@ -136,6 +136,19 @@
       </select>
       <span id="m_ciudad"></span>
   </div>
+
+  <div class="formulario__grupo">
+    <label for="consultar_instituciones" class="formulario__label">ciudad</label>
+    <select class="opc-modal" name="consultar_instituciones" id="consultar_instituciones">
+      </select>
+      <span id="m_ciudad"></span>
+  </div>
+
+    <div class="formulario__grupo">
+      <label for="n_historia" class="formulario__label">numero historia</label>
+      <input class="formulario__input" type="text" name="n_historia" id="n_historia">
+      <span id="m_n_historia"></span>
+    </div>
 
     <div class="formulario__grupo formulario__grupo-btn-enviar">
       <button class="btn-modal" id="action_modal">incluir</button>

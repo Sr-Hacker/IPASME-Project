@@ -10,10 +10,10 @@ function cargarDatos(item){
   const medicos = medicosArray[item];
 
 	$("#ced_medico").val(medicos.ced_medico);
-	$("#nombre").val(medicos.nombre);
-  $("#apellido").val(medicos.apellido);
-	$("#estado").val(medicos.estado);
-	$("#cod_especialidad").val(medicos.cod_especialidad);
+	$("#nombres").val(medicos.nombres);
+  $("#apellidos").val(medicos.apellidos);
+	$("#activo").val(medicos.activo);
+	$("#telefono").val(medicos.telefono);
 }
 
 function medicos(data){

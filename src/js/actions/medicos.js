@@ -39,9 +39,12 @@ function _include(){
   data.append('telefono', telefono);
   data.append('cod_espe', cod_espe);
 
-	ajax(data, medicos);
-  let modal1 =  document.getElementById("modal");
-  modal1.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, medicos);
+    let modal1 =  document.getElementById("modal");
+    modal1.style.display = "none";
+  }
 }
 
 function _edit(){
@@ -59,9 +62,12 @@ function _edit(){
   data.append('activo', activo);
   data.append('telefono', telefono);
 
-	ajax(data, medicos);
-  let modal1 =  document.getElementById("modal");
-  modal1.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, medicos);
+    let modal1 =  document.getElementById("modal");
+    modal1.style.display = "none";
+  }
 }
 
 function _delete(){
@@ -71,7 +77,10 @@ function _delete(){
 	data.append('accion','eliminar');
   data.append('ced_medico', ced_medico);
 
-	ajax(data, medicos);
-  let modal1 =  document.getElementById("modal");
-  modal1.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, medicos);
+    let modal1 =  document.getElementById("modal");
+    modal1.style.display = "none";
+  }
 }

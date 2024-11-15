@@ -19,8 +19,8 @@ function cargarDatos(item){
 	$("#fecha_nacimiento").val(afiliados.fecha_nacimiento);
 	$("#estado_civil").val(afiliados.estado_civil);
 	$("#direccion_habitacion").val(afiliados.direccion_habitacion);
-	$("#estado").val(afiliados.estado);
-	$("#ciudad").val(afiliados.ciudad);
+	$("#consultar_estados").val(afiliados.estado);
+	$("#consultar_ciudades").val(afiliados.ciudad);
 	$("#municipio").val(afiliados.municipio);
 	$("#parroquia").val(afiliados.parroquia);
 	$("#correo_electronico").val(afiliados.correo_electronico);

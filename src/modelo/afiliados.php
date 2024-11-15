@@ -14,8 +14,6 @@ class Afiliado extends DB{
   private $direccion_habitacion;
   private $estado;
   private $ciudad;
-  private $municipio;
-  private $parroquia;
   private $correo_electronico;
   private $telefono_celular;
   private $telefono_habitacion;
@@ -23,6 +21,8 @@ class Afiliado extends DB{
   private $fecha_ingreso;
   private $cargo;
   private $situacion_laboral;
+
+  private $n_historia;
 
   function set_ced_afiliado($valor){
     $this->ced_afiliado = $valor;
@@ -60,12 +60,6 @@ class Afiliado extends DB{
   function set_ciudad($valor){
 		$this->ciudad = $valor;
 	}
-  function set_municipio($valor){
-		$this->municipio = $valor;
-	}
-  function set_parroquia($valor){
-		$this->parroquia = $valor;
-	}
   function set_correo_electronico($valor){
 		$this->correo_electronico = $valor;
 	}
@@ -88,10 +82,18 @@ class Afiliado extends DB{
 		$this->situacion_laboral = $valor;
 	}
 
+  function set_n_historia($valor){
+    $this->n_historia = $valor;
+  }
+
+
+
 	function incluir(){
 		$r = array();
     try {
       $bd = $this->conecta();
+      $bd->beginTransaction();
+
       $query = $bd->prepare("
         INSERT INTO afiliado (
           ced_afiliado,
@@ -106,8 +108,6 @@ class Afiliado extends DB{
           direccion_habitacion,
           estado,
           ciudad,
-          municipio,
-          parroquia,
           correo_electronico,
           telefono_celular,
           telefono_habitacion,
@@ -128,8 +128,6 @@ class Afiliado extends DB{
           :direccion_habitacion,
           :estado,
           :ciudad,
-          :municipio,
-          :parroquia,
           :correo_electronico,
           :telefono_celular,
           :telefono_habitacion,
@@ -153,8 +151,6 @@ class Afiliado extends DB{
         ':direccion_habitacion' => $this->direccion_habitacion,
         ':estado' => $this->estado,
         ':ciudad' => $this->ciudad,
-        ':municipio' => $this->municipio,
-        ':parroquia' => $this->parroquia,
         ':correo_electronico' => $this->correo_electronico,
         ':telefono_celular' => $this->telefono_celular,
         ':telefono_habitacion' => $this->telefono_habitacion,
@@ -164,10 +160,24 @@ class Afiliado extends DB{
         ':situacion_laboral' => $this->situacion_laboral
       ]);
 
+      $query2 = $bd->prepare("
+      INSERT INTO historia_medica (
+        n_historia
+      ) VALUES (
+        :n_historia
+      )
+    ");
+
+    $query2->execute([
+      ':n_historia' => $this->n_historia
+    ]);
+
+      $bd->commit();
       $consulta = $this->consultar();
       $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] =  'Registro Inluido';
     } catch(Exception $e) {
+      $bd->rollBack();
       $consulta = $this->consultar();
       $r['resultado'] =  $consulta['resultado'];
       $r['mensaje'] = $e->getMessage();
@@ -190,10 +200,6 @@ class Afiliado extends DB{
         fecha_nacimiento = :fecha_nacimiento,
         estado_civil = :estado_civil,
         direccion_habitacion = :direccion_habitacion,
-        estado = :estado,
-        ciudad = :ciudad,
-        municipio = :municipio,
-        parroquia = :parroquia,
         correo_electronico = :correo_electronico,
         telefono_celular = :telefono_celular,
         telefono_habitacion = :telefono_habitacion,
@@ -216,17 +222,13 @@ class Afiliado extends DB{
         ':fecha_nacimiento' => $this->fecha_nacimiento,
         ':estado_civil' => $this->estado_civil,
         ':direccion_habitacion' => $this->direccion_habitacion,
-        ':estado' => $this->estado,
-        ':ciudad' => $this->ciudad,
-        ':municipio' => $this->municipio,
-        ':parroquia' => $this->parroquia,
         ':correo_electronico' => $this->correo_electronico,
         ':telefono_celular' => $this->telefono_celular,
         ':telefono_habitacion' => $this->telefono_habitacion,
         ':telefono_trabajo' => $this->telefono_trabajo,
         ':fecha_ingreso' => $this->fecha_ingreso,
         ':cargo' => $this->cargo,
-        ':situacion_laboral' => $this->situacion_laboral,
+        ':situacion_laboral' => $this->situacion_laboral
       ]);
 
       $consulta = $this->consultar();
@@ -280,8 +282,6 @@ class Afiliado extends DB{
           $afiliado['direccion_habitacion'] = $resultado['direccion_habitacion'];
           $afiliado['estado'] = $resultado['estado'];
           $afiliado['ciudad'] = $resultado['ciudad'];
-          $afiliado['municipio'] = $resultado['municipio'];
-          $afiliado['parroquia'] = $resultado['parroquia'];
           $afiliado['correo_electronico'] = $resultado['correo_electronico'];
           $afiliado['telefono_celular'] = $resultado['telefono_celular'];
           $afiliado['telefono_habitacion'] = $resultado['telefono_habitacion'];

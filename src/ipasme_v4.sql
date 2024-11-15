@@ -157,9 +157,9 @@ CREATE TABLE citas (
 CREATE TABLE historia_medica (
   n_historia INT PRIMARY KEY,
   Fecha_de_registro DATE,
-  partida_de_nacimiento MEDIUMBLOB,
-  acta_de_matrimonio MEDIUMBLOB,
-  constancia_trabajo MEDIUMBLOB,
+  partida_de_nacimiento VARCHAR(255),
+  acta_de_matrimonio VARCHAR(255),
+  constancia_trabajo VARCHAR(255),
   tipo_sangre VARCHAR(5)
 );
 

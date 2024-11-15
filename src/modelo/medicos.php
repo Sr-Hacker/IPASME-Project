@@ -60,18 +60,15 @@ class Medico extends DB{
 
       $query2 = $bd->prepare("
         INSERT INTO especialidad_medico (
-          cod_especialidad_medico,
           ced_medico,
           cod_espe
         ) VALUES (
-          :cod_especialidad_medico,
           :ced_medico,
           :cod_espe
         )
       ");
 
       $query2->execute([
-        ':cod_especialidad_medico' => 2,
         ':ced_medico' => $this->ced_medico,
         ':cod_espe' => $this->cod_espe
       ]);
@@ -126,7 +123,7 @@ class Medico extends DB{
     $r = array();
     try {
       $bd = $this->conecta();
-      $bd->query("DELETE FROM medico
+      $bd->query("DELETE FROM especialidad_medico
         WHERE
         ced_medico = '$this->ced_medico'
       ");

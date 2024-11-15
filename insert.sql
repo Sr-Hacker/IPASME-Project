@@ -35,6 +35,22 @@ INSERT INTO especialidades (nombre) VALUES
 ('Cirugía General'),
 ('Urología');
 
+INSERT INTO empleado (
+  ced_empleado,
+  nombres,
+  apellidos,
+  telefono_celular,
+  contrasena,
+  rol
+) VALUES (
+  12345678,
+  'Pedro',
+  'Gonzalez Lopez',
+  '04141234567',
+  '12341234',
+  'rol1'
+);
+
 INSERT INTO estados (nombre_estado) VALUES
 ('Amazonas'),
 ('Anzoátegui'),

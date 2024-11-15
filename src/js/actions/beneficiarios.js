@@ -72,9 +72,12 @@ function _edit(){
   data.append('direccion', direccion);
   data.append('telefono_celular', telefono_celular);
 
-	ajax(data, beneficiarios);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, beneficiarios);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }
 
 function _delete(){
@@ -84,7 +87,10 @@ function _delete(){
 	data.append('accion','eliminar');
   data.append('ced_beneficiario', ced_beneficiario);
 
-	ajax(data, beneficiarios);
-  let modal =  document.getElementById("modal")
-  modal.style.display = "none";
+  const validar = validarEnvio()
+  if(validar){
+    ajax(data, beneficiarios);
+    let modal =  document.getElementById("modal")
+    modal.style.display = "none";
+  }
 }

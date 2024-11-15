@@ -90,7 +90,6 @@ class Institucion extends DB{
       $bd = $this->conecta();
 			$query = $bd->prepare("UPDATE instituciones SET
         rif_institucion = :rif_institucion,
-        cod_ciudad = :cod_ciudad,
         nombre = :nombre,
         direccion = :direccion,
         codigo_postal = :codigo_postal,
@@ -98,12 +97,11 @@ class Institucion extends DB{
         correo = :correo,
         tipo_institucion = :tipo_institucion
         WHERE
-        rif = :rif
+        rif_institucion = :rif_institucion
       ");
 
       $query->execute([
         ':rif_institucion' => $this->rif_institucion,
-        ':cod_ciudad' => $this->cod_ciudad,
         ':nombre' => $this->nombre,
         ':direccion' => $this->direccion,
         ':codigo_postal' => $this->codigo_postal,

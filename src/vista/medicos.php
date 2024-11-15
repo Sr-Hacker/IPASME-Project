@@ -2,6 +2,8 @@
   <?php require_once("vista/comunes/header.php"); ?>
   <link rel="stylesheet" href="css/afiliados.css">
   <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/estilos_formularios.css">
+
 
 <body>
   <div>

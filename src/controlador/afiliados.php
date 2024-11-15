@@ -47,8 +47,6 @@
         $afiliados->set_direccion_habitacion($_POST['direccion_habitacion']);
         $afiliados->set_estado($_POST['estado']);
         $afiliados->set_ciudad($_POST['ciudad']);
-        $afiliados->set_municipio($_POST['municipio']);
-        $afiliados->set_parroquia($_POST['parroquia']);
         $afiliados->set_correo_electronico($_POST['correo_electronico']);
         $afiliados->set_telefono_celular($_POST['telefono_celular']);
         $afiliados->set_telefono_habitacion($_POST['telefono_habitacion']);
@@ -56,6 +54,8 @@
         $afiliados->set_fecha_ingreso($_POST['fecha_ingreso']);
         $afiliados->set_cargo($_POST['cargo']);
         $afiliados->set_situacion_laboral($_POST['situacion_laboral']);
+
+        $afiliados->set_n_historia($_POST['n_historia']);
 
 			  if($accion=='incluir'){
           echo  json_encode($afiliados->incluir());
