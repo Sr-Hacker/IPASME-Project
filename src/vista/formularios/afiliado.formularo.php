@@ -112,19 +112,15 @@
   </div>
 
   <div class="formulario__grupo">
-    <label for="sexo" class="formulario__label">sexo</label>
-    <select class="opc-modal" id="sexo" name="sexo">
-      <option value="">Selected</option>
-      <option value="M">Hombre</option>
-      <option value="F">Mujer</option>
-    </select>
-    <span id="m_sexo"></span>
-  </div>
-
-  <div class="formulario__grupo">
-    <label for="consultar_instituciones" class="formulario__label">Institucion</label>
-    <select class="opc-modal" id="consultar_instituciones" name="rif_institucion">
-      </select>
+      <label for="sexo" class="formulario__label">sexo</label>
+      <div class="formulario__grupo-input">
+        <select class="opc-modal" id="sexo" name="sexo">
+          <option value="">Selected</option>
+          <option value="M">Hombre</option>
+          <option value="F">Mujer</option>
+        </select>
+      </div>
+      <span id="m_sexo"></span>
   </div>
 
   <div class="formulario__grupo">
