@@ -33,7 +33,7 @@ function beneficiarios(data){
         <div class="item">
           <p>Cedula: ${item.ced_beneficiario}</p>
           <p>Nombre: ${item.nombres}</p>
-          <p>Parentesco: ${item.relacion}</p>
+          <p>Parentesco: ${item.parentesco}</p>
           <p>Telefono: ${item.telefono_celular}</p>
           <div class="options">
           <button type='button' class="editar" onclick="editModal('${item.id}', cargarDatos)">Modificar</button>

@@ -57,9 +57,12 @@ function _include(){
   data.append('detalle', detalle);
   data.append('vigente', vigente);
 
-  ajax(data, citas);
-  let modal1 =  document.getElementById("modal");
-  modal1.style.display = "none";
+  let validar = validarEnvio();
+  if(validar){
+    ajax(data, citas);
+    let modal1 =  document.getElementById("modal");
+    modal1.style.display = "none";
+  }
 }
 
 function _edit(){
@@ -83,9 +86,12 @@ function _edit(){
   data.append('detalle', detalle);
   data.append('vigente', vigente);
 
-	ajax(data, citas);
-  let modal1 =  document.getElementById("modal")
-  modal1.style.display = "none";
+  let validar = validarEnvio();
+  if(validar){
+    ajax(data, citas);
+    let modal1 =  document.getElementById("modal")
+    modal1.style.display = "none";
+  }
 }
 
 function _delete(){
@@ -95,7 +101,10 @@ function _delete(){
 	data.append('accion','eliminar');
   data.append('cod_cita', cod_cita);
 
-	ajax(data, citas);
-  let modal1 =  document.getElementById("modal")
-  modal1.style.display = "none";
+  let validar = validarEnvio();
+  if(validar){
+    ajax(data, citas);
+    let modal1 =  document.getElementById("modal")
+    modal1.style.display = "none";
+  }
 }

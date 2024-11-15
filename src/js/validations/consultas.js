@@ -1,7 +1,4 @@
 $(document).ready(function(){
-	_get();
-
-  console.log("??")
 //VALIDACION DE DATOS
 	$("#cedula").on("keypress",function(e){
 		validarkeypress(/^[0-9-\b]*$/,e);

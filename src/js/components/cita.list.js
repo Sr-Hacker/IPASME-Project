@@ -1,14 +1,10 @@
 let listaCitas = document.getElementById("consultar_citas");
-// let listaMedicos = document.getElementById("consultar_medicos");
-// let listaPacientes = document.getElementById("consultar_pacientes");
-// let medicoSeleccionado = document.getElementById("medico");
-// let pacienteSeleccionado = document.getElementById("paciente");
-
 let citasArray = [];
 let medicosArray = [];
 let pacientesArray = [];
 
 $(document).ready(function(){
+  _get();
   medicos_especialidades_get();
 })
 
@@ -63,7 +59,7 @@ function citas(data){
           <p>Fecha: ${new Date(item.fecha).getUTCDate()}-${new Date(item.fecha).getUTCMonth() + 1}-${new Date(item.fecha).getFullYear()}</p>
           <p>Motivo: ${item.detalle}</p>
           <p>Paciente: ${item.ced_afiliado}</p>
-          <p>Medico: ${item.cod_especialidad_medico}</p>
+          <p>Medico:${item.nombre_medico} - ${item.nombre_espe}</p>
           <div class="options">
           <button type='button' class="editar" onclick="editModal('${item.cod_cita}', cargarDatos)">Modificar</button>
           <button type='button' class="eliminar" onclick="deleteModal('${item.cod_cita}', cargarDatos)">Eliminar</button>

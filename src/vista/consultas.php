@@ -17,7 +17,7 @@
         <button class="crear" id="include">Registrar consulta</button>
       </div>
       <div class="container_center--list">
-        <div id="get_result"></div>
+        <div id="consultar_consultas"></div>
       </div>
     </div>
   </div>

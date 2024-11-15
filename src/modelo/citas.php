@@ -127,7 +127,23 @@ class Cita extends DB{
 		$r = array();
 		try{
       $bd = $this->conecta();
-			$resultados = $bd->query("SELECT * FROM citas;");
+      $resultados = $bd->query("SELECT
+      c.*,
+        em.ced_medico AS ced_medico,
+        m.nombres AS nombre_medico,
+        e.nombre AS nombre_espe
+      FROM
+        citas c
+      JOIN
+        especialidad_medico em ON c.cod_especialidad_medico = em.cod_especialidad_medico
+      JOIN
+        medico m ON em.ced_medico = m.ced_medico
+      JOIN
+        especialidades e ON em.cod_espe = e.cod_espe
+    ");
+
+
+
 			if($resultados){
 
 				$respuesta = [];
@@ -140,6 +156,9 @@ class Cita extends DB{
           $citas['hora'] = $resultado['hora'];
           $citas['detalle'] = $resultado['detalle'];
           $citas['vigente'] = $resultado['vigente'];
+          $citas['ced_medico'] = $resultado['ced_medico'];
+          $citas['nombre_medico'] = $resultado['nombre_medico'];
+          $citas['nombre_espe'] = $resultado['nombre_espe'];
           array_push($respuesta, $citas);
 				}
 				$r['resultado'] =  $respuesta;
