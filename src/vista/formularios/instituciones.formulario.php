@@ -21,16 +21,6 @@
       <p class="formulario__input-error">El rif de la institucion no debe contener simbolos, espacios ni letras a exección de la primera</p>
     </div>
 
-    <!-- Grupo: cod_estado -->
-    <div class="formulario__grupo" id="grupo__cod_estado">
-      <label for="cod_estado" class="formulario__label">Código del estado</label>
-      <div class="formulario__grupo-input">
-        <input type="text" class="formulario__input" name="cod_estado" id="cod_estado" placeholder="000000">
-        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">El código no debe contener letras, caracteres especiales y tampoco espacios, y su longitud debe ser de 1 a 6 caracteres</p>
-    </div> 
-
     <!-- Grupo: Nombre -->
     <div class="formulario__grupo" id="grupo__nombre">
       <label for="nombre" class="formulario__label">Nombre de la institución</label>
@@ -46,13 +36,12 @@
       <label for="tipo_institucion" class="formulario__label">Tipo de institucion</label>
       <div class="formulario__grupo-input">
         <select id="tipo_institucion" name="tipo_institucion">
-          <option value="1">Hombre</option>
-          <option value="0">Mujer</option>
+          <option value="1">Jurídicas</option>
+          <option value="0">Gubernamentales</option>
         </select>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
     </div>
-
 
     <!-- Grupo: Dirección -->
     <div class="formulario__grupo" id="grupo__direccion">
@@ -88,20 +77,20 @@
     <div class="formulario__grupo" id="grupo__correo_electronico">
       <label for="correo_electronico" class="formulario__label">Correo electrónico</label>
       <div class="formulario__grupo-input">
-        <input type="text" class="formulario__input" placeholder="ejemplo@gmail.com" id="correo_electronico" name="correo_electronico">
+        <input type="text" class="formulario__input" placeholder="ejemplo@gmail.com" id="correo" name="correo">
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">Un correo electrónico solo puede contener letras, números</p>
     </div>
 
     <div>
-        <select class="opc-modal" id="consultar_estados" name="consultar_estados">
+        <select id="consultar_estados" name="consultar_estados">
         </select>
       </div>
   
       <div id="ciudades"></div>
       <div>
-        <select class="opc-modal" id="consultar_ciudades" name="consultar_ciudades">
+        <select id="consultar_ciudades" name="consultar_ciudades">
         </select>
       </div>
 
@@ -111,12 +100,10 @@
   </div>
 
   <div class="formulario__grupo formulario__grupo-btn-enviar">
-    <button type="submit" class="formulario__btn">Incluir</button>
+    <button type="submit" class="formulario__btn" id="action_modal">Incluir</button>
     <button type="reset" value="reiniciar" class="formulario__btn">Limpiar</button>
     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
   </div>
-
-
 </form>
 
 </main>

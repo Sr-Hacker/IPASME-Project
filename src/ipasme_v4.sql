@@ -19,7 +19,7 @@ CREATE TABLE ciudades (
 );
 
 CREATE TABLE instituciones (
-  rif_institucion INT(10) PRIMARY KEY,
+  rif_institucion VARCHAR(10) PRIMARY KEY,
   cod_ciudad INT,
   nombre VARCHAR(50),
   direccion VARCHAR(255),
@@ -32,7 +32,7 @@ CREATE TABLE instituciones (
 
 CREATE TABLE afiliado (
   ced_afiliado INT(10) PRIMARY KEY,
-  rif_institucion INT(10),
+  rif_institucion VARCHAR(10),
   primer_nombre VARCHAR(20),
   segundo_nombre VARCHAR(20),
   primer_apellido VARCHAR(20),

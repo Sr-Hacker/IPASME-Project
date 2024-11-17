@@ -52,9 +52,10 @@ function _include(){
 
   let valido = validarEnvio()
   if(valido){
-    ajax(data, instituciones);
-    let modal =  document.getElementById("modal")
-    modal.style.display = "none";
+    // ajax(data, instituciones);
+    // let modal =  document.getElementById("modal")
+    // modal.style.display = "none";
+    console.log(".l.")
   }
 }
 

@@ -11,7 +11,6 @@ const expresiones = {
 	telefono : /^(0416|0426|0251|0252|0424|0414|0412)(\s|-)?(\d{7})$/,
 	direccion : /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s]{1,255}$/,
 	codigo: /^\d{1,6}$/
-
 }
 
 /*este objeto lo creo para que de esa manera poder determinar si el formulario se envia al
@@ -24,7 +23,7 @@ const campos = {
 	direccion: false,  
 	codigo_postal: false,  
 	telefono: false,  
-	correo_electronico: false
+	correo: false
 	
 }
 
@@ -50,8 +49,8 @@ const validarFormulario = (e) => {
 		case "telefono":
 			validarCampo(expresiones.telefono, e.target, 'telefono');
 		break;
-		case "correo_electronico":
-			validarCampo(expresiones.correo, e.target, 'correo_electronico');
+		case "correo":
+			validarCampo(expresiones.correo, e.target, 'correo');
 		break;
 	}
 }
@@ -83,12 +82,12 @@ inputs.forEach((input) => { /*Esta función me ejecuta el código cada vez que h
 	input.addEventListener('blur', validarFormulario); /*el blur es casi igual que el keyup solo que el ejecuta la función cuando se presiona fuera del input*/
 });
 
-formulario.addEventListener('submit', (e) => {
-	e.preventDefault(); //para prevenir el envio de datos por default
+function validarEnvio(){
+//para prevenir el envio de datos por default
 
 	if(campos.rif_institucion && campos.cod_estado && campos.nombre 
 		&& campos.direccion && campos.codigo_postal && campos.telefono 
-		&& campos.correo_electronico){
+		&& campos.correo){
 			
 		formulario.reset(); /*Esto lo que hace es reiniciarmen todos los elementos del formulario si todos los campos están bien */
 
@@ -102,11 +101,14 @@ formulario.addEventListener('submit', (e) => {
 		});
 		alert("Formulario enviado exitosamente!!!"); /*Mensaje de exito para el usuario*/
 		location.reload();/*reinicia la pagina despues de enviar el formulario correctamente*/
+		return true
 	} else {
 		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
 		setTimeout(() => { /*esto me quita el mensaje de error del formulario luego de 2 segundos*/
 			document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo'); 
 		}, 2000);
+
+		return false
 	}
 	
-});
+}

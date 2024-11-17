@@ -18,7 +18,7 @@ function ajax(data, callback) {
           alerta(result?.mensaje)
         }
         callback(result.resultado)
-        limpia()
+        // limpia()
       } catch (e) {
         console.log(e);
       }
