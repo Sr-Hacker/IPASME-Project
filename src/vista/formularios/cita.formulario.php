@@ -22,19 +22,19 @@
       </div>
 
       <div class="formulario__grupo">
-        <label for="" class="formulario__label">fecha</label>
+        <label for="fecha" class="formulario__label">fecha</label>
         <input type="date" id="fecha" name="fecha">
         <span></span>
       </div>
 
       <div class="formulario__grupo">
-        <label for="" class="formulario__label">hora</label>
+        <label for="hora" class="formulario__label">hora</label>
         <input type="time" id="hora" name="hora">
         <span></span>
       </div>
 
       <div class="formulario__grupo">
-        <label class="formulario__label" for="">detalle</label>
+        <label class="formulario__label" for="detalle">detalle</label>
         <input type="text" placeholder="detalles" id="detalle" name="detalle">
         <span></span>
       </div>
@@ -50,6 +50,7 @@
       </div>
 
       <div class="formulario__grupo">
+      <label for="" class="formulario__label">Especialidad</label>
         <select id="consultar_medicos_especialidades">
         </select>
       </div>
@@ -59,4 +60,5 @@
         <button class="btn-modal" id="action_modal">incluir</button>
         <button class="btn-modal" id="closeModal">cancelar</button>
       </div>
+  </div>
 </div>
