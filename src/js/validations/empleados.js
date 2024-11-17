@@ -1,103 +1,123 @@
-$(document).ready(function(){
-	_get();
+const formulario = document.getElementById('formulario');
+const inputs = document.querySelectorAll('#formulario input');
+const cerrarModal = () => {document.getElementById('modal').style.display="none";}/*para darle la funcion al boton de cancelar para cerrar el formulario*/
 
-//VALIDACION DE DATOS
-	$("#cedula").on("keypress",function(e){
-		validarkeypress(/^[0-9-\b]*$/,e);
-	});
+/*expresiones regulares dentro de un objeto*/
+const expresiones = {
+	cedula : /^(E|V)?(\d{7,9})$/,
+	dos_nombres : /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+)?$/,
+	telefono : /^(0416|0426|0251|0252|0424|0414|0412)(\s|-)?(\d{7})$/,
+	contraseña: /[a-zA-Z\d\*\.\$\&\%\+]{8,15}/
+}
 
-	$("#cedula").on("keyup",function(){
-		validarkeyup(/^[0-9]{7,8}$/,$(this),
-		$("#scedula"),"El formato debe ser 9999999 ");
-	});
+/*este objeto lo creo para que de esa manera poder determinar si el formulario se envia al
+rellenar cada uno de los inputs y si estos reultan correctos cada campo cambiará de false a true
+dejando que entonces este sea enviado*/
+const campos = {
+    ced_empleado: false,
+	nombres: false,
+	apellidos: false,
+	telefono_celular: false,
+	password: false,
+	password2: false
+}
 
-	$("#apellido").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
+/*Esta funcion es la que se va a encargar de validar cada uno de los imput dependiendo
+del name que estos tengan*/
+const validarFormulario = (e) => {
+	switch (e.target.name) {
+		case "ced_empleado":
+			validarCampo(expresiones.cedula, e.target, 'ced_empleado');
+		break;
+		case "nombres":
+			validarCampo(expresiones.dos_nombres, e.target, 'nombres');
+		break;
+		case "apellidos":
+			validarCampo(expresiones.dos_nombres, e.target, 'apellidos');
+		break;
+		case "telefono_celular":
+			validarCampo(expresiones.telefono, e.target, 'telefono_celular');
+		break;
+		case "password":
+			validarCampo(expresiones.contraseña, e.target, 'password');
+			validarPassword2();
+		break;
+		case "password2":
+			validarPassword2();
+		break;
+	}
+}
 
-	$("#apellido").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#sapellidos"),"Solo letras  entre 3 y 30 caracteres");
-	});
 
-	$("#nombre").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
+/*Con esta funcion quitamos y removemos las clases de error y correcto de nuestros imput dandoloes asi
+el color rojo o verde depndiendo de si los datos coinciden con las expresiones regulares o no*/
+const validarCampo = (expresion, input, campo) => {
+	if(expresion.test(input.value) ){
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto'); /*Quita el color rojo del imput*/
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto'); /*le agg el color azul*/
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle'); /*Le agg el icono de check verde*/
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');/*le remueve el icono de cruz rojo*/
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo'); /*oculta el parrafo de indicaciones del error*/
+		campos[campo] = true;
+	} else {
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');/*Agg el color rojo al borde del input*/
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto'); /*quita el color verde del borde*/
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle'); /*Agg el icono rojo de cruz*/
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle'); /*y quita el verde de check*/
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo'); /*muestra el parrafo de indicaciones del error*/
+		campos[campo] = false;
+	}
+}
 
-	$("#nombre").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#snombres"),"Solo letras  entre 3 y 30 caracteres");
-	});
+/*Esta funcion es para cambiar los estilos del imput de la constraseña 2 para validar
+si es igual a la primera, para que si no marque un error y cambie de colores el imput*/
+const validarPassword2 = () => {
+	const inputPassword1 = document.getElementById('password');
+	const inputPassword2 = document.getElementById('password2');
+
+	if(inputPassword1.value !== inputPassword2.value){
+		document.getElementById(`grupo__password2`).classList.add('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-correcto');
+		document.querySelector(`#grupo__password2 i`).classList.add('fa-times-circle');
+		document.querySelector(`#grupo__password2 i`).classList.remove('fa-check-circle');
+		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
+		campos['password2'] = false;
+	} else {
+		document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__password2`).classList.add('formulario__grupo-correcto');
+		document.querySelector(`#grupo__password2 i`).classList.remove('fa-times-circle');
+		document.querySelector(`#grupo__password2 i`).classList.add('fa-check-circle');
+		document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
+		campos['password2'] = true;
+	}
+}
+
+inputs.forEach((input) => { /*Esta función me ejecuta el código cada vez que hago un clic en algún input */
+	input.addEventListener('keyup', validarFormulario); /*el "keyup" me ejecuta la funcion que le presede cada vez que preioso y suelto una tecla*/
+	input.addEventListener('blur', validarFormulario); /*el blur es casi igual que el keyup solo que el ejecuta la función cuando se presiona fuera del input*/
 });
 
-//Validación de todos los campos antes del envio
-function validarenvio(){
-	if(validarkeyup(/^[0-9]{7,8}$/,$("#cedula"),
-		$("#scedula"),"El formato debe ser 9999999")==0){
-	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
-						"99999999");
-		return false;
-	}
-	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#apellido"),$("#sapellido"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Apellidos <br/>Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
-	else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombre"),$("#snombre"),"Solo letras  entre 3 y 30 caracteres")==0){
-		muestraMensaje("Nombres <br/>Solo letras  entre 3 y 30 caracteres");
-		return false;
-	}
-	return true;
-}
+formulario.addEventListener('submit', (e) => {
+	e.preventDefault(); //para prevenir el envio de datos por default
 
+	if(campos.ced_empleado && campos.nombres && campos.apellidos && campos.telefono_celular && campos.password && campos.password2){
+		formulario.reset(); /*Esto lo que hace es reiniciarmen todos los elementos del formulario si todos los campos están bien */
 
-//Funcion que muestra el modal con un mensaje
-function muestraMensaje(mensaje){
-	$("#contenidodemodal").html(mensaje);
-    $("#mostrarmodal").modal("show");
-    setTimeout(function() {
-      $("#mostrarmodal").modal("hide");
-    },5000);
-}
+		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); /*para mostrar el msj de exito luego de enviar el formulario*/
+		setTimeout(() => { /*esto me quita el mensaje de exito luego de 5 segundos*/
+			document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); 
+		}, 5000);
 
-//Función para validar por Keypress
-function validarkeypress(er,e){
-	key = e.keyCode;
-  tecla = String.fromCharCode(key);
-  a = er.test(tecla);
-  if(!a){
-		e.preventDefault();
-  }
-}
-
-//Función para validar por keyup
-function validarkeyup(er,etiqueta,etiquetamensaje,
-mensaje){
-	a = er.test(etiqueta.val());
-	if(a){
-		etiquetamensaje.text("");
-		return 1;
+		document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
+			icono.classList.remove('formulario__grupo-correcto');
+		});
+		alert("Formulario enviado exitosamente!!!"); /*Mensaje de exito para el usuario*/
+		location.reload();/*reinicia la pagina despues de enviar el formulario correctamente*/
+	} else {
+		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+		setTimeout(() => { /*esto me quita el mensaje de error del formulario luego de 2 segundos*/
+			document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo'); 
+		}, 2000);
 	}
-	else{
-		etiquetamensaje.text(mensaje);
-		return 0;
-	}
-}
-
-function limpia(){
-	if($("#masculino").is(":checked")){
-		$("#masculino").prop("checked",false);
-	}
-	else{
-	  $("#femenino").prop("checked",false);
-	}
-
-	$("#cedula").val("");
-	$("#apellido").val("");
-	$("#nombre").val("");
-  $("#telefono").val("");
-	$("#rol").val("");
-	$("#contrasena").val("");
-	$("#gradodeinstruccion").prop("selectedIndex",0);
-}
+	
+});

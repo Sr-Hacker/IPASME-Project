@@ -1,7 +1,18 @@
-.main {
+/*Para que todos los tamaños de los elementos no sobrapasen las medidas establecidas*/
+* { 
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background: #E5E5E5;
+}
+
+main {
 	/*max-width: 800px;*/
 	width: 100%;
 	margin: 0;
+	padding: 5px;
 }
 
 /*Estilos de las divisiones del formulario*/
@@ -15,6 +26,7 @@
 .formulario__label {
 	display: block;/*para que el label abarque una fila entera*/
 	font-weight: 700;/*tamaño de la fuente*/
+	padding: 10px;
 	cursor: pointer;/*para converir el curso en puntero*/
 }
 
@@ -24,15 +36,18 @@
 	position: relative;/*para qie la posicion de los inputs sea relativa*/
 	padding: 0;
 	margin: 0;
+	width: 50%;
 }
 
 .formulario__input , select{
 	width: 100%;
+	background: #fff;
 	border: 3px solid transparent;
 	border-radius: 3px;
 	height: 45px;
 	line-height: 45px;
 	padding: 0 40px 0 10px;
+	transition: .3s ease all;/*duracion de la transicion*/
 }
 
 /*estilos de los imputs cuando se le hagan clic*/
@@ -46,6 +61,11 @@
 .formulario__input-error {
 	font-size: 12px;
 	margin-bottom: 0;
+	display: none;
+}
+
+/*Estilos del mensaje de error cuando tenga el modificador de activo*/
+.formulario__input-error-activo {
 	display: block;
 }
 
@@ -56,6 +76,7 @@
 	bottom: 15px;
 	z-index: 100;
 	font-size: 16px;
+	opacity: 0;
 }
 
 /*estilos para el checkbox de las condiciones*/
@@ -65,7 +86,6 @@
 
 /*estilos para hacer que el checkbox, el mensaje de error inferior y el boton de enviar
 abarquen dos columas cada uno*/
-.formulario__grupo-terminos,
 .formulario__mensaje,
 .formulario__grupo-btn-enviar {
 	grid-column: span 4;
@@ -96,8 +116,8 @@ boton de enviar haciendo que se le agg a la clase el modificador de activo*/
 el envio exitoso*/
 .formulario__grupo-btn-enviar {
 	display: flex;
-	flex-direction: row;
-	justify-items:self-start;
+	flex-direction: column;
+	align-items: center;
 }
 
 /*para darle estilos al boton especificamente*/
@@ -158,10 +178,17 @@ son incorrectos*/
 	border: 3px solid #bb2929;
 }
 
+#tipo_cedula{
+	position: absolute;
+	bottom: 1px;
+	width: 10%;
+}
+
+#grupo_cedula_afiliado{
+	width: 50%;
+}
 
 /* Mediaqueries */
-
-
 @media screen and (max-width: 800px) {
 	/*para hacer que el formulario tenga 1 sola hilera de columnas*/
 	.formulario {
@@ -169,7 +196,7 @@ son incorrectos*/
 	}
 
 	/*para pasar los tres elementes de nuevo a 1 sola columna cada uno*/
-	.formulario__grupo-terminos,
+	.formulario__grupo-terminos, 
 	.formulario__mensaje,
 	.formulario__grupo-btn-enviar {
 		grid-column: 1;

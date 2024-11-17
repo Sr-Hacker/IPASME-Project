@@ -1,287 +1,137 @@
-$(document).ready(function(){
-	_get();
+const formulario = document.getElementById('formulario');
+const inputs = document.querySelectorAll('#formulario input');
+const cerrarModal = () => {document.getElementById('modal').style.display="none";}/*para darle la funcion al boton de cancelar para cerrar el formulario*/
 
-//VALIDACION DE DATOS
-	$("#ced_afiliado").on("keypress",function(e){
-		validarkeypress(/^[0-9-\b]*$/,e);
-	});
+/*expresiones regulares dentro de un objeto*/
+const expresiones = {
+	cedula : /^(E|V)?(\d{7,9})$/,
+	nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{1,20}$/,
+	correo : /^(?!.*\.\.)(?!.[&=_'\-+,<>])[a-zA-Z0-9.]+@[gmail|hotmail|outlook|yahoo]+\.[com]{2,}$/,
+	telefono : /^(0416|0426|0251|0252|0424|0414|0412)(\s|-)?(\d{7})$/,
+	direccion : /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s]{1,255}$/,
+	rif: /^[JGVEP]-\d{8}-\d$/,
+	fecha: /^.+$/
+}
 
-	$("#ced_afiliado").on("keyup",function(){
-	 	validarkeyup(/^[0-9]{7,8}$/,$(this),
-	 	$("#m_ced_afiliado"),"El formato debe ser 9999999 ");
-  });
+/*este objeto lo creo para que de esa manera poder determinar si el formulario se envia al
+rellenar cada uno de los inputs y si estos reultan correctos cada campo cambiará de false a true
+dejando que entonces este sea enviado*/
+const campos = {
+	ced_afiliado: false,
+	rif_institucion: false,
+	primer_nombre: false,
+	segundo_nombre: false,
+	primer_apellido: false,
+	segundo_apellido: false,
+	direccion: false,
+	correo_electronico: false,
+	telefono_celular: false,
+	telefono_habitacion: false,
+	telefono_trabajo: false,
+	fecha_nacimiento: false,
+	fecha_ingreso: false
+}
 
-  $("#primer_nombre").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
+/*Esta funcion es la que se va a encargar de validar cada uno de los imput dependiendo
+del name que estos tengan*/
+const validarFormulario = (e) => {
+	switch (e.target.name) {
+		case "ced_afiliado":
+			validarCampo(expresiones.cedula, e.target, 'ced_afiliado');
+		break;
+		case "rif_institucion":
+			validarCampo(expresiones.rif, e.target, 'rif_institucion');
+		break;
+		case "primer_nombre":
+			validarCampo(expresiones.nombre, e.target, 'primer_nombre');
+		break;
+		case "segundo_nombre":
+			validarCampo(expresiones.nombre, e.target, 'segundo_nombre');
+		break;
+		case "primer_apellido":
+			validarCampo(expresiones.nombre, e.target, 'primer_apellido');
+		break;
+		case "segundo_apellido":
+			validarCampo(expresiones.nombre, e.target, 'segundo_apellido');
+		break;
+		case "direccion":
+			validarCampo(expresiones.direccion, e.target, 'direccion');
+		break;
+		case "correo_electronico":
+			validarCampo(expresiones.correo, e.target, 'correo_electronico');
+		break;
+		case "telefono_celular":
+			validarCampo(expresiones.telefono, e.target, 'telefono_celular');
+		break;
+		case "telefono_habitacion":
+			validarCampo(expresiones.telefono, e.target, 'telefono_habitacion');
+		break;
+		case "telefono_trabajo":
+			validarCampo(expresiones.telefono, e.target, 'telefono_trabajo');
+		break;
+		case "fecha_nacimiento":
+			validarCampo(expresiones.fecha, e.target, 'fecha_nacimiento');
+		break;
+		case "fecha_ingreso":
+			validarCampo(expresiones.fecha, e.target, 'fecha_ingreso');
+		break;
+	}
+}
 
-	$("#primer_nombre").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#m_primer_nombre"),"Solo letras  entre 3 y 15 caracteres");
-	});
 
-  $("#segundo_nombre").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
+/*Con esta funcion quitamos y removemos las clases de error y correcto de nuestros imput dandoloes asi
+el color rojo o verde depndiendo de si los datos coinciden con las expresiones regulares o no*/
+const validarCampo = (expresion, input, campo) => {
+	if(expresion.test(input.value)){
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto'); /*Quita el color rojo del imput*/
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto'); /*le agg el color azul*/
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle'); /*Le agg el icono de check verde*/
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');/*le remueve el icono de cruz rojo*/
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo'); /*oculta el parrafo de indicaciones del error*/
+		campos[campo] = true;
+	} else {
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');/*Agg el color rojo al borde del input*/
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto'); /*quita el color verde del borde*/
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle'); /*Agg el icono rojo de cruz*/
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle'); /*y quita el verde de check*/
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo'); /*muestra el parrafo de indicaciones del error*/
+		campos[campo] = false;
+	}
+}
 
-	$("#segundo_nombre").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#m_segundo_nombre"),"Solo letras  entre 3 y 15 caracteres");
-	});
 
-	$("#primer_apellido").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
-
-	$("#primer_apellido").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#m_primer_apellido"),"Solo letras  entre 3 y 15 caracteres");
-	});
-
-  $("#segundo_apellido").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
-
-	$("#segundo_apellido").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/,
-		$(this),$("#m_segundo_apellido"),"Solo letras  entre 3 y 15 caracteres");
-	});
-
-  $("#telefono_celular").on("keypress",function(e){
-    validarkeypress(/^[0-9-\b]*$/,e);
- });
-
- $("#telefono_celular").on("keyup",function(){
-   validarkeyup(/^0[0-9]{10}$/,
-   $(this),$("#m_telefono_celular"),"Formato de numero telefonoco invalido");
- });
-
-  $("#telefono_habitacion").on("keypress", function(e) {
-    validarkeypress(/^[0-9-\b]*$/,e); // Solo permite caracteres válidos para números de teléfono
-  });
-
-  $("#telefono_habitacion").on("keyup", function() {
-    validarkeyup(/^0[0-9]{10}$/,
-  $(this), $("#m_telefono_habitacion"), "Ingrese un número de teléfono válido.");
-  });
-
-  $("#telefono_trabajo").on("keypress", function(e) {
-    validarkeypress(/^[0-9-\b]*$/,e); // Solo permite caracteres válidos para números de teléfono
-  });
-
-  $("#telefono_trabajo").on("keyup", function() {
-    validarkeyup(/^0[0-9]{10}$/,
-    $(this), $("#m_telefono_trabajo"), "Ingrese un número de teléfono válido.");
-  });
-
-  $("#correo_electronico").on("keyup",function(){
-    validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-    $(this),$("#correo"),"correo electronico no valido");
-  });
-
-  $("#correo_electronico").on("keyup",function(){
-    validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,$(this),
-    $("#m_correo_electronico"),"correo electronico no valido");
-  });
-
-  $("#rif_institucion").on("keypress",function(e){
-    validarkeypress(/^[0-9-\b]*$/,e);
-  });
-
-  $("#rif_institucion").on("keyup",function(){
-    validarkeyup(/^[0-9]{7,8}$/,$(this),
-    $("#rif"),"El formato debe ser 9999999 ");
-  });
-
-  $("#n_historia").on("keypress",function(e){
-    validarkeypress(/^[0-9-\b]*$/,e);
-  });
-
-  $("#n_historia").on("keyup",function(){
-    validarkeyup(/^[0-9]{4,8}$/,$(this),
-    $("#m_n_historia"),"El codigo debe llevar un minimo de 4 digitos");
-  });
-
-  let fecha = $('#fecha_nacimiento').val().trim();
-
-  if(!fecha.length){
-    $('#obligatorio').show();
-    return 0;
-  }
-
+inputs.forEach((input) => { /*Esta función me ejecuta el código cada vez que hago un clic en algún input */
+	input.addEventListener('keyup', validarFormulario); /*el "keyup" me ejecuta la funcion que le presede cada vez que preioso y suelto una tecla*/
+	input.addEventListener('blur', validarFormulario); /*el blur es casi igual que el keyup solo que el ejecuta la función cuando se presiona fuera del input*/
 });
 
+formulario.addEventListener('submit', (e) => {
+	e.preventDefault(); //para prevenir el envio de datos por default
 
-function validarEnvio() {
-  // Validación de la cédula (número de 7 a 8 dígitos)
-	if(validarkeyup(/^[0-9]{7,8}$/,$("#ced_afiliado"),
-		$("#m_ced_afiliado"),"El formato debe ser 9999999")==0){
-	    muestraMensaje("La cedula debe coincidir con el formato <br/>"+
-						"99999999");
-		return false;
+	if(	campos.ced_afiliado && campos.rif_institucion && campos.primer_nombre &&
+		campos.segundo_nombre && campos.primer_apellido && campos.segundo_apellido &&
+		campos.direccion && campos.correo_electronico && campos.telefono_celular &&
+		campos.telefono_habitacion && campos.telefono_trabajo && campos.fecha_nacimiento &&
+		campos.fecha_ingreso){
+
+
+		formulario.reset(); /*Esto lo que hace es reiniciar todos los elementos del formulario si todos los campos están bien */
+
+		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); /*para mostrar el msj de exito luego de enviar el formulario*/
+		setTimeout(() => { /*esto me quita el mensaje de exito luego de 5 segundos*/
+			document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); 
+		}, 5000);
+
+		document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
+			icono.classList.remove('formulario__grupo-correcto');
+		});
+		alert("Formulario enviado exitosamente!!!"); /*Mensaje de exito para el usuario*/
+		location.reload();/*reinicia la pagina despues de enviar el formulario correctamente*/
+	} else {
+		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+		setTimeout(() => { /*esto me quita el mensaje de error del formulario luego de 2 segundos*/
+			document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo'); 
+		}, 2000);
 	}
-
-  // // Validación del primer y segundo nombre (solo letras, entre 3 y 15 caracteres)
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_nombre"), $("#m_primer_nombre"), "El primer nombre debe contener solo letras, entre 3 y 15 caracteres") == 0) {
-    muestraMensaje("El primer nombre debe contener solo letras, entre 3 y 15 caracteres");
-    return false;
-  }
-
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#segundo_nombre"), $("#m_segundo_nombre"), "El segundo nombre debe contener solo letras, entre 3 y 15 caracteres") == 0) {
-    muestraMensaje("El segundo nombre debe contener solo letras, entre 3 y 15 caracteres");
-    return false;
-  }
-
-  // // Validación de primer y segundo apellido (solo letras, entre 3 y 15 caracteres)
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#primer_apellido"), $("#m_primer_apellido"), "El primer apellido debe contener solo letras, entre 3 y 15 caracteres") == 0) {
-    muestraMensaje("El primer apellido debe contener solo letras, entre 3 y 15 caracteres");
-    return false;
-  }
-
-  if (validarkeyup(/^[A-Za-z\s\u00f1\u00d1\u00E0-\u00FC]{3,15}$/, $("#segundo_apellido"), $("#m_segundo_apellido"), "El segundo apellido debe contener solo letras, entre 3 y 15 caracteres") == 0) {
-    muestraMensaje("El segundo apellido debe contener solo letras, entre 3 y 15 caracteres");
-    return false;
-  }
-
-  // // Validación de teléfonos (solo números de 7 a 10 dígitos)
-  // if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_celular"), $("#m_telefono_celular"), "El teléfono celular debe contener entre 7 y 10 dígitos") == 0) {
-  //   muestraMensaje("El teléfono celular debe contener entre 7 y 10 dígitos");
-  //   return false;
-  // }
-
-  // if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_habitacion"), $("#m_telefono_habitacion"), "El teléfono de habitación debe contener entre 7 y 10 dígitos") == 0) {
-  //   muestraMensaje("El teléfono de habitación debe contener entre 7 y 10 dígitos");
-  //   return false;
-  // }
-
-  // if (validarkeyup(/^0[0-9]{10}$/, $("#telefono_trabajo"), $("#m_telefono_trabajo"), "El teléfono de trabajo debe contener entre 7 y 10 dígitos") == 0) {
-  //   muestraMensaje("El teléfono de trabajo debe contener entre 7 y 10 dígitos");
-  //   return false;
-  // }
-
-  // // Validación de correo electrónico
-  // if (validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, $("#correo_electronico"), $("#m_correo_electronico"), "Correo electrónico no válido") == 0) {
-  //   muestraMensaje("El correo electrónico no es válido");
-  //   return false;
-  // }
-
-  // // // Validación de campos select
-  // // if ($("#situacion_lavoral").val() === null || $("#situacion_lavoral").val() === "") {
-  // //   $("#situacion_laboral_error").text("Debe seleccionar una situación laboral");
-  // //   return false;
-  // // }
-
-  // // if ($("#estado_civil").val() === null || $("#estado_civil").val() === "") {
-  // //   $("#estado_civil_error").text("Debe seleccionar un estado civil");
-  // //   return false;
-  // // }
-
-  // // if ($("#cargo").val() === null || $("#cargo").val() === "") {
-  // //   $("#cargo_error").text("Debe seleccionar un cargo");
-  // //   return false;
-  // // }
-
-  // // if ($("#sexo").val() === null || $("#sexo").val() === "") {
-  // //   $("#sexo_error").text("Debe seleccionar un sexo");
-  // //   return false;
-  // // }
-
-  // // Validación de rif de la institución (7 a 10 dígitos)
-  // // if (validarkeyup(/^[0-9]{7,10}$/, $("#rif_institucion"), $("#rif"), "El RIF debe contener entre 7 y 10 dígitos numéricos") == 0) {
-  // //   muestraMensaje("El RIF debe contener entre 7 y 10 dígitos numéricos");
-  // //   return false;
-  // // }
-
-  // // Validación de campos de dirección (no vacíos)
-  // // if ($("#estado").val().trim() === "") {
-  // //   muestraMensaje("El campo Estado no puede estar vacío");
-  // //   return false;
-  // // }
-
-  // // if ($("#ciudad").val().trim() === "") {
-  // //   muestraMensaje("El campo Ciudad no puede estar vacío");
-  // //   return false;
-  // // }
-
-  // // if ($("#municipio").val().trim() === "") {
-  // //   muestraMensaje("El campo Municipio no puede estar vacío");
-  // //   return false;
-  // // }
-
-  // // if ($("#parroquia").val().trim() === "") {
-  // //   muestraMensaje("El campo Parroquia no puede estar vacío");
-  // //   return false;
-  // // }
-
-  // // if ($("#direccion_habitacion").val().trim() === "") {
-  // //   muestraMensaje("El campo Dirección no puede estar vacío");
-  // //   return false;
-  // // }
-
-  // if (validarkeyup(/^[0-9]{4,8}$/, $("#n_historia"), $("#m_n_historia"), "el codigo debe tener un minimo de 4 digitos") == 0) {
-  //   muestraMensaje("el codigo debe tener un minimo de 4 digitos");
-  //   return false;
-  // }
-
-  return true; // Si todas las validaciones se pasan, permitir el envío del formulario
-}
-
-
-//Funcion que muestra el modal con un mensaje
-function muestraMensaje(mensaje){
-	$("#contenidodemodal").html(mensaje);
-    $("#mostrarmodal").modal("show");
-    setTimeout(function() {
-      $("#mostrarmodal").modal("hide");
-    },5000);
-}
-
-//Función para validar por Keypress
-function validarkeypress(er,e){
-	key = e.keyCode;
-  tecla = String.fromCharCode(key);
-  a = er.test(tecla);
-  if(!a){
-		e.preventDefault();
-  }
-}
-
-//Función para validar por keyup
-function validarkeyup(er,etiqueta,etiquetamensaje,
-mensaje){
-	a = er.test(etiqueta.val());
-	if(a){
-		etiquetamensaje.text("");
-		return 1;
-	}
-	else{
-		etiquetamensaje.text(mensaje);
-		return 0;
-	}
-}
-
-function limpia() {
-  $("#ced_afiliado").val("");
-  $("#rif_institucion").val("");
-  $("#primer_nombre").val("");
-  $("#segundo_nombre").val("");
-  $("#primer_apellido").val("");
-  $("#segundo_apellido").val("");
-  $("#sexo").val("");
-  $("#fecha_nacimiento").val("");
-  $("#estado_civil").val("");
-  $("#direccion_habitacion").val("");
-  $("#estado").val("");
-  $("#ciudad").val("");
-  $("#municipio").val("");
-  $("#parroquia").val("");
-  $("#correo_electronico").val("");
-  $("#telefono_celular").val("");
-  $("#telefono_habitacion").val("");
-  $("#telefono_trabajo").val("");
-  $("#fecha_ingreso").val("");
-  $("#cargo").val("");
-  $("#situacion_laboral").val("");
-  $("#n_historia").val("");
-}
-
+	
+});

@@ -2,6 +2,7 @@ $(document).ready(function(){
   _get();
   estados_get();
 })
+
 let listaInstituciones = document.getElementById("consultar_instituciones");
 let institucionesArray = [];
 
@@ -18,20 +19,21 @@ function cargarDatos(item){
 }
 
 function instituciones(data){
+  console.log("data", data)
   listaInstituciones.style.removeProperty("display");
   let result = '';
   if(data.length <= 0){
     const carta = `
-      <div class="item">
+      <div>
         <p>no hay resultados</p>
-        <button type='button' class="listar" onclick="_get()">Listar todo</button>
+        <button type='button' onclick="_get()">Listar todo</button>
       </div>
     `;
     result = result.concat("",carta);
   }else{
     data.map((item) => {
       const carta = `
-        <div class="item">
+        <div>
           <p>Rif: ${item.rif_institucion}</p>
           <p>Ciudad: ${item.nombre_ciudad}</p>
           <p>Nombre: ${item.nombre}</p>

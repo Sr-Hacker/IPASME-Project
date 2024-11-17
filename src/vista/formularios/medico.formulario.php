@@ -1,82 +1,79 @@
-<div class="container_empleados">
-  <h5>Crear Nuevo Medico</h5>
-  <div class="container_empleados--form">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Beneficiarios</title>
+	<link rel="stylesheet" href="css/estilos_formularios.css">
+</head>
+<body>
+<main>
+
   <form action="" class="formulario" id="formulario">
-    <div class="formulario__grupo">
-      <label for="ced_medico" class="formulario__label">ced_medico</label>
-      <input type="text" placeholder="cedula" id="ced_medico" name="ced_medico">
-      <span id="m_ced_medico"></span>
-
-      <label for="nombres" class="formulario__label">nombres</label>
-      <input type="text" placeholder="nombres" id="nombres" name="nombres">
-      <span id="m_nombres"></span>
+  
+    <!-- Grupo: Cedula del médico -->
+    <div class="formulario__grupo" id="grupo__ced_medico">
+      <label for="ced_medico" class="formulario__label">Cédula</label>
+      <div class="formulario__grupo-input">
+        <input type="text" class="formulario__input" name="ced_medico" id="ced_medico" placeholder="12345678">
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">La cédula no debe contener letras, caracteres especiales y tampoco espacios</p>
     </div>
 
-    <div class="formulario__grupo">
-      <label for="apellidos" class="formulario__label">apellidos</label>
-      <input type="text" placeholder="apellidos" id="apellidos" name="apellidos">
-      <span id="m_apellidos"></span>
-
-      <label for="telefono" class="formulario__label">telefono</label>
-      <input type="text" placeholder="telefono" id="telefono" name="telefono">
-      <span id="m_telefono"></span>
+    <!-- Grupo: Nombres -->
+    <div class="formulario__grupo" id="grupo__nombre">
+      <label for="nombre" class="formulario__label">Nombres</label>
+      <div class="formulario__grupo-input">
+        <input type="text" class="formulario__input" placeholder="Anderson David" id="nombre" name="nombre">
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">Los nombres no deben contener números ni tampoco caracteres especiales</p>
     </div>
 
-    <div class="formulario__grupo">
-      <label for="activo" class="formulario__label">estado</label>
-      <select class="opc-modal" id="activo" name="estado">
-        <option value="0">Interno</option>
-        <option value="1">Externo</option>
-      </select>
-
-      <label for="consultar_especialidades" class="formulario__label">especialidades</label>
-      <select class="opc-modal" id="consultar_especialidades" name="consultar_especialidades">
-      </select>
+    <!-- Grupo: Apellidos -->
+    <div class="formulario__grupo" id="grupo__apellido">
+      <label for="apellido" class="formulario__label">Apellidos</label>
+      <div class="formulario__grupo-input">
+        <input type="text" class="formulario__input" placeholder="Freitez Mendoza" id="apellido" name="apellido">
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">El o los apellidos no debe contener números ni tampoco caracteres especiales</p>
     </div>
 
-
-
-
-    <div class="formulario__grupo formulario__grupo-btn-enviar">
-      <button class="btn-modal" id="action_modal">incluir</button>
-      <button class="btn-modal" id="closeModal">cancelar</button>
+    <!--Grupo: Estado del médico-->
+    <div class="formulario__grupo" id="grupo__estado_medico">
+      <label for="estado_medico" class="formulario__label">Estado del médico</label>
+      <div class="formulario__grupo-input">
+        <select class="opc-modal" id="estado_medico" name="estado_medico">
+          <option value="1">Activo</option>
+          <option value="0">Jubilado</option>
+        </select>
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
     </div>
-    </form>
+
+    <!-- Grupo: Telefono -->
+    <div class="formulario__grupo" id="grupo__telefono">
+      <label for="telefono" class="formulario__label">Teléfono</label>
+      <div class="formulario__grupo-input">
+        <input type="text" class="formulario__input" placeholder="04160000000" id="telefono" name="telefono">
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">El telélefono celular no debe contener letras ni caracteres especiales y su longitud debe ser de 11 dígitos</p>
+    </div>
+
+  <!-- Mensaje de error del formulario -->
+  <div class="formulario__mensaje" id="formulario__mensaje">
+    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
   </div>
-</div>
 
-  <!-- <div>
-    <label><input type="checkbox" name="opciones" value="1">Lunes</label><br>
-    <label><input type="checkbox" name="opciones" value="2">Martes</label><br>
-    <label><input type="checkbox" name="opciones" value="4">Miércoles</label><br>
-    <label><input type="checkbox" name="opciones" value="8">Jueves</label><br>
-    <label><input type="checkbox" name="opciones" value="16">Viernes</label><br>
-    <label><input type="checkbox" name="opciones" value="32">Sábado</label><br>
-    <label><input type="checkbox" name="opciones" value="64">Domingo</label><br>
-  </div> -->
+  <div class="formulario__grupo formulario__grupo-btn-enviar">
+    <button type="submit" class="formulario__btn">Incluir</button>
+    <button type="reset" value="reiniciar" class="formulario__btn">Limpiar</button>
+    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+  </div>
+</form>
 
-  <!-- <select name="dias_semana" id="dias_semana">
-    <option value="">Selected</option>
-    <option value="matutino">Turno Matutino</option>
-    <option value="vespertino">Turno Vespertino</option>
-    <option value="completo">Turno Completo</option>
-  </select> -->
-
-  <!-- $diasSemana = [
-    1 => 'Lunes',
-    2 => 'Martes',
-    4 => 'Miércoles',
-    8 => 'Jueves',
-    16 => 'Viernes',
-    32 => 'Sábado',
-    64 => 'Domingo'
-  ];
-
-  $diasSeleccionados = [];
-  foreach ($diasSemana as $bit => $dia) {
-    if ($valor & $bit) {
-          $diasSeleccionados[] = $dia;
-          }
-  }
-    return $diasSeleccionados;
-  } -->
+</main>
+</body>

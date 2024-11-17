@@ -1,4 +1,4 @@
-let listaBeneficiarios = document.getElementById("get_result");
+let listaBeneficiarios = document.getElementById("consultar_beneficiarios");
 
 let beneficiariosArray = [];
 

@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.container-user .dark-mode span{
+.container-user .dark-mode .span{
   font-size: 1.2rem;
   width: 50%;
   height: 100%;
@@ -93,7 +93,7 @@
   margin-top: .8rem;
 }
 
-.container-user .recordatorio .header span{
+.container-user .recordatorio .header .span{
   padding: 10px;
   box-shadow: var(--box-shadow);
   background-color: var(--color-light);

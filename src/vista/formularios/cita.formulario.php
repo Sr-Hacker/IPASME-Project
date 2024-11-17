@@ -1,62 +1,62 @@
-<link rel="stylesheet" href="css/estilos_formularios.css">
-<div class="container_especialidad">
-  <h5>Citas</h5>
-    <form action="" class="formulario" id="formulario">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Beneficiarios</title>
+	<link rel="stylesheet" href="css/estilos_formularios.css">
+</head>
+<body>
+<main>
+  
+  <form action="" class="formulario" id="formulario">
 
-      <div class="formulario__grupo">
-        <label for="cod_cita" class="formulario__label">Codigo de cita</label>
-        <input type="text" class="formulario__input" id="cod_cita" name="cod_cita">
-        <span id="m_cod_cita"></span>
+    <!-- Grupo: Fecha de la cita -->
+    <div class="formulario__grupo" id="grupo__fecha">
+      <label for="fecha" class="formulario__label">Fecha de apertura</label>
+      <div class="formulario__grupo-input">
+        <input type="date" class="formulario__input" id="fecha" name="fecha">
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
+      <p class="formulario__input-error">La fecha de la cita no puede estar vacía</p>
+    </div>
 
-      <div class="formulario__grupo">
-        <label for="cod_afiliado" class="formulario__label">Cedula afiliado</label>
-        <input type="text" id="ced_afiliado" name="ced_afiliado">
-        <span id="m_ced_afiliado"></span>
+    <!-- Grupo: Motivo de la cita -->
+    <div class="formulario__grupo" id="grupo__motivo">
+      <label for="motivo" class="formulario__label">Motivo de la cita</label>
+      <div class="formulario__grupo-input">
+        <input type="text" class="formulario__input" placeholder="Cansancio, malestar, gripe, etc" id="motivo" name="motivo">
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
+      <p class="formulario__input-error">Este campo no puede estar vacío ni sobrepasar un límite máximo de 255 caracteres</p>
+    </div>
 
-      <div class="formulario__grupo">
-        <label for="ced_beneficiario" class="formulario__label">ced beneficiario</label>
-        <input type="text" placeholder="ced_beneficiario" id="ced_beneficiario" name="ced_beneficiario">
-        <span id="m_ced_beneficiario"></span>
-      </div>
-
-      <div class="formulario__grupo">
-        <label for="" class="formulario__label">fecha</label>
-        <input type="date" id="fecha" name="fecha">
-        <span id="m_fecha"></span>
-      </div>
-
-      <div class="formulario__grupo">
-        <label for="" class="formulario__label">hora</label>
-        <input type="time" id="hora" name="hora">
-        <span id="m_hora"></span>
-      </div>
-
-      <div class="formulario__grupo">
-        <label class="formulario__label" for="">detalle</label>
-        <input type="text" placeholder="detalles" id="detalle" name="detalle">
-        <span id="m_detalle"></span>
-      </div>
-
-      <div class="formulario__grupo">
-        <label for="" class="formulario__label">vigente</label>
-        <select id="vigente" name="vigente">
-          <option value="">Selected</option>
-          <option value="1">Activo</option>
-          <option value="0">Cancelado</option>
-        </select>
-        <span id="m_vigente"></span>
-      </div>
-
-      <div class="formulario__grupo">
-        <select id="consultar_medicos_especialidades">
-        </select>
-      </div>
-
-
+    <div>
       <div>
-        <button class="btn-modal" id="action_modal">incluir</button>
-        <button class="btn-modal" id="closeModal">cancelar</button>
+        <p>Buscar Médico</p>
       </div>
-</div>
+      <div id="consultar_medicos"></div>
+    </div>
+
+    <div>
+      <div>
+        <p>Buscar Paciente</p>
+      </div>
+      <div id="consultar_pacientes"></div>
+    </div>
+
+     <!-- Mensaje de error del formulario -->
+  <div class="formulario__mensaje" id="formulario__mensaje">
+    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+  </div>
+
+  <div class="formulario__grupo formulario__grupo-btn-enviar">
+    <button type="submit" class="formulario__btn">Incluir</button>
+    <button type="reset" value="reiniciar" class="formulario__btn">Limpiar</button>
+    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+  </div>
+</form>
+</main>
+
+
+</body>

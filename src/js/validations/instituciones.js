@@ -1,108 +1,112 @@
-$(document).ready(function(){
-//VALIDACION DE DATOS
-	$("#rif_institucion").on("keyup",function(){
-		validarkeyup(/^[0-9]{8,9}$/,$(this),
-		$("#m_rif_institucion"),"El formato no coincide con un rif");
-	});
+const formulario = document.getElementById('formulario');
+const inputs = document.querySelectorAll('#formulario input');
+const cerrarModal = () => {document.getElementById('modal').style.display="none";}/*para darle la funcion al boton de cancelar para cerrar el formulario*/
 
-	$("#cod_estado").on("keypress",function(e){
-		validarkeypress(/^[0-9-\b]*$/,e);
-	});
+/*expresiones regulares dentro de un objeto*/
+const expresiones = {
+	rif: /^[JGVEP]-\d{8}-\d$/,
+	codigo_postal: /^\d{4}$/,
+	nombre_institución: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ"',.\s]+$/,
+	correo : /^(?!.*\.\.)(?!.[&=_'\-+,<>])[a-zA-Z0-9.]+@[gmail|hotmail|outlook|yahoo]+\.[com]{2,}$/,
+	telefono : /^(0416|0426|0251|0252|0424|0414|0412)(\s|-)?(\d{7})$/,
+	direccion : /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s]{1,255}$/,
+	codigo: /^\d{1,6}$/
 
-	$("#cod_estado").on("keyup",function(){
-		validarkeyup(/^[0-9]{4,8}$/,
-		$(this),$("#m_cod_estado"),"El formato debe llevar un minimo de 4 digitos");
-	});
+}
 
-  $("#nombre").on("keypress",function(e){
-		validarkeypress(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]*$/,e);
-	});
+/*este objeto lo creo para que de esa manera poder determinar si el formulario se envia al
+rellenar cada uno de los inputs y si estos reultan correctos cada campo cambiará de false a true
+dejando que entonces este sea enviado*/
+const campos = {
+	rif_institucion: false,  
+	cod_estado: false,  
+	nombre: false,  
+	direccion: false,  
+	codigo_postal: false,  
+	telefono: false,  
+	correo_electronico: false
+	
+}
 
-	$("#nombre").on("keyup",function(){
-		validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$(this),$("#m_nombre"),"nombre no valido");
-	});
+/*Esta funcion es la que se va a encargar de validar cada uno de los imput dependiendo
+del name que estos tengan*/
+const validarFormulario = (e) => {
+	switch (e.target.name) {
+		case "rif_institucion":
+			validarCampo(expresiones.rif, e.target, 'rif_institucion');
+		break;
+		case "cod_estado":
+			validarCampo(expresiones.codigo, e.target, 'cod_estado');
+		break;
+		case "nombre":
+			validarCampo(expresiones.nombre_institución, e.target, 'nombre');
+		break;
+		case "direccion":
+			validarCampo(expresiones.direccion, e.target, 'direccion');
+		break;
+		case "codigo_postal":
+			validarCampo(expresiones.codigo_postal, e.target, 'codigo_postal');
+		break;
+		case "telefono":
+			validarCampo(expresiones.telefono, e.target, 'telefono');
+		break;
+		case "correo_electronico":
+			validarCampo(expresiones.correo, e.target, 'correo_electronico');
+		break;
+	}
+}
 
-  $("#codigo_postal").on("keypress",function(e){
-    validarkeypress(/^[0-9-\b]*$/,e);
-  });
 
-	$("#codigo_postal").on("keyup",function(){
-		validarkeyup(/^\d{4}$/,
-		$(this),$("#m_codigo_postal"),"codigo postal no valido");
-	});
+/*Con esta funcion quitamos y removemos las clases de error y correcto de nuestros imput dandoloes asi
+el color rojo o verde depndiendo de si los datos coinciden con las expresiones regulares o no*/
+const validarCampo = (expresion, input, campo) => {
+	if(expresion.test(input.value)){
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto'); /*Quita el color rojo del imput*/
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto'); /*le agg el color azul*/
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle'); /*Le agg el icono de check verde*/
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');/*le remueve el icono de cruz rojo*/
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo'); /*oculta el parrafo de indicaciones del error*/
+		campos[campo] = true;
+	} else {
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');/*Agg el color rojo al borde del input*/
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto'); /*quita el color verde del borde*/
+		document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle'); /*Agg el icono rojo de cruz*/
+		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle'); /*y quita el verde de check*/
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo'); /*muestra el parrafo de indicaciones del error*/
+		campos[campo] = false;
+	}
+}
 
-	$("#correo").on("keyup",function(){
-		validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-		$(this),$("#m_correo"),"correo electronico no valido");
-	});
 
-	$("#telefono").on("keypress",function(e){
-	 	validarkeypress(/^[0-9-\b]*$/,e);
-	});
-
-	$("#telefono").on("keyup",function(){
-		validarkeyup(/^0[0-9]{10}$/,
-		$(this),$("#m_telefono"),"Formato de numero telefonoco invalido");
-	});
+inputs.forEach((input) => { /*Esta función me ejecuta el código cada vez que hago un clic en algún input */
+	input.addEventListener('keyup', validarFormulario); /*el "keyup" me ejecuta la funcion que le presede cada vez que preioso y suelto una tecla*/
+	input.addEventListener('blur', validarFormulario); /*el blur es casi igual que el keyup solo que el ejecuta la función cuando se presiona fuera del input*/
 });
 
-//Validación de todos los campos antes del envio
-function validarEnvio(){
-	if(validarkeyup(/^[0-9]{8,9}$/,$("#rif_institucion"),
-		$("#m_rif_institucion"),"El formato no coincide con un rif")==0){
-		return false;
-	}
-	else if(validarkeyup(/^0[0-9]{10}$/,
-		$("#telefono"),$("#m_telefono"),"formato invalido")==0){
-		return false;
-	}
-	else if(validarkeyup(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-		$("#correo"),$("#m_correo"),"correo electronico no valido")==0){
-		return false;
-	}
-  else if(validarkeyup(/^[A-Za-z\b\s\u00f1\u00d1\u00E0-\u00FC]{3,30}$/,
-		$("#nombre"),$("#m_nombre"),"nombre no valido")==0){
-		return false;
-	}
-  else if(validarkeyup(/^\d{4}$/,
-		$("#codigo_postal"),$("#m_codigo_postal"),"codigo postal no valido")==0){
-		return false;
-	}
-	return true;
-}
+formulario.addEventListener('submit', (e) => {
+	e.preventDefault(); //para prevenir el envio de datos por default
 
-//Función para validar por Keypress
-function validarkeypress(er,e){
-	key = e.keyCode;
-  tecla = String.fromCharCode(key);
-  a = er.test(tecla);
-  if(!a){
-		e.preventDefault();
-  }
-}
+	if(campos.rif_institucion && campos.cod_estado && campos.nombre 
+		&& campos.direccion && campos.codigo_postal && campos.telefono 
+		&& campos.correo_electronico){
+			
+		formulario.reset(); /*Esto lo que hace es reiniciarmen todos los elementos del formulario si todos los campos están bien */
 
-//Función para validar por keyup
-function validarkeyup(er,etiqueta,etiquetamensaje,
-mensaje){
-	a = er.test(etiqueta.val());
-	if(a){
-		etiquetamensaje.text("");
-		return 1;
-	}
-	else{
-		etiquetamensaje.text(mensaje);
-		return 0;
-	}
-}
+		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); /*para mostrar el msj de exito luego de enviar el formulario*/
+		setTimeout(() => { /*esto me quita el mensaje de exito luego de 5 segundos*/
+			document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); 
+		}, 5000);
 
-function limpia(){
-	$("#rif_institucion").val("");
-	$("#cod_estado").val("");
-	$("#nombre").val("");
-	$("#direccion").val("");
-	$("#codigo_postal").val("");
-	$("#telefono").val("");
-	$("#correo").val("");
-	$("#tipo_institucion").val("");
-}
+		document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
+			icono.classList.remove('formulario__grupo-correcto');
+		});
+		alert("Formulario enviado exitosamente!!!"); /*Mensaje de exito para el usuario*/
+		location.reload();/*reinicia la pagina despues de enviar el formulario correctamente*/
+	} else {
+		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+		setTimeout(() => { /*esto me quita el mensaje de error del formulario luego de 2 segundos*/
+			document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo'); 
+		}, 2000);
+	}
+	
+});

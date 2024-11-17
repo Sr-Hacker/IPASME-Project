@@ -1,187 +1,174 @@
-aside{
-  height: 100vh;
-  color: var(--color-dark);
-}
-
-aside .toggle{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-aside .toggle .logo{
-    margin: -0.9em 3em;
-    display: flex;
-    gap: 1.5rem;
-}
-
-aside .sidebar .close{
-    padding-right: 1rem;
-    display: none;
-}
-
-aside .sidebar{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-light);
-    backdrop-filter: blur(100px);
-    box-shadow: var(--box-shadow);
-    border-radius: 15px;
-    height: 90vh;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-aside .sidebar:hover{
-    box-shadow: none;
-}
-
-aside .sidebar a{
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    color: var(--color-dark);
-    height: 2.2rem;
-    position: relative;
-    margin-left: 1rem;
-    transition: all 0.3 ease;
-}
-
-aside .sidebar a span{
-  margin-right: .3em;
-  font-size: 1.6rem;
-  transition: all 0.3s ease;
-}
-
-aside .sidebar a:last-child{
-    position: absolute;
-    bottom: 1rem;
-    width: 100%;
-}
-
-aside .sidebar a:hover{
-    width: 100%;
-    color: var(--color-dark);
-    background-color: #1ddd4347;
-    margin-left: 0;
-    border-radius: 12px;
-}
-
-aside .sidebar a::before{
-    content: '';
-    width: 0px;
-    height: 18px;
-    background-color: var(--color-white);
-    margin-left: 0.2rem;
-    border-radius: 2px;
-}
-
-.sidebar a.active::before {
-      width: 5px;
-    }
-
-.sidebar a.active {
-  background-color: #1ddd4347;
-  color: #ffffff;
-  margin-left: 0;
-}
-
-aside .sidebar a:first-child{
-    border-radius: 12px;
+body { /*reseteo de los espaciado y paddins del body*/
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+  font-family: sans-serif;
 }
 
 
-@media screen and (max-width: 1200px){
-  aside .logo h1{
-    margin-right: 1rem;
-  }
-
-  aside .sidebar h3{
-    display: none;
-  }
-
-  aside .sidebar a{
-    margin-left: 2em;
-  }
-
-  aside .sidebar a{
-    width: 5.6rem;
-  }
-
-  aside .sidebar a:last-child{
-    position: relative;
-    margin-top: 1.8rem;
-  }
-
-}
-
-@media screen and (max-width: 768px){
-
-  aside{
-    position: fixed;
-    width: 15rem;
-    z-index: 3;
-    height: 100vh;
-    animation: showMenu 0.4 ease forwards;
-    left: -100%;
-    display: none;
-  }
-
-
-  @keyframes showMenu{
-    to{
-      left: 0;
-    }
-  }
-
-  aside .logo h1{
-    margin-left: 1rem;
-    display: inline;
-  }
-
-  aside .sidebar{
-    height: 96vh;
-  }
-
-  aside .sidebar h3{
-    display: inline;
-  }
-
-  aside .sidebar a{
-    width: 100%;
-    height: 2.2rem;
-  }
-
-  aside .sidebar a::before{
-    border-radius: none;
-  }
-
-  aside .sidebar a span{
-    font-size: 1.3rem;
-  }
-
-  aside .sidebar a:last-child{
-    position: absolute;
-    bottom: .3rem;
-}
-
-aside .sidebar .close{
-  display: flex;
-  align-self: flex-end;
-  padding: 0.2em;
-}
-
-aside .sidebar .close span{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-light);
-  width: 1.3em;
-  height: 1.3em;
-  border-radius: 50%;
+img{ /*estilos para el tamaño de la imagen dentro del menu*/
+  max-width: 100%;
   cursor: pointer;
 }
 
+/*estilos y tamaños para el icono de menu*/
+.toggle-menu { 
+  width: 40px;
+  position: absolute; /*esto es para que el mismo pueda tener ese efecto de estar dentro y por encima de las opciones del menu*/
+  top: 2rem; /*para que siempre esté arriba del todo pero dejando un pequeño espacio*/
+  left: 2rem; /*igual solo que de derecha a izquierda*/
+  cursor: pointer; /*para poner el curson en manito cuando este encima de el*/
+  z-index: 50; /*como el toggle está en posicion adsoluta podemos darle un rango de capa con z index para que quede por encima del menu*/
 }
+
+
+.logo-aside{
+  font-size: 20px;
+  position: absolute;
+  top: 5px;
+  left: 40px;
+}
+
+/*estado del boton de despiegue por defecto con la pantalla grande*/
+#toggle-menu-checkbox{
+  display: none;
+}
+
+/*efecto de arrastre para el menu cuando el clickeado el boton de despliegue*/
+.toggle-menu-checkbox:checked + .main-menu{
+  transform: translate(0);
+}
+
+/*estilos de todo el ul*/
+.main-menu{ 
+  position: relative;
+  display:flex;
+  list-style-type: none;
+  margin-top: 55px;
+  padding-left: 0;
+  margin-bottom: 15px;
+  flex-direction: column; /*esto lo que hace es colocarme los li en columna si en fila no caben dentro de la pantalla*/
+  background-color: #ffffff;
+  color: black;
+  align-items: center;
+  transform: translateX(0); /*esto se usa para darle un traslado al elemento bien sea hacia arriba o hacia un costado*/
+  transition: transform 0.3s; /*con esto conseguimos relentizar el cambio de tranformación para darle ese efecto animado*/
+  width: 100%;
+  height: 89vh; /*alto maximo del menu*/
+  overflow-y: scroll; /*para darle la propiedad de bajar al modal*/
+  overflow-x: hidden; /*para el scroll*/
+  border-radius: 15px;
+
+}
+
+/*para cambiar el ancho del scroll*/
+.main-menu::-webkit-scrollbar {
+  width: 10px;
+
+}
+
+/*para cambiar el color del scroll*/
+.main-menu::-webkit-scrollbar-thumb{
+  background: rgba(29, 221, 67, 30%);
+  opacity: 1%;
+  border-radius: 55px;
+}
+
+/*estilos de los li del menu*/
+.main-menu__item{
+  padding: none;
+  display: flex;
+  justify-content: left; /*para justificar las opciones hacia la izquierda*/
+  width: 100%; /*el ancho que van a abarcar cada li dentro de la ul*/
+}
+
+/*estilos del hover de las opciones del menú*/
+.main-menu__item:hover{
+  background-color: #1ddd4347;
+  border-radius: 12px;
+}
+
+/*estilos de las a del menu*/
+.main-menu__link{
+  color:rgb(0, 0, 0);
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  align-items: center;
+  display: flex;
+  margin-left: 10px;
+  width: 100%;
+}
+
+
+.main-menu > .main-menu__item > svg{
+  position:relative;
+
+}
+
+/*para las letras del menu*/
+.main-menu > .main-menu__item > a >h6{
+  font-size: 10px;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.toggle-menu{
+     visibility: hidden;
+}
+
+/**Estilos para pantalla grande*/
+@media screen and (max-width: 768px){ 
+  .main-menu{
+      transform: translate(0); /*con esto reaparecemos el menu si la pantalla crece*/
+      transform: translateX(-110%);
+      position: fixed;
+      width: 30vh;
+      height: 82vh;
+      top: 30px;
+      z-index: 5;
+  }
+
+  .main-menu__show{/*estilos cuando se haga click en el icono de menu*/
+    transform: translateX(0);
+  }
+
+  .toggle-menu{
+    visibility:visible
+  }
+
+  .icono-menu {
+    cursor:pointer;
+
+  }
+
+  .logo-aside{
+    display: none;
+  }
+
+  .main-menu > .main-menu__item > a >h6{
+    visibility: visible
+  }
+  
+  
+}
+
+
+
+/*para pantallas pequeñas
+@media screen and (max-width: 1200px) and (min-width:750px){ 
+
+  .main-menu > .main-menu__item > a >h6{
+    display: none;
+  }
+
+  .main-menu > .main-menu__item > .main-menu__link{
+    height: 60px;
+    width: 60px;
+    align-content: center;
+    text-align: center;
+  }
+
+
+} 
 

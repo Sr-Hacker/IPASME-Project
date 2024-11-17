@@ -11,11 +11,11 @@
 
   <form action="" class="formulario" id="formulario">
   
-    <!-- Grupo: Código de la especialidad-->
-    <div class="formulario__grupo" id="grupo__cod_espe">
-      <label for="cod_espe" class="formulario__label">Código de la especialidad</label>
+    <!-- Grupo: Código de la patología-->
+    <div class="formulario__grupo" id="grupo__cod_patologia">
+      <label for="cod_patologia" class="formulario__label">Código de la patologia</label>
       <div class="formulario__grupo-input">
-        <input type="text" class="formulario__input" placeholder="000000" id="cod_espe" name="cod_espe">
+        <input type="text" class="formulario__input" placeholder="000000" id="cod_patologia" name="cod_patologia">
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">El código no debe contener letras, caracteres especiales y tampoco espacios, y su longitud debe ser de 1 a 6 caracteres</p>
@@ -23,12 +23,22 @@
 
     <!-- Grupo: Nombre -->
     <div class="formulario__grupo" id="grupo__nombre">
-      <label for="nombre" class="formulario__label">Nombre de la especialidad</label>
+      <label for="nombre" class="formulario__label">Nombre de la patología</label>
       <div class="formulario__grupo-input">
-        <input type="text" class="formulario__input" placeholder="Cardiología" id="nombre" name="nombre">
+        <input type="text" class="formulario__input" placeholder="Asma Bronquial" id="nombre" name="nombre">
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">El nombre no debe contener números, caracteres especiales ni espacios de por medio</p>
+      <p class="formulario__input-error">El nombre debe tener una longitud maxima de 255 caracteres y no debe llevar símbolos</p>
+    </div>
+
+    <!-- Grupo: Descripción -->
+    <div class="formulario__grupo" id="grupo__descripcion">
+      <label for="descripcion" class="formulario__label">Descripcion de la patología</label>
+      <div class="formulario__grupo-input">
+        <input type="text" class="formulario__input" placeholder="Es una enfermedad que..." id="descripcion" name="descripcion">
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">La descripcion debe tener una longitud maxima de 255 caracteres y no debe llevar símbolos</p>
     </div>
 
      <!-- Mensaje de error del formulario -->

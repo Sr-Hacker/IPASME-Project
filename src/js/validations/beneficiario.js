@@ -4,27 +4,51 @@ const cerrarModal = () => {document.getElementById('modal').style.display="none"
 
 /*expresiones regulares dentro de un objeto*/
 const expresiones = {
-	codigo: /^\d{1,6}$/,
-	nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{1,20}$/
+	cedula : /^(E|V)?(\d{7,9})$/,
+	nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{1,20}$/,
+	dos_nombres : /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(\s[A-Za-zÁÉÍÓÚáéíóúÑñ]+)?$/,
+	telefono : /^(0416|0426|0251|0252|0424|0414|0412)(\s|-)?(\d{7})$/,
+	direccion : /^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s]{1,255}$/,
+	fecha: /^.+$/
 }
 
 /*este objeto lo creo para que de esa manera poder determinar si el formulario se envia al
 rellenar cada uno de los inputs y si estos reultan correctos cada campo cambiará de false a true
 dejando que entonces este sea enviado*/
 const campos = {
-	cod_estado: false,
-	nombre: false
+	ced_beneficiario : false,
+	ced_afiliado: false,
+	nombres: false,
+	apellidos: false,
+	direccion: false,
+	telefono_celular: false,
+	fecha_nacimiento: false
 }
 
 /*Esta funcion es la que se va a encargar de validar cada uno de los imput dependiendo
 del name que estos tengan*/
 const validarFormulario = (e) => {
 	switch (e.target.name) {
-		case "cod_estado":
-			validarCampo(expresiones.codigo, e.target, 'cod_estado');
+		case "ced_beneficiario":
+			validarCampo(expresiones.cedula, e.target, 'ced_beneficiario');
 		break;
-		case "nombre":
-			validarCampo(expresiones.nombre, e.target, 'nombre');
+		case "ced_afiliado":
+			validarCampo(expresiones.cedula, e.target, 'ced_afiliado');
+		break;
+		case "nombres":
+			validarCampo(expresiones.dos_nombres, e.target, 'nombres');
+		break;
+		case "apellidos":
+			validarCampo(expresiones.dos_nombres, e.target, 'apellidos');
+		break;
+		case "direccion":
+			validarCampo(expresiones.direccion, e.target, 'direccion');
+		break;
+		case "telefono_celular":
+			validarCampo(expresiones.telefono, e.target, 'telefono_celular');
+		break;
+		case "fecha_nacimiento":
+			validarCampo(expresiones.fecha, e.target, 'fecha_nacimiento');
 		break;
 	}
 }
@@ -59,7 +83,9 @@ inputs.forEach((input) => { /*Esta función me ejecuta el código cada vez que h
 formulario.addEventListener('submit', (e) => {
 	e.preventDefault(); //para prevenir el envio de datos por default
 
-	if(campos.cod_estado && campos.nombre){
+	if(campos.ced_afiliado && campos.ced_beneficiario && campos.nombres 
+		&& campos.apellidos && campos.direccion && campos.telefono_celular
+		&& campos.fecha_nacimiento){
 		formulario.reset(); /*Esto lo que hace es reiniciarmen todos los elementos del formulario si todos los campos están bien */
 
 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); /*para mostrar el msj de exito luego de enviar el formulario*/

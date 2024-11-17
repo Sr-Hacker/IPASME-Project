@@ -1,5 +1,27 @@
-<div class="container_beneficiarios">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Beneficiarios</title>
+	<link rel="stylesheet" href="css/estilos_formularios.css">
+</head>
+<body>
+<main>
+  
 <form action="" class="formulario" id="formulario">
+
+  <!-- Grupo: Nacionalidad -->
+  <div class="formulario__grupo" id="grupo__nacionalidad">
+    <label for="nacionalidad" class="formulario__label">Nacionalidad</label>
+    <div class="formulario__grupo-input">
+      <select name="nacionalidad" id="nacionalidad" class="nacionalidad">
+          <option value="V">V</option>
+          <option value="E">E</option>
+      </select>
+    </div>
+    <p class="formulario__input-error">La cédula no debe contener letras, caracteres especiales y tampoco espacios</p>
+  </div>
 
   <!-- Grupo: Cédula del beneficiario -->
   <div class="formulario__grupo" id="grupo__ced_beneficiario">
@@ -8,10 +30,10 @@
       <input type="text" class="formulario__input" name="ced_beneficiario" id="ced_beneficiario" placeholder="12345678">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_ced_beneficiario"></p>
+    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
   </div>
 
-
+  
   <!-- Grupo: Cédula del afiliado -->
   <div class="formulario__grupo" id="grupo__ced_afiliado">
     <label for="ced_afiliado" class="formulario__label">Cédula del afiliado</label>
@@ -19,7 +41,7 @@
       <input type="text" class="formulario__input" placeholder="12345678" id="ced_afiliado" name="ced_afiliado">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_ced_afiliado"></p>
+    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
   </div>
 
   <!-- Grupo: Nombres -->
@@ -29,7 +51,7 @@
       <input type="text" class="formulario__input" placeholder="Anderson David" id="nombres" name="nombres">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_nombres"></p>
+    <p class="formulario__input-error">Los nombre no debe contener números ni tampoco caracteres especiales</p>
   </div>
 
   <!-- Grupo: Apellidos -->
@@ -39,7 +61,7 @@
       <input type="text" class="formulario__input" placeholder="Freitez Mendoza" id="apellidos" name="apellidos">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_apellidos"></p>
+    <p class="formulario__input-error">El o los apellidos no debe contener números ni tampoco caracteres especiales</p>
   </div>
 
   <!-- Grupo: Fecha de nacimiento -->
@@ -49,7 +71,7 @@
       <input type="date" class="formulario__input" placeholder="Fecha de nacimiento" id="fecha_nacimiento" name="fecha_nacimiento">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_fecha_nacimiento"></p>
+    <p class="formulario__input-error">La fecha de nacimiento no puede estar vacía</p>
   </div>
 
   <!--Grupo: Sexo-->
@@ -57,13 +79,12 @@
     <label for="sexo" class="formulario__label">Sexo</label>
     <div class="formulario__grupo-input">
       <select id="sexo" name="sexo">
-        <option value="">Selected</option>
-        <option value="M">Hombre</option>
-        <option value="F">Mujer</option>
+        <option value="1">Hombre</option>
+        <option value="0">Mujer</option>
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_sexo"></p>
+    <p class="formulario__input-error"></p>
   </div>
 
   <!-- Grupo: Parentesco -->
@@ -71,10 +92,9 @@
     <label for="parentesco" class="formulario__label">Parentesco familiar</label>
     <div class="formulario__grupo-input">
       <select id="parentesco" name="parentesco">
-      <option value="">Selected</option>
-        <option value="padre">Padre / Madre</option>
-        <option value="hijo">Hijo(a)</option>
-        <option value="esposo">Esposo(a)</option>
+        <option value="1">Padre / Madre</option>
+        <option value="0">Hijo(a)</option>
+        <option value="2">Esposo(a)</option>
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
@@ -85,11 +105,11 @@
     <label for="estado_civil" class="formulario__label">Estado civil</label>
     <div class="formulario__grupo-input">
       <select id="estado_civil" name="estado_civil">
-        <option value="">Selected</option>
-        <option value="soltero">Soltero</option>
-        <option value="casado">Casado</option>
-        <option value="divorciado">Divorciado</option>
-        <option value="viudo">Viudo</option>
+        <option value="0">Casado</option>
+        <option value="1">Divorciado</option>
+        <option value="2">Viudo</option>
+        <option value="3">Unión de hecho estable</option>
+        <option value="4">Soltero</option>
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
@@ -102,7 +122,7 @@
       <input type="text" class="formulario__input" placeholder="Punto de referencia" id="direccion" name="direccion">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_direccion"></p>
+    <p class="formulario__input-error">Alcanzó el límite máximo de caracteres</p>
   </div>
 
   <!-- Grupo: Telefono célular -->
@@ -112,7 +132,7 @@
       <input type="text" class="formulario__input" placeholder="04160000000" id="telefono_celular" name="telefono_celular">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="formulario__input-error" id="m_telefono_celular"></p>
+    <p class="formulario__input-error">El telélefono celular no debe contener letras ni caracteres especiales y su longitud debe ser de 11 dígitos</p>
   </div>
 
   <!-- Mensaje de error del formulario -->
@@ -121,9 +141,10 @@
   </div>
 
   <div class="formulario__grupo formulario__grupo-btn-enviar">
-    <button class="btn-modal" id="action_modal">incluir</button>
-    <button class="btn-modal" id="closeModal">cancelar</button>
+    <button type="submit" class="formulario__btn">Incluir</button>
+    <button type="button" value="cerrar" onclick="cerrarModal()" class="formulario__btn">Cancelar</button>
     <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
   </div>
-</form>
-</div>
+  </form>
+</main>
+</body>
