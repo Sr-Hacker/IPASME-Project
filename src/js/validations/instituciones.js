@@ -18,7 +18,7 @@ rellenar cada uno de los inputs y si estos reultan correctos cada campo cambiar�
 dejando que entonces este sea enviado*/
 const campos = {
 	rif_institucion: false,  
-	cod_estado: false,  
+	cod_ciudad: false,  
 	nombre: false,  
 	direccion: false,  
 	codigo_postal: false,  
@@ -34,8 +34,8 @@ const validarFormulario = (e) => {
 		case "rif_institucion":
 			validarCampo(expresiones.rif, e.target, 'rif_institucion');
 		break;
-		case "cod_estado":
-			validarCampo(expresiones.codigo, e.target, 'cod_estado');
+		case "cod_ciudad":
+			validarCampo(expresiones.codigo, e.target, 'cod_ciudad');
 		break;
 		case "nombre":
 			validarCampo(expresiones.nombre_institución, e.target, 'nombre');
@@ -85,7 +85,7 @@ inputs.forEach((input) => { /*Esta función me ejecuta el código cada vez que h
 function validarEnvio(){
 //para prevenir el envio de datos por default
 
-	if(campos.rif_institucion && campos.cod_estado && campos.nombre 
+	if(campos.rif_institucion && campos.cod_ciudad && campos.nombre 
 		&& campos.direccion && campos.codigo_postal && campos.telefono 
 		&& campos.correo){
 			
@@ -112,3 +112,13 @@ function validarEnvio(){
 	}
 	
 }
+
+
+rif_institucion
+cod_ciudad
+nombre
+direccion
+codigo_postal
+telefono
+correo
+tipo_institucion
