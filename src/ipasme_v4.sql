@@ -75,7 +75,8 @@ CREATE TABLE empleado (
   apellidos VARCHAR(50),
   telefono_celular VARCHAR(15),
   contrasena VARCHAR(50),
-  rol ENUM('rol1', 'rol2', 'rol3')
+  rol ENUM('admin', 'empleado') NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE tramite (

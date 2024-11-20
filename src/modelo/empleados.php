@@ -13,19 +13,19 @@ class Empleado extends DB{
 		$this->ced_empleado = $valor;
 	}
 	function set_nombres($valor){
-		$this->nombre = $valor;
+		$this->nombres = $valor;
 	}
 	function set_apellidos($valor){
-		$this->apellido = $valor;
+		$this->apellidos = $valor;
 	}
 	function set_telefono_celular($valor){
-		$this->fecha_nacimiento = $valor;
+		$this->telefono_celular = $valor;
 	}
   function set_contrasena($valor){
-		$this->telefono = $valor;
+		$this->contrasena = $valor;
 	}
   function set_rol($valor){
-		$this->contrasena = $valor;
+		$this->rol = $valor;
 	}
 
 	function incluir(){
